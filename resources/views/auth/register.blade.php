@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="tailwind.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <title>Document</title>
+    <title>Register</title>
 </head>
 
 <body>
@@ -35,30 +35,40 @@
             <div class="tempat-register-form mx-auto block ">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
-                    <p class="text-center register-text pb-10 pt-3">Log into Your Account</p>
+                    <p class="text-center register-text pb-10 pt-3">Create Account</p>
+
                     @if (session()->has('errorusername'))
                     <div class="alert alert-warning  mx-auto mb-3 mt-1">Username already exist!</div>
-
                     <?php session()->forget('errorusername') ?>
                     @endif
+
                     @if (session()->has('erroremail'))
                     <div class="alert alert-warning  mx-auto mb-3 mt-1">Email already exist!</div>
                     <?php session()->forget('erroremail') ?>
                     @endif
+
                     @if (session()->has('successregister'))
                     <div class="alert alert-success  mx-auto mb-3 mt-1">Register Success!</div>
                     <?php session()->forget('successregister') ?>
                     @endif
+
                     <label for="username" class="block sm:mb-2 mb-1 mx-auto w-full  ">Name</label>
                     <input type="text" name="name" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Name">
-                <label for="username" class="block sm:mb-2 mb-1 mx-auto w-full  ">Email</label>
+                    
+                    <label for="email" class="block sm:mb-2 mb-1 mx-auto w-full  ">Email</label>
                     <input type="email" name="email" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Email">
 
-                    <label for="username" class="block sm:mb-2 mb-1 mx-auto w-full  ">Password</label>
+                    <label for="phonenum" class="block sm:mb-2 mb-1 mx-auto w-full  ">Phone Number</label>
+                    <input type="text" name="phonenum" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Phone Number">
+                    
+                    <label for="password" class="block sm:mb-2 mb-1 mx-auto w-full  ">Password</label>
                     <input type="password" name="password" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Password">
 
+                    <label for="confirmPassword" class="block sm:mb-2 mb-1 mx-auto w-full  ">Confirm Password</label>
+                    <input type="password" name="confirmPassword" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Confirm Password">
+
                     <button class="button-register-primary block mt-3 mx-auto px-10 bg-primary py-1 mb-5 shadow" type="submit">Register</button>
-                    <div class="text-wrapper-register w-full text-center"> <a href="/login" class="forgot-text  ">Have an Account? Sign In</a>
+                    <div class="text-wrapper-register w-full text-center"> <a href="/login" class="forgot-text  ">Have an account? Sign In</a>
 
                 </div>
             </form>
