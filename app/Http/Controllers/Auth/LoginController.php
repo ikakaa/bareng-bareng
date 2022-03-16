@@ -68,7 +68,7 @@ class LoginController extends Controller
             session(['login' => true]);
             $checkuser->logintry = 0;
             $checkuser->save();
-            return redirect()->intended('/login');
+            return redirect()->intended('/home');
         } else {
             //IF Credential incorrect, Add login try +1 to the username, redirect to login with error msg
             $checkuser = User::where('email', '=', $request['email'])->first();
@@ -90,4 +90,8 @@ class LoginController extends Controller
             // new rules here
         ]);
     }
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/login');
+      }
 }

@@ -48,7 +48,7 @@
                     <?php session()->forget('errorlogintry') ?>
                     @endif
                     @if (session()->has('successlogin'))
-                    <div class="alert alert-success  mx-auto mb-3 mt-1">Login success </div>
+                    <div class="alert alert-warning  mx-auto mb-3 mt-1">Logout Success! </div>
 
                     <?php session()->forget('successlogin') ?>
                     @endif
