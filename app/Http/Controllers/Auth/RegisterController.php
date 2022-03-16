@@ -65,6 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //Insert Register
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -75,7 +76,7 @@ class RegisterController extends Controller
     public function register(Request $request){
             //Register
           $checkemail = User::where('email', '=', request('email'))->first();
-
+//Check if email exist, return to register with error msg
      if ($checkemail != NULL) {
                 session(['erroremail' => true]);
                 return redirect('/register');

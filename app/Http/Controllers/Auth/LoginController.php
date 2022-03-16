@@ -38,16 +38,17 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        // $this->middleware('guest')->except('logout');
     }
     public function login(Request $request)
     {
+        //deklarasi variable
         $credentials = [
             'email' => $request['email'],
             'password' => $request['password'],
         ];
 
-        // Dump data
+        // Attempt Login with credentials
 
         if (Auth::attempt([
             'email' => $request['email'],
@@ -55,6 +56,13 @@ class LoginController extends Controller
             'password' => $request['password']
         ])) {
             $checkuser = User::where('email', '=', $request['email'])->first();
+            // IF Credential correct, check user logintry
+            // IF logintry more than 3, redirect user to login with error msg
+            if($checkuser->logintry>3){
+                session(['errorlogintry' => true]);
+                return redirect('/login');exit;
+            }
+            // IF Login try less than 3, add session login and email then redirect to (?)
             session(['successlogin' => 'ada']);
             session(['email' => $request['email']]);
             session(['login' => true]);
@@ -62,6 +70,7 @@ class LoginController extends Controller
             $checkuser->save();
             return redirect()->intended('/login');
         } else {
+            //IF Credential incorrect, Add login try +1 to the username, redirect to login with error msg
             $checkuser = User::where('email', '=', $request['email'])->first();
             $logintryupdate = $checkuser->logintry + 1;
             $checkuser->logintry = $logintryupdate;
