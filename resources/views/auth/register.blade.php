@@ -1,77 +1,100 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <title>Document</title>
+</head>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+<body>
+    <nav>
+        <div class="navbar flex text-center w-full justify-between shadow p-2  px-5 text-white   ">
+            <div class="nav-kosong-kiri">
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                <a href="#"> <img src="src/Logoimg.png" alt="" class="cursor-pointer">
+                </a>
             </div>
+            <div class="nav-kosong-kanan"></div>
+        </div>
+    </nav>
+    <div class="main-container">
+        <div class="register-card px-5 py-12  mt-10 mb-10">
+            <div class="tempat-image-register mx-auto block ">
+                <img src="src/TextLogo.png" alt="" class=" mx-auto block">
+            </div>
+            <div class="tempat-register-form mx-auto block ">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <p class="text-center register-text pb-10 pt-3">Log into Your Account</p>
+                    @if (session()->has('errorusername'))
+                    <div class="alert alert-warning  mx-auto mb-3 mt-1">Username already exist!</div>
+
+                    <?php session()->forget('errorusername') ?>
+                    @endif
+                    @if (session()->has('erroremail'))
+                    <div class="alert alert-warning  mx-auto mb-3 mt-1">Email already exist!</div>
+                    <?php session()->forget('erroremail') ?>
+                    @endif
+                    @if (session()->has('successregister'))
+                    <div class="alert alert-success  mx-auto mb-3 mt-1">Register Success!</div>
+                    <?php session()->forget('successregister') ?>
+                    @endif
+                    <label for="username" class="block sm:mb-2 mb-1 mx-auto w-full  ">Name</label>
+                    <input type="text" name="name" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Name">
+                <label for="username" class="block sm:mb-2 mb-1 mx-auto w-full  ">Email</label>
+                    <input type="email" name="email" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Email">
+
+                    <label for="username" class="block sm:mb-2 mb-1 mx-auto w-full  ">Password</label>
+                    <input type="password" name="password" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Password">
+
+                    <button class="button-register-primary block mt-3 mx-auto px-10 bg-primary py-1 mb-5 shadow" type="submit">Register</button>
+                    <div class="text-wrapper-register w-full text-center"> <a href="/login" class="forgot-text  ">Have an Account? Sign In</a>
+
+                </div>
+            </form>
+
         </div>
     </div>
-</div>
-@endsection
+    </div>
+
+
+    <div class="footer">
+        <div class="footer-1 py-5 pt-8 w-full ">
+            <div class="justify-center flex">
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="footer-text-container flex justify-center py-8 sm:pl-3">
+                <a href="#" class="footer-href ">Contact</a>
+                <a href="#" class="footer-href ">FAQs</a>
+                <a href="#" class="footer-href2 ">Order Tracking</a>
+            </div>
+            <div class="copyright-text pt-12">
+                <p>Indonesia shipping available!</p>
+            </div>
+            <div class="copyright-text pt-16 py-8">
+                — Powered by <a href="#" class="underline italic">BarengBareng</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="tailwind.config.js "></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+</script>
+
+</html>

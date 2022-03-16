@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Symfony\Component\HttpFoundation\Request;
 class RegisterController extends Controller
 {
     /*
@@ -69,5 +69,25 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+    public function register(Request $request){
+            //Register
+          $checkemail = User::where('email', '=', request('email'))->first();
+
+     if ($checkemail != NULL) {
+                session(['erroremail' => true]);
+                return redirect('/register');
+            }
+            //IF Email not exist, insert
+            else {
+                $user = new User();
+                $user->name = request('name');
+
+                $user->email = request('email');
+                $user->password=Hash::make(request('password'));
+                session(['successregister' => 'ada']);
+                $user->save();
+                return redirect('/register');
+            }
     }
 }

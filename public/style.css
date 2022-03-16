@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,700;1,800;1,900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+:root {
+    --primaryColor: #4b89ac;
+    --neutralColor: #e4fcf9;
+    --secondaryColor: #faee5a;
+    --lightprimaryColor: #ace6f6;
+    --mainWhite: #fff;
+    --offWhite: #f7f7f7;
+    --mainBlack: #222;
+    --mainGrey: #ececec;
+    --darkGrey: #afafaf;
+    --mainTransition: all 0.3s linear;
+    --mainSpacing: 0.25rem;
+    --footercolor: #f4f4f4;
+    --lightShadow: 2px 5px 3px 0 rgba(0, 0, 0, 0.25);
+    --darkShadow: 4px 10px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.alert {
+    border-radius: 4px;
+    padding: 1.3rem;
+    font-size: 1.1rem;
+}
+
+.alert-success {
+    color: #285b2a;
+    background-color: #dbefdc;
+    border-color: #cde9ce;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: .3s;
+}
+
+.color-neutral {
+    color: var(--neutralColor);
+}
+
+.color-secondary {
+    color: var(--secondaryColor);
+}
+
+body {
+    font-family: 'Roboto Slab', sans-serif !important;
+}
+
+.bg-primary {
+    background-color: var(--primaryColor);
+}
+
+.bg-light-primary {
+    background-color: var(--lightprimaryColor);
+}
+
+.nav-kosong-kiri img {
+    width: 50px;
+    height: auto;
+}
+
+
+/* Register css*/
+
+.main-container {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.register-card {
+    height: auto;
+    min-height: 550px;
+    width: 500px;
+    border-radius: 12px;
+    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.tempat-image-register {
+    width: auto;
+    height: auto;
+}
+
+.tempat-image-register img {
+    width: 160px;
+    height: auto;
+}
+
+.tempat-register-form {
+    width: 325px;
+    min-height: 300px;
+    height: auto;
+}
+
+.register-text {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.forgot-text {
+    font-size: 13px;
+    transition: .3s;
+}
+
+.forgot-text:hover {
+    color: #4b89ac;
+    transition: .3s;
+}
+
+.button-register-primary {
+    border-radius: 14px;
+    color: var(--neutralColor);
+}
+
+.button-register-primary:hover {
+    transition: .3s;
+    background-color: var(--neutralColor);
+    color: #4b89ac;
+}
+
+.footer-1 {
+    background-color: var(--footercolor);
+    border-bottom: 1px solid #ddd;
+}
+
+.footer-2 {
+    background-color: var(--footercolor);
+    border-bottom: 1px solid #ddd;
+}
+
+.register-icon {
+    font-size: 23px;
+}
+
+.footer-href {
+    position: relative;
+    margin-right: 30px;
+}
+
+.footer-href2 {
+    position: relative;
+}
+
+.footer-href::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    border-right: 1px solid;
+    opacity: 0.5;
+    position: absolute;
+    top: -1px;
+    right: -15px;
+}
+
+.copyright-text {
+    color: #868686;
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    padding-top: 15px;
+    text-align: center;
+}
+
+
+/* border-bottom: 1px solid #ddd; */
+
+
+/* End Register css */
+
+
+/* Css debugging */
+
+div {
+    /* border: 1px solid red; */
+}
+
+
+/* End of css debugging */
+
+
+/* .footer-navigation-wrapper ul li:after {
+
+} */
