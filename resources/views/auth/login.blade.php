@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,16 +21,7 @@
 </head>
 
 <body>
-    <nav>
-        <div class="navbar flex text-center w-full justify-between shadow p-2  px-5 text-white   ">
-            <div class="nav-kosong-kiri">
-
-                <a href="#"> <img src="src/Logoimg.png" alt="" class="cursor-pointer">
-                </a>
-            </div>
-            <div class="nav-kosong-kanan"></div>
-        </div>
-    </nav>
+    
     <div class="main-container">
         <div class="register-card px-5 py-12  ">
             <div class="tempat-image-register mx-auto block ">
@@ -95,3 +90,6 @@
 </script>
 
 </html>
+
+
+@endsection

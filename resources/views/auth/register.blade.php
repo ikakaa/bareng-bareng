@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,20 +16,10 @@
 
     <link rel="stylesheet" href="tailwind.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <title>Register</title>
 </head>
 
 <body>
-    <nav>
-        <div class="navbar flex text-center w-full justify-between shadow p-2  px-5 text-white   ">
-            <div class="nav-kosong-kiri">
-
-                <a href="#"> <img src="src/Logoimg.png" alt="" class="cursor-pointer">
-                </a>
-            </div>
-            <div class="nav-kosong-kanan"></div>
-        </div>
-    </nav>
+ 
     <div class="main-container">
         <div class="register-card px-5 py-12  mt-10 mb-10">
             <div class="tempat-image-register mx-auto block ">
@@ -52,9 +45,10 @@
                     <?php session()->forget('successregister') ?>
                     @endif
 
-                    <label for="username" class="block sm:mb-2 mb-1 mx-auto w-full  ">Name</label>
+                    <label for="name" class="block sm:mb-2 mb-1 mx-auto w-full  ">Name</label>
                     <input type="text" name="name" required class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Name">
                     
+
                     <label for="email" class="block sm:mb-2 mb-1 mx-auto w-full  ">Email</label>
                     <input type="email" name="email" required class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Email">
 
@@ -108,3 +102,5 @@
 </script>
 
 </html>
+
+@endsection

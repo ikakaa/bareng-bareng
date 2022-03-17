@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Rules\phonenumRule;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,8 +53,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phonenum' => ['required', 'string', 'min:12'],
+            'phonenum' => ['required', 'string', 'min:12', new phonenumRule()],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+
         ]);
     }
 
@@ -75,9 +77,9 @@ class RegisterController extends Controller
     }
     public function register(Request $request){
             //Register
-          $checkemail = User::where('email', '=', request('email'))->first();
-//Check if email exist, return to register with error msg
-     if ($checkemail != NULL) {
+            $checkemail = User::where('email', '=', request('email'))->first();
+            //Check if email exist, return to register with error msg
+            if ($checkemail != NULL) {
                 session(['erroremail' => true]);
                 return redirect('/register');
             }
