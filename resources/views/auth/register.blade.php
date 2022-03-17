@@ -53,19 +53,19 @@
                     @endif
 
                     <label for="username" class="block sm:mb-2 mb-1 mx-auto w-full  ">Name</label>
-                    <input type="text" name="name" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Name">
+                    <input type="text" name="name" required class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Name">
                     
                     <label for="email" class="block sm:mb-2 mb-1 mx-auto w-full  ">Email</label>
-                    <input type="email" name="email" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Email">
+                    <input type="email" name="email" required class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Email">
 
                     <label for="phonenum" class="block sm:mb-2 mb-1 mx-auto w-full  ">Phone Number</label>
-                    <input type="text" name="phonenum" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Phone Number">
+                    <input type="text" name="phonenum" required class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Phone Number">
                     
                     <label for="password" class="block sm:mb-2 mb-1 mx-auto w-full  ">Password</label>
-                    <input type="password" name="password" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Password">
+                    <input type="password" name="password" required class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Password">
 
                     <label for="confirmPassword" class="block sm:mb-2 mb-1 mx-auto w-full  ">Confirm Password</label>
-                    <input type="password" name="confirmPassword" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Confirm Password">
+                    <input type="password" name="confirmPassword" required class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Confirm Password">
 
                     <button class="button-register-primary block mt-3 mx-auto px-10 bg-primary py-1 mb-5 shadow" type="submit">Register</button>
                     <div class="text-wrapper-register w-full text-center"> <a href="/login" class="forgot-text  ">Have an account? Sign In</a>
