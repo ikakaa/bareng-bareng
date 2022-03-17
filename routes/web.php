@@ -19,6 +19,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function(){
+    return view('home');
+});
+
+Route::get('/category', function(){
+    return view('category');
+});
+
+Route::get('/interestcheck', function(){
+    return view('interestcheck');
+});
+
+Route::get('/groupbuy', function(){
+    return view('groupbuy');
+});
+
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

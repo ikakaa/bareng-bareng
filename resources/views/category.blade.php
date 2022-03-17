@@ -18,7 +18,7 @@
     </head>
     
 <body>
-    <h1>Home</h1>
+    <h1>Category</h1>
     <div class="footer mt-7">
         <div class="footer-1 py-5 pt-8 w-full bg-navbar">
             <div class="justify-center flex">

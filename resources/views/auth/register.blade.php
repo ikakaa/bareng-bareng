@@ -73,7 +73,7 @@
 
 
     <div class="footer">
-        <div class="footer-1 py-5 pt-8 w-full ">
+        <div class="footer-1 py-5 pt-8 w-full bg-navbar">
             <div class="justify-center flex">
                 <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>

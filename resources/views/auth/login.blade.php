@@ -17,7 +17,6 @@
 
     <link rel="stylesheet" href="tailwind.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <title>Login</title>
 </head>
 
 <body>
@@ -61,7 +60,7 @@
         </div>
     </div>
     <div class="footer mt-7">
-        <div class="footer-1 py-5 pt-8 w-full ">
+        <div class="footer-1 py-5 pt-8 w-full bg-navbar">
             <div class="justify-center flex">
                 <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>

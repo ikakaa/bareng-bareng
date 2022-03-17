@@ -21,14 +21,12 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-navbar shadow-sm">
             <div class="container">
                 
-                    
-                        <div class="nav-kosong-kiri">
-                            <a href="/"> <img src="src/Logoimg.png" alt="" class="cursor-pointer">
-                            </a>
-                        </div>
+                <div class="nav-kosong-kiri">
+                    <a href="/"> <img src="src/Logoimg.png" alt="" class="cursor-pointer"></a>
+                </div>
                     
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -40,6 +38,23 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home">{{ __('Home') }}</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="/category">{{ __('Category') }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/interestcheck">{{ __('Interest Check') }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/groupbuy">{{ __('Group-Buy') }}</a>
+                            </li>
+                            
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

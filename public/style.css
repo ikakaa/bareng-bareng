@@ -85,6 +85,7 @@ body {
     border-radius: 12px;
     box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
     border: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: white;
 }
 
 .tempat-image-register {
