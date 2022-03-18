@@ -22,10 +22,10 @@
 <body>
     <div class="swiffy-slider slider-item-reveal slider-nav-page slider-nav-autoplay slider-nav-animation slider-nav-animation-appear slider-item-ratio slider-item-ratio-21x9" data-slider-nav-autoplay-interval="3000"  id="slider1">
         <ul class="slider-container">
-            <li><img src="src/slider1.jpg" loading="lazy" alt="..."></li>
-            <li><img src="src/slider2.jpg" loading="lazy" alt="..."></li>
-            <li><img src="src/slider1.jpg" loading="lazy" alt="..."></li>
-            <li><img src="src/slider2.jpg" loading="lazy" alt="..."></li>
+            <li><a href="/category"><img src="src/slider1.png" loading="lazy" alt="..."></a></li>
+            <li><a href="#"><img src="src/slider2.png" loading="lazy" alt="..."></a></li>
+            <li><a href="#"><img src="src/slider3.png" loading="lazy" alt="..."></a>li>
+            <li><a href="#"><img src="src/slider4.png" loading="lazy" alt="..."></a></li>
         </ul>
     
         <button type="button" class="slider-nav" aria-label="Go left"></button>
@@ -37,9 +37,36 @@
             <button aria-label="Go to slide"></button>
             <button aria-label="Go to slide"></button>
         </div>
-    
-        
     </div>
+
+    <div class="col d-flex justify-content-center card-wrapper">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    
 
     <div class="footer mt-7">
         <div class="footer-1 py-5 pt-8 w-full bg-navbar">
