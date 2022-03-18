@@ -196,7 +196,98 @@ div {
 } */
 
 .card-wrapper {
-width: 800px;
-height: 400px;
-margin: auto;
+    width: 800px;
+    height: 400px;
+    margin: auto;
+}
+
+.card-header2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    /* identical to box height, or 150% */
+    color: #000000;
+}
+
+.card-info {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    /* or 154% */
+    color: #000000;
+}
+
+.tempat-card {
+    height: auto;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 124.5%;
+    letter-spacing: 0.08em;
+    padding-bottom: 9px;
+    /* text-transform: uppercase; */
+}
+
+.card-custom {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 20%;
+    height: auto;
+    background: white;
+    border-radius: 8px;
+}
+
+.card-img img {
+    height: 255px;
+}
+
+.card-img {
+    height: 255px;
+}
+
+.price {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    color: #BBBBBB;
+}
+
+.price-number {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    /* identical to box height, or 100% */
+    color: #F8B63C;
+}
+
+.card-img img {
+    width: 100%;
+}
+
+.shadow-blue-500\/50 {
+    --tw-shadow-color: rgb(59 130 246 / 0.5);
+    box-shadow: var(--tw-shadow-colored);
+}
+
+.card-img img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-custom:hover {
+    transform: translateY(-2%);
+    transition: .3s;
+}
+
+.card-custom {
+    transition: .3s;
 }
