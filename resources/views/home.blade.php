@@ -106,7 +106,7 @@
     </div>
 </div>
         <p class="card-title text-center  text-white py-12">Featured Products</p>
-        <div class="tempat-card flex justify-center w-full">
+        <div class="tempat-card flex justify-center w-full pb-24">
             <div class="card-custom mr-4">
                 <div class="card-img">
                     <img src="src/item1.png" alt="">
@@ -174,7 +174,7 @@
             </div>
         </div>
 
-        <div class="footer mt-7">
+        <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
                 <div class="justify-center flex">
                     <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
