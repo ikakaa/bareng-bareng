@@ -71,7 +71,41 @@
             </div>
         </div>
     </div> --}}
-        <p class="card-title text-center  text-white">Featured Products</p>
+
+<div class="tempat-highlight flex flex-nowrap justify-center px-64 pt-20">
+
+    <div class="highlight-kiri relative mr-4">  <a href="#">
+<img src="src/item1.png" alt="" class="absolute">
+<div class="tempat-highlight-heading">
+    <h4 class="highlight-title">MONOKEI X FRIENDS EXTRAS</h4>
+    <h1 class="highlight-title-sub">Hidari</h1>
+</div>
+<div class="tempat-highlight-desc">
+    <p class="highlight-desc">Limited in stock units available at 10am, 14th of March 2022 (GMT+8)</p>
+</div></a>
+    </div>
+    <div class="highlight-kanan flex items-baseline flex-wrap ">
+        <div class="highlight-kanan-item "> <a href="#">
+            <img src="src/item1.png" alt="" class="absolute hightlight-img-kanan">
+            <div class="tempat-highlight-heading">
+                <h4 class="highlight-title">IN STOCK</h4>
+                <h1 class="highlight-title-sub">Kaban</h1>
+            </div>
+            <div class="tempat-highlight-desc">
+                <p class="highlight-desc">Limited in stock units available at 10am, 14th of March 2022 (GMT+8)</p>
+            </div></a></div>
+        <div class="highlight-kanan-item"> <a href="#">
+            <img src="src/item1.png" alt="" class="absolute hightlight-img-kanan2">
+            <div class="tempat-highlight-heading">
+                <h4 class="highlight-title">UPDATES</h4>
+                <h1 class="highlight-title-sub">Hidari</h1>
+            </div>
+            <div class="tempat-highlight-desc">
+                <p class="highlight-desc">Limited in stock units available at 10am, 14th of March 2022 (GMT+8)</p>
+            </div></a></div>
+    </div>
+</div>
+        <p class="card-title text-center  text-white py-12">Featured Products</p>
         <div class="tempat-card flex justify-center w-full">
             <div class="card-custom mr-4">
                 <div class="card-img">

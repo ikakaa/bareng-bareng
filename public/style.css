@@ -291,3 +291,71 @@ div {
 .card-custom {
     transition: .3s;
 }
+
+.highlight-kiri img {
+    width: 100%;
+    border-radius: 8px;
+    height: 75vh;
+}
+
+.highlight-kiri,
+.highlight-kanan {
+    width: 50%;
+    height: 75vh;
+    transition: none !important;
+}
+
+.tempat-highlight-heading {
+    color: black;
+    position: relative;
+    top: 18px;
+    left: 25px;
+    width: 80%;
+}
+
+.highlight-title {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.highlight-title-sub {
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 800;
+}
+
+.highlight-desc {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.tempat-highlight-desc {
+    position: relative;
+    top: 76%;
+    left: 25px;
+    width: 90%;
+}
+
+.highlight-kanan-item {
+    width: 100%;
+    height: 40%;
+}
+
+div {
+    /* border: 1px solid purple; */
+}
+
+.hightlight-img-kanan {
+    width: 30%;
+    border-radius: 8px;
+    height: 36vh;
+}
+
+.hightlight-img-kanan2 {
+    width: 30%;
+    border-radius: 8px;
+    height: 37.5vh;
+}
