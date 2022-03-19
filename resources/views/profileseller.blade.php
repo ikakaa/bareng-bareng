@@ -32,24 +32,33 @@
                     <span class="name mt-3">Username</span> 
 
                     <div class="action-button">
-                        <button name="submit" type="submit" class="button-style">Buyer</button>
+                        <button name="submit" type="submit" class="button-style" onclick="location.href='{{url('/profilebuyer')}}'">Buyer</button>
                         <button class="button-selected-style mb-3">Seller</button>
                     </div>
                 </div>
                 <div class="mb-4 p-2 d-flex justify-content-center">
                     <a href="#">
-                        <i class="fa fa-shopping-cart" style="font-size:20px"></i>
-                        <span class="pl-2">On-going Transaction</span>
+                        <i class="fa fa-plus-square" aria-hidden="true" style="font-size:20px"></i>
+                        <span class="pl-2">Upload Products</span>
                     </a>
-                    
                     <br>
                 </div>
+
+                <div class="mb-4 p-2 d-flex justify-content-center">
+                    <a href="#">
+                        <i class="fa fa-bars" aria-hidden="true" style="font-size:20px"></i>
+                        <span class="pl-2">My Product List</span>
+                    </a>
+                    <br>
+                </div>
+
                 <div class="d-flex justify-content-center">
-                    <a href="">
-                        <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i>
-                        <span class="pl-2">Order History</span>
+                    <a href="#">
+                        <i class="fa fa-check-circle" aria-hidden="true" style="font-size:20px"></i>
+                        <span class="pl-2">Product Verification</span>
                     </a>
                 </div>
+
             </div>
         </div>
         

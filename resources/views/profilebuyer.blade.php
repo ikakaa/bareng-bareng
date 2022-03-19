@@ -33,7 +33,7 @@
 
                     <div class="action-button">
                         <button name="submit" type="submit" class="button-selected-style">Buyer</button>
-                        <button class="button-style mb-3">Seller</button>
+                        <button class="button-style mb-3" onclick="location.href='{{url('/profileseller')}}'">Seller</button>
                     </div>
                 </div>
                 <div class="mb-4 p-2 d-flex justify-content-center">
@@ -45,7 +45,7 @@
                     <br>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="">
+                    <a href="#">
                         <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i>
                         <span class="pl-2">Order History</span>
                     </a>

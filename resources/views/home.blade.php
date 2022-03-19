@@ -24,21 +24,21 @@
     </head>
 
     <body>
-        <div class="swiffy-slider slider-item-reveal slider-nav-page slider-nav-autoplay slider-nav-animation slider-nav-animation-appear slider-item-ratio slider-item-ratio-21x9"
-            data-slider-nav-autoplay-interval="3000" id="slider1">
+        <div  class="swiffy-slider slider-item-reveal slider-nav-page slider-nav-autoplay slider-nav-animation slider-nav-animation-appear slider-item-ratio slider-item-ratio-21x9"
+        data-slider-nav-autoplay-interval="3000" id="slider1">
             <ul class="slider-container">
                 <li><a href="/category"><img src="src/slider1.png" loading="lazy" alt="..."></a></li>
                 <li><a href="#"><img src="src/slider2.png" loading="lazy" alt="..."></a></li>
-                <li><a href="#"><img src="src/slider3.png" loading="lazy" alt="..."></a>li>
+                <li><a href="#"><img src="src/slider3.png" loading="lazy" alt="..."></a></li>
                 <li><a href="#"><img src="src/slider4.png" loading="lazy" alt="..."></a></li>
             </ul>
-
+        
             <button type="button" class="slider-nav" aria-label="Go left"></button>
             <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
-
+        
             <div class="slider-indicators slider-indicators-square d-none d-md-flex">
-                <button class="" aria-label="Go to slide"></button>
-                <button aria-label="Go to slide" class="active"></button>
+                <button class="active" aria-label="Go to slide"></button>
+                <button aria-label="Go to slide"></button>
                 <button aria-label="Go to slide"></button>
                 <button aria-label="Go to slide"></button>
             </div>
