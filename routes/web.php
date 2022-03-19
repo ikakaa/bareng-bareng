@@ -35,6 +35,10 @@ Route::get('/groupbuy', function(){
     return view('groupbuy');
 });
 
+Route::get('/productdetail', function(){
+    return view('productdetail');
+});
+
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
