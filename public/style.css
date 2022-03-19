@@ -418,6 +418,12 @@ div {
 
 .action-button {
     display: inline-block;
+    width: calc(50% - 400);
+    margin: 0 auto;
+}
+
+.action-btn {
+    display: inline-block;
     width: calc(50% - 400px);
     margin: 0 auto;
 }

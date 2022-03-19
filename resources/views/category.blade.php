@@ -47,7 +47,7 @@
         <div>
             <p class="card-title text-center  text-white py-12">Featured Products</p>
 
-            <div class="action-button mb-10 d-flex justify-content-center">
+            <div class="action-btn mb-10 d-flex justify-content-center">
                 <button class="button-style button-border mr-1">Keyboard</button>
                 <button class="button-style button-border mr-1">Artisan</button>
                 <button class="button-style button-border">Figures</button>
