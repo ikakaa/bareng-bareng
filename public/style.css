@@ -359,3 +359,52 @@ div {
     border-radius: 8px;
     height: 37.5vh;
 }
+
+.button-style {
+    width: 120px;
+    height: 30px;
+    background-color: #284b63;
+    color: #f4f9e9;
+    display: inline-block;
+    margin: 0 auto;
+    border: none;     
+    text-align: center;
+    text-decoration: none; 
+    font-size: 16px;   
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-style:hover {
+    background-color: #f4f9e9;
+    color: #284b63;
+    border: 2px solid #284b63;
+}
+
+.button-selected-style {
+    width: 120px;
+    height: 30px;
+    background-color: #f4f9e9;
+    color: #284b63;
+    display: inline-block;
+    margin: 0 auto;
+    border: none;     
+    text-align: center;
+    text-decoration: none; 
+    font-size: 16px;   
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border: 2px solid #284b63;
+}
+
+.action-button {
+    display: inline-block;
+    width: calc(50% - 400x);
+    margin: 0 auto;
+}
+
+.card-size {
+    padding-top: 50px;
+    width: 800px;
+    height: 500px;
+}

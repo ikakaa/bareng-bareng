@@ -39,6 +39,14 @@ Route::get('/productdetail', function(){
     return view('productdetail');
 });
 
+Route::get('/profilebuyer', function(){
+    return view('profilebuyer');
+});
+
+Route::get('/profileseller', function(){
+    return view('profileseller');
+});
+
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
