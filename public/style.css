@@ -367,10 +367,10 @@ div {
     color: #f4f9e9;
     display: inline-block;
     margin: 0 auto;
-    border: none;     
+    border: none;
     text-align: center;
-    text-decoration: none; 
-    font-size: 16px;   
+    text-decoration: none;
+    font-size: 16px;
     transition-duration: 0.4s;
     cursor: pointer;
 }
@@ -382,10 +382,10 @@ div {
     color: #f4f9e9;
     display: inline-block;
     margin: 0 auto;
-    border: none;     
+    border: none;
     text-align: center;
-    text-decoration: none; 
-    font-size: 16px;   
+    text-decoration: none;
+    font-size: 16px;
     transition-duration: 0.4s;
     cursor: pointer;
 }
@@ -407,10 +407,10 @@ div {
     color: #284b63;
     display: inline-block;
     margin: 0 auto;
-    border: none;     
+    border: none;
     text-align: center;
-    text-decoration: none; 
-    font-size: 16px;   
+    text-decoration: none;
+    font-size: 16px;
     transition-duration: 0.4s;
     cursor: pointer;
     border: 2px solid #284b63;
@@ -432,4 +432,12 @@ div {
     padding-top: 50px;
     width: 800px;
     height: 500px;
+}
+
+.custwidth {
+    width: 400px;
+}
+
+.custwidth2 {
+    width: 250px;
 }

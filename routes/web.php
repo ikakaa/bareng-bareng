@@ -46,6 +46,9 @@ Route::get('/profilebuyer', function(){
 Route::get('/profileseller', function(){
     return view('profileseller');
 });
+Route::get('/uploadproduct', function(){
+    return view('upload');
+});
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
