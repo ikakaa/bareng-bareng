@@ -49,6 +49,9 @@ Route::get('/profileseller', function(){
 Route::get('/uploadproduct', function(){
     return view('upload');
 });
+Route::get('/interestcheckdetail', function(){
+    return view('interestcheckdetail');
+});
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

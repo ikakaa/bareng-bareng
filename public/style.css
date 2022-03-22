@@ -119,8 +119,13 @@ body {
     transition: .3s;
 }
 
-.button-register-primary {
+.button-register-primary2 {
     border-radius: 14px;
+    color: var(--neutralColor);
+}
+
+.button-register-primary2 {
+    border-radius: 3px;
     color: var(--neutralColor);
 }
 
@@ -444,4 +449,68 @@ div {
 
 .button-right-bottom {
     margin-left: 800px;
+}
+
+.swiper {
+    width: 400px;
+    height: 400px;
+}
+
+.swiper img {
+    width: 100%;
+    height: 100%;
+}
+
+div {
+    /* border: 1px solid purple; */
+}
+
+.interest-check-detail-kiri {
+    width: 30%;
+}
+
+.interest-check-detail-kanan {
+    width: 60%;
+    color: whitesmoke;
+}
+
+.interest-detail-title {
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.interest-detail-title2 {
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.custiconsize {
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.custiconsize:hover {
+    color: var(--lightprimaryColor);
+}
+
+.interest-detail-ic {
+    font-size: 17px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    /* text-transform: uppercase; */
+    font-weight: 500;
+}
+
+.interest-detail-description {
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 1px;
 }
