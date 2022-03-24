@@ -22,7 +22,7 @@
 <body>
     
     <div class="main-container">
-        <div class="register-card px-5 py-12  ">
+        <div class="register-card px-5 py-12">
             <div class="tempat-image-register mx-auto block ">
                 <img src="src/TextLogo.png" alt="" class=" mx-auto block">
             </div>
@@ -51,7 +51,7 @@
                     <label for="username" class="block sm:mb-2 mb-1 mx-auto w-full  ">Password</label>
                     <input type="password" name="password" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Password">
                     <a href="#" class="forgot-text">Forgot password?</a>
-                    <button class="button-register-primary block mt-3 mx-auto px-10 bg-primary py-1 mb-5" type="submit">Login</button>
+                    <button class="button-style block mt-3 mx-auto px-10 mb-5" type="submit">Login</button>
                     <div class="text-wrapper-register w-full text-center"> <a href="/register" class="forgot-text  ">Don’t have an account? Sign up</a>
                     </div>
                 </form>

@@ -51,10 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:5', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phonenum' => ['required', 'string', 'min:12', new phonenumRule()],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phonenum' => ['required', 'string', 'min:12'],
+            'password' => ['required', 'string', 'min:6', 'regex:/^.*(?=.*[a-z])(?=.*[0-9]).+$/', 'confirmed'],
+            'password_confirmation' => 'required|min:6|same:password',
 
         ]);
     }
@@ -75,24 +76,24 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-    public function register(Request $request){
-            //Register
-            $checkemail = User::where('email', '=', request('email'))->first();
-            //Check if email exist, return to register with error msg
-            if ($checkemail != NULL) {
-                session(['erroremail' => true]);
-                return redirect('/register');
-            }
-            //IF Email not exist, insert
-            else {
-                $user = new User();
-                $user->name = request('name');
-                $user->email = request('email');
-                $user->phonenum = request('phonenum');
-                $user->password=Hash::make(request('password'));
-                session(['successregister' => 'ada']);
-                $user->save();
-                return redirect('/register');
-            }
-    }
+    // public function register(Request $request){
+    //         //Register
+    //         $checkemail = User::where('email', '=', request('email'))->first();
+    //         //Check if email exist, return to register with error msg
+    //         if ($checkemail != NULL) {
+    //             session(['erroremail' => true]);
+    //             return redirect('/register');
+    //         }
+    //         //IF Email not exist, insert
+    //         else {
+    //             $user = new User();
+    //             $user->name = request('name');
+    //             $user->email = request('email');
+    //             $user->phonenum = request('phonenum');
+    //             $user->password=Hash::make(request('password'));
+    //             session(['successregister' => 'ada']);
+    //             $user->save();
+    //             return redirect('/register');
+    //         }
+    // }
 }
