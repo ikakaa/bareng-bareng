@@ -16,6 +16,20 @@ class CreateProductDetailsTable extends Migration
         Schema::create('product_details', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('product_name');
+            $table->string('folderpath');
+            $table->string('owner');
+            $table->string('shortdesc');
+            $table->string('product_type');
+            $table->integer('moq');
+            $table->integer('productstock');
+            $table->integer('productprice');
+            $table->string('startdate');
+            $table->string('enddate');
+            $table->string('endtime');
+            $table->string('shippingdate');
+            $table->string('discordlink');
+            $table->integer('deleted')->default('0');
         });
     }
 

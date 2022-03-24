@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\ProductDetail;
-use App\Models\ProductDetailsFile;
+
 use Illuminate\Http\Request;
 
-class ProductDetailController extends Controller
+use App\Models\ProductComment;
+class ProductCommentController extends Controller
 {
     public function store(Request $request)
     {

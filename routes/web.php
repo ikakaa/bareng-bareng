@@ -55,4 +55,5 @@ Route::get('/interestcheckdetail', function(){
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/do_addcomment', [App\Http\Controllers\ProductCommentController::class, 'store']);
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

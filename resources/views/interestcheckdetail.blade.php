@@ -63,11 +63,15 @@
 
         </div>
         <div class="tempat-comment w-full px-24 pt-12 ">
+            <form action="/do_addcomment" method="POST">
+                @csrf
             <p class="interest-detail-ic pt-4 text-white pb-2">Add Comment</p>
-<textarea name="" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-2/5  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" cols="30" rows="10"></textarea>
+<textarea name="comment" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-2/5  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" cols="30" rows="10"></textarea>
+<input type="hidden" name="commentby" value="ADRIAN">
 <div class="w-2/5 flex justify-between">
 <p></p>
 <button type="submit" class="button-register-primary2 block mt-3  px-2 bg-primary py-1 mb-5">Submit</button>
+</form>
 </div>
         </div>
         <div class="footer mt-10">
