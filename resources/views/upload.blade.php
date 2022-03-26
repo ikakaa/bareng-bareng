@@ -26,10 +26,12 @@
         <div class="tempat-form mx-4">
 
         <div class="form-card  shadow justify-start flex flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="/do_upload" method="POST" enctype="multipart/form-data">
+
+            @csrf
             <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Product Name</label>
             <input type="text" name="productname" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 ">
-
+<input type="text" value="{{session('email')}}" name="email">
             <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Product Price(Inc. prox Indonesia Shipping Fee )</label>
             <input type="number" name="productprice" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000">
 
@@ -45,38 +47,38 @@
 
            <label for="moq" class="block sm:mb-2 mb-1 w-full  mt-2">Minimum Order Quantity</label>
            <input type="number" name="moq" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="0">
-          
+
             <label for="maxorder" class="block sm:mb-2 mb-1 w-full  mt-2">Max Order (for stock)</label>
             <input type="number" name="maxorder" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="0">
-            
+
             <br><h3 style="font-size: 22px">Interest Check</h3>
-           
+
             <label for="startdate" class="block sm:mb-2 mb-1 w-full  ">Start Date</label>
             <input type="date" name="startdate" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth2  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
-        
+
             <label for="enddate" class="block sm:mb-2 mb-1 w-full  ">End Date</label>
             <input type="date" name="enddate" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth2  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
 
             <label for="endtime" class="block sm:mb-2 mb-1 w-full  mt-2">End Time</label>
             <input type="time" name="endtime" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
-            
+
             <label for="shippingdate" class="block sm:mb-2 mb-1 w-full  ">Shipping Date</label>
             <input type="date" name="shippingdate" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth2  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Password">
-            
-        
+
+
             <label for="discord" class="block sm:mb-2 mb-1 w-full  mt-2">Link Discord (for updates or chat)</label>
             <input type="text" name="discord" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="www.discord.com">
-            
-           <label for="uploadphoto" class="block sm:mb-2 mb-1 w-full  mt-2">Upload Photo</label>
-           <input type="file" name="photo" id="photo">
 
-    
+           <label for="uploadphoto" class="block sm:mb-2 mb-1 w-full  mt-2">Upload Photo</label>
+           <input type="file" name="file" id="photo">
+
+
            <div class="button-right-bottom">
                 <button class="button-style">Upload</button>
            </div>
-        
 
-         
+
+
 
         </form>
     </div>
