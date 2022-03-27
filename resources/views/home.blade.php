@@ -1,5 +1,5 @@
 
-@extends('layouts.checklogin')
+{{-- @extends('layouts.checklogin') --}}
 @extends('layouts.app')
 
 @section('content')

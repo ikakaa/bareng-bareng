@@ -19,9 +19,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/home', function(){
-    return view('home');
-});
+
 
 Route::get('/category', function(){
     return view('category');
@@ -31,30 +29,36 @@ Route::get('/interestcheck', function(){
     return view('interestcheck');
 });
 
-Route::get('/groupbuy', function(){
-    return view('groupbuy');
-});
 
-Route::get('/productdetail', function(){
-    return view('productdetail');
+Route::get('/home', function(){
+    return view('home');
 });
-
-Route::get('/profilebuyer', function(){
-    return view('profilebuyer');
-});
-
-Route::get('/profileseller', function(){
-    return view('profileseller');
-});
-Route::get('/uploadproduct', function(){
-    return view('upload');
-});
-Route::get('/interestcheckdetail', function(){
-    return view('interestcheckdetail');
-});
-
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/do_addcomment', [App\Http\Controllers\ProductCommentController::class, 'store']);
 Route::post('/do_upload', [App\Http\Controllers\ProductDetailController::class, 'store']);
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::group(['middleware'=>['checklogin']],function(){
+
+    Route::get('/groupbuy', function(){
+        return view('groupbuy');
+    });
+
+    Route::get('/productdetail', function(){
+        return view('productdetail');
+    });
+
+    Route::get('/profilebuyer', function(){
+        return view('profilebuyer');
+    });
+
+    Route::get('/profileseller', function(){
+        return view('profileseller');
+    });
+    Route::get('/uploadproduct', function(){
+        return view('upload');
+    });
+    Route::get('/interestcheckdetail', function(){
+        return view('interestcheckdetail');
+    });
+});
