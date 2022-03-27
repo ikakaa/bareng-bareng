@@ -23,6 +23,12 @@
 
     <body>
         <p class="card-title uppercase  text-white mx-4 py-3">Upload Products</p>
+        @error('moq')
+        ERROR MOQ
+        @enderror
+        @error('file')
+        ERROR FILE
+        @enderror
         <div class="tempat-form mx-4">
 
         <div class="form-card  shadow justify-start flex flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
