@@ -61,4 +61,22 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::get('/interestcheckdetail', function(){
         return view('interestcheckdetail');
     });
+    Route::get('/interestcheckdetail', function(){
+        return view('interestcheckdetail');
+    });
+    Route::get('/productverification', function(){
+        return view('productverification');
+    });
 });
+
+// To do list
+// Bikin Halaman Verification
+// Bikin Logic Backend Verification
+// Bikin Backend Verification
+// Bikin Halaman interest check list
+// Tampilin daftar produk interest check list pakai database
+// Bikin timer(?) untuk menghitung waktu sisa interest check list
+// Bikin Middleware untuk menghitung waktu sisa interest check list, jika waktu habis maka Update status InterestDone jadi 1, etc
+
+
+
