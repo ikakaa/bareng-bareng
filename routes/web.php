@@ -22,8 +22,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
-
 Route::get('/category', function(){
     return view('category');
 });
@@ -43,10 +41,6 @@ Route::post('/do_upload', [App\Http\Controllers\ProductDetailController::class, 
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware'=>['checklogin']],function(){
 
-    Route::get('/groupbuy', function(){
-        return view('groupbuy');
-    });
-
     Route::get('/productdetail', function(){
         return view('productdetail');
     });
@@ -61,12 +55,17 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::get('/uploadproduct', function(){
         return view('upload');
     });
+    
+    Route::get('/interestcheck',[App\Http\Controllers\InterestCheckController::class, 'index']);
+
+    Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index']);
+
+    Route::get('/product/{id}',[App\Http\Controllers\ProductDetailController::class, 'detail']);
+
     Route::get('/interestcheckdetail', function(){
         return view('interestcheckdetail');
     });
-    Route::get('/interestcheckdetail', function(){
-        return view('interestcheckdetail');
-    });
+
     Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
 
 });

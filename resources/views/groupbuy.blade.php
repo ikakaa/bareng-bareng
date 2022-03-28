@@ -46,20 +46,26 @@
 
         <div>
             <p class="card-title text-center  text-white py-12">Featured Products</p>
+
+            <div class="action-btn mb-10 d-flex justify-content-center">
+                <button class="button-style button-border mr-1">Keyboard</button>
+                <button class="button-style button-border mr-1">Artisan</button>
+                <button class="button-style button-border">Figures</button>
+            </div>
             
                 <div class="tempat-card flex justify-center w-full pb-24">
+                    @foreach ($products as $product)
                     <div class="card-custom mr-4">
                         <div class="card-img">
                             <img src="src/item1.png" alt="">
                         </div>
                         <div class="card-text w-full px-2 pb-3 ">
-                            <p class="card-header2 pt-1">GMK Frost Witch </p>
-                            <p class="card-info pt-2 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, alias?
-                            </p>
+                            <a class="card-header2 pt-1" href="/product/{{$product->id}}">{{$product->product_name}}</a>
+                            <p class="card-info pt-2 ">{{$product->shortdesc}}</p>
                             <div class="flex justify-between w-full ">
                                 <div class="mini-card-box ">
                                     <p class="price">Price</p>
-                                    <p class="price-number block">$29.99</p>
+                                    <p class="price-number block">{{$product->productprice}}</p>
                                 </div>
                                 <div class="mini-card-button">
 
@@ -70,50 +76,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-custom mr-4">
-                        <div class="card-img">
-                            <img src="src/item1.png" alt="">
-                        </div>
-                        <div class="card-text w-full px-2 pb-3 ">
-                            <p class="card-header2 pt-1">GMK Frost Witch </p>
-                            <p class="card-info pt-2 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, alias?
-                            </p>
-                            <div class="flex justify-between w-full ">
-                                <div class="mini-card-box ">
-                                    <p class="price">Price</p>
-                                    <p class="price-number block">$29.99</p>
-                                </div>
-                                <div class="mini-card-button">
-
-                                    <button
-                                        class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
-                                        to cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  <div class="card-custom">
-                        <div class="card-img">
-                            <img src="src/item1.png" alt="">
-                        </div>
-                        <div class="card-text w-full px-2 pb-3 ">
-                            <p class="card-header2 pt-1">GMK Frost Witch </p>
-                            <p class="card-info pt-2 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, alias?
-                            </p>
-                            <div class="flex justify-between w-full ">
-                                <div class="mini-card-box ">
-                                    <p class="price">Price</p>
-                                    <p class="price-number block">$29.99</p>
-                                </div>
-                                <div class="mini-card-button">
-
-                                    <button
-                                        class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
-                                        to cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+
+
             </div>
         </div>
 

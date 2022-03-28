@@ -15,8 +15,6 @@ class ProductDetailController extends Controller
     {
     }
 
-
-
     public function store(Request $request)
     {
         $request->validate([
@@ -67,5 +65,12 @@ class ProductDetailController extends Controller
         return view('productverification',[
             "product"=>ProductDetail::all(),
         ]);
+    }
+
+    public function detail(ProductDetail $id)
+    {
+        //function untuk menampilkan product
+        $products = ProductDetail::where('id', $id->id)->get();
+        return view('product', compact('products'));
     }
 }
