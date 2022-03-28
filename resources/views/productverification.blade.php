@@ -34,42 +34,45 @@
         <link rel="stylesheet" href="style.css">
     </head>
 
-    <body><div class="container min-h-screen pt-3" >
-        <div class=" mx-auto w-4/5 table-card">
-            <div class=" table-card-body"><h4 class="table-card-title mb-4">Product Verification</h4>
-            <table id="table_id" class="display table-hover bg-white">
-                <thead>
-                    <tr>
-                        <th class="text-black">No.</th>
-                        <th class="text-black">Nama Produk</th>
-                        <th class="text-black">Creator</th>
-                        <th class="text-black">Preview</th>
-                        <th class="text-black">Approve</th>
-                        <th class="text-black">Reject</th>
+    <body>
+        <div class="container min-h-screen pt-3">
+            <div class=" mx-auto w-4/5 table-card">
+                <div class=" table-card-body">
+                    <h4 class="table-card-title mb-4">Product Verification</h4>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>GMK-234</td>
-                        <td>Adrian@gmail.com</td>
-                        <td><a href="#">Preview</a></td>
-                        <td>Nanti diisi icon reject/approve</td>
-                        <td>Nanti diisi icon reject/approve</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>GMK-234</td>
-                        <td>Adrian@gmail.com</td>
-                        <td>Preview</td>
-                        <td>Nanti diisi icon reject/approve</td>
-                        <td>Nanti diisi icon reject/approve</td>
-                    </tr>
 
-                </tbody>
-            </table></div>
-        </div></div>
+                    <table id="table_id" class="display table-hover bg-white">
+                        <thead>
+                            <tr>
+                                <th class="text-black">No.</th>
+                                <th class="text-black">Nama Produk</th>
+                                <th class="text-black">Creator</th>
+                                <th class="text-black">Preview</th>
+                                <th class="text-black">Created at</th>
+                                <th class="text-black">Approve</th>
+                                <th class="text-black">Reject</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php  $i=0; ?>
+                            @foreach ($product as $row) <?php $i++; ?>
+                                <tr>
+                                    <td>{{$i}}</td>
+                                    <td><a href="#"> {{$row->product_name}} </a></td>
+                                    <td>{{$row->owner}}</td>
+                                    <td><a href="#">Preview</a></td>
+                                    <td>{{$row->created_at}}</td>
+                                    <td>Nanti diisi icon reject/approve</td>
+                                    <td>Nanti diisi icon reject/approve</td>
+                                </tr>
+                                @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">

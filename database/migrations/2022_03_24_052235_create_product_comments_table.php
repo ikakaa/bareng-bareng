@@ -20,6 +20,7 @@ class CreateProductCommentsTable extends Migration
             $table->string('comment_by');
             $table->string('productid');
             $table->string('deleted')->default('0');
+
         });
     }
 

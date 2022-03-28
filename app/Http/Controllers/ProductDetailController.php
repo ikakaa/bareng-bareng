@@ -19,27 +19,18 @@ class ProductDetailController extends Controller
 
     public function store(Request $request)
     {
-        // $input = $request->all();
         $request->validate([
-            // 'name' => ['required', 'string', 'min:5', 'max:255'],
-            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'phonenum' => ['required', 'string', 'min:12'],
-            // 'password' => ['required', 'string', 'min:6', 'regex:/^.*(?=.*[a-z])(?=.*[0-9]).+$/', 'confirmed'],
-            // 'password_confirmation' => 'required|min:6|same:password',
             'file' => 'required|max:100000|mimes:jpeg,jpg,png,gif',
             'moq' => ['required',  'max :10'],
 
         ]);
-
-
         $product = new ProductDetail;
         // $product->product = $request->input('product');
         $tgl      = date('Ymd_H_i_s');
         $path = 'uploads/' . $tgl . '_' . $request->input('productname');
         $product->folderpath = $path;
         File::makeDirectory($path);
-        // dd($path);
-
+        //Product Folder
         $product->product_name = $request->input('productname');
         $product->owner = $request->input('email');
         $product->shortdesc = $request->input('shortdesc');
@@ -54,10 +45,8 @@ class ProductDetailController extends Controller
         $product->product_type = $request->input('producttype');
         // $product->productid = "1";
         $product->save();
-
+        //Product File
         $productfile = new ProductDetailsFile;
-
-        $tgl      = date('Ymd_H_i_s');
         $filesize = $_FILES['file']['size'];
         $filetmp  = $_FILES['file']['tmp_name'];
         $filename = $_FILES['file']['name'];
@@ -71,5 +60,12 @@ class ProductDetailController extends Controller
 
 
         return redirect()->back()->with('status', 'product Added Successfully');
+    }
+    public function index(){
+        $product = ProductDetail::all();
+
+        return view('productverification',[
+            "product"=>ProductDetail::all(),
+        ]);
     }
 }

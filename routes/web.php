@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\ProductDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
+use App\Models\ProductDetailsFile;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,9 +67,8 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::get('/interestcheckdetail', function(){
         return view('interestcheckdetail');
     });
-    Route::get('/productverification', function(){
-        return view('productverification');
-    });
+    Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
+
 });
 
 // To do list

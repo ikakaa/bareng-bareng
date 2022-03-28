@@ -32,10 +32,10 @@
                 <li><a href="#"><img src="src/slider3.png" loading="lazy" alt="..."></a></li>
                 <li><a href="#"><img src="src/slider4.png" loading="lazy" alt="..."></a></li>
             </ul>
-        
+
             <button type="button" class="slider-nav" aria-label="Go left"></button>
             <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
-        
+
             <div class="slider-indicators slider-indicators-square d-none d-md-flex">
                 <button class="active" aria-label="Go to slide"></button>
                 <button aria-label="Go to slide"></button>
@@ -52,8 +52,8 @@
                 <button class="button-style button-border mr-1">Artisan</button>
                 <button class="button-style button-border">Figures</button>
             </div>
-            
-                <div class="tempat-card flex justify-center w-full pb-24">
+
+                <div class="tempat-card flex-wrap flex justify-center w-full pb-24">
                     <div class="card-custom mr-4">
                         <div class="card-img">
                             <img src="src/item1.png" alt="">
@@ -76,28 +76,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-custom mr-4">
-                        <div class="card-img">
-                            <img src="src/item1.png" alt="">
-                        </div>
-                        <div class="card-text w-full px-2 pb-3 ">
-                            <p class="card-header2 pt-1">GMK Frost Witch </p>
-                            <p class="card-info pt-2 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, alias?
-                            </p>
-                            <div class="flex justify-between w-full ">
-                                <div class="mini-card-box ">
-                                    <p class="price">Price</p>
-                                    <p class="price-number block">$29.99</p>
-                                </div>
-                                <div class="mini-card-button">
-
-                                    <button
-                                        class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
-                                        to cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  <div class="card-custom">
+                   <div class="card-custom">
                         <div class="card-img">
                             <img src="src/item1.png" alt="">
                         </div>
