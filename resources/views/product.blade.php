@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('content')
     <!DOCTYPE html>
@@ -38,7 +38,7 @@
             </div>
             @endforeach
         </div>
-     
+
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
