@@ -29,7 +29,7 @@
             <div class="container">
 
                 <div class="nav-kosong-kiri">
-                    <a href="/"> <img src="src/Logoimg.png" alt="" class="cursor-pointer"></a>
+                    <a href="/"> <img src="../src/Logoimg.png" alt="" class="cursor-pointer"></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">

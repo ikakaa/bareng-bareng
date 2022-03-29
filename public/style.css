@@ -592,3 +592,10 @@ div {
     color: #464a53;
     text-transform: capitalize;
 }
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
