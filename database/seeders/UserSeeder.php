@@ -27,6 +27,13 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('adrian123'),
 
         ],
+      [
+            'email'=>'adrian.putra002@binus.ac.id',
+            'name'=>'adrian123',
+            'phonenum'=>'0812341234',
+            'password'=>bcrypt('adrian123'),
+
+        ],
 
     ];
 foreach($user as $key=>$value){

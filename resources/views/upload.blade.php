@@ -37,7 +37,7 @@
             @csrf
             <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Product Name</label>
             <input type="text" name="productname" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 ">
-<input type="text" value="{{session('email')}}" name="email">
+{{-- <input type="text" value="{{session('email')}}" name="email"> --}}
             <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Product Price(Inc. prox Indonesia Shipping Fee )</label>
             <input type="number" name="productprice" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000">
 

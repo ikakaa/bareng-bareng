@@ -17,6 +17,7 @@ class ProductDetailController extends Controller
 
     public function store(Request $request)
     {
+        date_default_timezone_set('Asia/Bangkok');
         $request->validate([
             'file' => 'required|max:100000|mimes:jpeg,jpg,png,gif',
             'moq' => ['required',  'max :10'],
