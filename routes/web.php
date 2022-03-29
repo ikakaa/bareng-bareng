@@ -52,6 +52,7 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::get('/profileseller', function(){
         return view('profileseller');
     });
+
     Route::get('/uploadproduct', function(){
         return view('upload');
     });
@@ -67,6 +68,10 @@ Route::group(['middleware'=>['checklogin']],function(){
     });
 
     Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
+
+    Route::get('/productverificationlist', function(){
+        return view('productverificationlist');
+    });
 
 });
 

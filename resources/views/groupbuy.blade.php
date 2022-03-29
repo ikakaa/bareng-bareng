@@ -57,7 +57,7 @@
                     @foreach ($products as $product)
                     <div class="card-custom mr-4 col">
                         <div class="card-img">
-                            <img src="src/item1.png" alt="">
+                            <img src="{{$product->filename}}" alt="">
                         </div>
                         <div class="card-text w-full px-2 pb-3 ">
                             <a class="card-header2 pt-1" href="/product/{{$product->id}}">{{$product->product_name}}</a>

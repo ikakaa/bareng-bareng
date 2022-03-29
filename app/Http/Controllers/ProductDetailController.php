@@ -58,7 +58,7 @@ class ProductDetailController extends Controller
         $productfile->save();
 
 
-        return redirect()->back()->with('status', 'product Added Successfully');
+        return redirect()->back()->with('status', 'Product Added Successfully');
     }
     public function index(){
         $product = ProductDetail::all();
@@ -71,7 +71,8 @@ class ProductDetailController extends Controller
     public function detail(ProductDetail $id)
     {
         //function untuk menampilkan product
-        $products = ProductDetail::where('id', $id->id)->get();
+        // $products = ProductDetail::where('id', $id->id)->get();
+        $products = ProductDetail::with('productdetailfiles')->where('id', 'productid')->get();
         return view('product', compact('products'));
     }
 }

@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductDetailsFile extends Model
 {
-    use HasFactory;
+    protected $table = 'product_details_files';
+
+    public function productdetail(){
+        return $this->belongsTo('App\ProductDetail', 'productid');
+    }
+
 }

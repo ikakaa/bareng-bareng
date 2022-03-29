@@ -19,12 +19,12 @@
     </head>
 
     <body>
-        <div class="container">
+        <div>
             @foreach ($products as $product)
             <div class="card">
                 <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="/img/{{$product->image}}" class="card-img" alt="..." style="height:350px;">
+                    <img src="{{$product->filename}}" class="card-img" alt="..." style="height:350px;">
                 </div>
                 <div class="col-md-5">
                     <div class="card-body">
