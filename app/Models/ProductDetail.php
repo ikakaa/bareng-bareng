@@ -10,6 +10,8 @@ class ProductDetail extends Model
     protected $table = 'product_details';
 
     public function productdetailfiles(){
-        return $this->hasMany('App\ProductDetailFiles');
+        return $this->hasOne(ProductDetailsFile::class, 'id');
     }
+
+    public $timestamps = true;
 }

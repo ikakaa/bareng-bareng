@@ -10,7 +10,10 @@ class ProductDetailsFile extends Model
     protected $table = 'product_details_files';
 
     public function productdetail(){
-        return $this->belongsTo('App\ProductDetail', 'productid');
+        // return $this->belongsTo('App\Models\ProductDetail', 'productid');
+        return $this->belongsTo(ProductDetail::class, 'productid');
     }
+
+    public $timestamps = true;
 
 }

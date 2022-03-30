@@ -14,14 +14,15 @@ class CreateProductDetailsFilesTable extends Migration
     public function up()
     {
         Schema::create('product_details_files', function (Blueprint $table) {
-            $table->id();
-            $table->string('productid');
+            $table->bigIncrements('id');
+            $table->foreignId('productid');
             $table->string('filename');
             $table->string('filesize');
             $table->string('filepath');
 
             $table->string('deleted')->default('0');
             $table->timestamps();
+            $table->foreign('productid')->references('id')->on('product_details');
         });
     }
 
