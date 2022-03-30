@@ -26,7 +26,7 @@
                 <div class="col-md-4">
                     <h2>test</h2>
                     <h2>{{$product->productdetailfiles->productid}}</h2>
-                    <img src="{{$product->productdetailfiles->filename}}" class="card-img" alt="..." style="height:350px;">
+                    <img src="../{{$product->productdetailfiles->filepath}}" class="card-img" alt="..." style="height:350px;">
                 </div>
                 <div class="col-md-5">
                     <div class="card-body">
@@ -35,7 +35,7 @@
                     <p class="card-text">Stock: {{$product->productstock}}</p>
                     <p class="card-text">Type: {{$product->product_type}}</p>
                     <p class="card-text">Description: {{$product->shortdesc}}</p>
-                    <img src="{{$product->productdetailfiles->filename}}" class="card-img" style="height:350px;">
+                    <img src="../{{$product->productdetailfiles->filepath}}" class="card-img" style="height:350px;">
                 </div>
             </div>
             </div>
