@@ -71,10 +71,10 @@ class ProductDetailController extends Controller
     public function detail(ProductDetailsFile $id)
     {
         //function untuk menampilkan product
-        // $products = ProductDetail::where('id', $id->id)->get();
-        // $products = ProductDetail::with('productdetailfiles')->where('id', 'productid')->get();
-        // $products = ProductDetail::with('productdetailfiles')->where('id', 'id')->get();
-        $products = ProductDetail::with('productdetailfiles')->get();
+        $products = ProductDetail::where('id', $id->id)->get();
+        // $products = ProductDetail::with('productdetailfiles')->where('id', $id->id)->get();
+
+
         return view('product', compact('products'));
     }
 }

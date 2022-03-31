@@ -11,6 +11,9 @@ class GroupBuyController extends Controller
     {
         $products = ProductDetail::paginate(8);
         return view('groupbuy', compact('products'));
+
+        // $products = ProductDetail::with('productdetailfiles')->get();
+        // return view('groupbuy', compact('products'));
     }
 
 

@@ -296,6 +296,19 @@ div {
     border-radius: 8px;
 }
 
+.card-detail {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 90%;
+    height: auto;
+    margin-left: 30px;
+    background: white;
+    border-radius: 8px;
+}
+
+.marginleft {
+    margin-left: 30px;
+}
+
 .card-img img {
     height: 255px;
 }
@@ -497,6 +510,11 @@ div {
 
 .button-right-bottom {
     margin-left: 800px;
+}
+
+.buy-bottom-right {
+    margin-left: 1200px;
+    margin-bottom: 20px;
 }
 
 .swiper {

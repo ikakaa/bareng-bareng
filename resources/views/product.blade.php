@@ -6,8 +6,8 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, minimum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
             integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -21,24 +21,27 @@
     <body>
         <div>
             @foreach ($products as $product)
-            <div class="card">
+            <div class="card-detail">
                 <div class="row no-gutters">
-                <div class="col-md-4">
-                    <h2>test</h2>
-                    <h2>{{$product->productdetailfiles->productid}}</h2>
-                    <img src="../{{$product->productdetailfiles->filepath}}" class="card-img" alt="..." style="height:350px;">
+                    <div class="col-md-4 marginleft">
+                        <br>
+                        <img src="../{{$product->productdetailfiles->filepath}}" class="card-img" alt="..." style="height:350px;">
+                        <br>
+                    </div>
+                    <div class="col-md-5 marginleft">
+                        <div class="card-body">
+                        <div class="interest-check-title-wrapper flex justify-between">
+                            <p class="interest-detail-title">{{$product->product_name}}</p>
+                            <p class="interest-detail-title2">Rp. {{$product->productprice}}</p> 
+                        </div>
+                        <p class="card-text">{{$product->shortdesc}}</p><br>
+                        <p class="card-text">Stocks: {{$product->productstock}}</p>
+                        <p class="card-text">Shipment Date: {{$product->shippingdate}}</p>
+                    </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="card-body">
-                    <h5 class="card-title" style="font-weight: bold">{{$product->product_name}}</h5>
-                    <p class="card-text">Price: {{$product->productprice}}</p>
-                    <p class="card-text">Stock: {{$product->productstock}}</p>
-                    <p class="card-text">Type: {{$product->product_type}}</p>
-                    <p class="card-text">Description: {{$product->shortdesc}}</p>
-                    <img src="../{{$product->productdetailfiles->filepath}}" class="card-img" style="height:350px;">
-                </div>
+                    <button class="button-style buy-bottom-right">Buy</button>
             </div>
-            </div>
+            
             @endforeach
         </div>
 

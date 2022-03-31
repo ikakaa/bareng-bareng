@@ -83,9 +83,6 @@
                 <button class="button-style">Upload</button>
            </div>
 
-
-
-
         </form>
     </div>
     </div>
