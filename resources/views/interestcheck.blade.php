@@ -45,7 +45,7 @@
         </div>
 
         <div>
-            <p class="card-title text-center  text-white py-12">Featured Products</p>
+            <p class="card-title text-center text-white py-12">Featured Products</p>
 
             <div class="action-btn mb-10 d-flex justify-content-center">
                 <button class="button-style button-border mr-1">Keyboard</button>
@@ -53,14 +53,14 @@
                 <button class="button-style button-border">Figures</button>
             </div>
             
-                <div class="tempat-card flex justify-center w-full pb-24">
+                <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
                     @foreach ($products as $product)
-                    <div class="card-custom mr-4">
-                        <div class="card-img">
-                            <img src="src/item1.png" alt="">
+                    <div class="card-custom mr-4 col">
+                        <div class="card-img mt-3">
+                            <img src="../{{$product->productdetailfiles->filepath}}" alt="">
                         </div>
                         <div class="card-text w-full px-2 pb-3 ">
-                            <a class="card-header2 pt-1" href="/product/{{$product->id}}">{{$product->product_name}}</a>
+                            <a class="card-header2 pt-1" href="/interestcheckdetail/{{$product->id}}">{{$product->product_name}}</a>
                             <p class="card-info pt-2 ">{{$product->shortdesc}}</p>
                             <div class="flex justify-between w-full ">
                                 <div class="mini-card-box ">
@@ -78,6 +78,10 @@
                     </div>
                     @endforeach
                 </div>
+                <div class="flex justify-center">
+                    {{$products->links()}}
+                </div>
+                
 
 
             </div>

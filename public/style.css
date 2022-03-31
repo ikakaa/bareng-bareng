@@ -537,7 +537,7 @@ div {
 
 .interest-check-detail-kanan {
     width: 60%;
-    color: whitesmoke;
+    color: black;
 }
 
 .interest-detail-title {
@@ -617,3 +617,21 @@ div {
     justify-content: center;
     align-items: center;
 }
+
+.tempat-comment {
+    margin-left: 50px;
+}
+
+.heart {
+    width: 100px;
+    height: 100px;
+    background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    animation: fave-heart 1s steps(28);
+  }
+  .heart:hover {
+    background-position: -2800px 0;
+    transition: background 1s steps(28);
+  }
+  
