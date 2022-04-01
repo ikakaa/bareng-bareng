@@ -58,9 +58,10 @@ class LoginController extends Controller
             $checkuser = User::where('email', '=', $request['email'])->first();
             // IF Credential correct, check user logintry
             // IF logintry more than 3, redirect user to login with error msg
-            if($checkuser->logintry>3){
+            if ($checkuser->logintry > 3) {
                 session(['errorlogintry' => true]);
-                return redirect('/login');exit;
+                return redirect('/login');
+                exit;
             }
             // IF Login try less than 3, add session login and email then redirect to (?)
             session(['successlogin' => 'ada']);
@@ -72,9 +73,12 @@ class LoginController extends Controller
         } else {
             //IF Credential incorrect, Add login try +1 to the username, redirect to login with error msg
             $checkuser = User::where('email', '=', $request['email'])->first();
-            $logintryupdate = $checkuser->logintry + 1;
-            $checkuser->logintry = $logintryupdate;
-            $checkuser->save();
+            if (isset($checkuser->email)) {
+                $logintryupdate = $checkuser->logintry + 1;
+                $checkuser->logintry = $logintryupdate;
+                $checkuser->save();
+            }
+
             session(['errorusername' => true]);
             return redirect('/login');
         }
@@ -90,8 +94,9 @@ class LoginController extends Controller
             // new rules here
         ]);
     }
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         return redirect('/login');
-      }
+    }
 }

@@ -61,11 +61,9 @@ class ProductDetailController extends Controller
         return redirect()->back()->with('status', 'Product Added Successfully');
     }
     public function index(){
-        $product = ProductDetail::all();
 
-        return view('productverification',[
-            "product"=>ProductDetail::all(),
-        ]);
+        $product = ProductDetail::distinct('id')->first()->get();;
+        return view('productverification', compact('product'));
     }
 
     public function detail(ProductDetailsFile $id)
