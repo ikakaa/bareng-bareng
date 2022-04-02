@@ -61,7 +61,6 @@
                             <br>
                             <p class="interest-detail-ic pt-4 pb-2">Add Comment</p>
                             <textarea name="comment" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-2/5  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" cols="30" rows="10"></textarea>
-                            <input type="hidden" name="commentby" value="ADRIAN">
                             <div class="w-2/5 flex justify-between">
                                 <p></p>
                                 <button type="submit" class="button-register-primary2 block mt-3  px-2 bg-primary py-1 mb-5">Submit</button>
@@ -75,7 +74,7 @@
                             <div class="card p-3">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2"> 
-                                        <span><small class="font-weight-bold text-primary">{{$comment->commentname}}</small> <small class="font-weight-bold">{{$comment->comment}}</small></span> </div> <small>2 days ago</small>
+                                        <span><small class="font-weight-bold txt">{{$comment->commentname}}</small> <br><small class="font-weight-bold">{{$comment->comment}}</small></span> </div> <small>2 days ago</small>
                                     </div>
                                 </div><br> 
                             @endforeach
