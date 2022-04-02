@@ -46,7 +46,7 @@
                         <p class="interest-detail-ic pt-3">Interest Check</p>
                         <p class="interest-detail-ic pt-2">Ends in: 10 days</p>
                         <p class="interest-detail-ic pt-2">Countdown: 12:39:35</p>
-                        <p class="interest-detail-ic pt-2">Artist : <a href="#" class="text-blue-200"> Udin</a> </p>
+                        <p class="interest-detail-ic pt-2">Artist : <a href="#" class="text-blue-200">{{$product->owner}}</a> </p>
 
                         <div class="interest-check-title-wrapper flex justify-between">
                             <p class="interest-detail-ic pt-4">Shipment date: {{$product->shippingdate}}</p>
@@ -58,8 +58,8 @@
                     <div class="tempat-comment w-full">
                         <form action="/do_addcomment" method="POST">
                             @csrf
-                        
-                            <p class="interest-detail-ic pt-4 text-white pb-2">Add Comment</p>
+                            <br>
+                            <p class="interest-detail-ic pt-4 pb-2">Add Comment</p>
                             <textarea name="comment" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-2/5  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" cols="30" rows="10"></textarea>
                             <input type="hidden" name="commentby" value="ADRIAN">
                             <div class="w-2/5 flex justify-between">
@@ -67,7 +67,20 @@
                                 <button type="submit" class="button-register-primary2 block mt-3  px-2 bg-primary py-1 mb-5">Submit</button>
                         </form>
                     </div>
-                </div>
+
+                    <div class="">
+                        <div class="col-md-6">
+                            <p class="interest-detail-ic pt-4 pb-2">Comments</p>
+                            @foreach ($comments as $comment)
+                            <div class="card p-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2"> 
+                                        <span><small class="font-weight-bold text-primary">{{$comment->commentname}}</small> <small class="font-weight-bold">{{$comment->comment}}</small></span> </div> <small>2 days ago</small>
+                                    </div>
+                                </div><br> 
+                            @endforeach
+                        </div>
+                    </div>
             </div>
             @endforeach
         </div>

@@ -31,7 +31,7 @@
                         <button class="button-selected-style mb-3">Seller</button>
                     </div>
                 </div>
-                <div class="mb-4 p-2 d-flex justify-content-center">
+                <div class="mb-4 d-flex justify-content-center">
                     <a href="/uploadproduct">
                         <i class="fa fa-plus-square" aria-hidden="true" style="font-size:20px"></i>
                         <span class="pl-2">Upload Products</span>
@@ -39,7 +39,7 @@
                     <br>
                 </div>
 
-                <div class="mb-4 p-2 d-flex justify-content-center">
+                <div class="mb-4 d-flex justify-content-center">
                     <a href="#">
                         <i class="fa fa-bars" aria-hidden="true" style="font-size:20px"></i>
                         <span class="pl-2">My Product List</span>

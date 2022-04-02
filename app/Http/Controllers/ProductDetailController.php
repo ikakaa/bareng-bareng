@@ -7,6 +7,7 @@ use App\Models\ProductDetailsFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class ProductDetailController extends Controller
 {
@@ -31,7 +32,7 @@ class ProductDetailController extends Controller
         File::makeDirectory($path);
         //Product Folder
         $product->product_name = $request->input('productname');
-        $product->owner = $request->input('email');
+        $product->owner = Auth::user()->name;
         $product->shortdesc = $request->input('shortdesc');
         $product->moq = $request->input('moq');
         $product->productstock = $request->input('maxorder');
@@ -75,12 +76,14 @@ class ProductDetailController extends Controller
 
         return view('product', compact('products'));
     }
+
     public function approveproduct(ProductDetail $id){
         $checkproduk = ProductDetail::where('id',$id->id)->first();
         $checkproduk->verified = 1;
         $checkproduk->save();
         return redirect()->back()->with('status', 'Product Approved Successfully');
     }
+    
     public function rejectproduct(ProductDetail $id){
         $checkproduk = ProductDetail::where('id',$id->id)->first();
         $checkproduk->verified = 2;

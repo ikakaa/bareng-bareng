@@ -17,10 +17,12 @@ class CreateProductCommentsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('comment');
-            $table->string('comment_by');
+            $table->string('commentname');
+            $table->foreignId('comment_by_id');
             $table->string('productid');
             $table->string('deleted')->default('0');
 
+            $table->foreign('comment_by_id')->references('id')->on('users');
         });
     }
 
