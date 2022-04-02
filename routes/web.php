@@ -45,6 +45,10 @@ Route::group(['middleware'=>['checklogin']],function(){
         return view('productdetail');
     });
 
+    Route::get('/cart', function(){
+        return view('cart');
+    });
+
     Route::get('/profilebuyer', function(){
         return view('profilebuyer');
     });
@@ -71,9 +75,14 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
 
+    Route::get('/cart',[App\Http\Controllers\ProductDetailController::class, 'cart']);
+
     Route::get('/productverificationlist', function(){
         return view('productverificationlist');
     });
+
+    Route::get('/order/{id}', 'ProductController@order');
+    Route::post('/order/{id}', 'ProductController@order');
 
 });
 

@@ -6,55 +6,53 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, minimum-scale=1">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
             integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="style.css">
+
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-        <link rel="stylesheet" href="/tailwind.css">
+        <link rel="stylesheet" href="tailwind.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     </head>
 
     <body>
-        <div>
-            @foreach ($products as $product)
-            <div class="card-detail">
-                <div class="row no-gutters">
-                    <div class="col-md-4 marginleft">
-                        <br>
-                        <img src="../{{$product->productdetailfiles->filepath}}" class="card-img" alt="..." style="height:350px;">
-                        <br>
-                    </div>
-                    <div class="col-md-5 marginleft">
-                        <div class="card-body">
-                        <div class="interest-check-title-wrapper flex justify-between">
-                            <p class="interest-detail-title">{{$product->product_name}}</p>
-                            <p class="interest-detail-title2">Rp. {{$product->productprice}}</p> 
+
+        <div class="container">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="title-upper-left">
+                            <h1>Cart</h1>
                         </div>
-                        <p class="card-text">{{$product->shortdesc}}</p><br>
-                        <p class="card-text">Stocks: {{$product->productstock}}</p>
-                        <p class="card-text">Shipment Date: {{$product->shippingdate}}</p>
+                        
+                        <div>
+                            <div class="col-md-9">
+                                @foreach ($products as $product)
+                                <div class="card p-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="user d-flex flex-row align-items-center"> 
+                                            <img src="https://i.imgur.com/hczKIze.jpg" width="50" height="50" class="user-img rounded-circle mr-2"> 
+                                            <span>
+                                                <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
+                                                <div class="cart-txt">Quantity: </div>
+                                            </span> 
+                                        </div> 
+                                        <div class="cart-txt">Rp. Price</div>
+                                    </div>
+                                </div><br> 
+                                @endforeach
+                            </div>
+                        </div>
+                        <a href="/checkout-cart" class="btn btn-danger">Checkout</a>
                     </div>
                 </div>
-                <form method="POST" action="{{url('order')}}/{{$product->id}}">
-                    @csrf
-                    <div class="row">
-                      <div class="col">
-                        <input class="form-control" type="number" id="qty" name="qty" placeholder="Input Qty" required="">
-                      </div>
-                      <div class="col">
-                        <button type="submit" class="button-style buy-bottom-right">Buy</button>
-                      </div>
-                    </div>
-                  </form>
             </div>
-            
-            @endforeach
-        </div>
-
+        </div>  
+        
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">

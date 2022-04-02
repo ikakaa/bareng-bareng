@@ -67,7 +67,7 @@
                         </form>
                     </div>
 
-                    <div class="">
+                    <div>
                         <div class="col-md-6">
                             <p class="interest-detail-ic pt-4 pb-2">Comments</p>
                             @foreach ($comments as $comment)

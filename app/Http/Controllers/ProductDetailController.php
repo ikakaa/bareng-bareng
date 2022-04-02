@@ -77,6 +77,64 @@ class ProductDetailController extends Controller
         return view('product', compact('products'));
     }
 
+    public function cart(Request $request, $id)
+    {
+        //function untuk melakukan order item dan dimasukkan kedalam database
+        $products = ProductDetails::where('id', $id)->first();
+        $date = Carbon::now(); //untuk mengambil tanggal hari ini
+
+        //validasi apabila quantity yang diinput lebih besar dibandingkan stock
+        // if($request->qty > $products->productstock){
+        //     return redirect('/product/{id}');
+        // }
+
+        $check_order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
+
+        //jika user baru melakukan order dan belum checkout
+        if(empty($check_order)){
+            $order = new Order;
+            $order->user_id = Auth::user()->id;
+            $order->date = $date;
+            $order->status = 0;
+            $order->totalPrice = 0;
+            
+            $order->save();
+        }
+       
+
+        $neworder = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
+
+        $check_orderdetail = OrderDetail::where('product_id', $product->id)->where('order_id', $neworder->id)->first();
+
+        //jika order detail dari suatu item belum ada
+        if(empty($check_orderdetail)){
+            $orderdetail = new OrderDetail;
+            $orderdetail->product_id = $products->id;
+            $orderdetail->order_id = $neworder->id;
+            $orderdetail->qty = $request->qty;
+            $orderdetail->totalPrice = $products->productprice * $request->qty;
+            
+            $orderdetail->save();
+        } else {
+
+            //jika suatu item sudah pernah dipesan sebelumnya maka hanya update qty dan harga
+            $orderdetail = OrderDetail::where('product_id', $product->id)->where('order_id', $neworder->id)->first();
+
+            $orderdetail->qty = $orderdetail->qty + $request->qty;
+            $newPrice = $products->productprice * $request->qty;
+            $orderdetail->totalPrice = $orderdetail->totalPrice + $newPrice;
+            
+            $orderdetail->update();
+        }
+        
+        //update total price di table order
+        $order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $order->totalPrice = $order->totalPrice + $products->productprice * $request->qty;
+        $order->update();
+
+        return redirect('home');
+    }
+
     public function approveproduct(ProductDetail $id){
         $checkproduk = ProductDetail::where('id',$id->id)->first();
         $checkproduk->verified = 1;

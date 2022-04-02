@@ -14,5 +14,9 @@ class ProductDetail extends Model
         return $this->hasOne(ProductDetailsFile::class, 'id');
     }
 
+    public function orderDetails(){
+        return $this->hasMany(OrderDetails::class, 'id');
+    }
+
     public $timestamps = true;
 }

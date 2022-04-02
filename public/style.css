@@ -652,6 +652,16 @@ div {
     border-color: #66b6fa;
 }
 
+.cart-txt {
+    font-size: 20px;
+}
+
 .txt {
     color: #284b63;
+}
+
+.title-upper-left {
+    margin-left: 10px;
+    font-size: 50px;
+    margin-bottom: 20px;
 }
