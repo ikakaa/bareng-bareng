@@ -63,8 +63,8 @@
                                     <td>{{$row->owner}}</td>
                                     <td><a href="{{$row->productdetailfiles->filepath}}" target="_blank">Preview</a></td>
                                     <td>{{$row->created_at}}</td>
-                                    <td>Nanti diisi icon reject/approve</td>
-                                    <td>Nanti diisi icon reject/approve</td>
+                                    <td><a href="/productapprove/{{$row->id}}" class="btn-icon bg-custom"><i class="fa fa-check"></i></a></td>
+                                    <td><a href="/productreject/{{$row->id}}" class="btn-icon bg-warning"><i class="fa fa-times"></i></a></td>
                                 </tr>
                                 @endforeach
 

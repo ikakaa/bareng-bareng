@@ -62,7 +62,7 @@ class ProductDetailController extends Controller
     }
     public function index(){
 
-        $product = ProductDetail::distinct('id')->first()->get();;
+        $product = ProductDetail::distinct('id')->where('verified','0')->get();;
         return view('productverification', compact('product'));
     }
 
@@ -74,5 +74,17 @@ class ProductDetailController extends Controller
 
 
         return view('product', compact('products'));
+    }
+    public function approveproduct(ProductDetail $id){
+        $checkproduk = ProductDetail::where('id',$id->id)->first();
+        $checkproduk->verified = 1;
+        $checkproduk->save();
+        return redirect()->back()->with('status', 'Product Approved Successfully');
+    }
+    public function rejectproduct(ProductDetail $id){
+        $checkproduk = ProductDetail::where('id',$id->id)->first();
+        $checkproduk->verified = 2;
+        $checkproduk->save();
+        return redirect()->back()->with('status', 'Product Rejected Successfully');
     }
 }

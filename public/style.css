@@ -629,9 +629,21 @@ div {
     background-position: 0 0;
     cursor: pointer;
     animation: fave-heart 1s steps(28);
-  }
-  .heart:hover {
+}
+
+.heart:hover {
     background-position: -2800px 0;
     transition: background 1s steps(28);
-  }
-  
+}
+
+.btn-icon {
+    padding: .4rem 1.0rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+}
+
+.bg-custom {
+    background-color: #66b6fa;
+    border-color: #66b6fa;
+}
