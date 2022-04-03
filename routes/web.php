@@ -63,12 +63,12 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/interestcheck',[App\Http\Controllers\InterestCheckController::class, 'index']);
 
-    Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index']);
+    Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index'])->middleware('checkinterestfinish');
 
     Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct']);
 
     Route::get('/productreject/{id}', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct']);
-    
+
     Route::get('/product/{id}',[App\Http\Controllers\ProductDetailController::class, 'detail']);
 
     Route::get('/interestcheckdetail/{id}',[App\Http\Controllers\InterestCheckController::class, 'detail']);
