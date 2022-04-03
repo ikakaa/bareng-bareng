@@ -84,6 +84,7 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/cart', [App\Http\Controllers\ProductDetailController::class, 'cart']);
 
+    Route::get('/myproductlist', [App\Http\Controllers\ProductDetailController::class, 'myproductlist']);
 
 });
 

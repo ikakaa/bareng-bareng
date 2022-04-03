@@ -39,7 +39,7 @@
                     <div class="interest-check-detail-kanan">
                         <div class="interest-check-title-wrapper flex justify-between">
                             <p class="interest-detail-title">{{$product->product_name}}</p>
-                            <p class="interest-detail-title2">Rp. {{$product->productprice}}</p>
+                            <p class="interest-detail-title2">Rp. {{number_format($product->productprice)}}</p>
         
                         </div>
                         <p class="interest-detail-description pt-7">{{$product->shortdesc}}</p>

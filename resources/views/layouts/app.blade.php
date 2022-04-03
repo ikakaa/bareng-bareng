@@ -68,8 +68,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/login">Login</a>
-                                    <a class="dropdown-item" href="/register">Register</a>
+                                    <a class="dropdown-item" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                                    <a class="dropdown-item" href="/register"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a>
                                 </div>
                             </li>
                            

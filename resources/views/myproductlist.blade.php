@@ -20,42 +20,41 @@
     </head>
 
     <body>
-       
-        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-            <div class="card card-size">
-                <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-secondary"> <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" /></button> 
-                    <span class="name mt-3">{{ Auth::user()->name }}</span> 
 
-                    <div class="action-button">
-                        <button name="submit" type="submit" class="button-style" onclick="location.href='{{url('/profilebuyer')}}'">Buyer</button>
-                        <button class="button-selected-style mb-3">Seller</button>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="title-upper-left">
+                            <h1>My Product List</h1>
+                        </div>
+                        
+                        <div>
+                            <div class="col-md-9">
+                                @foreach ($products as $product)
+                                <div class="card p-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="user d-flex flex-row align-items-center"> 
+                                            <img src="../{{$product->productdetailfiles->filepath}}" class="img-detail-size"> 
+                                            <span>
+                                                <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
+                                            </span> 
+                                        </div>
+                                        @if ($product->verified == 1)
+                                            <div class="cart-txt">Status: Verified</div>
+                                            
+                                        @else
+                                            <div class="cart-txt">Status: Verification Process</div>
+                                        @endif 
+                                    </div>
+                                </div><br> 
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="mb-4 d-flex justify-content-center">
-                    <a href="/uploadproduct">
-                        <i class="fa fa-plus-square" aria-hidden="true" style="font-size:20px"></i>
-                        <span class="pl-2">Upload Products</span>
-                    </a>
-                    <br>
-                </div>
-
-                <div class="mb-4 d-flex justify-content-center">
-                    <a href="myproductlist">
-                        <i class="fa fa-bars" aria-hidden="true" style="font-size:20px"></i>
-                        <span class="pl-2">My Product List</span>
-                    </a>
-                    <br>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                    <a href="#">
-                        <i class="fa fa-check-circle" aria-hidden="true" style="font-size:20px"></i>
-                        <span class="pl-2">Product Verification</span>
-                    </a>
-                </div>
-
             </div>
-        </div>
+        </div>  
         
 
         <div class="footer mt-10">
