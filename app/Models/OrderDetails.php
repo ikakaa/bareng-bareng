@@ -10,7 +10,7 @@ class OrderDetails extends Model
     protected $table = 'order_details';
 
     public function products(){
-        return $this->belongsTo(ProductDetails::class, 'product_id');
+        return $this->belongsTo(ProductDetail::class, 'product_id');
     }
 
     public function orders(){
