@@ -75,14 +75,15 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
 
-    Route::get('/cart',[App\Http\Controllers\ProductDetailController::class, 'cart']);
-
     Route::get('/productverificationlist', function(){
         return view('productverificationlist');
     });
 
-    Route::get('/order/{id}', 'ProductController@order');
-    Route::post('/order/{id}', 'ProductController@order');
+    Route::get('/order/{id}', [App\Http\Controllers\ProductDetailController::class, 'order']);
+    Route::post('/order/{id}', [App\Http\Controllers\ProductDetailController::class, 'order']);
+
+    Route::get('/cart', [App\Http\Controllers\ProductDetailController::class, 'cart']);
+
 
 });
 

@@ -31,23 +31,28 @@
                         
                         <div>
                             <div class="col-md-9">
-                                @foreach ($products as $product)
+                                @foreach ($orderdetails as $orderdetail)
                                 <div class="card p-3">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="user d-flex flex-row align-items-center"> 
-                                            <img src="https://i.imgur.com/hczKIze.jpg" width="50" height="50" class="user-img rounded-circle mr-2"> 
+                                            <img src="../{{$orderdetail->products->productdetailfiles->filepath}}" class="img-detail-size"> 
                                             <span>
-                                                <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
-                                                <div class="cart-txt">Quantity: </div>
+                                                <div class="font-weight-bold txt cart-txt">{{$orderdetail->products->product_name}}</div>
+                                                <div class="cart-txt">Quantity: {{$orderdetail->qty}}</div>
                                             </span> 
                                         </div> 
-                                        <div class="cart-txt">Rp. Price</div>
+                                        <div class="cart-txt">Rp. {{number_format($orderdetail->totalPrice)}}</div>
                                     </div>
                                 </div><br> 
                                 @endforeach
                             </div>
                         </div>
-                        <a href="/checkout-cart" class="btn btn-danger">Checkout</a>
+
+                        <div class="checkout-bottom-right font-weight-bold txt cart-txt">
+                            <h1 style="margin-left: -5px">Rp. {{number_format($orders->totalPrice)}}</h1>
+                            <button type="submit" class="button-style">Checkout</button>
+                        </div>
+
                     </div>
                 </div>
             </div>

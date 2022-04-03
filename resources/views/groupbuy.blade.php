@@ -65,7 +65,7 @@
                             <div class="flex justify-between w-full ">
                                 <div class="mini-card-box ">
                                     <p class="price">Price</p>
-                                    <p class="price-number block">{{$product->productprice}}</p>
+                                    <p class="price-number block">Rp. {{number_format($product->productprice)}}</p>
                                 </div>
                                 <div class="mini-card-button">
 

@@ -512,6 +512,10 @@ div {
     margin-left: 800px;
 }
 
+.checkout-bottom-right {
+    margin-left: 940px;
+}
+
 .buy-bottom-right {
     margin-left: 1200px;
     margin-bottom: 20px;
@@ -664,4 +668,17 @@ div {
     margin-left: 10px;
     font-size: 50px;
     margin-bottom: 20px;
+}
+
+.box-size {
+    width: 125px;
+    height: 30px;
+    margin-left: 1185px;
+    margin-bottom: 10px;
+}
+
+.img-detail-size {
+    height: 150px;
+    width: 180px;
+    margin-right: 20px;
 }

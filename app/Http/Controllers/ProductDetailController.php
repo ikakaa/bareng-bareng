@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductDetail;
 use App\Models\ProductDetailsFile;
+use App\Models\Orders;
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Carbon\Carbon;
 
 class ProductDetailController extends Controller
 {
@@ -77,10 +80,10 @@ class ProductDetailController extends Controller
         return view('product', compact('products'));
     }
 
-    public function cart(Request $request, $id)
+    public function order(Request $request, $id)
     {
         //function untuk melakukan order item dan dimasukkan kedalam database
-        $products = ProductDetails::where('id', $id)->first();
+        $products = ProductDetail::where('id', $id)->first();
         $date = Carbon::now(); //untuk mengambil tanggal hari ini
 
         //validasi apabila quantity yang diinput lebih besar dibandingkan stock
@@ -88,11 +91,11 @@ class ProductDetailController extends Controller
         //     return redirect('/product/{id}');
         // }
 
-        $check_order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $check_order = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
 
         //jika user baru melakukan order dan belum checkout
         if(empty($check_order)){
-            $order = new Order;
+            $order = new Orders;
             $order->user_id = Auth::user()->id;
             $order->date = $date;
             $order->status = 0;
@@ -102,13 +105,13 @@ class ProductDetailController extends Controller
         }
        
 
-        $neworder = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $neworder = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
 
-        $check_orderdetail = OrderDetail::where('product_id', $product->id)->where('order_id', $neworder->id)->first();
+        $check_orderdetail = OrderDetails::where('product_id', $products->id)->where('order_id', $neworder->id)->first();
 
         //jika order detail dari suatu item belum ada
         if(empty($check_orderdetail)){
-            $orderdetail = new OrderDetail;
+            $orderdetail = new OrderDetails;
             $orderdetail->product_id = $products->id;
             $orderdetail->order_id = $neworder->id;
             $orderdetail->qty = $request->qty;
@@ -118,7 +121,7 @@ class ProductDetailController extends Controller
         } else {
 
             //jika suatu item sudah pernah dipesan sebelumnya maka hanya update qty dan harga
-            $orderdetail = OrderDetail::where('product_id', $product->id)->where('order_id', $neworder->id)->first();
+            $orderdetail = OrderDetails::where('product_id', $products->id)->where('order_id', $neworder->id)->first();
 
             $orderdetail->qty = $orderdetail->qty + $request->qty;
             $newPrice = $products->productprice * $request->qty;
@@ -128,11 +131,22 @@ class ProductDetailController extends Controller
         }
         
         //update total price di table order
-        $order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $order = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $order->totalPrice = $order->totalPrice + $products->productprice * $request->qty;
         $order->update();
 
         return redirect('home');
+    }
+
+    public function cart(){
+        //function untuk membuka view checkout, user dapat melihat cart berisi pesanan mereka
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        // if(!empty($order)){
+            $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
+            return view('cart', compact('orders', 'orderdetails'));
+        // } else {
+        //     return view('cart');
+        // }
     }
 
     public function approveproduct(ProductDetail $id){
