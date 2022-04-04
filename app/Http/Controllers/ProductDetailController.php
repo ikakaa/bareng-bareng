@@ -60,7 +60,7 @@ class ProductDetailController extends Controller
         $productfile->filepath = $filepath;
         $productfile->filesize = $filesize;
         $productfile->save();
-
+        session(['successupload' => true]);
 
         return redirect()->back()->with('status', 'Product Added Successfully');
     }
@@ -100,10 +100,10 @@ class ProductDetailController extends Controller
             $order->date = $date;
             $order->status = 0;
             $order->totalPrice = 0;
-            
+
             $order->save();
         }
-       
+
 
         $neworder = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
 
@@ -116,7 +116,7 @@ class ProductDetailController extends Controller
             $orderdetail->order_id = $neworder->id;
             $orderdetail->qty = $request->qty;
             $orderdetail->totalPrice = $products->productprice * $request->qty;
-            
+
             $orderdetail->save();
         } else {
 
@@ -126,10 +126,10 @@ class ProductDetailController extends Controller
             $orderdetail->qty = $orderdetail->qty + $request->qty;
             $newPrice = $products->productprice * $request->qty;
             $orderdetail->totalPrice = $orderdetail->totalPrice + $newPrice;
-            
+
             $orderdetail->update();
         }
-        
+
         //update total price di table order
         $order = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $order->totalPrice = $order->totalPrice + $products->productprice * $request->qty;
@@ -160,7 +160,7 @@ class ProductDetailController extends Controller
         $checkproduk->save();
         return redirect()->back()->with('status', 'Product Approved Successfully');
     }
-    
+
     public function rejectproduct(ProductDetail $id){
         $checkproduk = ProductDetail::where('id',$id->id)->first();
         $checkproduk->verified = 2;

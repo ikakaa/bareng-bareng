@@ -30,8 +30,10 @@
         ERROR FILE
         @enderror
         <div class="tempat-form mx-4">
-
-        <div class="form-card  shadow justify-start flex flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
+        <div class="form-card  shadow justify-start  flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
+            @if (session()->has('successupload'))
+            <div class="alert alert-success mb-3 mt-1 w-2/3">Product added, Please wait admin to verificate!</div>
+            <?php session()->forget('successupload') ?>     @endif
         <form action="/do_upload" method="POST" enctype="multipart/form-data">
 
             @csrf

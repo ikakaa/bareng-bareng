@@ -40,7 +40,7 @@ Route::post('/do_addcomment', [App\Http\Controllers\ProductCommentController::cl
 Route::post('/do_upload', [App\Http\Controllers\ProductDetailController::class, 'store']);
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware'=>['checklogin']],function(){
-
+    Route::group(['middleware'=>['checkinterestfinish']],function(){
     Route::get('/productdetail', function(){
         return view('productdetail');
     });
@@ -63,7 +63,7 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/interestcheck',[App\Http\Controllers\InterestCheckController::class, 'index']);
 
-    Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index'])->middleware('checkinterestfinish');
+    Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index']);
 
     Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct']);
 
@@ -86,6 +86,7 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/myproductlist', [App\Http\Controllers\ProductDetailController::class, 'myproductlist']);
 
+});
 });
 
 // To do list
