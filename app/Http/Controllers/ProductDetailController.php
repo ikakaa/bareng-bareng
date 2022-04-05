@@ -154,6 +154,11 @@ class ProductDetailController extends Controller
         return view('myproductlist', compact('products'));
     }
 
+    public function productverificationlist(){
+        $products = ProductDetail::all();
+        return view('productverificationlist', compact('products'));
+    }
+
     public function approveproduct(ProductDetail $id){
         $checkproduk = ProductDetail::where('id',$id->id)->first();
         $checkproduk->verified = 1;
