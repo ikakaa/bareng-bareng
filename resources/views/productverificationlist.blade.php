@@ -17,11 +17,69 @@
 
         <link rel="stylesheet" href="tailwind.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     </head>
 
     <body>
+
+        <div class="container">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="title-upper-left">
+                            <h1 class="title txt">Product Verification List</h1>
+                            <large>Here's the list of products you uploaded and its current status.</large>
+                        </div>
+                        
+                        <div>
+                            <div class="col-md-9">
+                                @foreach ($products as $product)
+                                <div class="card p-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="user d-flex flex-row align-items-center"> 
+                                            <img src="../{{$product->productdetailfiles->filepath}}" class="img-detail-size"> 
+                                            <span>
+                                                <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
+                                            </span> 
+                                        </div>
+                                        @if ($product->verified == 1)
+                                            <div class="cart-txt">Status: Verified</div>
+                                            
+                                        @else
+                                            <div class="cart-txt">Status: Verification Process</div>
+                                        @endif 
+                                    </div>
+                                </div><br> 
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+
+        <div class="footer mt-10">
+            <div class="footer-1 py-5 pt-8 w-full bg-navbar">
+                <div class="justify-center flex">
+                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="footer-text-container flex justify-center py-8 sm:pl-3">
+                    <a href="#" class="footer-href ">Contact</a>
+                    <a href="#" class="footer-href ">FAQs</a>
+                    <a href="#" class="footer-href2 ">Order Tracking</a>
+                </div>
+                <div class="copyright-text pt-12">
+                    <p>Indonesia shipping available!</p>
+                </div>
+                <div class="copyright-text pt-16 py-8">
+                    — Powered by <a href="#" class="underline italic">BarengBareng</a>
+                </div>
+            </div>
+
+        </div>
     </body>
 
     </html>

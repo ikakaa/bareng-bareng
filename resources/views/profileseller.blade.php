@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <a href="#">
+                    <a href="/productverificationlist">
                         <i class="fa fa-check-circle" aria-hidden="true" style="font-size:20px"></i>
                         <span class="pl-2">Product Verification</span>
                     </a>
