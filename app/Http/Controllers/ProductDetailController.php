@@ -6,6 +6,7 @@ use App\Models\ProductDetail;
 use App\Models\ProductDetailsFile;
 use App\Models\Orders;
 use App\Models\OrderDetails;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +37,7 @@ class ProductDetailController extends Controller
         //Product Folder
         $product->product_name = $request->input('productname');
         $product->owner = Auth::user()->name;
+        $product->user_id = Auth::user()->id;
         $product->shortdesc = $request->input('shortdesc');
         $product->moq = $request->input('moq');
         $product->productstock = $request->input('maxorder');
@@ -151,21 +153,21 @@ class ProductDetailController extends Controller
     public function cart(){
         //function untuk membuka view checkout, user dapat melihat cart berisi pesanan mereka
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        // if(!empty($order)){
+        if(!empty($orders)){
             $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
             return view('cart', compact('orders', 'orderdetails'));
-        // } else {
-        //     return view('cart');
-        // }
+        } else {
+            return view('cart');
+        }
     }
 
     public function myproductlist(){
-        $products = ProductDetail::all();
+        $products = ProductDetail::where('user_id', Auth::user()->id)->get();
         return view('myproductlist', compact('products'));
     }
 
     public function productverificationlist(){
-        $products = ProductDetail::all();
+        $products = ProductDetail::where('user_id', Auth::user()->id)->get();
         return view('productverificationlist', compact('products'));
     }
 

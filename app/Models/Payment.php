@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    use HasFactory;
+    protected $table = 'payments';
+
+    public function orders(){
+        return $this->belongsTo(Orders::class, 'order_id');
+    }
 }

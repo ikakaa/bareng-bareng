@@ -16,6 +16,7 @@ class CreateProductDetailsTable extends Migration
         Schema::create('product_details', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('user_id');
             $table->string('product_name');
             $table->string('folderpath');
             $table->string('owner');
@@ -34,6 +35,8 @@ class CreateProductDetailsTable extends Migration
             $table->string('interestdone')->default('0');
             $table->string('sellingdone')->default('0');
             $table->string('isfinish')->default('0');
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

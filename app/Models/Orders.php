@@ -13,5 +13,9 @@ class Orders extends Model
         return $this->hasMany(OrderDetails::class, 'id');
     }
 
+    public function payments(){
+        return $this->hasMany(Payment::class, 'id');
+    }
+
     public $timestamps = true;
 }

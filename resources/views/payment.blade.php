@@ -26,12 +26,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="title txt title-upper-left">
-                            <h1>Cart</h1>
+                            <h1>Payment</h1>
                         </div>
                     
                         <div>
                             <div class="col-md-9">
-                                @if (!empty($orders))
                                     @foreach ($orderdetails as $orderdetail)
                                     <div class="card p-3">
                                         <div class="d-flex justify-content-between align-items-center">
@@ -41,7 +40,7 @@
                                                     <div class="font-weight-bold txt cart-txt">{{$orderdetail->products->product_name}}</div>
                                                     <div class="cart-txt">Quantity: {{$orderdetail->qty}}</div>
                                                 </span> 
-                                            </div> 
+                                            </div>
                                             <div class="cart-txt">Rp. {{number_format($orderdetail->totalPrice)}}</div>
                                         </div>
                                     </div><br> 
@@ -53,10 +52,6 @@
                             <h1 style="margin-left: -5px">Rp. {{number_format($orders->totalPrice)}}</h1>
                             <button type="submit" class="button-style">Checkout</button>
                         </div>
-
-                        @else
-                            <h1 class="cart-txt">Your cart is empty.</h1>
-                        @endif
                         
 
 
