@@ -25,29 +25,30 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="title txt title-upper-left">
-                            <h1>My Product List</h1>
+                        <div class="title-upper-left">
+                            <h1 class="title txt">My Product List</h1>
+                            <large>
+                                Here's the list of your products. You can still edit the product before the Group Buy starts.
+                            </large>
                         </div>
                         
                         <div>
                             <div class="col-md-9">
                                 @foreach ($products as $product)
-                                <div class="card p-3">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user d-flex flex-row align-items-center"> 
-                                            <img src="../{{$product->productdetailfiles->filepath}}" class="img-detail-size"> 
-                                            <span>
-                                                <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
-                                            </span> 
+                                @if ($product->verified == 1)
+                                    <div class="card p-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex flex-row align-items-center"> 
+                                                <img src="../{{$product->productdetailfiles->filepath}}" class="img-detail-size"> 
+                                                <span>
+                                                    <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
+                                                    <div>Group Buy starts at: {{$product->enddate}}</div>
+                                                </span> 
+                                            </div>
+                                            <button class="btn-view" onclick="location.href='{{url('/edit')}}/{{$product->id}}'">View Product</button>
                                         </div>
-                                        @if ($product->verified == 1)
-                                            <div class="cart-txt">Status: Verified</div>
-                                            
-                                        @else
-                                            <div class="cart-txt">Status: Verification Process</div>
-                                        @endif 
-                                    </div>
-                                </div><br> 
+                                    </div><br> 
+                                @endif 
                                 @endforeach
                             </div>
                         </div>

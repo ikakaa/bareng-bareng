@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="title-upper-left">
+                        <div class="title txt title-upper-left">
                             <h1>Cart</h1>
                         </div>
                         

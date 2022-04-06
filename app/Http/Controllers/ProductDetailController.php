@@ -80,6 +80,16 @@ class ProductDetailController extends Controller
         return view('product', compact('products'));
     }
 
+    public function edit(ProductDetailsFile $id)
+    {
+        //function untuk menampilkan product
+        $products = ProductDetail::where('id', $id->id)->get();
+        // $products = ProductDetail::with('productdetailfiles')->where('id', $id->id)->get();
+
+
+        return view('edit', compact('products'));
+    }
+
     public function order(Request $request, $id)
     {
         //function untuk melakukan order item dan dimasukkan kedalam database

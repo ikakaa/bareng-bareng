@@ -27,7 +27,10 @@
                     <div class="card-body">
                         <div class="title-upper-left">
                             <h1 class="title txt">Product Verification List</h1>
-                            <large>Here's the list of products you uploaded and its current status.</large>
+                            <large>
+                                Here's the list of products you uploaded and its current status.
+                                You can only edit the product once it is verified.
+                            </large>
                         </div>
                         
                         <div>
@@ -35,17 +38,18 @@
                                 @foreach ($products as $product)
                                 <div class="card p-3">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user d-flex flex-row align-items-center"> 
+                                        <div class="d-flex flex-row align-items-center"> 
                                             <img src="../{{$product->productdetailfiles->filepath}}" class="img-detail-size"> 
                                             <span>
                                                 <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
                                             </span> 
                                         </div>
                                         @if ($product->verified == 1)
-                                            <div class="cart-txt">Status: Verified</div>
-                                            
+                                            <button class="btn-verified">Status: Verified</button>
+                                        @elseif ($product->verified == 2)
+                                            <button class="btn-rejected">Status: Rejected</button>
                                         @else
-                                            <div class="cart-txt">Status: Verification Process</div>
+                                            <button class="btn-on-progress">Status: On progress</button>
                                         @endif 
                                     </div>
                                 </div><br> 

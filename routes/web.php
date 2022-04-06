@@ -71,6 +71,8 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/product/{id}',[App\Http\Controllers\ProductDetailController::class, 'detail']);
 
+    Route::get('/edit/{id}',[App\Http\Controllers\ProductDetailController::class, 'edit']);
+
     Route::get('/interestcheckdetail/{id}',[App\Http\Controllers\InterestCheckController::class, 'detail']);
 
     Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
