@@ -86,8 +86,10 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/productverificationlist', [App\Http\Controllers\ProductDetailController::class, 'productverificationlist']);
 
-    Route::get('/payment', function(){
-        return view('payment');
+    Route::get('/payment', [App\Http\Controllers\ProductDetailController::class, 'payment']);
+    Route::post('/makeorder', [App\Http\Controllers\ProductDetailController::class, 'makeorder']);
+    Route::get('/uploadproof', function(){
+        return view('uploadproof');
     });
 
 });

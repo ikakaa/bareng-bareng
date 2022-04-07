@@ -161,6 +161,29 @@ class ProductDetailController extends Controller
         }
     }
 
+    public function payment(){
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
+        return view('payment', compact('orders', 'orderdetails'));
+    }
+
+    public function makeorder(Request $request){
+        $payments = new Payment();
+        $request->validate([
+            'recipient_name' => ['required', 'string', 'min:5', 'max:255'],
+            'address' => ['required', 'string', 'min:5', 'max:255'],
+        ]);
+
+        
+        $payments->recipient_name = $request->input('recipient_name');
+        $payments->address = $request->input('address');
+        $payments->payment_method = $request->input('payment_method');
+
+        $payments->save();
+
+        // return view('uploadproof');
+    }
+
     public function myproductlist(){
         $products = ProductDetail::where('user_id', Auth::user()->id)->get();
         return view('myproductlist', compact('products'));

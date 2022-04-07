@@ -51,7 +51,7 @@
 
                         <div class="checkout-bottom-right font-weight-bold txt cart-txt">
                             <h1 style="margin-left: -5px">Rp. {{number_format($orders->totalPrice)}}</h1>
-                            <button type="submit" class="button-style">Checkout</button>
+                            <button type="submit" class="button-style" onclick="location.href='{{url('/payment')}}'">Checkout</button>
                         </div>
 
                         @else

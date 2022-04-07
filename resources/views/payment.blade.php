@@ -39,6 +39,7 @@
                                                 <span>
                                                     <div class="font-weight-bold txt cart-txt">{{$orderdetail->products->product_name}}</div>
                                                     <div class="cart-txt">Quantity: {{$orderdetail->qty}}</div>
+                                                    <div class="cart-txt">Shipment Date: {{$orderdetail->products->shippingdate}}</div>
                                                 </span> 
                                             </div>
                                             <div class="cart-txt">Rp. {{number_format($orderdetail->totalPrice)}}</div>
@@ -48,13 +49,32 @@
                             </div>
                         </div>
 
-                        <div class="checkout-bottom-right font-weight-bold txt cart-txt">
-                            <h1 style="margin-left: -5px">Rp. {{number_format($orders->totalPrice)}}</h1>
-                            <button type="submit" class="button-style">Checkout</button>
+                        <div>
+                            <form action="/makeorder" method="POST" enctype="multipart/form-data">
+
+                                @csrf
+                                <label for="recipient_name" class="block sm:mb-2 mb-1 w-full  mt-2">Recipient Name</label>
+                                <input type="text" name="recipientName" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="John Doe">
+                                
+                                <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
+                                <input type="text" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Jl. Raya Kb. Jeruk No.27">
+
+                                <label for="payment_method" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Method</label>
+                                    <select name="paymentMethod" class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+                                        <option value="1">Bank Transfer</option>
+                                        <option value="2">E-Wallet</option>
+                                        <option value="3">Credit Card</option>
+                                     </select>
+                                
+                               </div>
+                                <div class="checkout-bottom-right font-weight-bold txt cart-txt">
+                                <h1 style="margin-left: -5px">Rp. {{number_format($orders->totalPrice)}}</h1>
+                                <button class="button-style" type="submit">Order</button>
+                                </div>
+                            </form>
                         </div>
+
                         
-
-
 
                     </div>
                 </div>
