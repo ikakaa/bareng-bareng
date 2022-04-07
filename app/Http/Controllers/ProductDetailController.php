@@ -174,7 +174,7 @@ class ProductDetailController extends Controller
             'address' => ['required', 'string', 'min:5', 'max:255'],
         ]);
 
-        
+
         $payments->recipient_name = $request->input('recipient_name');
         $payments->address = $request->input('address');
         $payments->payment_method = $request->input('payment_method');

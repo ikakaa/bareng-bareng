@@ -23,14 +23,17 @@
 
     <body>
         <p class="card-title uppercase  text-white mx-4 py-3">Upload Products</p>
-        @error('moq')
-        ERROR MOQ
-        @enderror
-        @error('file')
-        ERROR FILE
-        @enderror
+
         <div class="tempat-form mx-4">
         <div class="form-card  shadow justify-start  flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
+            @error('file')
+
+            <div class="alert alert-warning mb-3 mt-1 w-2/3">File must be image and max 10mb!</div>
+            @enderror
+            @error('moq')
+
+            <div class="alert alert-warning mb-3 mt-1 w-2/3">Max moq is 10!</div>
+            @enderror
             @if (session()->has('successupload'))
             <div class="alert alert-success mb-3 mt-1 w-2/3">Product added, Please wait admin to verificate!</div>
             <?php session()->forget('successupload') ?>     @endif
