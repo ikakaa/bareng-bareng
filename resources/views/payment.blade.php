@@ -54,13 +54,13 @@
 
                                 @csrf
                                 <label for="recipient_name" class="block sm:mb-2 mb-1 w-full  mt-2">Recipient Name</label>
-                                <input type="text" name="recipientName" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="John Doe">
+                                <input type="text" name="recipient_name" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="John Doe">
                                 
                                 <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
                                 <input type="text" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Jl. Raya Kb. Jeruk No.27">
 
                                 <label for="payment_method" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Method</label>
-                                    <select name="paymentMethod" class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+                                    <select name="payment_method" class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
                                         <option value="1">Bank Transfer</option>
                                         <option value="2">E-Wallet</option>
                                         <option value="3">Credit Card</option>
