@@ -169,19 +169,43 @@ class ProductDetailController extends Controller
 
     public function makeorder(Request $request){
         $payments = new Payment();
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $request->validate([
             'recipient_name' => ['required', 'string', 'min:5', 'max:255'],
             'address' => ['required', 'string', 'min:5', 'max:255'],
         ]);
 
-
+        $payments->order_id = $orders->id;
         $payments->recipient_name = $request->input('recipient_name');
         $payments->address = $request->input('address');
         $payments->payment_method = $request->input('payment_method');
 
         $payments->save();
 
-        // return view('uploadproof');
+        return view('uploadproof', compact('payments'));
+    }
+
+    public function uploadproof(Request $request, $id){
+        $payments = Payment::find($id);
+
+        $payments->order_id = $payments->order_id;
+        $payments->recipient_name = $payments->recipient_name;
+        $payments->address = $payments->address;
+        $payments->payment_method = $payments->payment_method;
+
+       $payments->payment_proof = $request->payment_proof;
+        if($payments->payment_proof){
+            $payments->payment_proof->move('img', $payments->payment_proof->getClientOriginalName());
+        }
+
+        $payments->payment_proof = $request->payment_proof->getClientOriginalName();
+        $payments->account_name = $request->input('account_name');
+        $payments->date = $request->input('date');
+        $payments->payment_amount = $request->input('payment_amount');
+
+        $payments->save();
+
+        return redirect('home');
     }
 
     public function myproductlist(){

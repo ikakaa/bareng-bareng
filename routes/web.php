@@ -88,9 +88,11 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/payment', [App\Http\Controllers\ProductDetailController::class, 'payment']);
     Route::post('/makeorder', [App\Http\Controllers\ProductDetailController::class, 'makeorder']);
+    
     Route::get('/uploadproof', function(){
         return view('uploadproof');
     });
+    Route::patch('/uploadproof/{id}', [App\Http\Controllers\ProductDetailController::class, 'uploadproof']);
 
 });
 });
