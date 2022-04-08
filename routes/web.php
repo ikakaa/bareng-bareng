@@ -94,6 +94,9 @@ Route::group(['middleware'=>['checklogin']],function(){
     });
     Route::patch('/uploadproof/{id}', [App\Http\Controllers\ProductDetailController::class, 'uploadproof']);
 
+    Route::get('/paymentverification',[App\Http\Controllers\ProductDetailController::class, 'paymentverification']);
+    Route::get('/paymentapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentapprove']);
+    Route::get('/paymentreject/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentreject']);
 });
 });
 
