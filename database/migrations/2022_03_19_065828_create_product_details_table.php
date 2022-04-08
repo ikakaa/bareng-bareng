@@ -32,6 +32,7 @@ class CreateProductDetailsTable extends Migration
             $table->string('discordlink');
             $table->integer('deleted')->default('0');
             $table->string('verified')->default('0');
+            $table->string('rejectreason')->default('0');
             $table->string('interestdone')->default('0');
             $table->string('sellingdone')->default('0');
             $table->string('isfinish')->default('0');

@@ -67,7 +67,7 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct']);
 
-    Route::get('/productreject/{id}', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct']);
+    Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct']);
 
     Route::get('/product/{id}',[App\Http\Controllers\ProductDetailController::class, 'detail']);
 
@@ -88,7 +88,7 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/payment', [App\Http\Controllers\ProductDetailController::class, 'payment']);
     Route::post('/makeorder', [App\Http\Controllers\ProductDetailController::class, 'makeorder']);
-    
+
     Route::get('/uploadproof', function(){
         return view('uploadproof');
     });

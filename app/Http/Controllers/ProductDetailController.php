@@ -225,9 +225,10 @@ class ProductDetailController extends Controller
         return redirect()->back()->with('status', 'Product Approved Successfully');
     }
 
-    public function rejectproduct(ProductDetail $id){
-        $checkproduk = ProductDetail::where('id',$id->id)->first();
+    public function rejectproduct(Request $request){
+        $checkproduk = ProductDetail::where('id',$request->id)->first();
         $checkproduk->verified = 2;
+        $checkproduk->rejectreason = $request->input('reason');
         $checkproduk->save();
         return redirect()->back()->with('status', 'Product Rejected Successfully');
     }
