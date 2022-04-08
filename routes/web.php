@@ -97,6 +97,8 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::get('/paymentverification',[App\Http\Controllers\ProductDetailController::class, 'paymentverification']);
     Route::get('/paymentapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentapprove']);
     Route::get('/paymentreject/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentreject']);
+
+    Route::get('/orderhistory', [App\Http\Controllers\ProductDetailController::class, 'orderhistory']);
 });
 });
 

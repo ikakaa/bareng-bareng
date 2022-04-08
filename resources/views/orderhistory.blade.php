@@ -20,33 +20,46 @@
     </head>
 
     <body>
-       
-        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-            <div class="card card-size">
-                <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-secondary"> <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" /></button> 
-                    <span class="name mt-3">{{ Auth::user()->name }}</span> 
 
-                    <div class="action-button">
-                        <button name="submit" type="submit" class="button-selected-style">Buyer</button>
-                        <button class="button-style mb-3" onclick="location.href='{{url('/profileseller')}}'">Seller</button>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="title txt title-upper-left">
+                            <h1>Order History</h1>
+                        </div>
+                    
+                        <div>
+                            <div class="col-md-9">
+                                @if (!empty($orders))
+                                    @foreach ($orderdetails as $orderdetail)
+                                    <div class="card p-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="user d-flex flex-row align-items-center"> 
+                                                <img src="../{{$orderdetail->products->productdetailfiles->filepath}}" class="img-detail-size"> 
+                                                <span>
+                                                    <div class="font-weight-bold txt cart-txt">{{$orderdetail->products->product_name}}</div>
+                                                    <div class="cart-txt">Quantity: {{$orderdetail->qty}}</div>
+                                                </span> 
+                                            </div> 
+                                            <div class="cart-txt">Rp. {{number_format($orderdetail->totalPrice)}}</div>
+                                        </div>
+                                    </div><br> 
+                                @endforeach
+                            </div>
+                        </div>
+
+                        @else
+                            <h1 class="cart-txt">Your cart is empty.</h1>
+                        @endif
+                        
+
+
+
                     </div>
                 </div>
-                <div class="mb-4 p-2 d-flex justify-content-center">
-                    <a href="#">
-                        <i class="fa fa-shopping-cart" style="font-size:20px"></i>
-                        <span class="pl-2">On-going Transaction</span>
-                    </a>
-                    
-                    <br>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a href="orderhistory">
-                        <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i>
-                        <span class="pl-2">Order History</span>
-                    </a>
-                </div>
             </div>
-        </div>
+        </div>  
         
 
         <div class="footer mt-10">

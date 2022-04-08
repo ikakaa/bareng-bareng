@@ -35,7 +35,7 @@
             <div class="alert alert-warning mb-3 mt-1 w-2/3">Max moq is 10!</div>
             @enderror
             @if (session()->has('successupload'))
-            <div class="alert alert-success mb-3 mt-1 w-2/3">Product added, Please wait admin to verificate!</div>
+            <div class="alert alert-success mb-3 mt-1 w-2/3">Product added. Please wait for the verification process!</div>
             <?php session()->forget('successupload') ?>     @endif
         <form action="/do_upload" method="POST" enctype="multipart/form-data">
 

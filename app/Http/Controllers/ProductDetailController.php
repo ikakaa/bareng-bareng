@@ -151,7 +151,6 @@ class ProductDetailController extends Controller
     }
 
     public function cart(){
-        //function untuk membuka view checkout, user dapat melihat cart berisi pesanan mereka
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
         if(!empty($orders)){
             $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
@@ -250,5 +249,18 @@ class ProductDetailController extends Controller
         $checkproduk->rejectreason = $request->input('reason');
         $checkproduk->save();
         return redirect()->back()->with('status', 'Product Rejected Successfully');
+    }
+
+    public function orderhistory(){
+        $orders = Orders::distinct('id')->where('user_id', Auth::user()->id)->where('status', 1)->first();
+        // $payments = Payment::where('order_id', $orders->id)->first();  
+        if(!empty($orders)){
+            
+            $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
+            // return view('orderhistory', compact('orders', 'orderdetails', 'payments'));
+            return view('orderhistory', compact('orders', 'orderdetails'));
+        } else {
+            return view('orderhistory');
+        }
     }
 }
