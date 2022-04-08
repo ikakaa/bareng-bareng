@@ -208,6 +208,25 @@ class ProductDetailController extends Controller
         return redirect('home');
     }
 
+    public function paymentverification(){
+        $payments = Payment::distinct('id')->whereNotNull('payment_proof')->get();
+        return view('paymentverification', compact('payments'));
+    }
+
+    public function paymentapprove(Orders $id){
+        $orders = Orders::with('payments')->where('id', $id->id)->first();
+        $orders->status = 1;
+        $orders->update();
+        return redirect()->back()->with('status', 'Payment Approved Successfully');
+    }
+
+    public function paymentreject(Orders $id){
+        $orders = Orders::with('payments')->where('id', $id->id)->first();
+        $orders->status = 2;
+        $orders->update();
+        return redirect()->back()->with('status', 'Product Rejected Successfully');
+    }
+
     public function myproductlist(){
         $products = ProductDetail::where('user_id', Auth::user()->id)->get();
         return view('myproductlist', compact('products'));
