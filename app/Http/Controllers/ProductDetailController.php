@@ -273,10 +273,11 @@ class ProductDetailController extends Controller
     }
 
 
-    public function orderhistory(Orders $id) //function untuk transaction history
+    public function orderhistory(Orders $id) 
     {
-        //ambil data dari table order jika status = 1 atau sudah checkout
+        
         $orders = Orders::with('order_details')->where('user_id', Auth::user()->id)->where('status', 1)->get();
+        
         if(!empty($orders)){
             $orderdetails = OrderDetails::where('order_id', $id)->get();
             return view('orderhistory', compact('orders', 'orderdetails'));
@@ -285,12 +286,11 @@ class ProductDetailController extends Controller
         }
     }
 
-    public function orderhistory2(Orders $id) //function untuk transaction history
+    public function orderhistorydetail(OrderDetails $id)
     {
-        //ambil data dari table order jika status = 1 atau sudah checkout
-        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 1)->get();
-        $orderdetails = OrderDetails::all();
-        return view('orderhistory2', compact('orders', 'orderdetails'));
+        $details = OrderDetails::where('order_id', $id->id)->get();
+        return view('orderhistorydetail', compact('details'));
+        
         
     }
 

@@ -25,26 +25,35 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="title txt title-upper-left">
-                            <h1>Order History</h1>
+                        <div class="title-upper-left">
+                            <h1 class="title txt ">Order History</h1>
+                            <large>
+                                Here's the list of your order history.
+                            </large>
                         </div>
                     
                         <div>
                             <div class="col-md-9">
                                 @if (!empty($orders))
+                                
                                     @foreach ($orders as $order)
-                                        
+                                    
                                         @foreach ($order->order_details as $detail)
                                         <div class="card p-3">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="user d-flex flex-row align-items-center"> 
                                                     <img src="../{{$detail->products->productdetailfiles->filepath}}" class="img-detail-size"> 
                                                     <span>
-                                                        <div class="font-weight-bold txt cart-txt">{{$detail->products->product_name}}</div>
+                                                        <div class="font-weight-bold txt cart-txt">{{$detail->products->product_name}}</div> 
                                                         <div class="cart-txt">Quantity: {{$detail->qty}}</div>
                                                     </span> 
                                                 </div> 
-                                                <div class="cart-txt">Rp. {{number_format($order->totalPrice)}}</div>
+                                                <div class="cart-txt">
+                                                    Rp. {{number_format($order->totalPrice)}} 
+                                                    <br> 
+                                                    <a href='/orderhistorydetail/{{$order->id}}' class="details">Details >></a>
+                                                </div>
+                                                
                                             </div>
                                         </div><br> 
                                         @endforeach

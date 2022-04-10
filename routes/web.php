@@ -100,10 +100,10 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/orderhistory', [App\Http\Controllers\ProductDetailController::class, 'orderhistory']);
 
-    Route::get('/orderhistory2', [App\Http\Controllers\ProductDetailController::class, 'orderhistory2']);
-
     Route::get('/editdetail/{id}', [App\Http\Controllers\ProductDetailController::class, 'editdetail']);
     Route::patch('/editdetail/{id}', [App\Http\Controllers\ProductDetailController::class, 'updatedetail']);
+
+    Route::get('/orderhistorydetail/{id}', [App\Http\Controllers\ProductDetailController::class, 'orderhistorydetail']);
 });
 });
 
