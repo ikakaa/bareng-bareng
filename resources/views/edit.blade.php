@@ -39,7 +39,7 @@
                         <p class="card-text">Shipment Date: {{$product->shippingdate}}</p>
                     </div>
                 </div>
-                    <button type="submit" class="button-style buy-bottom-right">Edit</button>
+                    <button type="submit" class="button-style buy-bottom-right" onclick="location.href='{{url('/editdetail')}}/{{$product->id}}'">Edit</button>
             </div>
             
             @endforeach

@@ -31,8 +31,7 @@
                     
                         <div>
                             <div class="col-md-9">
-                                @if (!empty($orders))
-                                    @foreach ($orders as $order)
+                                    {{-- @foreach ($orders as $order)
                                         
                                         @foreach ($order->order_details as $detail)
                                         <div class="card p-3">
@@ -49,13 +48,17 @@
                                         </div><br> 
                                         @endforeach
                                         
+                                    @endforeach --}}
+                                    {{$orderdetails->id }}
+                                    @foreach ($orders as $order)
+                                        <h1>Order id:  {{$order->id}}</h1>
+                                        {{-- @if ($orderdetails->order_id == $order->id)
+                                            <h1>order detail id: {{$orderdetails->order_id }} order id: {{$order->id}}</h1>
+                                        @endif --}}
                                     @endforeach
+                                    
                             </div>
                         </div>
-
-                        @else
-                            <h1 class="cart-txt">Your cart is empty.</h1>
-                        @endif
 
                     </div>
                 </div>

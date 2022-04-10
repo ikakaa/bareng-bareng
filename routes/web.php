@@ -99,6 +99,11 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::get('/paymentreject/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentreject']);
 
     Route::get('/orderhistory', [App\Http\Controllers\ProductDetailController::class, 'orderhistory']);
+
+    Route::get('/orderhistory2', [App\Http\Controllers\ProductDetailController::class, 'orderhistory2']);
+
+    Route::get('/editdetail/{id}', [App\Http\Controllers\ProductDetailController::class, 'editdetail']);
+    Route::patch('/editdetail/{id}', [App\Http\Controllers\ProductDetailController::class, 'updatedetail']);
 });
 });
 

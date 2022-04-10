@@ -66,6 +66,7 @@ class ProductDetailController extends Controller
 
         return redirect()->back()->with('status', 'Product Added Successfully');
     }
+
     public function index(){
 
         $product = ProductDetail::distinct('id')->where('verified','0')->get();;
@@ -90,6 +91,31 @@ class ProductDetailController extends Controller
 
 
         return view('edit', compact('products'));
+    }
+
+    public function editdetail(ProductDetailsFile $id)
+    {
+        $products = ProductDetail::where('id', $id->id)->first();
+
+        return view('editdetail', compact('products'));
+    }
+
+    public function updatedetail(Request $request, $id){
+        $products = ProductDetail::find($id);
+
+        $products->product_name = $request->input('productname');
+        $products->productprice = $request->input('productprice');
+        $products->shortdesc = $request->input('shortdesc');
+        $products->product_type = $request->input('producttype');
+        $products->moq = $request->input('moq');
+        $products->productstock = $request->input('maxorder');
+        $products->shippingdate = $request->input('shippingdate');
+        $products->discordlink = $request->input('discord');
+        $products->product_name = $request->input('productname');
+
+        $products->save();
+
+        return redirect('myproductlist');
     }
 
     public function order(Request $request, $id)
@@ -187,11 +213,6 @@ class ProductDetailController extends Controller
     public function uploadproof(Request $request, $id){
         $payments = Payment::find($id);
 
-        $payments->order_id = $payments->order_id;
-        $payments->recipient_name = $payments->recipient_name;
-        $payments->address = $payments->address;
-        $payments->payment_method = $payments->payment_method;
-
        $payments->payment_proof = $request->payment_proof;
         if($payments->payment_proof){
             $payments->payment_proof->move('img', $payments->payment_proof->getClientOriginalName());
@@ -251,16 +272,27 @@ class ProductDetailController extends Controller
         return redirect()->back()->with('status', 'Product Rejected Successfully');
     }
 
-    public function orderhistory(){
-        $orders = Orders::distinct('id')->where('user_id', Auth::user()->id)->where('status', 1)->first();
-        // $payments = Payment::where('order_id', $orders->id)->first();  
+
+    public function orderhistory(Orders $id) //function untuk transaction history
+    {
+        //ambil data dari table order jika status = 1 atau sudah checkout
+        $orders = Orders::with('order_details')->where('user_id', Auth::user()->id)->where('status', 1)->get();
         if(!empty($orders)){
-            
-            $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
-            // return view('orderhistory', compact('orders', 'orderdetails', 'payments'));
+            $orderdetails = OrderDetails::where('order_id', $id)->get();
             return view('orderhistory', compact('orders', 'orderdetails'));
         } else {
             return view('orderhistory');
         }
     }
+
+    public function orderhistory2(Orders $id) //function untuk transaction history
+    {
+        //ambil data dari table order jika status = 1 atau sudah checkout
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 1)->get();
+        $orderdetails = OrderDetails::all();
+        return view('orderhistory2', compact('orders', 'orderdetails'));
+        
+    }
+
+    
 }
