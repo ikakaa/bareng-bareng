@@ -27,10 +27,8 @@
 
         <div class="tempat-form mx-4">
         <div class="form-card  shadow justify-start  flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
-            @error('file')
+           
 
-            <div class="alert alert-warning mb-3 mt-1 w-2/3">File must be image and max 10mb!</div>
-            @enderror
             @error('name')
 
             <div class="alert alert-warning mb-3 mt-1 w-2/3">Username : Input at least 5 characters or username is used!</div>
@@ -49,22 +47,20 @@
         <form action="/do_editprofile" method="POST" enctype="multipart/form-data">
 
             @csrf
-            <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">User Image</label>
-          <img src="{{$ambildata->profilepicture}}" alt="" width="300px" name="userpicture" height="300px">
             <input type="hidden" value="{{ Auth::user()->name }}" name="name">
-            <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2 ">Username </label>
+            <label for="name" class="block sm:mb-2 mb-1 w-full  mt-2 ">Username </label>
+
             <input type="text" name="name" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="username" value="{{$ambildata->name}}">
-<input type="hidden" value="{{$ambildata->id}}" name="id">
-            <label for="productname"  class="block sm:mb-2 mb-1 w-full  mt-2">Email </label>
+            <input type="hidden" value="{{$ambildata->id}}" name="id">
+
+            <label for="email"  class="block sm:mb-2 mb-1 w-full  mt-2">Email </label>
             <input type="text" name="email" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="email" value="{{$ambildata->email}}">
 
-            <label for="shortdesc" class="block sm:mb-2 mb-1 w-full  mt-2">Phone Number</label>
+            <label for="phonenum" class="block sm:mb-2 mb-1 w-full  mt-2">Phone Number</label>
             <input type="number" name="phonenum" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="phone number" value="{{$ambildata->phonenum}}">
 
-
-
-           <label for="uploadphoto" class="block sm:mb-2 mb-1 w-full  mt-2">Upload Photo</label>
-           <input type="file" name="file" id="photo">
+            <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
+            <input type="text" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Address" value="{{$ambildata->address}}">
 
 
            <div class="button-right-bottom">

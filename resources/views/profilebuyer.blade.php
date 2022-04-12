@@ -23,38 +23,75 @@
 
         <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
             <div class="card card-size">
-                <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-secondary"> <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" /></button>
-                    <span class="name mt-3">{{ Auth::user()->name }}</span>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="../src/FullLogo-removebg-preview (2).png" style="height: 80px; width: 80px" alt="">
+                </div>
+                <div class="row space">
+                    <div class="col-md-6 box">
+                        <div class="font-weight-bold txt profile-txt">Account Details</div>
+                        <div class=" profile-txt">{{ Auth::user()->name }}</div>
+                        <div class=" profile-txt">{{ Auth::user()->email }}</div>
+                        <div class=" profile-txt">{{ Auth::user()->phonenum }}</div>
+                        <small> <a href="/editprofile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a> </small>
 
-                    <div class="action-button">
-                        <button name="submit" type="submit" class="button-selected-style">Buyer</button>
-                        <button class="button-style mb-3" onclick="location.href='{{url('/profileseller')}}'">Seller</button>
                     </div>
-                </div>    <div class=" p-2 d-flex justify-content-center">
-                    <a href="/editprofile">
-                        <i class="fa fa-user" style="font-size:20px"></i>
-                        <span class="pl-2">Edit Profile</span>
-                    </a>
-
-                    <br>
+                    <div class="col-md-6 box">
+                        <div class="font-weight-bold txt profile-txt">Address</div>
+                        @if (Auth::user()->address == '0')
+                            <a href="editprofile">Please add your address.</a>
+                        @else
+                            <h1>{{Auth::user()->address}}</h1>
+                        @endif
+                    </div>
                 </div>
-                <div class="mb-4 p-2 d-flex justify-content-center">
+
+                <br>
+                <div class="box2 row align-items-center ">
                     <a href="#">
-                        <i class="fa fa-shopping-cart" style="font-size:20px"></i>
+                        <i class="fa fa-shopping-cart" style="font-size:15px"></i>
                         <span class="pl-2">On-going Transaction</span>
-                    </a>
-
-                    <br>
-                </div>
-
-                <div class="d-flex justify-content-center">
+                    </a><br>
+    
                     <a href="orderhistory">
-                        <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i>
+                        <i class="fa fa-history" aria-hidden="true" style="font-size:15px"></i>
                         <span class="pl-2">Order History</span>
+                    </a><br><br>
+    
+                    <a href="profileseller">
+                        <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
+                        <span class="pl-2">Seller Page</span>
                     </a>
                 </div>
+
+                {{-- <div class="box2 d-flex justify-content-center">
+                    <div class="p-2 ">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart" style="font-size:15px"></i>
+                            <span class="pl-2">On-going Transaction</span>
+                        </a>
+                    </div>
+    
+                    <div class="mb-4 d-flex justify-content-center">
+                        <a href="orderhistory">
+                            <i class="fa fa-history" aria-hidden="true" style="font-size:15px"></i>
+                            <span class="pl-2">Order History</span>
+                        </a>
+                    </div>
+    
+                    <div class="d-flex justify-content-center">
+                        <a href="profileseller">
+                            <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
+                            <span class="pl-2">Seller Page</span>
+                        </a>
+                    </div>
+                </div> --}}
+                
+
             </div>
         </div>
+
+
+       
 
 
         <div class="footer mt-10">

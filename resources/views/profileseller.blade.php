@@ -23,34 +23,48 @@
        
         <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
             <div class="card card-size">
-                <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-secondary"> <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" /></button> 
-                    <span class="name mt-3">{{ Auth::user()->name }}</span> 
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="../src/FullLogo-removebg-preview (2).png" style="height: 80px; width: 80px" alt="">
+                </div>
+                <div class="row space">
+                    <div class="col-md-6 box">
+                        <div class="font-weight-bold txt profile-txt">Account Details</div>
+                        <div class=" profile-txt">{{ Auth::user()->name }}</div>
+                        <div class=" profile-txt">{{ Auth::user()->email }}</div>
+                        <div class=" profile-txt">{{ Auth::user()->phonenum }}</div>
+                        <small> <a href="/editprofile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a> </small>
 
-                    <div class="action-button">
-                        <button name="submit" type="submit" class="button-style" onclick="location.href='{{url('/profilebuyer')}}'">Buyer</button>
-                        <button class="button-selected-style mb-3">Seller</button>
+                    </div>
+                    <div class="col-md-6 box">
+                        <div class="font-weight-bold txt profile-txt">Address</div>
+                        @if (Auth::user()->address == '0')
+                            <a href="editprofile">Please add your address.</a>
+                        @else
+                            <h1>{{Auth::user()->address}}</h1>
+                        @endif
                     </div>
                 </div>
-                <div class="mb-4 d-flex justify-content-center">
+
+                <br>
+                <div class="box3">
                     <a href="/uploadproduct">
-                        <i class="fa fa-plus-square" aria-hidden="true" style="font-size:20px"></i>
+                        <i class="fa fa-plus-square" style="font-size:15px"></i>
                         <span class="pl-2">Upload Products</span>
-                    </a>
-                    <br>
-                </div>
-
-                <div class="mb-4 d-flex justify-content-center">
+                    </a><br>
+                
                     <a href="myproductlist">
-                        <i class="fa fa-bars" aria-hidden="true" style="font-size:20px"></i>
+                        <i class="fa fa-bars"aria-hidden="true" style="font-size:15px"></i>
                         <span class="pl-2">My Product List</span>
-                    </a>
-                    <br>
-                </div>
+                    </a><br>
 
-                <div class="d-flex justify-content-center">
                     <a href="/productverificationlist">
-                        <i class="fa fa-check-circle" aria-hidden="true" style="font-size:20px"></i>
+                        <i class="fa fa-check-circle" aria-hidden="true" style="font-size:15px"></i>
                         <span class="pl-2">Product Verification</span>
+                    </a><br><br>
+
+                    <a href="/profilebuyer">
+                        <i class="fas fa-bags-shopping" aria-hidden="true" style="font-size:15px"></i>
+                        <span class="pl-2">Buyer Page</span>
                     </a>
                 </div>
 

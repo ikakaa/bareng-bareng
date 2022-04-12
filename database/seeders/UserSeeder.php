@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             'email'=>'admin@admin,com',
             'name'=>'admin',
             'phonenum'=>'0812341234',
+            'address'=>'Jl. Jakarta',
             'password'=>bcrypt('admin'),
 
         ],
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
             'email'=>'adriansvn0@gmail.com',
             'name'=>'adrian123',
             'phonenum'=>'0812341234',
+            'address'=>'Jl. Surabaya',
             'password'=>bcrypt('adrian123'),
 
         ],
@@ -31,6 +33,7 @@ class UserSeeder extends Seeder
             'email'=>'adrian.putra002@binus.ac.id',
             'name'=>'adrian123',
             'phonenum'=>'0812341234',
+            'address'=>'Jl. Bali',
             'password'=>bcrypt('adrian123'),
 
         ],

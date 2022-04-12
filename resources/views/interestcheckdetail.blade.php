@@ -85,9 +85,7 @@
                                 @if ($product->id == $comment->product_id)
                                 <div class="card p-3">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user d-flex flex-row align-items-center"> <img
-                                                src="https://i.imgur.com/hczKIze.jpg" width="30"
-                                                class="user-img rounded-circle mr-2">
+                                        <div class="user d-flex flex-row align-items-center"> 
                                             <span><small
                                                     class="font-weight-bold txt"> {{ $comment->commentname }}</small>
                                                 <br><small

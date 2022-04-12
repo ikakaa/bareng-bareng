@@ -120,19 +120,20 @@ class LoginController extends Controller
         // $ambildata->email = $request->email;
         // $ambildata->name = $_POST['name'];
         $ambildata->phonenum = $_POST['phonenum'];
+        $ambildata->address = $_POST['address'];
 
-        if ($_FILES['file']['size']>0) {
-            $tgl      = date('Ymd_H_i_s');
-            $file = $_FILES['file']['tmp_name'];
-            $image = $_FILES['file']['name'];
-            $upload_path = 'profilepictures/';
-            $upload_file = $upload_path . $tgl . $image;
-            move_uploaded_file($file, $upload_file);
-            $ambildata->profilepicture = $upload_file;
-        }
+        // if ($_FILES['file']['size']>0) {
+        //     $tgl      = date('Ymd_H_i_s');
+        //     $file = $_FILES['file']['tmp_name'];
+        //     $image = $_FILES['file']['name'];
+        //     $upload_path = 'profilepictures/';
+        //     $upload_file = $upload_path . $tgl . $image;
+        //     move_uploaded_file($file, $upload_file);
+        //     $ambildata->profilepicture = $upload_file;
+        // }
         $ambildata->save();
         // session(['email' => $request['email']]);
         session(['successupload' => true]);
-        return redirect()->back()->with('status', 'Product Added Successfully');
+        return redirect()->back();
     }
 }

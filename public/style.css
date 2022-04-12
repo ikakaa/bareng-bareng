@@ -751,3 +751,45 @@ div {
     color: #284b63;
     font-size: 15px;
 }
+
+.profile-txt {
+    font-size: 15px;
+}
+
+.space {
+    margin-left: 180px;
+    margin-top: 30px;
+}
+
+.mt {
+    margin-top: -10px;
+}
+
+.box {
+    width: 220px;
+    height: 155px;  
+    padding: 20px;
+    margin-right: 10px;
+    border: 1px solid;
+    box-shadow: 5px 10px #888888;
+}
+
+.box2 {
+    width: 450px;
+    height: 130px;  
+    padding: 20px;
+    margin-left: 180px;
+    border: 2px solid #888888;
+    border-radius: 5px;
+    /* box-shadow: 5px 10px #888888; */
+    text-align: center;
+}
+
+.box3 {
+    width: 450px;
+    height: 145px;  
+    padding: 15px;
+    margin-left: 180px;
+    /* box-shadow: 5px 10px #888888; */
+    text-align: center;
+}
