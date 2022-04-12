@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phonenum');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('profilepicture')->default('profilepicture/default.jpg')->nullable();
+            $table->string('profilepicture')->default('profilepictures/default.jpg')->nullable();
             $table->integer('logintry')->default('0')->nullable();
             $table->rememberToken();
             $table->timestamps();

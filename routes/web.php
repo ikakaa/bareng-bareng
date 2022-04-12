@@ -38,6 +38,7 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/do_addcomment/{id}', [App\Http\Controllers\ProductCommentController::class, 'store']);
 Route::post('/do_upload', [App\Http\Controllers\ProductDetailController::class, 'store']);
+Route::post('/do_editprofile', [App\Http\Controllers\Auth\LoginController::class, 'do_editprofile']);
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware'=>['checklogin']],function(){
     Route::group(['middleware'=>['checkinterestfinish']],function(){

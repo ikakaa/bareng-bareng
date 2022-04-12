@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
-
+use Illuminate\Validation\Rule;
 class LoginController extends Controller
 {
     /*
@@ -99,9 +99,40 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('/login');
     }
-    public function editprofile(){
-        $ambildata=User::where('email',session('email'))->first();
+    public function editprofile()
+    {
+        $ambildata = User::where('email', session('email'))->first();
 
-        return view('editprofile',compact('ambildata'));
+        return view('editprofile', compact('ambildata'));
+    }
+    public function do_editprofile(Request $request)
+    {
+        $user=Auth::user();
+            $request->validate([
+            'file' => 'max:100000|mimes:jpeg,jpg,png,gif',
+            'name' => ['required', 'string', 'min:5', 'max:255', 'unique:users', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users',Rule::unique('users')->ignore($user->id)],
+            'phonenum' => ['required', 'string', 'min:12'],
+
+        ]);
+
+        $ambildata = User::where('email', session('email'))->first();
+        $ambildata->email = $request->email;
+        $ambildata->name = $_POST['name'];
+        $ambildata->phonenum = $_POST['phonenum'];
+
+        if ($_FILES['file']['size']>0) {
+            $tgl      = date('Ymd_H_i_s');
+            $file = $_FILES['file']['tmp_name'];
+            $image = $_FILES['file']['name'];
+            $upload_path = 'profilepictures/';
+            $upload_file = $upload_path . $tgl . $image;
+            move_uploaded_file($file, $upload_file);
+            $ambildata->profilepicture = $upload_file;
+        }
+        $ambildata->save();
+        session(['email' => $request['email']]);
+        session(['successupload' => true]);
+        return redirect()->back()->with('status', 'Product Added Successfully');
     }
 }

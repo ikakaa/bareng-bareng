@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -30,22 +31,30 @@
 
             <div class="alert alert-warning mb-3 mt-1 w-2/3">File must be image and max 10mb!</div>
             @enderror
-            @error('moq')
+            @error('name')
 
-            <div class="alert alert-warning mb-3 mt-1 w-2/3">Max moq is 10!</div>
+            <div class="alert alert-warning mb-3 mt-1 w-2/3">Username : Input at least 5 characters or username is used!</div>
             @enderror
-            @if (session()->has('successupload'))
-            <div class="alert alert-success mb-3 mt-1 w-2/3">Product added. Please wait for the verification process!</div>
-            <?php session()->forget('successupload') ?>     @endif
-        <form action="/do_upload" method="POST" enctype="multipart/form-data">
+            @error('phonenum')
+
+            <div class="alert alert-warning mb-3 mt-1 w-2/3">Phone Number : Input at least 12 number!</div>
+            @enderror
+            @error('email')
+
+            <div class="alert alert-warning mb-3 mt-1 w-2/3">Email : Must be email format or email is used!</div>
+            @enderror
+            @if (session()->has('successedit'))
+            <div class="alert alert-success mb-3 mt-1 w-2/3">Profile edit success!</div>
+            <?php session()->forget('successedit') ?>     @endif
+        <form action="/do_editprofile" method="POST" enctype="multipart/form-data">
 
             @csrf
             <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">User Image</label>
-          <img src="profilepictures/default.jpg" alt="">
+          <img src="{{$ambildata->profilepicture}}" alt="" width="300px" name="userpicture" height="300px">
             <input type="hidden" value="{{ Auth::user()->name }}" name="name">
             <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Username </label>
-            <input type="text" name="username"  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000" value="{{$ambildata->name}}">
-
+            <input type="text" name="name"  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000" value="{{$ambildata->name}}">
+<input type="hidden" value="{{$ambildata->id}}" name="id">
             <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Email </label>
             <input type="text" name="email"  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000" value="{{$ambildata->email}}">
 
