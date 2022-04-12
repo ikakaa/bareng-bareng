@@ -110,15 +110,15 @@ class LoginController extends Controller
         $user=Auth::user();
             $request->validate([
             'file' => 'max:100000|mimes:jpeg,jpg,png,gif',
-            'name' => ['required', 'string', 'min:5', 'max:255', 'unique:users', Rule::unique('users')->ignore($user->id)],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users',Rule::unique('users')->ignore($user->id)],
+            // 'name' => ['required', 'string', 'min:5', 'max:255', 'unique:users', Rule::unique('users')->ignore($user->id)],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users',Rule::unique('users')->ignore($user->id)],
             'phonenum' => ['required', 'string', 'min:12'],
 
         ]);
 
         $ambildata = User::where('email', session('email'))->first();
-        $ambildata->email = $request->email;
-        $ambildata->name = $_POST['name'];
+        // $ambildata->email = $request->email;
+        // $ambildata->name = $_POST['name'];
         $ambildata->phonenum = $_POST['phonenum'];
 
         if ($_FILES['file']['size']>0) {
@@ -131,7 +131,7 @@ class LoginController extends Controller
             $ambildata->profilepicture = $upload_file;
         }
         $ambildata->save();
-        session(['email' => $request['email']]);
+        // session(['email' => $request['email']]);
         session(['successupload' => true]);
         return redirect()->back()->with('status', 'Product Added Successfully');
     }

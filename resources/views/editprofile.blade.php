@@ -52,14 +52,14 @@
             <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">User Image</label>
           <img src="{{$ambildata->profilepicture}}" alt="" width="300px" name="userpicture" height="300px">
             <input type="hidden" value="{{ Auth::user()->name }}" name="name">
-            <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Username </label>
-            <input type="text" name="name"  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000" value="{{$ambildata->name}}">
+            <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2 ">Username </label>
+            <input type="text" name="name" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="username" value="{{$ambildata->name}}">
 <input type="hidden" value="{{$ambildata->id}}" name="id">
-            <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Email </label>
-            <input type="text" name="email"  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000" value="{{$ambildata->email}}">
+            <label for="productname"  class="block sm:mb-2 mb-1 w-full  mt-2">Email </label>
+            <input type="text" name="email" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="email" value="{{$ambildata->email}}">
 
             <label for="shortdesc" class="block sm:mb-2 mb-1 w-full  mt-2">Phone Number</label>
-            <input type="number" name="phonenum" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 Up Close And Personal With Malaysia's Custom Keyboard Makers" value="{{$ambildata->phonenum}}">
+            <input type="number" name="phonenum" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="phone number" value="{{$ambildata->phonenum}}">
 
 
 
