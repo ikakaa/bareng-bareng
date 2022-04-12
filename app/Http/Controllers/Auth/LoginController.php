@@ -99,4 +99,9 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+    public function editprofile(){
+        $ambildata=User::where('email',session('email'))->first();
+
+        return view('editprofile',compact('ambildata'));
+    }
 }

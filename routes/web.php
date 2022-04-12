@@ -60,8 +60,12 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::get('/uploadproduct', function(){
         return view('upload');
     });
+    Route::get('/editprofile', function(){
+        return view('editprofile');
+    });
 
     Route::get('/interestcheck',[App\Http\Controllers\InterestCheckController::class, 'index']);
+    Route::get('/editprofile',[App\Http\Controllers\Auth\LoginController::class, 'editprofile']);
 
     Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index']);
 
