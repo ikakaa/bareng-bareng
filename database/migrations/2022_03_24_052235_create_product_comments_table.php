@@ -19,9 +19,10 @@ class CreateProductCommentsTable extends Migration
             $table->string('comment');
             $table->string('commentname');
             $table->foreignId('comment_by_id');
-            $table->string('productid');
+            $table->foreignId('product_id');
             $table->string('deleted')->default('0');
 
+            $table->foreign('product_id')->references('id')->on('product_details');
             $table->foreign('comment_by_id')->references('id')->on('users');
         });
     }

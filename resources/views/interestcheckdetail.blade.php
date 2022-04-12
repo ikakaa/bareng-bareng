@@ -63,9 +63,9 @@
                                 <div class="heart"></div>
                             </div>
                         </div>
-
+                       
                         <div class="tempat-comment w-full">
-                            <form action="/do_addcomment" method="POST">
+                            <form action="/do_addcomment/{{$product->id}}" method="POST">
                                 @csrf
                                 <br>
                                 <p class="interest-detail-ic pt-4 pb-2">Add Comment</p>
@@ -82,18 +82,21 @@
                             <div class="col-md-6">
                                 <p class="interest-detail-ic pt-4 pb-2">Comments</p>
                                 @foreach ($comments as $comment)
-                                    <div class="card p-3">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="user d-flex flex-row align-items-center"> <img
-                                                    src="https://i.imgur.com/hczKIze.jpg" width="30"
-                                                    class="user-img rounded-circle mr-2">
-                                                <span><small
-                                                        class="font-weight-bold txt"> {{ $comment->commentname }}</small>
-                                                    <br><small
-                                                        class="font-weight-bold">{{ $comment->comment }}</small></span>
-                                            </div> <small id="demo">{{$comment->created_at}} </small>
-                                        </div>
-                                    </div><br>
+                                @if ($product->id == $comment->product_id)
+                                <div class="card p-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="user d-flex flex-row align-items-center"> <img
+                                                src="https://i.imgur.com/hczKIze.jpg" width="30"
+                                                class="user-img rounded-circle mr-2">
+                                            <span><small
+                                                    class="font-weight-bold txt"> {{ $comment->commentname }}</small>
+                                                <br><small
+                                                    class="font-weight-bold">{{ $comment->comment }}</small></span>
+                                        </div> <small id="demo">{{$comment->created_at}} </small>
+                                    </div>
+                                </div><br>
+                                @endif
+                                    
                                 @endforeach
                             </div>
                         </div>

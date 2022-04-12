@@ -18,5 +18,9 @@ class ProductDetail extends Model
         return $this->hasMany(OrderDetails::class, 'id');
     }
 
+    public function comments(){
+        return $this->hasMany(ProductComment::class);
+    }
+
     public $timestamps = true;
 }
