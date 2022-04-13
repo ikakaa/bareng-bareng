@@ -293,12 +293,14 @@ class ProductDetailController extends Controller
     //page order history
     public function orderhistory(Orders $id)
     {
-
         $orders = Orders::with('order_details')->where('user_id', Auth::user()->id)->where('status', 1)->get();
+        $order = Orders::where('user_id', Auth::user()->id)->where('status', 1)->first();
+        $order_id = $order->id;
+        $payments = Payment::where('order_id', $order_id)->first();
 
         if(!empty($orders)){
             $orderdetails = OrderDetails::where('order_id', $id)->get();
-            return view('orderhistory', compact('orders', 'orderdetails'));
+            return view('orderhistory', compact('orders', 'orderdetails', 'payments'));
         } else {
             return view('orderhistory');
         }

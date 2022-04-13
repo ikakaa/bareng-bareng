@@ -36,7 +36,7 @@
                         </div>
                         <p class="card-text">{{$product->shortdesc}}</p><br>
                         <p class="card-text">Stocks: {{$product->productstock}}</p>
-                        <p class="card-text">Shipment Date: {{$product->shippingdate}}</p>
+                        <p class="card-text">Shipment Date: {{$product->shippingdate->format('d-m-Y')}}</p>
                     </div>
                 </div>
                 <form method="POST" action="{{url('order')}}/{{$product->id}}">

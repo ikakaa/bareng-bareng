@@ -37,7 +37,7 @@
                                 @if (!empty($orders))
                                 
                                     @foreach ($orders as $order)
-                                    
+                                        
                                         @foreach ($order->order_details as $detail)
                                         <div class="card p-3">
                                             <div class="d-flex justify-content-between align-items-center">
@@ -46,6 +46,8 @@
                                                     <span>
                                                         <div class="font-weight-bold txt cart-txt">{{$detail->products->product_name}}</div> 
                                                         <div class="cart-txt">Quantity: {{$detail->qty}}</div>
+                                                        <div class="cart-txt">Purchased at: {{$payments->date->format('d-m-Y')}}</div>
+
                                                     </span> 
                                                 </div> 
                                                 <div class="cart-txt">
