@@ -56,8 +56,14 @@
                                 <label for="recipient_name" class="block sm:mb-2 mb-1 w-full  mt-2">Recipient Name</label>
                                 <input type="text" name="recipient_name" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="John Doe">
                                 
+                                @if (Auth::user()->address == '0')
                                 <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
-                                <input type="text" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Jl. Raya Kb. Jeruk No.27">
+                                <input type="text" name="address" disabled class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Jl. Kebun Jeruk">
+                                <small><a href="editprofile">Please add your address here.</a></small>
+                                @else
+                                <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
+                                <input type="text" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" value="{{Auth::user()->address}}">
+                                @endif
 
                                 <label for="payment_method" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Method</label>
                                     <select name="payment_method" class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">

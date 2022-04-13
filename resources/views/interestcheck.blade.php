@@ -68,8 +68,8 @@
                                     <p class="price-number block">Rp. {{number_format($product->productprice)}}</p>
                                 </div>
                                 <div class="mini-card-button">
-                                    <button class="button-style mt-3 font-semibold rounded-md" onclick="location.href='{{url('/product')}}/{{$product->id}}'" >
-                                        Add to cart
+                                    <button class="button-style mt-3 font-semibold rounded-md">
+                                       countdown
                                     </button>
                                 </div>
                             </div>

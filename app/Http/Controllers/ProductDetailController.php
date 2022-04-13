@@ -118,6 +118,17 @@ class ProductDetailController extends Controller
         return redirect('myproductlist');
     }
 
+    
+    public function cart(){
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        if(!empty($orders)){
+            $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
+            return view('cart', compact('orders', 'orderdetails'));
+        } else {
+            return view('cart');
+        }
+    }
+
     public function order(Request $request, $id)
     {
         //function untuk melakukan order item dan dimasukkan kedalam database
@@ -176,16 +187,6 @@ class ProductDetailController extends Controller
         return redirect('home');
     }
 
-    public function cart(){
-        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        if(!empty($orders)){
-            $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
-            return view('cart', compact('orders', 'orderdetails'));
-        } else {
-            return view('cart');
-        }
-    }
-
     public function payment(){
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
@@ -212,6 +213,7 @@ class ProductDetailController extends Controller
 
     public function uploadproof(Request $request, $id){
         $payments = Payment::find($id);
+        $order_id = $payments->order_id;
 
        $payments->payment_proof = $request->payment_proof;
         if($payments->payment_proof){
@@ -224,6 +226,14 @@ class ProductDetailController extends Controller
         $payments->payment_amount = $request->input('payment_amount');
 
         $payments->save();
+
+        $order_id = $payments->order_id;
+        $orderdetails = OrderDetails::where('order_id', $order_id)->get();
+        foreach($orderdetails as $orderdetail){
+            $product = ProductDetail::where('id', $orderdetail->product_id)->first();
+            $product->productstock =  $product->productstock - $orderdetail->qty;
+            $product->update();
+        }
 
         return redirect('home');
     }
@@ -244,6 +254,14 @@ class ProductDetailController extends Controller
         $orders = Orders::with('payments')->where('id', $id->id)->first();
         $orders->status = 2;
         $orders->update();
+
+        $order_id = $orders->id;
+        $orderdetails = OrderDetails::where('order_id', $order_id)->get();
+        foreach($orderdetails as $orderdetail){
+            $product = ProductDetail::where('id', $orderdetail->product_id)->first();
+            $product->productstock =  $product->productstock + $orderdetail->qty;
+            $product->update();
+        }
         return redirect()->back()->with('status', 'Product Rejected Successfully');
     }
 
@@ -272,7 +290,7 @@ class ProductDetailController extends Controller
         return redirect()->back()->with('status', 'Product Rejected Successfully');
     }
 
-
+    //page order history
     public function orderhistory(Orders $id)
     {
 
@@ -290,8 +308,6 @@ class ProductDetailController extends Controller
     {
         $details = OrderDetails::where('order_id', $id->id)->get();
         return view('orderhistorydetail', compact('details'));
-
-
     }
 
 

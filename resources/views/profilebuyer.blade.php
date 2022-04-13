@@ -61,31 +61,7 @@
                         <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
                         <span class="pl-2">Seller Page</span>
                     </a>
-                </div>
-
-                {{-- <div class="box2 d-flex justify-content-center">
-                    <div class="p-2 ">
-                        <a href="#">
-                            <i class="fa fa-shopping-cart" style="font-size:15px"></i>
-                            <span class="pl-2">On-going Transaction</span>
-                        </a>
-                    </div>
-    
-                    <div class="mb-4 d-flex justify-content-center">
-                        <a href="orderhistory">
-                            <i class="fa fa-history" aria-hidden="true" style="font-size:15px"></i>
-                            <span class="pl-2">Order History</span>
-                        </a>
-                    </div>
-    
-                    <div class="d-flex justify-content-center">
-                        <a href="profileseller">
-                            <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
-                            <span class="pl-2">Seller Page</span>
-                        </a>
-                    </div>
-                </div> --}}
-                
+                </div>                
 
             </div>
         </div>

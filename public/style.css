@@ -779,9 +779,8 @@ div {
     height: 130px;  
     padding: 20px;
     margin-left: 180px;
-    border: 2px solid #888888;
-    border-radius: 5px;
-    /* box-shadow: 5px 10px #888888; */
+    border: 1px solid;
+    box-shadow: 5px 10px #284b63;
     text-align: center;
 }
 
@@ -790,6 +789,7 @@ div {
     height: 145px;  
     padding: 15px;
     margin-left: 180px;
-    /* box-shadow: 5px 10px #888888; */
+    border: 1px solid;
+    box-shadow: 5px 10px #284b63;
     text-align: center;
 }
