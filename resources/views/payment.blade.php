@@ -25,8 +25,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="title txt title-upper-left">
-                            <h1>Payment</h1>
+                        <div class="title-upper-left">
+                            <h1 class="title txt">Payment</h1>
+                            <large style="color: red">
+                                Please finish your payment at once, or else your order will not be placed.
+                            </large>
                         </div>
                     
                         <div>
@@ -49,7 +52,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="ml-3">
                             <form action="/makeorder" method="POST" enctype="multipart/form-data">
 
                                 @csrf
@@ -66,13 +69,12 @@
                                 @endif
 
                                 <label for="payment_method" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Method</label>
-                                    <select name="payment_method" class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
-                                        <option value="1">Bank Transfer</option>
-                                        <option value="2">E-Wallet</option>
-                                        <option value="3">Credit Card</option>
-                                     </select>
-                                
-                               </div>
+                                <select name="payment_method" class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+                                    <option value="1">Bank Transfer</option>
+                                    <option value="2">E-Wallet</option>
+                                    <option value="3">Credit Card</option>
+                                </select>
+                              
                                 <div class="checkout-bottom-right font-weight-bold txt cart-txt">
                                 <h1 style="margin-left: -5px">Rp. {{number_format($orders->totalPrice)}}</h1>
                                 <button class="button-style" type="submit">Order</button>

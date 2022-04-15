@@ -43,6 +43,7 @@
                                                 <span>
                                                     <div class="font-weight-bold txt cart-txt">{{$detail->products->product_name}}</div>
                                                     <div class="cart-txt">Quantity: {{$detail->qty}}</div>
+                                                    <div class="cart-txt">Discord Link: <a href="#">{{$detail->products->discordlink}}</a></div>
                                                 </span> 
                                             </div> 
                                             <div class="cart-txt">Rp. {{number_format($detail->totalPrice)}}</div>

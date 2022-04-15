@@ -59,7 +59,7 @@
                         <tbody>
                             <?php  $i=0; ?>
                             @foreach ($payments as $payment) <?php $i++; ?>
-                            @if ($payment->orders->status==0)
+                            @if ($payment->orders->status==3)
                             <tr>
                                     
                                     <td>{{$i}}</td>

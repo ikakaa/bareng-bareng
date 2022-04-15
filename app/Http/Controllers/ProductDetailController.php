@@ -214,6 +214,9 @@ class ProductDetailController extends Controller
     public function uploadproof(Request $request, $id){
         $payments = Payment::find($id);
         $order_id = $payments->order_id;
+        $orders = Orders::where('id', $order_id)->first();
+        $orders->status = 3;
+        $orders->save();
 
        $payments->payment_proof = $request->payment_proof;
         if($payments->payment_proof){
@@ -236,6 +239,16 @@ class ProductDetailController extends Controller
         }
 
         return redirect('home');
+    }
+
+    public function ongoing(){
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 3)->first();
+        if(!empty($orders)){
+            $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
+            return view('ongoing', compact('orders', 'orderdetails'));
+        } else {
+            return view('ongoing');
+        }
     }
 
     public function paymentverification(){
@@ -294,16 +307,19 @@ class ProductDetailController extends Controller
     public function orderhistory(Orders $id)
     {
         $orders = Orders::with('order_details')->where('user_id', Auth::user()->id)->where('status', 1)->get();
-        $order = Orders::where('user_id', Auth::user()->id)->where('status', 1)->first();
-        $order_id = $order->id;
-        $payments = Payment::where('order_id', $order_id)->first();
+        $empty = Orders::where('user_id', Auth::user()->id)->doesntExist();
 
-        if(!empty($orders)){
+        if($empty){
+            return view ('orderhistory');
+        } 
+        elseif(!empty($orders)) {
             $orderdetails = OrderDetails::where('order_id', $id)->get();
+            $order = Orders::where('user_id', Auth::user()->id)->where('status', 1)->first();
+            $order_id = $order->id;
+            $payments = Payment::where('order_id', $order_id)->first();
             return view('orderhistory', compact('orders', 'orderdetails', 'payments'));
-        } else {
-            return view('orderhistory');
-        }
+        } 
+
     }
 
     public function orderhistorydetail(OrderDetails $id)

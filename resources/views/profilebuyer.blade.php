@@ -46,8 +46,8 @@
                 </div>
 
                 <br>
-                <div class="box2 row align-items-center ">
-                    <a href="#">
+                <div class="box2 row align-items-center">
+                    <a href="ongoing">
                         <i class="fa fa-shopping-cart" style="font-size:15px"></i>
                         <span class="pl-2">On-going Transaction</span>
                     </a><br>

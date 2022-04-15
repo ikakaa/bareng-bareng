@@ -25,10 +25,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="title txt d-flex justify-content-center">
-                            <h1>Waiting for your payment</h1><br>
+                        <div class="row txt-center">
+                            <h1 class="title txt">Waiting for your payment</h1><br>
+                            <large style="color: red">
+                                Please finish your payment at once, or else your order will not be placed.
+                            </large>
                         </div>
                     
+                        <br>
                         <div class="txt d-flex justify-content-center">
                             <div class="spinner-border" role="status">
                               <span class="sr-only">Loading...</span>

@@ -26,9 +26,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="title-upper-left">
-                            <h1 class="title txt ">Order History</h1>
+                            <h1 class="title txt ">On-going Transaction</h1>
                             <large>
-                                Here's the list of your order history.
+                                Here's the list of your on-going transaction.
                             </large>
                         </div>
                     
@@ -37,30 +37,28 @@
 
                                 @if (!empty($orders))
                                 
-                                    @foreach ($orders as $order)
+                                    @foreach ($orderdetails as $detail)
                                         
-                                        @foreach ($order->order_details as $detail)
                                         <div class="card p-3">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="user d-flex flex-row align-items-center"> 
                                                     <img src="../{{$detail->products->productdetailfiles->filepath}}" class="img-detail-size"> 
                                                     <span>
                                                         <div class="font-weight-bold txt cart-txt">{{$detail->products->product_name}}</div> 
-                                                        <div class="cart-txt">Purchased at: {{$payments->date->format('d-m-Y')}}</div>
-
+                                                        <div class="cart-txt">Price: Rp. {{number_format($orders->totalPrice)}} </div> 
+                                                        
                                                     </span> 
                                                 </div> 
-                                                <div class="cart-txt">
-                                                    Rp. {{number_format($order->totalPrice)}} 
-                                                    <br> 
-                                                    <a href='/orderhistorydetail/{{$order->id}}' class="details">Details</a>
+                                                <div>
+                                                    @if ($orders->status == 3)
+                                                    <button class="btn-on-progress">Status: Verification Process</button>
+                                                    @endif
                                                 </div>
                                                 
                                             </div>
                                         </div><br> 
-                                        @endforeach
-                                        
                                     @endforeach
+                                        
                                 @endif
                             </div>
                         </div>

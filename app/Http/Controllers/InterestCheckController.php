@@ -11,7 +11,7 @@ class InterestCheckController extends Controller
 {
     public function index(ProductDetail $id)
     {
-        $products = ProductDetail::distinct('id')->where('verified','1')->paginate(8);
+        $products = ProductDetail::distinct('id')->where('verified','1')->where('interestdone', '0')->paginate(8);
         return view('interestcheck', compact('products'));
     }
 
