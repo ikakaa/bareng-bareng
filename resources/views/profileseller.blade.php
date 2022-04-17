@@ -20,7 +20,7 @@
     </head>
 
     <body>
-       
+
         <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
             <div class="card card-size">
                 <div class="d-flex flex-column justify-content-center align-items-center">
@@ -38,6 +38,7 @@
                     <div class="col-md-6 box">
                         <div class="font-weight-bold txt profile-txt">Address</div>
                         @if (Auth::user()->address == '0')
+
                             <a href="editprofile">Please add your address.</a>
                         @else
                             <h1>{{Auth::user()->address}}</h1>
@@ -51,7 +52,7 @@
                         <i class="fa fa-plus-square" style="font-size:15px"></i>
                         <span class="pl-2">Upload Products</span>
                     </a><br>
-                
+
                     <a href="myproductlist">
                         <i class="fa fa-bars"aria-hidden="true" style="font-size:15px"></i>
                         <span class="pl-2">My Product List</span>
@@ -70,7 +71,7 @@
 
             </div>
         </div>
-        
+
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">

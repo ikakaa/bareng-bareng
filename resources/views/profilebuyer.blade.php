@@ -21,18 +21,19 @@
 
     <body>
 
-        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-            <div class="card card-size">
+        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center ">
+            <div class="card card-size h-auto pb-12">
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <img src="../src/FullLogo-removebg-preview (2).png" style="height: 80px; width: 80px" alt="">
                 </div>
                 <div class="row space">
                     <div class="col-md-6 box">
                         <div class="font-weight-bold txt profile-txt">Account Details</div>
-                        <div class=" profile-txt">{{ Auth::user()->name }}</div>
-                        <div class=" profile-txt">{{ Auth::user()->email }}</div>
-                        <div class=" profile-txt">{{ Auth::user()->phonenum }}</div>
-                        <small> <a href="/editprofile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a> </small>
+                        <div class="profile-txt">{{ Auth::user()->name }}</div>
+                        <div class="profile-txt">{{ Auth::user()->email }}</div>
+                        <div class="profile-txt">{{ Auth::user()->phonenum }}</div>
+                        <small> <a href="/editprofile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
+                        </small>
 
                     </div>
                     <div class="col-md-6 box">
@@ -40,34 +41,62 @@
                         @if (Auth::user()->address == '0')
                             <a href="editprofile">Please add your address.</a>
                         @else
-                            <h1>{{Auth::user()->address}}</h1>
+                            <h1>{{ Auth::user()->address }}</h1>
                         @endif
                     </div>
                 </div>
 
                 <br>
-                <div class="box2 row align-items-center">
-                    <a href="ongoing">
+                <div class="box2 row align-items-center h-auto">
+                    <a href="#">
                         <i class="fa fa-shopping-cart" style="font-size:15px"></i>
-                        <span class="pl-2">On-going Transaction</span>
+                        <span class="pl-2">On-going Transaction </span>
                     </a><br>
-    
+
                     <a href="orderhistory">
                         <i class="fa fa-history" aria-hidden="true" style="font-size:15px"></i>
                         <span class="pl-2">Order History</span>
                     </a><br><br>
-    
-                    <a href="profileseller">
-                        <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
-                        <span class="pl-2">Seller Page</span>
+
+                    <a href="admin">
+                        <i class="fa fa-user-cog" aria-hidden="true" style="font-size:15px"></i>
+                        <span class="pl-2">Admin</span>
                     </a>
-                </div>                
+                    @if (Auth::user()->sellerapprovalsubmit == 0 && Auth::user()->sellerapproval == 0)
+                        <a href="/sellerform">
+                            <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
+                            <span class="pl-2">Request to be seller</span>
+                        </a>
+                    @endif
+
+                    @if (Auth::user()->sellerapproval == 2)
+                        <a href="/resetsellerform">
+                            <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
+                            <span class="pl-2">Request again to be seller</span>
+                        </a>
+                        <p>Reject reason : Kurang rapi</p>
+
+                    @endif
+                    @if (Auth::user()->sellerapprovalsubmit == 1 && Auth::user()->sellerapproval == 1)
+                        <a href="profileseller">
+                            <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
+                            <span class="pl-2">Seller Page</span>
+                        </a>
+                    @endif
+                    @if (Auth::user()->sellerapprovalsubmit == 1 && Auth::user()->sellerapproval == 0)
+                        <a href="#">
+                            <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
+                            <span class="pl-2">Seller Status : Waiting approval</span>
+                        </a>
+                    @endif
+
+                </div>
 
             </div>
         </div>
 
 
-       
+
 
 
         <div class="footer mt-10">

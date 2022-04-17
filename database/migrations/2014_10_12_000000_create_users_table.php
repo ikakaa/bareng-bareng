@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('address')->default('0');
             $table->integer('logintry')->default('0')->nullable();
+            $table->integer('sellerapproval')->default('0')->nullable();
+            $table->integer('sellerapprovalsubmit')->default('0')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
