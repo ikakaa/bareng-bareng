@@ -52,13 +52,15 @@
                             </div>
                             <p class="interest-detail-description pt-7">{{ $product->shortdesc }}</p>
                             <p class="interest-detail-ic pt-3">Interest Check</p>
-                            <p class="interest-detail-ic pt-2">Ends in: 10 days</p>
-                            <p class="interest-detail-ic pt-2">Countdown: 
-                                <div id="countdown">
+                            <p class="interest-detail-ic pt-2">Ends at: {{$product->enddate}}</p>
+                            
+                            <p class="interest-detail-ic pt-2"><i class="fa fa-clock" style="font-size: 15px"></i> Countdown: 
+                                
+                                <div id="countdown"> 
                                   <ul>
-                                    <small><span id="days"></span> :</small>
-                                    <small><span id="hours"></span> :</small>
-                                    <small><span id="minutes"></span> :</small>
+                                    <small><span id="days"></span></small>
+                                    <small><span id="hours"></span></small>
+                                    <small><span id="minutes"></span></small>
                                     <small><span id="seconds"></span></small>
                                   </ul>
                                 </div>
@@ -143,50 +145,35 @@
             },
         });
 
-        //countdown
-        (function () {
-        const second = 1000,
-        minute = second * 60,
-        hour = minute * 60,
-        day = hour * 24;
+        CountDownTimer('{{$product->enddate}}', 'countdown');
+				function CountDownTimer(dt, id)
+				{
+					var end = new Date('{{$product->enddate}}');
+					var second = 1000;
+					var minute = second * 60;
+					var hour = minute * 60;
+					var day = hour * 24;
+					var timer;
+					function showRemaining() {
+						var now = new Date();
+						var distance = end - now;
+						if (distance < 0) {
 
-  //I'm adding this section so I don't have to keep updating this pen every year :-)
-  //remove this if you don't need it
-  let today = new Date(),
-      dd = String(today.getDate()).padStart(2, "0"),
-      mm = String(today.getMonth() + 1).padStart(2, "0"),
-      yyyy = today.getFullYear(),
-      nextYear = yyyy + 1,
-      dayMonth = "09/30/",
-      birthday = dayMonth + yyyy;
-  
-  today = mm + "/" + dd + "/" + yyyy;
-  if (today > birthday) {
-    birthday = dayMonth + nextYear;
-  }
-  //end
-  
-  const countDown = new Date(birthday).getTime(),
-      x = setInterval(function() {    
+							clearInterval(timer);   
+							return;
+						}
+						var days = Math.floor(distance / day);
+						var hours = Math.floor((distance % day) / hour);
+						var minutes = Math.floor((distance % hour) / minute);
+						var seconds = Math.floor((distance % minute) / second);
 
-        const now = new Date().getTime(),
-              distance = countDown - now;
-
-        document.getElementById("days").innerText = Math.floor(distance / (day)),
-          document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
-          document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
-          document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
-
-        //do something later when date is reached
-        if (distance < 0) {
-          document.getElementById("headline").innerText = "It's my birthday!";
-          document.getElementById("countdown").style.display = "none";
-          document.getElementById("content").style.display = "block";
-          clearInterval(x);
-        }
-        //seconds
-      }, 0)
-  }());
+						document.getElementById(id).innerHTML = days + ' : ';
+						document.getElementById(id).innerHTML += hours + ' : ';
+						document.getElementById(id).innerHTML += minutes + ' : ';
+						document.getElementById(id).innerHTML += seconds + '';
+					}
+					timer = setInterval(showRemaining, 1000);
+				}
 
 
         //make function that convert time difference with timeago

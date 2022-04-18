@@ -808,3 +808,7 @@ div {
 .txt-center {
     text-align: center;
 }
+
+.cd {
+    background-color: palevioletred;
+}

@@ -12,7 +12,9 @@ class InterestCheckController extends Controller
     public function index(ProductDetail $id)
     {
         $products = ProductDetail::distinct('id')->where('verified','1')->where('interestdone', '0')->paginate(8);
-        return view('interestcheck', compact('products'));
+        $product = ProductDetail::find($id);
+
+        return view('interestcheck', compact('products', 'product'));
     }
 
     public function detail(ProductDetailsFile $id)
