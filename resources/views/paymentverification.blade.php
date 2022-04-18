@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@can('isAdmin')
     
     <!DOCTYPE html>
     <html lang="en">
@@ -37,6 +36,9 @@
     </head>
 
     <body>
+        @can('isAdmin')
+            
+        
         <div class="container min-h-screen pt-3">
             <div class=" mx-auto w-4/5 table-card">
                 <div class=" table-card-body">
@@ -114,6 +116,7 @@
             </div>
 
         </div>
+        @endcan
     </body>
     <script>
         $(document).ready(function() {
@@ -122,5 +125,4 @@
     </script>
 
     </html>
-@endcan
 @endsection

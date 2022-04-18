@@ -26,7 +26,31 @@
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <img src="../src/FullLogo-removebg-preview (2).png" style="height: 80px; width: 80px" alt="">
                 </div>
+
+                @if (Auth::user()->id == '1')
+                    <br><h1 class="txt-center"><i class="fa fa-user-cog" aria-hidden="true" style="font-size:15px"></i>
+                    <span>Admin</span></h1><br>
+                        
+                    <div class="box2 row align-items-center h-auto">
+                        <a href="productverification">
+                            <i class="fa fa-cubes" style="font-size:15px"></i>
+                            <span class="pl-2">Products Verification</span>
+                        </a><br>
+                        
+                        <a href="paymentverification">
+                            <i class="far fa-credit-card" style="font-size:15px"></i>
+                            <span class="pl-2">Payments Verification</span>
+                        </a><br>
+
+                        <a href="#">
+                            <i class="fas fa-user-check" style="font-size:15px"></i>
+                            <span class="pl-2">Seller Verification</span>
+                        </a><br>
+                    </div>
+                            
+                @else
                 <div class="row space">
+                    
                     <div class="col-md-6 box">
                         <div class="font-weight-bold txt profile-txt">Account Details</div>
                         <div class="profile-txt">{{ Auth::user()->name }}</div>
@@ -58,10 +82,6 @@
                         <span class="pl-2">Order History</span>
                     </a><br><br>
 
-                    <a href="admin">
-                        <i class="fa fa-user-cog" aria-hidden="true" style="font-size:15px"></i>
-                        <span class="pl-2">Admin</span>
-                    </a>
                     @if (Auth::user()->sellerapprovalsubmit == 0 && Auth::user()->sellerapproval == 0)
                         <a href="/sellerform">
                             <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
@@ -90,7 +110,7 @@
                             <span class="pl-2">Seller Status : Waiting approval</span>
                         </a>
                     @endif
-
+                    @endif
                 </div>
 
             </div>

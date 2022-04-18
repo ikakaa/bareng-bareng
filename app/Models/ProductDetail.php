@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductDetail extends Model
 {
     protected $table = 'product_details';
-    protected $dates = ['shippingdate'];
+    protected $dates = ['shippingdate', 'enddate'];
 
     public function productdetailfiles(){
         //sambungin id di table product_details ke table product_details_files
