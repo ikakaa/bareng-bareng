@@ -69,6 +69,7 @@
                         </a>
                     @endif
 
+
                     @if (Auth::user()->sellerapproval == 2)
                         <a href="/resetsellerform">
                             <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
