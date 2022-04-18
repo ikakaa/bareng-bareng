@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user=[[
-            'email'=>'admin@admin,com',
+            'email'=>'admin@admin.com',
             'name'=>'admin',
             'phonenum'=>'0812341234',
             'address'=>'Jl. Jakarta',

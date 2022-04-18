@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+@can('isAdmin')
+    
     <!DOCTYPE html>
     <html lang="en">
 
@@ -120,4 +122,5 @@
     </script>
 
     </html>
+@endcan
 @endsection

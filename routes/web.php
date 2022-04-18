@@ -69,6 +69,8 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     Route::get('/myproductlist', [App\Http\Controllers\ProductDetailController::class, 'myproductlist']);
 
+    Route::get('/productverificationlist', [App\Http\Controllers\ProductDetailController::class, 'productverificationlist']);
+
     Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
 
     //buyer
@@ -86,22 +88,25 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::get('/orderhistorydetail/{id}', [App\Http\Controllers\ProductDetailController::class, 'orderhistorydetail']);
 
     Route::get('/ongoing', [App\Http\Controllers\ProductDetailController::class, 'ongoing']);
-    
-    //admin
-    Route::get('/productverificationlist', [App\Http\Controllers\ProductDetailController::class, 'productverificationlist']);
-
-    Route::get('/paymentverification',[App\Http\Controllers\ProductDetailController::class, 'paymentverification']);
-
-    Route::get('/paymentapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentapprove']);
-    Route::get('/paymentreject/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentreject']);
-
-    Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct']);
-    Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct']);
-
-    
 
 });
 });
+
+//admin
+
+Route::get('/paymentverification',[App\Http\Controllers\ProductDetailController::class, 'paymentverification'])->middleware('isAdmin');
+Route::get('/paymentapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentapprove'])->middleware('isAdmin');
+Route::get('/paymentreject/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentreject'])->middleware('isAdmin');
+
+// Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index'])->middleware('isAdmin');
+
+// Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct'])->middleware('isAdmin');
+// Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct'])->middleware('isAdmin');
+Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
+
+Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct']);
+Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct']);
+
 
 // To do list
 // Bikin Halaman Verification
