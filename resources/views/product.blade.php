@@ -22,6 +22,8 @@
         <div>
             @foreach ($products as $product)
             <div class="card-detail">
+                <br>
+                <p class="interest-detail-ic pt-1 ic-box txt-center">Group Buy is live!</p>
                 <div class="row no-gutters">
                     <div class="col-md-4 marginleft">
                         <br>

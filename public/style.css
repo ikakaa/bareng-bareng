@@ -329,11 +329,9 @@ div {
 }
 
 .price-number {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 20px;
-    /* identical to box height, or 100% */
-    color: #f8b63c;
+    font-weight: 450;
+    font-size: 18px;
+    line-height: 18px;
 }
 
 .card-img img {
@@ -374,7 +372,6 @@ div {
 
 .tempat-highlight-heading {
     color: black;
-    position: relative;
     top: 18px;
     left: 25px;
     width: 80%;
@@ -809,6 +806,48 @@ div {
     text-align: center;
 }
 
-.cd {
-    background-color: palevioletred;
+.ic-box {
+    background-color: #284b63; 
+    color:white;
+    margin-bottom: 30px;
+    height: 35px;
+}
+
+.ic-box-card {
+    background-color: #284b63; 
+    color: #f4f9e9;
+    margin-top: 8px;
+    border-radius: 3px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-left: 100px;
+    }
+    
+    .div1 { grid-area: 1 / 1 / 3 / 2; }
+    .div2 { grid-area: 1 / 2 / 2 / 3; }
+    .div3 { grid-area: 2 / 2 / 3 / 3; }
+
+.card1 {
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    margin-left: 250px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.card2 {
+    background-color: white;
+    border-radius: 5px;
+    margin-left: -50px;
+    width: 400px;
+    height: 242px;
+    padding: 15px;
+
 }

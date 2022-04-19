@@ -56,22 +56,18 @@
                 <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
                     @foreach ($products as $product)
                     <div class="card-custom mr-4 col">
+                        <div class="ic-box-card txt-center"><i class="fas fa-door-open"></i> Group Buy Starts</div>
                         <div class="card-img mt-3">
                             <img src="../{{$product->productdetailfiles->filepath}}" alt="">
                         </div>
-                        <div class="card-text w-full px-2 pb-3 ">
+                        <div class="card-text w-full px-2 pb-3 txt-center">
                             <a class="card-header2 pt-1" href="/product/{{$product->id}}">{{$product->product_name}}</a>
-                            <p class="card-info pt-2 ">{{$product->shortdesc}}</p>
                             <div class="flex justify-between w-full ">
-                                <div class="mini-card-box ">
-                                    <p class="price">Price</p>
-                                    <p class="price-number block">Rp. {{number_format($product->productprice)}}</p>
-                                </div>
-                                <div class="mini-card-button">
-                                    <button class="button-style mt-3 font-semibold rounded-md" onclick="location.href='{{url('/product')}}/{{$product->id}}'" >
-                                        Add to cart
-                                    </button>
-                                </div>
+                                
+                            </div>
+                            <div class="mini-card-box ">
+                               
+                                <p class="price-number block">Rp. {{number_format($product->productprice)}}</p>
                             </div>
                         </div>
                     </div>

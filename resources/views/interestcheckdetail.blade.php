@@ -27,6 +27,7 @@
         <div>
             @foreach ($products as $product)
                 <div class="card-detail pt-5">
+                    <p class="interest-detail-ic pt-1 ic-box txt-center">Interest Check</p>
                     <div class="row no-gutters">
                         <div class="col-md-4 marginleft">
                             <div class="swiper mySwiper">
@@ -50,8 +51,7 @@
                                 <p class="interest-detail-title2">Rp. {{ number_format($product->productprice) }}</p>
 
                             </div>
-                            <p class="interest-detail-description pt-7">{{ $product->shortdesc }}</p>
-                            <p class="interest-detail-ic pt-3">Interest Check</p>
+                            <p class="interest-detail-description pt-7">{{ $product->shortdesc }}</p><br>
                             <p class="interest-detail-ic pt-2">Ends at: {{$product->enddate->format('d-m-Y')}} at {{$product->endtime}}</p>
                             
                             <p class="interest-detail-ic pt-2"><i class="fa fa-clock" style="font-size: 15px"></i> Countdown: 
