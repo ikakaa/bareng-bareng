@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -19,58 +18,77 @@
         <link rel="stylesheet" href="tailwind.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     </head>
 
     <body>
-        <p class="card-title uppercase  text-white mx-4 py-3">Edit Profile</p>
+        <p class="card-title uppercase  text-white mx-4 py-3">Request Seller Form</p>
 
         <div class="tempat-form mx-4">
-        <div class="form-card  shadow justify-start  flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
+            <div class="form-card  shadow justify-start  flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
 
 
-            @error('name')
+                @error('name')
+                    <div class="alert alert-warning mb-3 mt-1 w-2/3">Username : Input at least 5 characters or username is used!
+                    </div>
+                @enderror
+                @error('phonenum')
+                    <div class="alert alert-warning mb-3 mt-1 w-2/3">Phone Number : Input at least 12 number!</div>
+                @enderror
+                @error('email')
+                    <div class="alert alert-warning mb-3 mt-1 w-2/3">Email : Must be email format or email is used!</div>
+                @enderror
+                @if (session()->has('successedit'))
+                    <div class="alert alert-success mb-3 mt-1 w-2/3">Profile edit success!</div>
+                    <?php session()->forget('successedit'); ?>
+                @endif
+                <form action="/do_uploadrequestseller" method="POST" enctype="multipart/form-data">
 
-            <div class="alert alert-warning mb-3 mt-1 w-2/3">Username : Input at least 5 characters or username is used!</div>
-            @enderror
-            @error('phonenum')
+                    @csrf
 
-            <div class="alert alert-warning mb-3 mt-1 w-2/3">Phone Number : Input at least 12 number!</div>
-            @enderror
-            @error('email')
+                    <input type="hidden" value="{{ Auth::user()->name }}" name="name">
+                    <label for="shortdesc" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
+                    <input type="text" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Sibolga, jalan u no 4a">
 
-            <div class="alert alert-warning mb-3 mt-1 w-2/3">Email : Must be email format or email is used!</div>
-            @enderror
-            @if (session()->has('successedit'))
-            <div class="alert alert-success mb-3 mt-1 w-2/3">Profile edit success!</div>
-            <?php session()->forget('successedit') ?>     @endif
-        <form action="/do_editprofile" method="POST" enctype="multipart/form-data">
+                    <label for="producttype" class="block sm:mb-2 mb-1 w-full  mt-2">Identity Type</label>
+                    <select name="identitytype"
+                        class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+                        <option value="ktp">KTP</option>
+                        <option value="sim">SIM</option>
+                        <option value="paspor">Paspor</option>
+                    </select>
+                    <label for="phonenum" class="block sm:mb-2 mb-1 w-full  mt-2">Identity Number [KTP / SIM / Paspor] [Won't
+                        be shared]</label>
+                    <input type="text" name="identitynumber" required
+                        class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
+                        placeholder="12363486748748">
 
-            @csrf
-            <input type="hidden" value="{{ Auth::user()->name }}" name="name">
-            <label for="name" class="block sm:mb-2 mb-1 w-full  mt-2 ">Username </label>
 
-            <input type="text" name="name" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="username" >
-            <input type="hidden" " name="id">
+                    <label for="producttype" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Type</label>
+                    <select name="paymenttype"
+                        class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+                        <option value="bri">BRI</option>
+                        <option value="bca">BCA</option>
+                        <option value="ovo">Ovo</option>
+                        <option value="dana">Dana</option>
+                        <option value="Gopay">Gopay</option>
+                        <option value="LinkAja">LinkAja</option>
 
-            <label for="email"  class="block sm:mb-2 mb-1 w-full  mt-2">Email </label>
-            <input type="text" name="email" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="email" >
+                    </select>
+                    <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Number</label>
+                    <input type="text" name="paymentnumber" required
+                        class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
+                        placeholder="085351784357">
 
-            <label for="phonenum" class="block sm:mb-2 mb-1 w-full  mt-2">Phone Number</label>
-            <input type="number" name="phonenum" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="phone number">
+                    <label for="uploadphoto" class="block sm:mb-2 mb-1 w-full  mt-2">Upload Selfie with your identity card [Won't be shared]</label>
+                    <input type="file" name="file" id="photo">
+                    <div class="button-right-bottom">
+                        <button class="button-style">Upload</button>
+                    </div>
 
-            <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
-            <input type="text" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Address">
-
-            <label for="uploadphoto" class="block sm:mb-2 mb-1 w-full  mt-2">Upload Photo</label>
-            <input type="file" name="file" id="photo">
-           <div class="button-right-bottom">
-                <button class="button-style">Upload</button>
-           </div>
-
-        </form>
-    </div>
-    </div>
+                </form>
+            </div>
+        </div>
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
                 <div class="justify-center flex">
