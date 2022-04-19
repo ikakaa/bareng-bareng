@@ -56,7 +56,7 @@ Route::group(['middleware'=>['checklogin']],function(){
     });
 
     Route::get('/editprofile',[App\Http\Controllers\Auth\LoginController::class, 'editprofile']);
-    
+
 
     //seller
     Route::get('/uploadproduct', function(){
@@ -75,6 +75,8 @@ Route::group(['middleware'=>['checklogin']],function(){
 
     //buyer
     Route::get('/order/{id}', [App\Http\Controllers\ProductDetailController::class, 'order']);
+    Route::get('/sellerform', [App\Http\Controllers\SellerVerificationController::class, 'sellerform']);
+    Route::get('/resetsellerform', [App\Http\Controllers\SellerVerificationController::class, 'resetsellerform']);
     Route::post('/order/{id}', [App\Http\Controllers\ProductDetailController::class, 'order']);
 
     Route::get('/payment', [App\Http\Controllers\ProductDetailController::class, 'payment']);
@@ -102,10 +104,10 @@ Route::get('/paymentreject/{id}', [App\Http\Controllers\ProductDetailController:
 
 // Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct'])->middleware('isAdmin');
 // Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct'])->middleware('isAdmin');
-Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
+// Route::get('/productverification',[App\Http\Controllers\ProductDetailController::class, 'index']);
+// Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct']);
+// Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct']);
 
-Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct']);
-Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct']);
 
 
 // To do list
