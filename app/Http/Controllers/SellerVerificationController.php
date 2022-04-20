@@ -30,7 +30,7 @@ class SellerVerificationController extends Controller
     public function do_uploadrequestseller(Request $request)
     {
          $this->validate($request, [
-        'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
     ]);
 
         $user = Auth::user();
@@ -38,6 +38,10 @@ class SellerVerificationController extends Controller
         $user->sellerapprovalsubmit = 1;
         $user->save();
         $sellerform = new SellerVerification;
+$sellerform->user_id=Auth::user()->id;
+$sellerform->identitynumber=$request->identitynumber;
+$sellerform->tiperekening=$request->tiperekening;
+$sellerform->nomorrekening=$request->nomorrekening;
 
               $tgl      = date('Ymd_H_i_s');
             $file = $_FILES['file']['tmp_name'];
@@ -46,7 +50,14 @@ class SellerVerificationController extends Controller
             $upload_file = $upload_path . $tgl . $image;
             move_uploaded_file($file, $upload_file);
             $user->profilepicture = $upload_file;
-        return back()->with('success','You have successfully upload image.');
+            $sellerform->identitypath=$upload_file;
+            $sellerform->save();
+            $user = Auth::user();
+            $user->sellerapproval = 0;
+            $user->sellerapprovalsubmit = 1;
+            $user->save();
+            session(['successupload' => true]);
+        // return back()->with('success','You have successfully upload image.');
 
     }
 

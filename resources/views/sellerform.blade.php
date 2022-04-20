@@ -28,19 +28,7 @@
             <div class="form-card  shadow justify-start  flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
 
 
-                @error('name')
-                    <div class="alert alert-warning mb-3 mt-1 w-2/3">Username : Input at least 5 characters or username is used!
-                    </div>
-                @enderror
-                @error('phonenum')
-                    <div class="alert alert-warning mb-3 mt-1 w-2/3">Phone Number : Input at least 12 number!</div>
-                @enderror
-                @error('email')
-                    <div class="alert alert-warning mb-3 mt-1 w-2/3">Email : Must be email format or email is used!</div>
-                @enderror
-                @if (session()->has('successedit'))
-                    <div class="alert alert-success mb-3 mt-1 w-2/3">Profile edit success!</div>
-                    <?php session()->forget('successedit'); ?>
+
                 @endif
                 <form action="/do_uploadrequestseller" method="POST" enctype="multipart/form-data">
 

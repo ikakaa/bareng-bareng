@@ -15,7 +15,7 @@ class CreateSellerVerificationsTable extends Migration
     {
         Schema::create('seller_verifications', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id');
+            $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('identitynumber')->default('0')->nullable();
             $table->string('identitypath')->default('0')->nullable();
