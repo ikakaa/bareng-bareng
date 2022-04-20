@@ -6,16 +6,15 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, minimum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
             integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-        <link rel="stylesheet" href="style.css">
-
+        <link rel="stylesheet" href="/style.css">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-        <link rel="stylesheet" href="tailwind.css">
+        <link rel="stylesheet" href="/tailwind.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     </head>
 
@@ -42,7 +41,16 @@
                                                     <div class="cart-txt">Quantity: {{$orderdetail->qty}}</div>
                                                 </span> 
                                             </div> 
-                                            <div class="cart-txt">Rp. {{number_format($orderdetail->totalPrice)}}</div>
+                                            <div class="cart-txt">Rp. {{number_format($orderdetail->totalPrice)}}
+                                            <br>
+
+                                            <form action="/delete/{{$orderdetail->id}}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger trash" type="submit"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
+                                            </div>
+                                            
                                         </div>
                                     </div><br> 
                                 @endforeach
@@ -50,17 +58,13 @@
                         </div>
 
                         <div class="checkout-bottom-right font-weight-bold txt cart-txt">
-                            <h1 style="margin-left: -5px">Rp. {{number_format($orders->totalPrice)}}</h1>
+                            <h1>Rp. {{number_format($orders->totalPrice)}}</h1>
                             <button type="submit" class="button-style" onclick="location.href='{{url('/payment')}}'">Checkout</button>
                         </div>
 
                         @else
                             <h1 class="cart-txt">Your cart is empty.</h1>
                         @endif
-                        
-
-
-
                     </div>
                 </div>
             </div>

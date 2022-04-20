@@ -1,5 +1,3 @@
-
-{{-- @extends('layouts.checklogin') --}}
 @extends('layouts.app')
 
 @section('content')
@@ -49,7 +47,7 @@
 <div class="tempat-highlight flex flex-nowrap justify-center px-64 pt-20">
 
     <div class="highlight-kiri relative mr-4">  <a href="/productdetail">
-<img src="src/item1.png" alt="" class="absolute">
+<img src="src/img.jpg" alt="" class="absolute">
 <div class="tempat-highlight-heading">
     <h4 class="highlight-title">MONOKEI X FRIENDS EXTRAS</h4>
     <h1 class="highlight-title-sub">Hidari</h1>
@@ -60,7 +58,7 @@
     </div>
     <div class="highlight-kanan flex items-baseline flex-wrap ">
         <div class="highlight-kanan-item "> <a href="#">
-            <img src="src/item1.png" alt="" class="absolute hightlight-img-kanan">
+            <img src="src/img.jpg" alt="" class="absolute hightlight-img-kanan">
             <div class="tempat-highlight-heading">
                 <h4 class="highlight-title">IN STOCK</h4>
                 <h1 class="highlight-title-sub">Kaban</h1>
@@ -69,7 +67,7 @@
                 <p class="highlight-desc">Limited in stock units available at 10am, 14th of March 2022 (GMT+8)</p>
             </div></a></div>
         <div class="highlight-kanan-item"> <a href="#">
-            <img src="src/item1.png" alt="" class="absolute hightlight-img-kanan2">
+            <img src="src/img.jpg" alt="" class="absolute hightlight-img-kanan2">
             <div class="tempat-highlight-heading">
                 <h4 class="highlight-title">UPDATES</h4>
                 <h1 class="highlight-title-sub">Hidari</h1>
@@ -83,7 +81,7 @@
         <div class="tempat-card flex justify-center w-full pb-24">
             <div class="card-custom mr-4">
                 <div class="card-img">
-                    <img src="src/item1.png" alt="">
+                    <img src="src/a.jpg" alt="">
                 </div>
                 <div class="card-text w-full px-2 pb-3 ">
                     <p class="card-header2 pt-1">GMK Frost Witch </p>
@@ -105,7 +103,7 @@
             </div>
             <div class="card-custom mr-4">
                 <div class="card-img">
-                    <img src="src/item1.png" alt="">
+                    <img src="src/a.jpg" alt="">
                 </div>
                 <div class="card-text w-full px-2 pb-3 ">
                     <p class="card-header2 pt-1">GMK Frost Witch </p>
@@ -126,7 +124,7 @@
                 </div>
             </div>  <div class="card-custom">
                 <div class="card-img">
-                    <img src="src/item1.png" alt="">
+                    <img src="src/a.jpg" alt="">
                 </div>
                 <div class="card-text w-full px-2 pb-3 ">
                     <p class="card-header2 pt-1">GMK Frost Witch </p>

@@ -56,7 +56,7 @@
                 <div class="tempat-card flex-wrap flex justify-center w-full pb-24">
                     <div class="card-custom mr-4">
                         <div class="card-img">
-                            <img src="src/item1.png" alt="">
+                            <img src="src/img.jpg" alt="">
                         </div>
                         <div class="card-text w-full px-2 pb-3 ">
                             <p class="card-header2 pt-1">GMK Frost Witch </p>
@@ -78,7 +78,7 @@
                     </div>
                    <div class="card-custom">
                         <div class="card-img">
-                            <img src="src/item1.png" alt="">
+                            <img src="src/img.jpg" alt="">
                         </div>
                         <div class="card-text w-full px-2 pb-3 ">
                             <p class="card-header2 pt-1">GMK Frost Witch </p>

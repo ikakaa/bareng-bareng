@@ -121,12 +121,27 @@ class ProductDetailController extends Controller
     
     public function cart(){
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        if(!empty($orders)){
+        if(!empty($orders) && $orders->totalPrice!= '0'){
             $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
             return view('cart', compact('orders', 'orderdetails'));
         } else {
             return view('cart');
         }
+    }
+
+    public function delete($id){
+        //function untuk menghapus item dari cart
+        $orderdetail = OrderDetails::where('id', $id)->first(); 
+
+        //mengurangi total price dan update di database
+        $order = Orders::where('id', $orderdetail->order_id)->first();
+        $order->totalPrice = $order->totalPrice - $orderdetail->totalPrice;
+        $order->update();
+
+        $orderdetail->delete();
+
+        // alert()->error('Product deleted from cart!', 'Delete Item');
+        return redirect('cart');    
     }
 
     public function order(Request $request, $id)

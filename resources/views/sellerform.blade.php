@@ -29,7 +29,6 @@
 
 
 
-                @endif
                 <form action="/do_uploadrequestseller" method="POST" enctype="multipart/form-data">
 
                     @csrf

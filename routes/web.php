@@ -22,10 +22,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/home2', function () {
-    return view('home2');
-});
-
 Route::get('/category', function(){
     return view('category');
 });
@@ -50,6 +46,7 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::group(['middleware'=>['checkinterestfinish']],function(){
 
     Route::get('/cart', [App\Http\Controllers\ProductDetailController::class, 'cart']);
+    Route::delete('/delete/{id}', [App\Http\Controllers\ProductDetailController::class, 'delete']);
 
 
     Route::get('/profilebuyer', function(){
