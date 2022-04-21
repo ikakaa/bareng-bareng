@@ -55,29 +55,20 @@
             
                 <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
                     @foreach ($products as $product)
-                    <div class="card-custom mr-4 col">
+                    <div class="card-custom mr-4 col" onclick="location.href='{{url('/interestcheckdetail')}}/{{$product->id}}'">
                         <div class="ic-box-card txt-center"><i class="far fa-thumbs-up"></i> Interest Check</div>
                         <div class="card-img mt-3">
                             <img src="../{{$product->productdetailfiles->filepath}}" alt="">
                         </div>
                         <div class="card-text w-full px-2 pb-3 txt-center">
-                            <a class="card-header2 pt-1" href="/product/{{$product->id}}">{{$product->product_name}}</a>
+                            <a class="card-header2 pt-1">{{$product->product_name}}</a>
                             <div class="flex justify-between w-full ">
                                 
                             </div>
                             <div class="mini-card-box ">
                                
-                                <p class="price-number block">Rp. {{number_format($product->productprice)}}</p>
-                                <p class="font-semibold mt-2"> <i class="fas fa-hourglass-half"></i> Countdown</p>
-                                {{-- <button class="button-style font-semibold rounded-md" id="countdown">
-                                    <ul>
-                                        
-                                        <small><span id="days"></span></small>
-                                        <small><span id="hours"></span></small>
-                                        <small><span id="minutes"></span></small>
-                                        <small><span id="seconds"></span></small>
-                                      </ul>
-                                </button> --}}
+                                <p class="price-number block mb-2">Rp. {{number_format($product->productprice)}}</p>
+                                <button class="button-style font-semibold rounded-md">Details</button>
                             </div>
                         </div>
                     </div>
@@ -115,43 +106,6 @@
 
         </div>
     </body>
-    <script>
-
-        CountDownTimer('{{$product->enddate}}', 'countdown');
-				function CountDownTimer(dt, id)
-				{
-					var end = new Date('{{$product->enddate}}');
-					var second = 1000;
-					var minute = second * 60;
-					var hour = minute * 60;
-					var day = hour * 24;
-					var timer;
-					function showRemaining() {
-						var now = new Date();
-						var distance = end - now;
-						if (distance < 0) {
-
-							clearInterval(timer);   
-							return;
-						}
-						var days = Math.floor(distance / day);
-						var hours = Math.floor((distance % day) / hour);
-						var minutes = Math.floor((distance % hour) / minute);
-						var seconds = Math.floor((distance % minute) / second);
-
-						document.getElementById(id).innerHTML = days + ' : ';
-						document.getElementById(id).innerHTML += hours + ' : ';
-						document.getElementById(id).innerHTML += minutes + ' : ';
-						document.getElementById(id).innerHTML += seconds + '';
-					}
-					timer = setInterval(showRemaining, 1000);
-				}
-
-
-        //make function that convert time difference with timeago
-
-
-    </script>
 
     </html>
 @endsection
