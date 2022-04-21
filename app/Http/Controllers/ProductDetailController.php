@@ -43,9 +43,9 @@ class ProductDetailController extends Controller
         $product->productstock = $request->input('maxorder');
         $product->productprice = $request->input('productprice');
         $product->startdate = $request->input('startdate');
-        $product->enddate = $request->input('enddate');
+        $product->enddate = Carbon::parse($request->input('enddate'))->format('Y-m-d');
         $product->endtime = $request->input('endtime');
-        $product->shippingdate = $request->input('shippingdate');
+        $product->shippingdate = Carbon::parse($request->input('shippingdate'))->format('Y-m-d');
         $product->discordlink = $request->input('discord');
         $product->product_type = $request->input('producttype');
         // $product->productid = "1";

@@ -26,9 +26,9 @@ class CreateProductDetailsTable extends Migration
             $table->integer('productstock');
             $table->integer('productprice');
             $table->string('startdate');
-            $table->string('enddate');
+            $table->date('enddate');
             $table->string('endtime');
-            $table->string('shippingdate');
+            $table->date('shippingdate');
             $table->string('discordlink');
             $table->integer('deleted')->default('0');
             $table->string('verified')->default('0');
