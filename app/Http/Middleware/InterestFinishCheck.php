@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use App\Models\ProductDetail;
 
@@ -24,8 +25,8 @@ class InterestFinishCheck
         $productlist=ProductDetail::where('verified','1')->get();
        //loop all database
         foreach($productlist as $row){
-            $dateexpired = strtotime($row->enddate.' '.$row->endtime);
-            $datecurrent = strtotime($tgl);
+            $dateexpired = ($row->enddate.' '.$row->endtime);
+            $datecurrent = Carbon::now();
             if($datecurrent>$dateexpired){
                 $row->interestdone='1';
                 $row->save();

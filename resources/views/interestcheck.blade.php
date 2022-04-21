@@ -69,7 +69,7 @@
                                
                                 <p class="price-number block">Rp. {{number_format($product->productprice)}}</p>
                                 <p class="font-semibold mt-2"> <i class="fas fa-hourglass-half"></i> Countdown</p>
-                                <button class="button-style font-semibold rounded-md" id="countdown">
+                                {{-- <button class="button-style font-semibold rounded-md" id="countdown">
                                     <ul>
                                         
                                         <small><span id="days"></span></small>
@@ -77,7 +77,7 @@
                                         <small><span id="minutes"></span></small>
                                         <small><span id="seconds"></span></small>
                                       </ul>
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                     </div>

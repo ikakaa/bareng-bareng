@@ -25,7 +25,7 @@ class CreateProductDetailsTable extends Migration
             $table->integer('moq');
             $table->integer('productstock');
             $table->integer('productprice');
-            $table->string('startdate');
+            $table->date('startdate');
             $table->date('enddate');
             $table->string('endtime');
             $table->date('shippingdate');
