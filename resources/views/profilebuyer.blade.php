@@ -109,7 +109,7 @@
                                 <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
                                 <span class="pl-2">Request again to be seller</span>
                             </a>
-                            <p>Reject reason : Kurang rapi</p>
+                            <p>Reject Reason : {{Auth::user()->sellerrejectreason}}</p>
                         @endif
                         @if (Auth::user()->sellerapprovalsubmit == 1 && Auth::user()->sellerapproval == 1)
                             <a href="profileseller">

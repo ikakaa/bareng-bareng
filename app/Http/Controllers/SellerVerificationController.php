@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SellerVerification;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,7 @@ $sellerform->nomorrekening=$request->nomorrekening;
             $upload_path = 'selleridentity/';
             $upload_file = $upload_path . $tgl . $image;
             move_uploaded_file($file, $upload_file);
-            $user->profilepicture = $upload_file;
+
             $sellerform->identitypath=$upload_file;
             $sellerform->save();
             $user = Auth::user();
@@ -58,8 +59,29 @@ $sellerform->nomorrekening=$request->nomorrekening;
             $user->save();
             session(['successupload' => true]);
         // return back()->with('success','You have successfully upload image.');
+        return view('profilebuyer');
 
     }
-
+    public function index()
+    {
+    $product = User::distinct('id')->where('sellerapproval','0')->where('sellerapprovalsubmit','1')->get();
+        return view('sellerverification', compact('product'));
     }
 
+    public function approveseller($id){
+        $user = User::find($id);
+$user->sellerapproval='1';
+$user->save();
+session(['sellerapproved' => true]);
+return redirect('/sellerverification')->with('success','You have successfully upload image.');
+    }
+    public function rejectsellerrequest(Request $request){
+        $user = User::find($request->id);
+
+$user->sellerapproval='2';
+$user->sellerrejectreason=$request->reason;
+$user->save();
+session(['sellerrejected' => true]);
+return redirect('/sellerverification')->with('success','You have successfully upload image.');
+    }
+}

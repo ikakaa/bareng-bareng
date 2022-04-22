@@ -37,70 +37,86 @@
     <body>
         <div class="container min-h-screen pt-3">
             <div class=" mx-auto w-4/5 table-card">
+
                 <div class=" table-card-body">
-                    <h4 class="table-card-title mb-4">Product Verification</h4>
+
+                    @if (session()->has('sellerapproved'))
+                        <div class="alert alert-success mb-3 mt-1 w-full">Seller Approved!</div>
+                        <?php session()->forget('sellerapproved'); ?>
+                    @endif
+                    @if (session()->has('sellerrejected'))
+                        <div class="alert alert-warning mb-3 mt-1 w-full">Seller Rejected!</div>
+                        <?php session()->forget('sellerrejected'); ?>
+                    @endif
+                    <h4 class="table-card-title mb-4">Seller Approval</h4>
 
 
                     <table id="table_id" class="display table-hover bg-white">
                         <thead>
                             <tr>
                                 <th class="text-black">No.</th>
-                                <th class="text-black">Nama Produk</th>
-                                <th class="text-black">Creator</th>
-                                <th class="text-black">Preview</th>
-                                <th class="text-black">Created at</th>
+                                <th class="text-black">Name</th>
+                                <th class="text-black">Detail</th>
                                 <th class="text-black">Approve</th>
                                 <th class="text-black">Reject</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <?php  $i=0; ?>
-                            @foreach ($product as $row) <?php $i++; ?>
+                            <?php $i = 0; ?>
+                            @foreach ($product as $row)
+                                <?php $i++; ?>
                                 <tr>
-                                    <td>{{$i}}</td>
-                                    <td><a href="#"> {{$row->product_name}} </a></td>
-                                    <td>{{$row->owner}}</td>
-                                    <td><a href="{{$row->productdetailfiles->filepath}}" target="_blank">Preview</a></td>
-                                    <td>{{$row->created_at}}</td>
-                                    <td><a href="/productapprove/{{$row->id}}" class="btn-icon bg-custom"><i class="fa fa-check"></i></a></td>
+                                    <td>{{ $i }}</td>
+                                    <td><a href="#"> {{ $row->name }} </a></td>
+                                    <td><a href="/sellerdetail/{{ $row->id }}" target="_blank">Detail</a></td>
+
+                                    <td><a href="/sellerrequestapprove/{{ $row->id }}" class="btn-icon bg-custom"><i
+                                                class="fa fa-check"></i></a></td>
                                     <td>
-                                        <div class="modal fade" id="exampleModal{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal{{ $row->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Reject Product</h5>
-                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                  <form method="POST" action="/rejectproduct">
-@csrf
-                                                    <div class="form-group">
-                                                      <label for="message-text" class="col-form-label">Reject Reason:</label>
-                                                      <textarea class="form-control" id="message-text" name="reason"></textarea>
-                                                      <input type="hidden" name="id" value="{{$row->id}}">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Reject Product
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST" action="/rejectsellerrequest">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="col-form-label">Reject
+                                                                    Reason:</label>
+                                                                <textarea class="form-control" id="message-text" name="reason"></textarea>
+                                                                <input type="hidden" name="id" value="{{ $row->id }}">
+                                                            </div>
 
-                                                </div>
-                                                <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                  <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
 
+                                                    </div>
+                                                    </form>
                                                 </div>
-                                            </form>
-                                              </div>
                                             </div>
-                                          </div>
-                                    <button type="button" class="btn-icon bg-warning" data-toggle="modal" data-target="#exampleModal{{$row->id}}" ><i class="fa fa-times"></i></button>
+                                        </div>
+                                        <button type="button" class="btn-icon bg-warning" data-toggle="modal"
+                                            data-target="#exampleModal{{ $row->id }}"><i
+                                                class="fa fa-times"></i></button>
 
 
                                     </td>
 
 
                                 </tr>
-                                @endforeach
+                            @endforeach
 
                         </tbody>
                     </table>
