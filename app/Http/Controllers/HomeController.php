@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\ProductDetail;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $search_text = $_GET['query'];
+        $products = ProductDetail::where('product_name','LIKE', '%'.$search_text.'%')->get();
+
+        return view('search', compact('products'));
     }
 }

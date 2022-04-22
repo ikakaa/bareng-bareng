@@ -22,6 +22,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/search', [App\Http\Controllers\HomeController::class, 'index']);
+
 Route::get('/category', function(){
     return view('category');
 });

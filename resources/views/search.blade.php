@@ -12,10 +12,6 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
             integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
         <link rel="stylesheet" href="style.css">
-        <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous"
-                defer></script>
-        <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
-            crossorigin="anonymous">
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -24,33 +20,10 @@
     </head>
 
     <body>
-        <div  class="swiffy-slider slider-item-reveal slider-nav-page slider-nav-autoplay slider-nav-animation slider-nav-animation-appear slider-item-ratio slider-item-ratio-21x9"
-        data-slider-nav-autoplay-interval="3000" id="slider1">
-            <ul class="slider-container">
-                <li><a href="/category"><img src="src/slider1.png" loading="lazy" alt="..."></a></li>
-                <li><a href="#"><img src="src/slider2.png" loading="lazy" alt="..."></a></li>
-                <li><a href="#"><img src="src/slider3.png" loading="lazy" alt="..."></a></li>
-                <li><a href="#"><img src="src/slider4.png" loading="lazy" alt="..."></a></li>
-            </ul>
-        
-            <button type="button" class="slider-nav" aria-label="Go left"></button>
-            <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
-        
-            <div class="slider-indicators slider-indicators-square d-none d-md-flex">
-                <button class="active" aria-label="Go to slide"></button>
-                <button aria-label="Go to slide"></button>
-                <button aria-label="Go to slide"></button>
-                <button aria-label="Go to slide"></button>
-            </div>
-        </div>
 
         <div>
-            <p class="card-title text-center text-white py-12">Featured Products</p>
-
-            <div class="action-btn mb-10 d-flex justify-content-center">
-                <button class="button-style button-border mr-1">Keyboard</button>
-                <button class="button-style button-border mr-1">Artisan</button>
-                <button class="button-style button-border">Figures</button>
+            <div class="title search-title">
+                <h1>Search Results</h1>
             </div>
             
                 <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
@@ -72,10 +45,7 @@
                         </div>
                     </div>
                     @endforeach
-                </div>
-                <div class="flex justify-center">
-                    {{$products->links()}}
-                </div>                
+                </div>           
 
 
             </div>

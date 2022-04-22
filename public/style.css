@@ -855,3 +855,8 @@ div {
 .trash {
     margin-left: 65px;
 }
+
+.search-title {
+    color: #f4f9e9;
+    margin-left: 20px;
+}
