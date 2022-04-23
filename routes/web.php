@@ -33,6 +33,7 @@ Route::get('/interestcheckdetail/{id}',[App\Http\Controllers\InterestCheckContro
 
 Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index']);
 Route::get('/product/{id}',[App\Http\Controllers\ProductDetailController::class, 'detail']);
+Route::get('/sellerformdetail/{name}',[App\Http\Controllers\SellerVerificationController::class, 'detailform']);
 
 Route::get('/home', function(){
     return view('home');

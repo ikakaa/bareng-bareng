@@ -18,9 +18,11 @@ class CreateSellerVerificationsTable extends Migration
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('identitynumber')->default('0')->nullable();
+            $table->string('address')->default('0')->nullable();
             $table->string('identitypath')->default('0')->nullable();
-            $table->string('tiperekening')->default('0')->nullable();
-            $table->string('nomorrekening')->default('0')->nullable();
+            $table->string('identitytype')->default('0')->nullable();
+            $table->string('paymenttype')->default('0')->nullable();
+            $table->string('paymentnumber')->default('0')->nullable();
 
             $table->string('deleted')->default('0');
             $table->timestamps();

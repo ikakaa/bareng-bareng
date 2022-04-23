@@ -22,6 +22,7 @@ class CreateProductDetailsTable extends Migration
             $table->string('owner');
             $table->string('shortdesc');
             $table->string('product_type');
+            $table->string('productlist');
             $table->integer('moq');
             $table->integer('productstock');
             $table->integer('productprice');

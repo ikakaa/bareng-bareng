@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -36,10 +37,7 @@
                                             alt=""> </div>
                                     <div class="swiper-slide"><img src="../{{ $product->productdetailfiles->filepath }}"
                                             alt=""> </div>
-                                    <div class="swiper-slide"><img src="../{{ $product->productdetailfiles->filepath }}"
-                                            alt=""> </div>
-                                    <div class="swiper-slide"><img src="../{{ $product->productdetailfiles->filepath }}"
-                                            alt=""> </div>
+
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
@@ -53,10 +51,10 @@
                             </div>
                             <p class="interest-detail-description pt-7">{{ $product->shortdesc }}</p><br>
                             <p class="interest-detail-ic pt-2">Ends at: {{$product->enddate->format('d-m-Y')}} at {{$product->endtime}}</p>
-                            
-                            <p class="interest-detail-ic pt-2"><i class="fa fa-clock" style="font-size: 15px"></i> Countdown: 
-                                
-                                <div id="countdown"> 
+
+                            <p class="interest-detail-ic pt-2"><i class="fa fa-clock" style="font-size: 15px"></i> Countdown:
+
+                                <div id="countdown">
                                   <ul>
                                     <small><span id="days"></span></small>
                                     <small><span id="hours"></span></small>
@@ -73,8 +71,9 @@
                                 {{-- <p class="interest-detail-ic pt-4"> <i class="fas fa-heart custiconsize"></i></p> --}}
                                 <div class="heart"></div>
                             </div>
+
                         </div>
-                       
+
                         <div class="tempat-comment w-full">
                             <form action="/do_addcomment/{{$product->id}}" method="POST">
                                 @csrf
@@ -96,7 +95,7 @@
                                 @if ($product->id == $comment->product_id)
                                 <div class="card p-3">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user d-flex flex-row align-items-center"> 
+                                        <div class="user d-flex flex-row align-items-center">
                                             <span><small
                                                     class="font-weight-bold txt"> {{ $comment->commentname }}</small>
                                                 <br><small
@@ -105,7 +104,7 @@
                                     </div>
                                 </div><br>
                                 @endif
-                                    
+
                                 @endforeach
                             </div>
                         </div>
@@ -159,7 +158,7 @@
 						var distance = end - now;
 						if (distance < 0) {
 
-							clearInterval(timer);   
+							clearInterval(timer);
 							return;
 						}
 						var days = Math.floor(distance / day);

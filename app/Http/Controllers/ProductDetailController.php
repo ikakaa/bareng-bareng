@@ -43,6 +43,13 @@ class ProductDetailController extends Controller
         $product->productstock = $request->input('maxorder');
         $product->productprice = $request->input('productprice');
         $product->startdate = $request->input('startdate');
+        $tagsdummy    = "";
+        foreach ($request->productlist as $chk1) {
+
+            $tagsdummy .= $chk1 . ";";
+        }
+        $tagsdummy = substr($tagsdummy, 0, -1);
+        $product->productlist=$tagsdummy;
         $product->enddate = Carbon::parse($request->input('enddate'))->format('Y-m-d');
         $product->endtime = $request->input('endtime');
         $product->shippingdate = Carbon::parse($request->input('shippingdate'))->format('Y-m-d');
@@ -67,9 +74,10 @@ class ProductDetailController extends Controller
         return redirect()->back()->with('status', 'Product Added Successfully');
     }
 
-    public function index(){
+    public function index()
+    {
 
-        $product = ProductDetail::distinct('id')->where('verified','0')->get();;
+        $product = ProductDetail::distinct('id')->where('verified', '0')->get();;
         return view('productverification', compact('product'));
     }
 
@@ -100,7 +108,8 @@ class ProductDetailController extends Controller
         return view('editdetail', compact('products'));
     }
 
-    public function updatedetail(Request $request, $id){
+    public function updatedetail(Request $request, $id)
+    {
         $products = ProductDetail::find($id);
 
         $products->product_name = $request->input('productname');
@@ -118,10 +127,11 @@ class ProductDetailController extends Controller
         return redirect('myproductlist');
     }
 
-    
-    public function cart(){
+
+    public function cart()
+    {
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        if(!empty($orders) && $orders->totalPrice!= '0'){
+        if (!empty($orders) && $orders->totalPrice != '0') {
             $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
             return view('cart', compact('orders', 'orderdetails'));
         } else {
@@ -129,9 +139,10 @@ class ProductDetailController extends Controller
         }
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         //function untuk menghapus item dari cart
-        $orderdetail = OrderDetails::where('id', $id)->first(); 
+        $orderdetail = OrderDetails::where('id', $id)->first();
 
         //mengurangi total price dan update di database
         $order = Orders::where('id', $orderdetail->order_id)->first();
@@ -141,7 +152,7 @@ class ProductDetailController extends Controller
         $orderdetail->delete();
 
         // alert()->error('Product deleted from cart!', 'Delete Item');
-        return redirect('cart');    
+        return redirect('cart');
     }
 
     public function order(Request $request, $id)
@@ -158,7 +169,7 @@ class ProductDetailController extends Controller
         $check_order = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
 
         //jika user baru melakukan order dan belum checkout
-        if(empty($check_order)){
+        if (empty($check_order)) {
             $order = new Orders;
             $order->user_id = Auth::user()->id;
             $order->date = $date;
@@ -174,7 +185,7 @@ class ProductDetailController extends Controller
         $check_orderdetail = OrderDetails::where('product_id', $products->id)->where('order_id', $neworder->id)->first();
 
         //jika order detail dari suatu item belum ada
-        if(empty($check_orderdetail)){
+        if (empty($check_orderdetail)) {
             $orderdetail = new OrderDetails;
             $orderdetail->product_id = $products->id;
             $orderdetail->order_id = $neworder->id;
@@ -202,13 +213,15 @@ class ProductDetailController extends Controller
         return redirect('home');
     }
 
-    public function payment(){
+    public function payment()
+    {
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
         return view('payment', compact('orders', 'orderdetails'));
     }
 
-    public function makeorder(Request $request){
+    public function makeorder(Request $request)
+    {
         $payments = new Payment();
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $request->validate([
@@ -226,15 +239,16 @@ class ProductDetailController extends Controller
         return view('uploadproof', compact('payments'));
     }
 
-    public function uploadproof(Request $request, $id){
+    public function uploadproof(Request $request, $id)
+    {
         $payments = Payment::find($id);
         $order_id = $payments->order_id;
         $orders = Orders::where('id', $order_id)->first();
         $orders->status = 3;
         $orders->save();
 
-       $payments->payment_proof = $request->payment_proof;
-        if($payments->payment_proof){
+        $payments->payment_proof = $request->payment_proof;
+        if ($payments->payment_proof) {
             $payments->payment_proof->move('img', $payments->payment_proof->getClientOriginalName());
         }
 
@@ -247,7 +261,7 @@ class ProductDetailController extends Controller
 
         $order_id = $payments->order_id;
         $orderdetails = OrderDetails::where('order_id', $order_id)->get();
-        foreach($orderdetails as $orderdetail){
+        foreach ($orderdetails as $orderdetail) {
             $product = ProductDetail::where('id', $orderdetail->product_id)->first();
             $product->productstock =  $product->productstock - $orderdetail->qty;
             $product->update();
@@ -256,9 +270,10 @@ class ProductDetailController extends Controller
         return redirect('home');
     }
 
-    public function ongoing(){
+    public function ongoing()
+    {
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', 3)->first();
-        if(!empty($orders)){
+        if (!empty($orders)) {
             $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
             return view('ongoing', compact('orders', 'orderdetails'));
         } else {
@@ -266,26 +281,29 @@ class ProductDetailController extends Controller
         }
     }
 
-    public function paymentverification(){
+    public function paymentverification()
+    {
         $payments = Payment::distinct('id')->whereNotNull('payment_proof')->get();
         return view('paymentverification', compact('payments'));
     }
 
-    public function paymentapprove(Orders $id){
+    public function paymentapprove(Orders $id)
+    {
         $orders = Orders::with('payments')->where('id', $id->id)->first();
         $orders->status = 1;
         $orders->update();
         return redirect()->back()->with('status', 'Payment Approved Successfully');
     }
 
-    public function paymentreject(Orders $id){
+    public function paymentreject(Orders $id)
+    {
         $orders = Orders::with('payments')->where('id', $id->id)->first();
         $orders->status = 2;
         $orders->update();
 
         $order_id = $orders->id;
         $orderdetails = OrderDetails::where('order_id', $order_id)->get();
-        foreach($orderdetails as $orderdetail){
+        foreach ($orderdetails as $orderdetail) {
             $product = ProductDetail::where('id', $orderdetail->product_id)->first();
             $product->productstock =  $product->productstock + $orderdetail->qty;
             $product->update();
@@ -293,25 +311,29 @@ class ProductDetailController extends Controller
         return redirect()->back()->with('status', 'Product Rejected Successfully');
     }
 
-    public function myproductlist(){
+    public function myproductlist()
+    {
         $products = ProductDetail::where('user_id', Auth::user()->id)->get();
         return view('myproductlist', compact('products'));
     }
 
-    public function productverificationlist(){
+    public function productverificationlist()
+    {
         $products = ProductDetail::where('user_id', Auth::user()->id)->get();
         return view('productverificationlist', compact('products'));
     }
 
-    public function approveproduct(ProductDetail $id){
-        $checkproduk = ProductDetail::where('id',$id->id)->first();
+    public function approveproduct(ProductDetail $id)
+    {
+        $checkproduk = ProductDetail::where('id', $id->id)->first();
         $checkproduk->verified = 1;
         $checkproduk->save();
         return redirect()->back()->with('status', 'Product Approved Successfully');
     }
 
-    public function rejectproduct(Request $request){
-        $checkproduk = ProductDetail::where('id',$request->id)->first();
+    public function rejectproduct(Request $request)
+    {
+        $checkproduk = ProductDetail::where('id', $request->id)->first();
         $checkproduk->verified = 2;
         $checkproduk->rejectreason = $request->input('reason');
         $checkproduk->save();
@@ -324,17 +346,15 @@ class ProductDetailController extends Controller
         $orders = Orders::with('order_details')->where('user_id', Auth::user()->id)->where('status', 1)->get();
         $empty = Orders::where('user_id', Auth::user()->id)->doesntExist();
 
-        if($empty){
-            return view ('orderhistory');
-        } 
-        elseif(!empty($orders)) {
+        if ($empty) {
+            return view('orderhistory');
+        } elseif (!empty($orders)) {
             $orderdetails = OrderDetails::where('order_id', $id)->get();
             $order = Orders::where('user_id', Auth::user()->id)->where('status', 1)->first();
             $order_id = $order->id;
             $payments = Payment::where('order_id', $order_id)->first();
             return view('orderhistory', compact('orders', 'orderdetails', 'payments'));
-        } 
-
+        }
     }
 
     public function orderhistorydetail(OrderDetails $id)
@@ -342,6 +362,4 @@ class ProductDetailController extends Controller
         $details = OrderDetails::where('order_id', $id->id)->get();
         return view('orderhistorydetail', compact('details'));
     }
-
-
 }

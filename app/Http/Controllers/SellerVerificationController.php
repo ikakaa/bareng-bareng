@@ -30,58 +30,67 @@ class SellerVerificationController extends Controller
     }
     public function do_uploadrequestseller(Request $request)
     {
-         $this->validate($request, [
-        'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-    ]);
+        $this->validate($request, [
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+        ]);
 
         $user = Auth::user();
         $user->sellerapproval = 0;
         $user->sellerapprovalsubmit = 1;
         $user->save();
         $sellerform = new SellerVerification;
-$sellerform->user_id=Auth::user()->id;
-$sellerform->identitynumber=$request->identitynumber;
-$sellerform->tiperekening=$request->tiperekening;
-$sellerform->nomorrekening=$request->nomorrekening;
+        $sellerform->user_id = Auth::user()->id;
+        $sellerform->identitynumber = $request->identitynumber;
+        $sellerform->identitytype = $request->identitytype;
+        $sellerform->address = $request->address;
+        $sellerform->paymenttype = $request->paymenttype;
+        $sellerform->paymentnumber = $request->paymentnumber;
 
-              $tgl      = date('Ymd_H_i_s');
-            $file = $_FILES['file']['tmp_name'];
-            $image = $_FILES['file']['name'];
-            $upload_path = 'selleridentity/';
-            $upload_file = $upload_path . $tgl . $image;
-            move_uploaded_file($file, $upload_file);
+        $tgl      = date('Ymd_H_i_s');
+        $file = $_FILES['file']['tmp_name'];
+        $image = $_FILES['file']['name'];
+        $upload_path = 'selleridentity/';
+        $upload_file = $upload_path . $tgl . $image;
+        move_uploaded_file($file, $upload_file);
 
-            $sellerform->identitypath=$upload_file;
-            $sellerform->save();
-            $user = Auth::user();
-            $user->sellerapproval = 0;
-            $user->sellerapprovalsubmit = 1;
-            $user->save();
-            session(['successupload' => true]);
+        $sellerform->identitypath = $upload_file;
+        $sellerform->save();
+        $user = Auth::user();
+        $user->sellerapproval = 0;
+        $user->sellerapprovalsubmit = 1;
+        $user->save();
+        session(['successupload' => true]);
         // return back()->with('success','You have successfully upload image.');
-        return view('profilebuyer');
-
+        return redirect('/profilebuyer');
     }
     public function index()
     {
-    $product = User::distinct('id')->where('sellerapproval','0')->where('sellerapprovalsubmit','1')->get();
-        return view('sellerverification', compact('product'));
+        $product = User::distinct('id')->where('sellerapproval', '0')->where('sellerapprovalsubmit', '1')->get();
+        $detail = SellerVerification::all();
+        return view('sellerverification', compact('detail', 'product'));
     }
 
-    public function approveseller($id){
+    public function approveseller($id)
+    {
         $user = User::find($id);
-$user->sellerapproval='1';
-$user->save();
-session(['sellerapproved' => true]);
-return redirect('/sellerverification')->with('success','You have successfully upload image.');
+        $user->sellerapproval = '1';
+        $user->save();
+        session(['sellerapproved' => true]);
+        return redirect('/sellerverification')->with('success', 'You have successfully upload image.');
     }
-    public function rejectsellerrequest(Request $request){
+    public function rejectsellerrequest(Request $request)
+    {
         $user = User::find($request->id);
 
-$user->sellerapproval='2';
-$user->sellerrejectreason=$request->reason;
-$user->save();
-session(['sellerrejected' => true]);
-return redirect('/sellerverification')->with('success','You have successfully upload image.');
+        $user->sellerapproval = '2';
+        $user->sellerrejectreason = $request->reason;
+        $user->save();
+        session(['sellerrejected' => true]);
+        return redirect('/sellerverification')->with('success', 'You have successfully upload image.');
+    }
+
+    public function detailform($name){
+        $detail = SellerVerification::where('user_id', $name)->first();
+        return view('sellerformdetail', compact('detail'));
     }
 }

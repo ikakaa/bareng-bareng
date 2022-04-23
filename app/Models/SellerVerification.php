@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 class SellerVerification extends Model
 {
-    protected $table = 'seller_verifications';
+    // protected $table = 'seller_verifications';
     public function sellerverification(){
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'id');
     }
     public $timestamps = true;
 

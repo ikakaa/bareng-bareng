@@ -55,6 +55,10 @@
                <option value="customdeskmat">Custom Deskmat</option>
                <option value="others">Others</option>
            </select>
+            <label for="productlist" class="block sm:mb-2 mb-1 w-full  mt-2">Product Type</label>
+            <select id="productlist" name="productlist[]" multiple="multiple" class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+
+           </select>
 
            <label for="moq" class="block sm:mb-2 mb-1 w-full  mt-2">Minimum Order Quantity</label>
            <input type="number" name="moq" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="0">
@@ -114,6 +118,13 @@
 
         </div>
     </body>
+<script>
+    $(document).ready(function() {
+        $("#productlist").select2({
+    tags: true,
+})
+});
 
+    </script>
     </html>
 @endsection

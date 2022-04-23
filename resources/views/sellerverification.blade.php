@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -69,7 +70,7 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td><a href="#"> {{ $row->name }} </a></td>
-                                    <td><a href="/sellerdetail/{{ $row->id }}" target="_blank">Detail</a></td>
+                                    <td><a href="/sellerformdetail/{{ $row->id }}" target="_blank">Detail</a></td>
 
                                     <td><a href="/sellerrequestapprove/{{ $row->id }}" class="btn-icon bg-custom"><i
                                                 class="fa fa-check"></i></a></td>
