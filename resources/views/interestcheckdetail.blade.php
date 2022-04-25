@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -44,30 +43,47 @@
                         </div>
 
                         <div class="interest-check-detail-kanan">
+                            <div class="tempat-back pb-3">
+                                <a href="">
+                                    <i class="fas fa-arrow-left pr-2"></i>
+                                    Back to Interest List </a>
+                            </div>
                             <div class="interest-check-title-wrapper flex justify-between">
                                 <p class="interest-detail-title">{{ $product->product_name }}</p>
                                 <p class="interest-detail-title2">Rp. {{ number_format($product->productprice) }}</p>
 
                             </div>
                             <p class="interest-detail-description pt-7">{{ $product->shortdesc }}</p><br>
-                            <p class="interest-detail-ic pt-2">Ends at: {{$product->enddate->format('d-m-Y')}} at {{$product->endtime}}</p>
+                            Variant :
+                            <select name="producttype"
+                                class="appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+                                <?php  $splitdata=explode(";",$product['productlist']);
+                                 foreach($splitdata as $data){ ?>
+                                <option value="{{ $data }}">{{ $data }}</option>
+                                <?php  } ?>
 
-                            <p class="interest-detail-ic pt-2"><i class="fa fa-clock" style="font-size: 15px"></i> Countdown:
+                            </select>
+                            <p class="interest-detail-ic pt-2">Ends at: {{ $product->enddate->format('d-m-Y') }} at
+                                {{ $product->endtime }}</p>
 
-                                <div id="countdown">
-                                  <ul>
+                            <p class="interest-detail-ic pt-2"><i class="fa fa-clock" style="font-size: 15px"></i>
+                                Countdown:
+
+                            <div id="countdown">
+                                <ul>
                                     <small><span id="days"></span></small>
                                     <small><span id="hours"></span></small>
                                     <small><span id="minutes"></span></small>
                                     <small><span id="seconds"></span></small>
-                                  </ul>
-                                </div>
+                                </ul>
+                            </div>
                             </p>
                             <p class="interest-detail-ic pt-2">Artist : <a href="#"
                                     class="text-blue-200">{{ $product->owner }}</a> </p>
 
                             <div class="interest-check-title-wrapper flex justify-between">
-                                <p class="interest-detail-ic pt-4">Estimated shipment date: {{ $product->shippingdate->format('d-m-Y') }}</p>
+                                <p class="interest-detail-ic pt-4">Estimated shipment date:
+                                    {{ $product->shippingdate->format('d-m-Y') }}</p>
                                 {{-- <p class="interest-detail-ic pt-4"> <i class="fas fa-heart custiconsize"></i></p> --}}
                                 <div class="heart"></div>
                             </div>
@@ -75,7 +91,7 @@
                         </div>
 
                         <div class="tempat-comment w-full">
-                            <form action="/do_addcomment/{{$product->id}}" method="POST">
+                            <form action="/do_addcomment/{{ $product->id }}" method="POST">
                                 @csrf
                                 <br>
                                 <p class="interest-detail-ic pt-4 pb-2">Add Comment</p>
@@ -92,19 +108,18 @@
                             <div class="col-md-6">
                                 <p class="interest-detail-ic pt-4 pb-2">Comments</p>
                                 @foreach ($comments as $comment)
-                                @if ($product->id == $comment->product_id)
-                                <div class="card p-3">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user d-flex flex-row align-items-center">
-                                            <span><small
-                                                    class="font-weight-bold txt"> {{ $comment->commentname }}</small>
-                                                <br><small
-                                                    class="font-weight-bold">{{ $comment->comment }}</small></span>
-                                        </div> <small id="demo">{{$comment->created_at}} </small>
-                                    </div>
-                                </div><br>
-                                @endif
-
+                                    @if ($product->id == $comment->product_id)
+                                        <div class="card p-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="user d-flex flex-row align-items-center">
+                                                    <span><small class="font-weight-bold txt">
+                                                            {{ $comment->commentname }}</small>
+                                                        <br><small
+                                                            class="font-weight-bold">{{ $comment->comment }}</small></span>
+                                                </div> <small id="demo">{{ $comment->created_at }} </small>
+                                            </div>
+                                        </div><br>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
@@ -144,42 +159,42 @@
             },
         });
 
-        CountDownTimer('{{$product->enddate}}', 'countdown');
-				function CountDownTimer(dt, id)
-				{
-					var end = new Date('{{$product->enddate}}');
-					var second = 1000;
-					var minute = second * 60;
-					var hour = minute * 60;
-					var day = hour * 24;
-					var timer;
-					function showRemaining() {
-						var now = new Date();
-						var distance = end - now;
-						if (distance < 0) {
+        CountDownTimer('{{ $product->enddate }}', 'countdown');
 
-							clearInterval(timer);
-							return;
-						}
-						var days = Math.floor(distance / day);
-						var hours = Math.floor((distance % day) / hour);
-						var minutes = Math.floor((distance % hour) / minute);
-						var seconds = Math.floor((distance % minute) / second);
+        function CountDownTimer(dt, id) {
+            var end = new Date('{{ $product->enddate }}');
+            var second = 1000;
+            var minute = second * 60;
+            var hour = minute * 60;
+            var day = hour * 24;
+            var timer;
 
-						document.getElementById(id).innerHTML = days + ' : ';
-						document.getElementById(id).innerHTML += hours + ' : ';
-						document.getElementById(id).innerHTML += minutes + ' : ';
-						document.getElementById(id).innerHTML += seconds + '';
-					}
-					timer = setInterval(showRemaining, 1000);
-				}
+            function showRemaining() {
+                var now = new Date();
+                var distance = end - now;
+                if (distance < 0) {
+
+                    clearInterval(timer);
+                    return;
+                }
+                var days = Math.floor(distance / day);
+                var hours = Math.floor((distance % day) / hour);
+                var minutes = Math.floor((distance % hour) / minute);
+                var seconds = Math.floor((distance % minute) / second);
+
+                document.getElementById(id).innerHTML = days + ' : ';
+                document.getElementById(id).innerHTML += hours + ' : ';
+                document.getElementById(id).innerHTML += minutes + ' : ';
+                document.getElementById(id).innerHTML += seconds + '';
+            }
+            timer = setInterval(showRemaining, 1000);
+        }
 
 
         //make function that convert time difference with timeago
-
-
     </script>
-</html>
+
+    </html>
 
 
 

@@ -17,6 +17,10 @@
     --darkShadow: 4px 10px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
+a {
+    text-decoration: none !important;
+}
+
 .alert {
     border-radius: 4px;
     padding: 1.3rem;
@@ -670,8 +674,8 @@ div {
 }
 
 .btn-verified {
-    background-color: white; 
-    color: black; 
+    background-color: white;
+    color: black;
     border: 2px solid #4CAF50;
     border-radius: 5px;
     padding: 8px 12px;
@@ -683,8 +687,8 @@ div {
 }
 
 .btn-on-progress {
-    background-color: white; 
-    color: black; 
+    background-color: white;
+    color: black;
     border: 2px solid #e0c772;
     border-radius: 5px;
     padding: 8px 12px;
@@ -696,8 +700,8 @@ div {
 }
 
 .btn-rejected {
-    background-color: white; 
-    color: black; 
+    background-color: white;
+    color: black;
     border: 2px solid #f44336;
     border-radius: 5px;
     padding: 8px 12px;
@@ -727,7 +731,7 @@ div {
 }
 
 .btn-back {
-    background-color: white; 
+    background-color: white;
     color: #284b63;
     border: 2px solid #284b63;
     padding: 5px 10px;
@@ -742,7 +746,7 @@ div {
 .details {
     color: #f4f9e9;
     font-size: 15px;
-    background-color: #284b63; 
+    background-color: #284b63;
     border: 2px solid #284b63;
     border-radius: 5px;
     padding: 1px;
@@ -775,7 +779,7 @@ div {
 
 .box {
     width: 220px;
-    height: 155px;  
+    height: 155px;
     padding: 20px;
     margin-right: 10px;
     border: 1px solid;
@@ -784,7 +788,7 @@ div {
 
 .box2 {
     width: 450px;
-    height: 130px;  
+    height: 130px;
     padding: 20px;
     margin-left: 180px;
     border: 1px solid;
@@ -794,7 +798,7 @@ div {
 
 .box3 {
     width: 450px;
-    height: 145px;  
+    height: 145px;
     padding: 15px;
     margin-left: 180px;
     border: 1px solid;
@@ -807,14 +811,14 @@ div {
 }
 
 .ic-box {
-    background-color: #284b63; 
-    color:white;
+    background-color: #284b63;
+    color: white;
     margin-bottom: 30px;
     height: 35px;
 }
 
 .ic-box-card {
-    background-color: #284b63; 
+    background-color: #284b63;
     color: #f4f9e9;
     margin-top: 8px;
     border-radius: 3px;
@@ -827,11 +831,19 @@ div {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     margin-left: 100px;
-    }
-    
-    .div1 { grid-area: 1 / 1 / 3 / 2; }
-    .div2 { grid-area: 1 / 2 / 2 / 3; }
-    .div3 { grid-area: 2 / 2 / 3 / 3; }
+}
+
+.div1 {
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.div2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.div3 {
+    grid-area: 2 / 2 / 3 / 3;
+}
 
 .card1 {
     width: 400px;
@@ -849,7 +861,6 @@ div {
     width: 400px;
     height: 242px;
     padding: 15px;
-
 }
 
 .trash {
