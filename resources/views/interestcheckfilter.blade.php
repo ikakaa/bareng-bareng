@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
             integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
         <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous"
                 defer></script>
         <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
@@ -19,7 +19,7 @@
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-        <link rel="stylesheet" href="tailwind.css">
+        <link rel="stylesheet" href="../tailwind.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     </head>
 
@@ -27,10 +27,10 @@
         <div  class="swiffy-slider slider-item-reveal slider-nav-page slider-nav-autoplay slider-nav-animation slider-nav-animation-appear slider-item-ratio slider-item-ratio-21x9"
         data-slider-nav-autoplay-interval="3000" id="slider1">
             <ul class="slider-container">
-                <li><a href="/category"><img src="src/slider1.png" loading="lazy" alt="..."></a></li>
-                <li><a href="#"><img src="src/slider2.png" loading="lazy" alt="..."></a></li>
-                <li><a href="#"><img src="src/slider3.png" loading="lazy" alt="..."></a></li>
-                <li><a href="#"><img src="src/slider4.png" loading="lazy" alt="..."></a></li>
+                <li><a href="/category"><img src="../src/slider1.png" loading="lazy" alt="..."></a></li>
+                <li><a href="#"><img src="../src/slider2.png" loading="lazy" alt="..."></a></li>
+                <li><a href="#"><img src="../src/slider3.png" loading="lazy" alt="..."></a></li>
+                <li><a href="#"><img src="../src/slider4.png" loading="lazy" alt="..."></a></li>
             </ul>
 
             <button type="button" class="slider-nav" aria-label="Go left"></button>
@@ -45,60 +45,42 @@
         </div>
 
         <div>
-            <p class="card-title text-center  text-white py-12">Featured Products</p>
+            <p class="card-title text-center text-white py-12">Featured Products</p>
 
             <div class="action-btn mb-10 d-flex justify-content-center">
-                <a href="/category/customkeyboard" class="button-style button-border mr-1">Keyboard</a>
-                <a href="/category/customdeskmat" class="button-style button-border mr-1">Deskmat</a>
-                <a href="/category/others" class="button-style button-border">Others</a>
+                <a href="/interestcheck" class="button-style button-border mr-1">All</a>
+                <a href="/interestcheck/customkeyboard" class="button-style button-border mr-1">Keyboard</a>
+                <a href="/interestcheck/customdeskmat" class="button-style button-border mr-1">Deskmat</a>
+                <a href="/interestcheck/others" class="button-style button-border">Others</a>
             </div>
 
-                <div class="tempat-card flex-wrap flex justify-center w-full pb-24">
-                    <div class="card-custom mr-4">
-                        <div class="card-img">
-                            <img src="src/img.jpg" alt="">
+                <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
+                    @foreach ($products as $product)
+                    <div class="card-custom mr-4 col" onclick="location.href='{{url('/interestcheckdetail')}}/{{$product->id}}'">
+                        <div class="ic-box-card txt-center"><i class="far fa-thumbs-up"></i> Interest Check</div>
+                        <div class="card-img mt-3">
+                            <img src="../../{{$product->productdetailfiles->filepath}}" alt="">
                         </div>
-                        <div class="card-text w-full px-2 pb-3 ">
-                            <p class="card-header2 pt-1">GMK Frost Witch </p>
-                            <p class="card-info pt-2 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, alias?
-                            </p>
+                        <div class="card-text w-full px-2 pb-3 txt-center">
+                            <a class="card-header2 pt-1">{{$product->product_name}}</a>
                             <div class="flex justify-between w-full ">
-                                <div class="mini-card-box ">
-                                    <p class="price">Price</p>
-                                    <p class="price-number block">$29.99</p>
-                                </div>
-                                <div class="mini-card-button">
 
-                                    <button
-                                        class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
-                                        to cart</button>
-                                </div>
+                            </div>
+                            <div class="mini-card-box ">
+
+                                <p class="price-number block mb-2">Rp. {{number_format($product->productprice)}}</p>
+                                <button class="button-style font-semibold rounded-md">Details</button>
                             </div>
                         </div>
                     </div>
-                   <div class="card-custom">
-                        <div class="card-img">
-                            <img src="src/img.jpg" alt="">
-                        </div>
-                        <div class="card-text w-full px-2 pb-3 ">
-                            <p class="card-header2 pt-1">GMK Frost Witch </p>
-                            <p class="card-info pt-2 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, alias?
-                            </p>
-                            <div class="flex justify-between w-full ">
-                                <div class="mini-card-box ">
-                                    <p class="price">Price</p>
-                                    <p class="price-number block">$29.99</p>
-                                </div>
-                                <div class="mini-card-button">
-
-                                    <button
-                                        class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
-                                        to cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+                <div class="flex justify-center">
+                    {{$products->links()}}
+                </div>
+
+
+
             </div>
         </div>
 

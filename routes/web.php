@@ -29,8 +29,10 @@ Route::get('/category', function(){
 });
 
 Route::get('/interestcheck',[App\Http\Controllers\InterestCheckController::class, 'index']);
+Route::get('/interestcheck/{category}',[App\Http\Controllers\InterestCheckController::class, 'interestcheckcategory']);
 Route::get('/interestcheckdetail/{id}',[App\Http\Controllers\InterestCheckController::class, 'detail']);
 
+Route::get('/category',[App\Http\Controllers\CategoryController::class, 'index']);
 Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index']);
 Route::get('/product/{id}',[App\Http\Controllers\ProductDetailController::class, 'detail']);
 Route::get('/sellerformdetail/{name}',[App\Http\Controllers\SellerVerificationController::class, 'detailform']);

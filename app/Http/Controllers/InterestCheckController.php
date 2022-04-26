@@ -21,7 +21,12 @@ class InterestCheckController extends Controller
     {
         $products = ProductDetail::where('id', $id->id)->get();
         $comments = ProductComment::all();
-        
+
         return view('interestcheckdetail', compact('products', 'comments'));
+    }
+    public function interestcheckcategory($category){
+        $products = ProductDetail::distinct('id')->where('verified','1')->where('interestdone', '0')->where('product_type', $category)->paginate(8);
+        $checkfilter=true;
+        return view('interestcheckfilter', compact('products','checkfilter'));
     }
 }

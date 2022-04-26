@@ -44,7 +44,7 @@
 
                         <div class="interest-check-detail-kanan">
                             <div class="tempat-back pb-3">
-                                <a href="">
+                                <a href="/interestcheck">
                                     <i class="fas fa-arrow-left pr-2"></i>
                                     Back to Interest List </a>
                             </div>

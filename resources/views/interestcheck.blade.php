@@ -32,10 +32,10 @@
                 <li><a href="#"><img src="src/slider3.png" loading="lazy" alt="..."></a></li>
                 <li><a href="#"><img src="src/slider4.png" loading="lazy" alt="..."></a></li>
             </ul>
-        
+
             <button type="button" class="slider-nav" aria-label="Go left"></button>
             <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
-        
+
             <div class="slider-indicators slider-indicators-square d-none d-md-flex">
                 <button class="active" aria-label="Go to slide"></button>
                 <button aria-label="Go to slide"></button>
@@ -48,11 +48,12 @@
             <p class="card-title text-center text-white py-12">Featured Products</p>
 
             <div class="action-btn mb-10 d-flex justify-content-center">
-                <button class="button-style button-border mr-1">Keyboard</button>
-                <button class="button-style button-border mr-1">Artisan</button>
-                <button class="button-style button-border">Figures</button>
+                <a href="/interestcheck" class="button-style button-border mr-1">All</a>
+                <a href="/interestcheck/customkeyboard" class="button-style button-border mr-1">Keyboard</a>
+                <a href="/interestcheck/customdeskmat" class="button-style button-border mr-1">Deskmat</a>
+                <a href="/interestcheck/others" class="button-style button-border">Others</a>
             </div>
-            
+
                 <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
                     @foreach ($products as $product)
                     <div class="card-custom mr-4 col" onclick="location.href='{{url('/interestcheckdetail')}}/{{$product->id}}'">
@@ -63,10 +64,10 @@
                         <div class="card-text w-full px-2 pb-3 txt-center">
                             <a class="card-header2 pt-1">{{$product->product_name}}</a>
                             <div class="flex justify-between w-full ">
-                                
+
                             </div>
                             <div class="mini-card-box ">
-                               
+
                                 <p class="price-number block mb-2">Rp. {{number_format($product->productprice)}}</p>
                                 <button class="button-style font-semibold rounded-md">Details</button>
                             </div>
@@ -77,7 +78,7 @@
                 <div class="flex justify-center">
                     {{$products->links()}}
                 </div>
-                
+
 
 
             </div>

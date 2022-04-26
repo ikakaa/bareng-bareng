@@ -4,7 +4,7 @@
      <!-- Required meta tags -->
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- 
+
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
@@ -50,9 +50,7 @@
                                 <a class="nav-link" href="/home">{{ __('Home') }}</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="/category">{{ __('Category') }}</a>
-                            </li>
+
 
                             <li class="nav-item">
                                 <a class="nav-link" href="/interestcheck">{{ __('Interest Check') }}</a>
@@ -72,15 +70,12 @@
                                     <a class="dropdown-item" href="/register"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a>
                                 </div>
                             </li>
-                           
+
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="/home">{{ __('Home') }}</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="/category">{{ __('Category') }}</a>
-                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="/interestcheck">{{ __('Interest Check') }}</a>
