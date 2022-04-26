@@ -67,7 +67,7 @@
                         card</label>
                     <img src="../{{$detail->identitypath}}" alt="" width="450x" height="500px">
                     <div class="button-right-bottom">
-                        <a href="/sellerverification" class="button-style">Back</a>
+                        <a href="/sellerverification" class="button-style">Back </a>
                     </div>
 
                 </form>

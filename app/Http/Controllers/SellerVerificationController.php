@@ -72,6 +72,7 @@ class SellerVerificationController extends Controller
 
     public function approveseller($id)
     {
+
         $user = User::find($id);
         $user->sellerapproval = '1';
         $user->save();

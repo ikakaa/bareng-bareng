@@ -104,8 +104,8 @@ class ProductDetailController extends Controller
     public function editdetail(ProductDetailsFile $id)
     {
         $products = ProductDetail::where('id', $id->id)->first();
-
-        return view('editdetail', compact('products'));
+$productfiles=ProductDetailsFile::where('productid', $id->id)->get();
+        return view('editdetail', compact('products','productfiles'));
     }
 
     public function updatedetail(Request $request, $id)
@@ -361,5 +361,28 @@ class ProductDetailController extends Controller
     {
         $details = OrderDetails::where('order_id', $id->id)->get();
         return view('orderhistorydetail', compact('details'));
+    }
+    public function editdetailaddimage(Request $request){
+        $tgl      = date('Ymd_H_i_s');
+//add image to productdetailfiles
+        $productdetailfiles = new ProductDetailsFile;
+
+        $filesize = $_FILES['file']['size'];
+        $filetmp  = $_FILES['file']['tmp_name'];
+        $filename = $_FILES['file']['name'];
+        //select product detail where id=id  then get folder path
+        $productdetail = ProductDetail::where('id', $request->input('id'))->first();
+        $folderpath = $productdetail->folderpath;
+
+        $filepath = $folderpath . '/' . $tgl . '_' . $filename;
+        move_uploaded_file($filetmp, $filepath);
+        $productdetailfiles->productid =$request->input('id');
+        $productdetailfiles->filename = $filename;
+        $productdetailfiles->filepath = $filepath;
+        $productdetailfiles->filesize = $filesize;
+
+
+        $productdetailfiles->save();
+        return redirect()->back()->with('status', 'Image Added Successfully');
     }
 }

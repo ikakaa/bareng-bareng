@@ -34,6 +34,7 @@ Route::get('/interestcheckdetail/{id}',[App\Http\Controllers\InterestCheckContro
 
 Route::get('/category',[App\Http\Controllers\CategoryController::class, 'index']);
 Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index']);
+Route::get('/groupbuy/{category}',[App\Http\Controllers\GroupBuyController::class, 'groupbuycategory']);
 Route::get('/product/{id}',[App\Http\Controllers\ProductDetailController::class, 'detail']);
 Route::get('/sellerformdetail/{name}',[App\Http\Controllers\SellerVerificationController::class, 'detailform']);
 
@@ -45,6 +46,7 @@ Auth::routes();
 Route::post('/do_addcomment/{id}', [App\Http\Controllers\ProductCommentController::class, 'store']);
 Route::post('/do_upload', [App\Http\Controllers\ProductDetailController::class, 'store']);
 Route::post('/do_editprofile', [App\Http\Controllers\Auth\LoginController::class, 'do_editprofile']);
+Route::post('/editdetailaddimage', [App\Http\Controllers\ProductDetailController::class, 'editdetailaddimage']);
 Route::post('/do_uploadrequestseller', [App\Http\Controllers\SellerVerificationController::class, 'do_uploadrequestseller']);
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware'=>['checklogin']],function(){

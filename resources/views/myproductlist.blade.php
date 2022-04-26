@@ -31,32 +31,32 @@
                                 Here's the list of your products. You can still edit the product before the Group Buy starts.
                             </large>
                         </div>
-                        
+
                         <div>
                             <div class="col-md-9">
                                 @foreach ($products as $product)
                                 @if ($product->verified == 1)
                                     <div class="card p-3">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex flex-row align-items-center"> 
-                                                <img src="../{{$product->productdetailfiles->filepath}}" class="img-detail-size"> 
+                                            <div class="d-flex flex-row align-items-center">
+                                                <img src="../{{$product->productdetailfiles->filepath}}" class="img-detail-size">
                                                 <span>
                                                     <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
                                                     <div>Group Buy starts at: {{$product->enddate}}</div>
-                                                </span> 
+                                                </span>
                                             </div>
                                             <button class="btn-view" onclick="location.href='{{url('/edit')}}/{{$product->id}}'">View Product</button>
                                         </div>
-                                    </div><br> 
-                                @endif 
+                                    </div><br>
+                                @endif
                                 @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>  
-        
+        </div>
+
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
