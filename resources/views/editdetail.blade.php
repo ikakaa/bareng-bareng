@@ -118,8 +118,8 @@
 
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
+                            <th scope="col">Image Name</th>
+                            <th scope="col">Preview</th>
                             <th scope="col">Handle</th>
                         </tr>
 
@@ -128,8 +128,8 @@
                         @foreach ($productfiles as $row)
                             <tr>
                                 <th scope="row">1</th>
-                                <td>{{$row->productid}}</td>
-                                <td>Otto</td>
+                                <td>{{$row->filename}}</td>
+                                <td><a href="{{$row->filepath}}" target="_blank" >Preview</a></td>
                                 <td>@mdo</td>
                             </tr>
                         @endforeach

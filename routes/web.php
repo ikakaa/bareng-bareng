@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StorageController;
 use App\Models\ProductDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,7 @@ Route::get('/home', function(){
     return view('home');
 });
 Auth::routes();
-
+Route::get('/editdetail/uploads/{path}/{path2}', [StorageController::class, 'download']);
 Route::post('/do_addcomment/{id}', [App\Http\Controllers\ProductCommentController::class, 'store']);
 Route::post('/do_upload', [App\Http\Controllers\ProductDetailController::class, 'store']);
 Route::post('/do_editprofile', [App\Http\Controllers\Auth\LoginController::class, 'do_editprofile']);
