@@ -32,6 +32,9 @@
                 @if (Session::has('status'))
                     <div class="alert alert-success mb-3 mt-1 w-2/3">Image Added!</div>
                 @endif
+            @if (Session::has('statusdelete'))
+                    <div class="alert alert-warning mb-3 mt-1 w-2/3">Image Deleted!</div>
+                @endif
                 @error('moq')
                     <div class="alert alert-warning mb-3 mt-1 w-2/3">Max moq is 10!</div>
                 @enderror
@@ -40,6 +43,7 @@
                     </div>
                     <?php session()->forget('successupload'); ?>
                 @endif
+
                 <form action="/editdetail/{{ $products->id }}" method="POST" enctype="multipart/form-data">
 
                     @csrf
@@ -120,7 +124,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Image Name</th>
                             <th scope="col">Preview</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Action</th>
                         </tr>
 
                     </thead>
@@ -130,7 +134,7 @@
                                 <th scope="row">1</th>
                                 <td>{{$row->filename}}</td>
                                 <td><a href="{{$row->filepath}}" target="_blank" >Preview</a></td>
-                                <td>@mdo</td>
+                                <td><a href="/deleteproductimg/{{$row->id}}" onclick="return confirm('Are you sure?')"><i class="fas fa-times text-red-600"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>

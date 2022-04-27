@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\StorageController;
 use App\Models\ProductDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ProductDetailsFile;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +29,9 @@ Route::get('/category', function(){
     return view('category');
 });
 
-Route::get('/interestcheck',[App\Http\Controllers\InterestCheckController::class, 'index']);
-Route::get('/interestcheck/{category}',[App\Http\Controllers\InterestCheckController::class, 'interestcheckcategory']);
-Route::get('/interestcheckdetail/{id}',[App\Http\Controllers\InterestCheckController::class, 'detail']);
+Route::get('/interestcheck',[App\Http\Controllers\InterestCheckController::class,'index']);
+Route::get('/interestcheck/{category}',[App\Http\Controllers\InterestCheckController::class,'interestcheckcategory']);
+Route::get('/interestcheckdetail/{id}',[App\Http\Controllers\InterestCheckController::class,'detail']);
 
 Route::get('/category',[App\Http\Controllers\CategoryController::class, 'index']);
 Route::get('/groupbuy',[App\Http\Controllers\GroupBuyController::class, 'index']);
@@ -44,6 +44,7 @@ Route::get('/home', function(){
 });
 Auth::routes();
 Route::get('/editdetail/uploads/{path}/{path2}', [StorageController::class, 'download']);
+Route::get('/deleteproductimg/{id}', [App\Http\Controllers\ProductDetailController::class, 'deleteproductimg']);
 Route::post('/do_addcomment/{id}', [App\Http\Controllers\ProductCommentController::class, 'store']);
 Route::post('/do_upload', [App\Http\Controllers\ProductDetailController::class, 'store']);
 Route::post('/do_editprofile', [App\Http\Controllers\Auth\LoginController::class, 'do_editprofile']);

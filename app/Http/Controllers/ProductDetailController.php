@@ -49,7 +49,7 @@ class ProductDetailController extends Controller
             $tagsdummy .= $chk1 . ";";
         }
         $tagsdummy = substr($tagsdummy, 0, -1);
-        $product->productlist=$tagsdummy;
+        $product->productlist = $tagsdummy;
         $product->enddate = Carbon::parse($request->input('enddate'))->format('Y-m-d');
         $product->endtime = $request->input('endtime');
         $product->shippingdate = Carbon::parse($request->input('shippingdate'))->format('Y-m-d');
@@ -104,8 +104,8 @@ class ProductDetailController extends Controller
     public function editdetail(ProductDetailsFile $id)
     {
         $products = ProductDetail::where('id', $id->id)->first();
-$productfiles=ProductDetailsFile::where('productid', $id->id)->get();
-        return view('editdetail', compact('products','productfiles'));
+        $productfiles = ProductDetailsFile::where('productid', $id->id)->where('deleted','0')->get();
+        return view('editdetail', compact('products', 'productfiles'));
     }
 
     public function updatedetail(Request $request, $id)
@@ -362,9 +362,10 @@ $productfiles=ProductDetailsFile::where('productid', $id->id)->get();
         $details = OrderDetails::where('order_id', $id->id)->get();
         return view('orderhistorydetail', compact('details'));
     }
-    public function editdetailaddimage(Request $request){
+    public function editdetailaddimage(Request $request)
+    {
         $tgl      = date('Ymd_H_i_s');
-//add image to productdetailfiles
+        //add image to productdetailfiles
         $productdetailfiles = new ProductDetailsFile;
 
         $filesize = $_FILES['file']['size'];
@@ -376,7 +377,7 @@ $productfiles=ProductDetailsFile::where('productid', $id->id)->get();
 
         $filepath = $folderpath . '/' . $tgl . '_' . $filename;
         move_uploaded_file($filetmp, $filepath);
-        $productdetailfiles->productid =$request->input('id');
+        $productdetailfiles->productid = $request->input('id');
         $productdetailfiles->filename = $filename;
         $productdetailfiles->filepath = $filepath;
         $productdetailfiles->filesize = $filesize;
@@ -384,5 +385,16 @@ $productfiles=ProductDetailsFile::where('productid', $id->id)->get();
 
         $productdetailfiles->save();
         return redirect()->back()->with('status', 'Image Added Successfully');
+    }
+
+    public function deleteproductimg( $id)
+    {
+
+        $productdetailfiles = ProductDetailsFile::where('id', $id)->first();
+
+        $productdetailfiles->deleted = 1;
+        $productdetailfiles->save();
+        //redirect to product detail
+        return redirect()->back()->with('statusdelete', 'Image Deleted Successfully');
     }
 }
