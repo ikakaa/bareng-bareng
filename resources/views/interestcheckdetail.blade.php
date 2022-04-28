@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -32,10 +33,11 @@
                         <div class="col-md-4 marginleft">
                             <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide"><img src="../{{ $product->productdetailfiles->filepath }}"
-                                            alt=""> </div>
-                                    <div class="swiper-slide"><img src="../{{ $product->productdetailfiles->filepath }}"
-                                            alt=""> </div>
+                                    @foreach ($productfile as $row)
+                                        @if ($row->productid == $product->id)
+                                            <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
+                                        @endif
+                                    @endforeach
 
                                 </div>
                                 <div class="swiper-pagination"></div>
@@ -84,47 +86,64 @@
                             <div class="interest-check-title-wrapper flex justify-between">
                                 <p class="interest-detail-ic pt-4">Estimated shipment date:
                                     {{ $product->shippingdate->format('d-m-Y') }}</p>
-                                {{-- <p class="interest-detail-ic pt-4"> <i class="fas fa-heart custiconsize"></i></p> --}}
-                                <div class="heart"></div>
+                                {{-- <p class="interest-detail-ic pt-4"> --}}
+                                <div class="items-center align-middle flex">
+                                    @if ($checklike==0)
+                                        <div class="tempat-text-heart">
+                                            <p class="pr-3" style="opacity: .7;">{{$totallike}}</p>
+                                        </div>
+                                        <a href="/dislikeproduct/{{ $product->id }}"> <i class="fas fa-heart custiconsize"></i></p></a>
+                                </div>
+                            @endif
+                                @if($checklike==1)
+                                <div class="tempat-text-heart">
+                                    <p style="opacity: .7;">{{$totallike}}</p>
+                                </div>
+                                <a href="/likeproduct/{{ $product->id }}">
+                                    <div class="heart"></div>
+                                </a>
                             </div>
+            @endif
 
-                        </div>
+        </div>
 
-                        <div class="tempat-comment w-full">
-                            <form action="/do_addcomment/{{ $product->id }}" method="POST">
-                                @csrf
-                                <br>
-                                <p class="interest-detail-ic pt-4 pb-2">Add Comment</p>
-                                <textarea name="comment" class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-2/5  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
-                                    cols="30" rows="10"></textarea>
-                                <div class="w-2/5 flex justify-between">
-                                    <p></p>
-                                    <button type="submit"
-                                        class="button-register-primary2 block mt-3  px-2 bg-primary py-1 mb-5">Submit</button>
-                            </form>
-                        </div>
+        </div>
 
-                        <div>
-                            <div class="col-md-6">
-                                <p class="interest-detail-ic pt-4 pb-2">Comments</p>
-                                @foreach ($comments as $comment)
-                                    @if ($product->id == $comment->product_id)
-                                        <div class="card p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="user d-flex flex-row align-items-center">
-                                                    <span><small class="font-weight-bold txt">
-                                                            {{ $comment->commentname }}</small>
-                                                        <br><small
-                                                            class="font-weight-bold">{{ $comment->comment }}</small></span>
-                                                </div> <small id="demo">{{ $comment->created_at }} </small>
-                                            </div>
-                                        </div><br>
-                                    @endif
-                                @endforeach
+        <div class="tempat-comment w-full">
+            <form action="/do_addcomment/{{ $product->id }}" method="POST">
+                @csrf
+                <br>
+                <p class="interest-detail-ic pt-4 pb-2">Add Comment</p>
+                <textarea name="comment"
+                    class="shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-2/5  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
+                    cols="30" rows="10"></textarea>
+                <div class="w-2/5 flex justify-between">
+                    <p></p>
+                    <button type="submit"
+                        class="button-register-primary2 block mt-3  px-2 bg-primary py-1 mb-5">Submit</button>
+            </form>
+        </div>
+
+        <div>
+            <div class="col-md-6">
+                <p class="interest-detail-ic pt-4 pb-2">Comments</p>
+                @foreach ($comments as $comment)
+                    @if ($product->id == $comment->product_id)
+                        <div class="card p-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="user d-flex flex-row align-items-center">
+                                    <span><small class="font-weight-bold txt">
+                                            {{ $comment->commentname }}</small>
+                                        <br><small class="font-weight-bold">{{ $comment->comment }}</small></span>
+                                </div> <small id="demo">{{ $comment->created_at }} </small>
                             </div>
-                        </div>
-                    </div>
-            @endforeach
+                        </div><br>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        </div>
+        @endforeach
         </div>
 
 

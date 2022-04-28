@@ -86,6 +86,8 @@ Route::group(['middleware'=>['checklogin']],function(){
     Route::get('/sellerverification',[App\Http\Controllers\SellerVerificationController::class, 'index']);
 
     //buyer
+    Route::get('/likeproduct/{id}', [App\Http\Controllers\LikeController::class, 'likeproduct']);
+    Route::get('/dislikeproduct/{id}', [App\Http\Controllers\LikeController::class, 'dislikeproduct']);
     Route::get('/order/{id}', [App\Http\Controllers\ProductDetailController::class, 'order']);
     Route::get('/sellerform', [App\Http\Controllers\SellerVerificationController::class, 'sellerform']);
     Route::get('/resetsellerform', [App\Http\Controllers\SellerVerificationController::class, 'resetsellerform']);
@@ -119,15 +121,6 @@ Route::get('/sellerrequestapprove/{id}', [App\Http\Controllers\SellerVerificatio
 Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct'])->middleware('isAdmin');
 
 
-
-// To do list
-// Bikin Halaman Verification
-// Bikin Logic Backend Verification
-// Bikin Backend Verification
-// Bikin Halaman interest check list
-// Tampilin daftar produk interest check list pakai database
-// Bikin timer(?) untuk menghitung waktu sisa interest check list
-// Bikin Middleware untuk menghitung waktu sisa interest check list, jika waktu habis maka Update status InterestDone jadi 1, etc
 
 
 

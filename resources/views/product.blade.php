@@ -15,6 +15,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <link rel="stylesheet" href="/tailwind.css">
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     </head>
 
@@ -26,23 +27,41 @@
                 <p class="interest-detail-ic pt-1 ic-box txt-center">Group Buy is live!</p>
                 <div class="row no-gutters">
                     <div class="col-md-4 marginleft">
-                        <br>
-                        <img src="../{{$product->productdetailfiles->filepath}}" class="card-img" alt="..." style="height:350px;">
-                        <br>
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                @foreach ($productfile as $row)
+                                    @if ($row->productid == $product->id)
+                                        <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
+                                    @endif
+                                @endforeach
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
                     </div>
                     <div class="col-md-5 marginleft">
                         <div class="card-body">
                         <div class="interest-check-title-wrapper flex justify-between">
                             <p class="interest-detail-title">{{$product->product_name}}</p>
-                            <p class="interest-detail-title2">Rp. {{number_format($product->productprice)}}</p> 
+                            <p class="interest-detail-title2">Rp. {{number_format($product->productprice)}}</p>
                         </div>
                         <p class="card-text">{{$product->shortdesc}}</p><br>
                         <p class="card-text">Stocks: {{$product->productstock}}</p>
                         <p class="card-text">Shipment Date: {{$product->shippingdate->format('d-m-Y')}}</p>
+                        Variant :
+                        <form method="POST" action="{{url('order')}}/{{$product->id}}">
+                            @csrf
+                        <select name="producttype"
+                            class="appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+                            <?php  $splitdata=explode(";",$product['productlist']);
+                             foreach($splitdata as $data){ ?>
+                            <option value="{{ $data }}">{{ $data }}</option>
+                            <?php  } ?>
+
+                        </select>
                     </div>
                 </div>
-                <form method="POST" action="{{url('order')}}/{{$product->id}}">
-                    @csrf
+
                     <div class="row">
                       <div class="col">
                         <input class="form-control box-size" type="number" id="qty" name="qty" placeholder="Input Qty" required="">
@@ -51,7 +70,7 @@
                     </div>
                   </form>
             </div>
-            
+
             @endforeach
         </div>
 
@@ -79,6 +98,14 @@
 
         </div>
     </body>
-
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+          loop: true,
+          pagination: {
+              el: ".swiper-pagination",
+          },
+      });
+</script>
     </html>
 @endsection
+

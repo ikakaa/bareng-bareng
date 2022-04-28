@@ -86,9 +86,9 @@ class ProductDetailController extends Controller
         //function untuk menampilkan product
         $products = ProductDetail::where('id', $id->id)->get();
         // $products = ProductDetail::with('productdetailfiles')->where('id', $id->id)->get();
+        $productfile = ProductDetailsFile::all();
 
-
-        return view('product', compact('products'));
+        return view('product', compact('products', 'productfile'));
     }
 
     public function edit(ProductDetailsFile $id)
@@ -190,6 +190,7 @@ class ProductDetailController extends Controller
             $orderdetail->product_id = $products->id;
             $orderdetail->order_id = $neworder->id;
             $orderdetail->qty = $request->qty;
+            $orderdetail->variant=$request->producttype;
             $orderdetail->totalPrice = $products->productprice * $request->qty;
 
             $orderdetail->save();
@@ -397,4 +398,5 @@ class ProductDetailController extends Controller
         //redirect to product detail
         return redirect()->back()->with('statusdelete', 'Image Deleted Successfully');
     }
+
 }
