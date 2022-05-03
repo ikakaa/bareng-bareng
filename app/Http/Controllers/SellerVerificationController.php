@@ -68,6 +68,8 @@ class SellerVerificationController extends Controller
         $product = User::distinct('id')->where('sellerapproval', '0')->where('sellerapprovalsubmit', '1')->get();
         $detail = SellerVerification::all();
         return view('sellerverification', compact('detail', 'product'));
+
+
     }
 
     public function approveseller($id)
@@ -81,8 +83,8 @@ class SellerVerificationController extends Controller
     }
     public function rejectsellerrequest(Request $request)
     {
-        $user = User::find($request->id);
 
+        $user = User::find($request->id);
         $user->sellerapproval = '2';
         $user->sellerrejectreason = $request->reason;
         $user->save();
@@ -90,7 +92,9 @@ class SellerVerificationController extends Controller
         return redirect('/sellerverification')->with('success', 'You have successfully upload image.');
     }
 
-    public function detailform($name){
+    public function detailform($name)
+    {
+
         $detail = SellerVerification::where('user_id', $name)->first();
         return view('sellerformdetail', compact('detail'));
     }
