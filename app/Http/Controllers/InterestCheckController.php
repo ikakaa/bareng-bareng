@@ -8,6 +8,9 @@ use App\Models\ProductDetailsFile;
 use App\Models\ProductComment;
 use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
+
+use function PHPUnit\Framework\isEmpty;
 
 class InterestCheckController extends Controller
 {
@@ -21,6 +24,9 @@ class InterestCheckController extends Controller
 
     public function detail(ProductDetailsFile $id)
     {
+if(!isset(Auth::user()->id)){
+    return redirect('/login');
+}
         $products = ProductDetail::where('id', $id->id)->get();
         $comments = ProductComment::all();
         $productfile = ProductDetailsFile::all();
