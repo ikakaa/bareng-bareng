@@ -104,7 +104,7 @@ class ProductDetailController extends Controller
     public function editdetail(ProductDetailsFile $id)
     {
         $products = ProductDetail::where('id', $id->id)->first();
-        $productfiles = ProductDetailsFile::where('productid', $id->id)->where('deleted','0')->get();
+        $productfiles = ProductDetailsFile::where('productid', $id->id)->where('deleted', '0')->get();
         return view('editdetail', compact('products', 'productfiles'));
     }
 
@@ -190,7 +190,7 @@ class ProductDetailController extends Controller
             $orderdetail->product_id = $products->id;
             $orderdetail->order_id = $neworder->id;
             $orderdetail->qty = $request->qty;
-            $orderdetail->variant=$request->producttype;
+            $orderdetail->variant = $request->producttype;
             $orderdetail->totalPrice = $products->productprice * $request->qty;
 
             $orderdetail->save();
@@ -273,9 +273,14 @@ class ProductDetailController extends Controller
 
     public function ongoing()
     {
-        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 3)->first();
+        $orders = Orders::where('user_id', Auth::user()->id)->get();
         if (!empty($orders)) {
-            $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
+            //Make foreach loop for orders, if orderdetails isset then push array
+            $orderdetails = array();
+            foreach ($orders as $order) {
+                $orderdetails[] = OrderDetails::where('order_id', $order->id)->get();
+            }
+            // return $orderdetails;
             return view('ongoing', compact('orders', 'orderdetails'));
         } else {
             return view('ongoing');
@@ -388,7 +393,7 @@ class ProductDetailController extends Controller
         return redirect()->back()->with('status', 'Image Added Successfully');
     }
 
-    public function deleteproductimg( $id)
+    public function deleteproductimg($id)
     {
 
         $productdetailfiles = ProductDetailsFile::where('id', $id)->first();
@@ -398,5 +403,4 @@ class ProductDetailController extends Controller
         //redirect to product detail
         return redirect()->back()->with('statusdelete', 'Image Deleted Successfully');
     }
-
 }

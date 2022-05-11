@@ -20,6 +20,12 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('qty');
             $table->integer('totalPrice');
             $table->string('variant');
+
+            $table->string('itemsentbyseller')->default('0')->nullable();
+            $table->string('shipmentnumber')->default('0')->nullable();
+            $table->string('itemreceived')->default('0')->nullable();
+            $table->string('deleted')->default('0')->nullable();
+            $table->string('cancelrequest')->default('0')->nullable();
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('product_details');

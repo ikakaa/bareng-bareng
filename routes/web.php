@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ProductDetailsFile;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,8 +120,5 @@ Route::get('/productverification',[App\Http\Controllers\ProductDetailController:
 Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct'])->middleware('isAdmin');
 Route::get('/sellerrequestapprove/{id}', [App\Http\Controllers\SellerVerificationController::class, 'approveseller'])->middleware('isAdmin');
 Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct'])->middleware('isAdmin');
-
-
-
 
 

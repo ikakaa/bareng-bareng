@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -31,45 +32,51 @@
                                 Here's the list of your on-going transaction.
                             </large>
                         </div>
-                    
+
                         <div>
                             <div class="col-md-9">
 
                                 @if (!empty($orders))
-                                
+
                                     @foreach ($orderdetails as $detail)
-                                        
-                                        <div class="card p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="user d-flex flex-row align-items-center"> 
-                                                    <img src="../{{$detail->products->productdetailfiles->filepath}}" class="img-detail-size"> 
-                                                    <span>
-                                                        <div class="font-weight-bold txt cart-txt">{{$detail->products->product_name}}</div> 
-                                                        <div class="cart-txt">Price: Rp. {{number_format($orders->totalPrice)}} </div> 
-                                                        
-                                                    </span> 
-                                                </div> 
-                                                <div>
-                                                    @if ($orders->status == 3)
-                                                    <button class="btn-on-progress">Status: Verification Process</button>
-                                                    @endif
+
+
+                                        <a href="/transactiondetail/{{ $detail[0]->product_id }}" class="">
+                                            <div class="card p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="user d-flex flex-row align-items-center">
+                                                        <img src="../{{ $detail[0]->products->productdetailfiles->filepath }}"
+                                                            class="img-detail-size">
+                                                        <span>
+                                                            <div class="font-weight-bold txt cart-txt">
+                                                                {{ $detail[0]->products->product_name }}</div>
+                                                            <div class="cart-txt">Price: Rp.
+                                                                {{ number_format($orders->totalPrice) }} </div>
+
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        @if ($orders->status == 3)
+                                                            <button class="btn-on-progress">Status: Verification
+                                                                Process</button>
+                                                        @endif
+                                                    </div>
+
                                                 </div>
-                                                
                                             </div>
-                                        </div><br> 
+                                        </a><br>
                                     @endforeach
-                                        
                                 @endif
                             </div>
                         </div>
 
-                                 
+
 
                     </div>
                 </div>
             </div>
-        </div>  
-        
+        </div>
+
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
