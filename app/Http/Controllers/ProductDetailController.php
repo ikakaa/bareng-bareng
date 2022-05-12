@@ -247,7 +247,6 @@ class ProductDetailController extends Controller
         $orders = Orders::where('id', $order_id)->first();
         $orders->status = 3;
         $orders->save();
-
         $payments->payment_proof = $request->payment_proof;
         if ($payments->payment_proof) {
             $payments->payment_proof->move('img', $payments->payment_proof->getClientOriginalName());
@@ -355,11 +354,14 @@ class ProductDetailController extends Controller
         if ($empty) {
             return view('orderhistory');
         } elseif (!empty($orders)) {
+
             $orderdetails = OrderDetails::where('order_id', $id)->get();
-            $order = Orders::where('user_id', Auth::user()->id)->where('status', 1)->first();
+
+            $order = Orders::where('user_id', Auth::user()->id)->where('isFinish', 1)->first();
+
             $order_id = $order->id;
             $payments = Payment::where('order_id', $order_id)->first();
-            return view('orderhistory', compact('orders', 'orderdetails', 'payments'));
+            return view('orderhistory', compact('order', 'orderdetails', 'payments'));
         }
     }
 

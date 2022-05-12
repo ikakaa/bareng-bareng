@@ -41,7 +41,7 @@
                                     @foreach ($orderdetails as $detail)
 
 
-                                        <a href="/transactiondetail/{{ $detail[0]->product_id }}" class="">
+                                        <a href="/transactiondetail/{{ $detail[0]->id }}" class="">
                                             <div class="card p-3">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="user d-flex flex-row align-items-center">
@@ -51,15 +51,16 @@
                                                             <div class="font-weight-bold txt cart-txt">
                                                                 {{ $detail[0]->products->product_name }}</div>
                                                             <div class="cart-txt">Price: Rp.
-                                                                {{ number_format($orders->totalPrice) }} </div>
+                                                                {{ number_format($detail[0]->totalPrice) }} </div>
 
                                                         </span>
                                                     </div>
                                                     <div>
-                                                        @if ($orders->status == 3)
+                                                        @if ($detail[0]->orders->status == 3)
                                                             <button class="btn-on-progress">Status: Verification
                                                                 Process</button>
                                                         @endif
+
                                                     </div>
 
                                                 </div>

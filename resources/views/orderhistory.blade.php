@@ -1,3 +1,8 @@
+@dd($order)
+{{-- @foreach ($order as $row )
+    {{ $row->id }}
+@endforeach --}}
+{{-- <?php exit; ?> --}}
 @extends('layouts.app')
 
 @section('content')
@@ -31,47 +36,49 @@
                                 Here's the list of your order history.
                             </large>
                         </div>
-                    
+
                         <div>
                             <div class="col-md-9">
 
-                                @if (!empty($orders))
-                                
-                                    @foreach ($orders as $order)
-                                        
-                                        @foreach ($order->order_details as $detail)
-                                        <div class="card p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="user d-flex flex-row align-items-center"> 
-                                                    <img src="../{{$detail->products->productdetailfiles->filepath}}" class="img-detail-size"> 
-                                                    <span>
-                                                        <div class="font-weight-bold txt cart-txt">{{$detail->products->product_name}}</div> 
-                                                        <div class="cart-txt">Purchased at: {{$payments->date->format('d-m-Y')}}</div>
+                                @if (!empty($order))
+                                    @foreach ($order as $order)
 
-                                                    </span> 
-                                                </div> 
-                                                <div class="cart-txt">
-                                                    Rp. {{number_format($order->totalPrice)}} 
-                                                    <br> 
-                                                    <a href='/orderhistorydetail/{{$order->id}}' class="details">Details</a>
+                                        @foreach ($order->order_details as $detail)
+                                            <div class="card p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="user d-flex flex-row align-items-center">
+                                                        <img src="../{{ $detail->products->productdetailfiles->filepath }}"
+                                                            class="img-detail-size">
+                                                        <span>
+                                                            <div class="font-weight-bold txt cart-txt">
+                                                                {{ $detail->products->product_name }}</div>
+                                                            <div class="cart-txt">Purchased at:
+                                                                {{ $payments->date->format('d-m-Y') }}</div>
+
+                                                        </span>
+                                                    </div>
+                                                    <div class="cart-txt">
+                                                        Rp. {{ number_format($order->totalPrice) }}
+                                                        <br>
+                                                        <a href='/orderhistorydetail/{{ $order->id }}'
+                                                            class="details">Details</a>
+                                                    </div>
+
                                                 </div>
-                                                
-                                            </div>
-                                        </div><br> 
+                                            </div><br>
                                         @endforeach
-                                        
                                     @endforeach
                                 @endif
                             </div>
                         </div>
 
-                                 
+
 
                     </div>
                 </div>
             </div>
-        </div>  
-        
+        </div>
+
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">

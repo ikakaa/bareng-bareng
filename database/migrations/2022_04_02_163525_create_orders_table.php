@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('user_id');
             $table->date('date');
             $table->string('status');
+            $table->string('isFinish')->default('0')->nullable();
             $table->integer('totalPrice');
             $table->timestamps();
 
