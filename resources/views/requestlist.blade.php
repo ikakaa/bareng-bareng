@@ -1,8 +1,3 @@
-
-{{-- @foreach ($order as $row )
-    {{ $row->id }}
-@endforeach --}}
-{{-- <?php exit; ?> --}}
 @extends('layouts.app')
 
 @section('content')
@@ -40,10 +35,9 @@
                         <div>
                             <div class="col-md-9">
 
-                                @if (!empty($order))
-                                    @foreach ($order as $order)
-
-                                        @foreach ($order->order_details as $detail)
+                                @if (!empty($refunds))
+                                    @foreach ($refunds as $refund)
+                                        @foreach ($refund->order->order_details as $detail)
                                             <div class="card p-3">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="user d-flex flex-row align-items-center">
@@ -52,16 +46,31 @@
                                                         <span>
                                                             <div class="font-weight-bold txt cart-txt">
                                                                 {{ $detail->products->product_name }}</div>
-                                                            <div class="cart-txt">Purchased at:
-                                                                {{ $payments->date->format('d-m-Y') }}</div>
+                                                            {{-- <div class="cart-txt">Purchased at:
+                                                                {{ $payments->date->format('d-m-Y') }}</div> --}}
 
                                                         </span>
                                                     </div>
                                                     <div class="cart-txt">
-                                                        Rp. {{ number_format($order->totalPrice) }}
+                                                        Rp. {{ number_format($refund->order->totalPrice) }}
                                                         <br>
-                                                        <a href='/orderhistorydetail/{{ $order->id }}'
-                                                            class="details">Details</a>
+                                                        @if ($refund->status == 0)
+                                                            <button class="btn-on-progress">Status: Waiting for admin
+                                                            </button>
+                                                        @endif
+                                                        @if ($refund->status == 1)
+                                                            <button class="btn-on-progress">Status: Accepted, we refunded
+                                                                your payment</button>
+                                                        @endif
+                                                        @if ($refund->status == 2)
+                                                            <button class="btn-on-progress">Status: Rejected
+                                                                <br>
+                                                                Reject Reason : ASD
+                                                            </button>
+                                                        @endif
+                                                        <br>
+                                                        {{-- <a href='/orderhistorydetail/{{ $refund->id }}'
+                                                            class="details">Details</a> --}}
                                                     </div>
 
                                                 </div>

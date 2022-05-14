@@ -25,7 +25,6 @@
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -45,10 +44,12 @@
                         <thead>
                             <tr>
                                 <th class="text-black">No.</th>
-                                <th class="text-black">Nama Produk</th>
-                                <th class="text-black">Creator</th>
-                                <th class="text-black">Preview</th>
-                                <th class="text-black">Created at</th>
+                                <th class="text-black">Nama User</th>
+                                <th class="text-black">Title</th>
+                                <th class="text-black">Reason/Message</th>
+                                <th class="text-black">Payment Type</th>
+                                <th class="text-black">Payment Number</th>
+                                <th class="text-black">Requested at</th>
                                 <th class="text-black">Approve</th>
                                 <th class="text-black">Reject</th>
 
@@ -56,13 +57,16 @@
                         </thead>
                         <tbody>
                             <?php $i = 0; ?>
-                            @foreach ($product as $row)
+                            @foreach ($refunds as $row)
                                 <?php $i++; ?>
                                 <tr>
                                     <td>{{ $i }}</td>
-                                    <td><a href="#"> {{ $row->product_name }} </a></td>
-                                    <td>{{ $row->owner }}</td>
-                                    <td><a href="{{ $row->productdetailfiles->filepath }}" target="_blank">Preview</a></td>
+                                    <td><a href="#"> {{ $row->user->name }} </a></td>
+                                    <td>{{ $row->title }}</td>
+                                    <td>{{ $row->reason }}</td>
+                                    <td>{{ $row->paymentType }}</td>
+                                    <td>{{ $row->paymentNumber }}</td>
+
                                     <td>{{ $row->created_at }}</td>
                                     <td><a href="/productapprove/{{ $row->id }}" class="btn-icon bg-custom"><i
                                                 class="fa fa-check"></i></a></td>

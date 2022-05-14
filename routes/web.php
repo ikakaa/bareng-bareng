@@ -94,6 +94,7 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::get('/sellerform', [App\Http\Controllers\SellerVerificationController::class, 'sellerform']);
         Route::get('/resetsellerform', [App\Http\Controllers\SellerVerificationController::class, 'resetsellerform']);
         Route::post('/order/{id}', [App\Http\Controllers\ProductDetailController::class, 'order']);
+        Route::post('/refundsend', [App\Http\Controllers\RefundRequestController::class, 'refundsend']);
         Route::get('/transactiondetail/{id}', [App\Http\Controllers\OrderController::class, 'transactiondetail']);
         Route::get('/payment', [App\Http\Controllers\ProductDetailController::class, 'payment']);
         Route::post('/makeorder', [App\Http\Controllers\ProductDetailController::class, 'makeorder']);
@@ -104,6 +105,7 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::get('/transactiondone/{id}', [App\Http\Controllers\OrderController::class, 'transactiondone']);
         Route::get('/orderhistory', [App\Http\Controllers\ProductDetailController::class, 'orderhistory']);
         Route::get('/orderhistorydetail/{id}', [App\Http\Controllers\ProductDetailController::class, 'orderhistorydetail']);
+        Route::get('/requestlist', [App\Http\Controllers\RefundRequestController::class, 'requestlist']);
 
         Route::get('/ongoing', [App\Http\Controllers\ProductDetailController::class, 'ongoing']);
     });
@@ -116,6 +118,7 @@ Route::get('/paymentreject/{id}', [App\Http\Controllers\ProductDetailController:
 Route::post('/rejectsellerrequest', [App\Http\Controllers\SellerVerificationController::class, 'rejectsellerrequest'])->middleware('isAdmin');
 
 Route::get('/productverification', [App\Http\Controllers\ProductDetailController::class, 'index'])->middleware('isAdmin');
+Route::get('/refundverification', [App\Http\Controllers\RefundRequestController::class, 'refundverification'])->middleware('isAdmin');
 
 Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct'])->middleware('isAdmin');
 Route::get('/sellerrequestapprove/{id}', [App\Http\Controllers\SellerVerificationController::class, 'approveseller'])->middleware('isAdmin');

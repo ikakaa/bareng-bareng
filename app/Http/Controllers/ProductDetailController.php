@@ -357,9 +357,9 @@ class ProductDetailController extends Controller
 
             $orderdetails = OrderDetails::where('order_id', $id)->get();
 
-            $order = Orders::where('user_id', Auth::user()->id)->where('isFinish', 1)->first();
+            $order = Orders::where('user_id', Auth::user()->id)->where('isFinish', 1)->get();
 
-            $order_id = $order->id;
+            $order_id = $order[0]->id;
             $payments = Payment::where('order_id', $order_id)->first();
             return view('orderhistory', compact('order', 'orderdetails', 'payments'));
         }
