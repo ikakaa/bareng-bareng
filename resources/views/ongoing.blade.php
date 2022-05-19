@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -37,11 +36,13 @@
                             <div class="col-md-9">
 
                                 @if (!empty($orders))
-
                                     @foreach ($orderdetails as $detail)
+                                    @if($detail[0]->orders->status == 6)
 
+                                    @else
 
-                                        <a href="/transactiondetail/{{ $detail[0]->id }}" class="">
+                                    <a href="/transactiondetail/{{ $detail[0]->id }}" class="">
+                                    @endif
                                             <div class="card p-3">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="user d-flex flex-row align-items-center">
@@ -56,16 +57,42 @@
                                                         </span>
                                                     </div>
                                                     <div>
+
+                                                        @if ($detail[0]->orders->status == 1)
+                                                            <button class="btn-on-progress">Status: Waiting for seller to
+                                                                finish and send product</button>
+                                                        @endif
+                                                        @if ($detail[0]->orders->status == 2)
+                                                            <button class="btn-on-progress">Status: Payment proof
+                                                                rejected</button>
+                                                        @endif
                                                         @if ($detail[0]->orders->status == 3)
                                                             <button class="btn-on-progress">Status: Verification
                                                                 Process</button>
                                                         @endif
+                                                        @if ($detail[0]->orders->status == 4)
+                                                            <button class="btn-on-progress">Status: Waiting for product
+                                                                arrive to your address, please wait</button>
+                                                        @endif
+                                                        @if ($detail[0]->orders->status == 5)
+                                                            <button class="btn-on-progress">Status: Transaction Complete</button>
+                                                        @endif
+                                                        @if ($detail[0]->orders->status == 6)
+                                                            <button class="btn-on-progress">Status: Refund Requested</button>
+                                                        @endif
+
 
                                                     </div>
 
                                                 </div>
                                             </div>
-                                        </a><br>
+
+                                        @if($detail[0]->orders->status == 6)
+
+                                        @else
+                                    </a>
+                                        @endif
+                                        <br>
                                     @endforeach
                                 @endif
                             </div>

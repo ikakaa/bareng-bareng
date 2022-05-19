@@ -56,7 +56,7 @@
                             <span class="pl-2">Payments Verification</span>
                         </a><br>
 
-                        <a href="#">
+                        <a href="sellerverification">
                             <i class="fas fa-user-check" style="font-size:15px"></i>
                             <span class="pl-2">Seller Verification</span>
                         </a><br>
@@ -123,12 +123,13 @@
                                 <span class="pl-2">Seller Status : Waiting approval</span>
                             </p>
                         @endif
+                        <br> <br>
+                        <a href="/requestlist">
+                            <i class="fas fa-info-circle" aria-hidden="true" style="font-size:15px"></i>
+                            <span class="pl-2">Your request</span>
+                        </a>
                 @endif
-                <br> <br>
-                <a href="/requestlist">
-                    <i class="fas fa-info-circle" aria-hidden="true" style="font-size:15px"></i>
-                    <span class="pl-2">Your request</span>
-                </a>
+
             </div>
 
         </div>

@@ -44,7 +44,8 @@
                         <thead>
                             <tr>
                                 <th class="text-black">No.</th>
-                                <th class="text-black">Nama User</th>
+                                <th class="text-black">Username</th>
+                                <th class="text-black">Total Paid</th>
                                 <th class="text-black">Title</th>
                                 <th class="text-black">Reason/Message</th>
                                 <th class="text-black">Payment Type</th>
@@ -61,7 +62,8 @@
                                 <?php $i++; ?>
                                 <tr>
                                     <td>{{ $i }}</td>
-                                    <td><a href="#"> {{ $row->user->name }} </a></td>
+                                    <td> {{ $row->user->name }} </td>
+                                    <td><a href="#"> {{ $row->order->totalPrice }} </a></td>
                                     <td>{{ $row->title }}</td>
                                     <td>{{ $row->reason }}</td>
                                     <td>{{ $row->paymentType }}</td>

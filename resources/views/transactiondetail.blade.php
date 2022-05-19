@@ -64,6 +64,9 @@
                                 @if ($orderdetails[0]->orders->status == 5)
                                     Transaction Complete
                                 @endif
+                                @if ($orderdetails[0]->orders->status == 6)
+                                    Refund Requested
+                                @endif
 
                             </span>
                         </div>
@@ -95,6 +98,7 @@
                                     <div class="modal-body">
                                         <form method="POST" action="../refundsend">
                                             @csrf
+                                            <input type="hidden" name="id" value="{{$orderdetails[0]->id}}">
                                             <input type="hidden" name="orderid" value="{{$orderdetails[0]->order_id}}">
                                             <div class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Title:</label>

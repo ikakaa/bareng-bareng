@@ -22,6 +22,7 @@ class CreateRefundRequestsTable extends Migration
             $table->string('paymentType')->default('0')->nullable();
             $table->string('paymentNumber')->default('0')->nullable();
             $table->string('status')->default('0')->nullable();
+            $table->string('rejectreason')->default('0')->nullable();
             $table->timestamps();
         });
     }

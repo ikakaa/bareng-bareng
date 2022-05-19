@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orders;
 use App\Models\RefundRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -10,7 +11,9 @@ class RefundRequestController extends Controller
 {
     public function refundsend(Request $request)
     {
-
+        $updatestatusorder=Orders::where('id',$request->id);
+        $updatestatusorder->status='6';
+        $updatestatusorder->save();
         $refund = new RefundRequest;
         $refund->userid = Auth::user()->id;
         $refund->orderid = $request->orderid;
