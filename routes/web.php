@@ -34,6 +34,9 @@ Route::get('/category', function () {
 Route::get('/interestcheck', [App\Http\Controllers\InterestCheckController::class, 'index']);
 Route::get('/interestcheck/{category}', [App\Http\Controllers\InterestCheckController::class, 'interestcheckcategory']);
 Route::get('/interestcheckdetail/{id}', [App\Http\Controllers\InterestCheckController::class, 'detail']);
+Route::get('/refundetail/{id}', [App\Http\Controllers\RefundRequestController::class, 'refunddetail']);
+Route::get('/refundreject', [App\Http\Controllers\RefundRequestController::class, 'refundreject']);
+Route::get('/refundapprove{id}', [App\Http\Controllers\RefundRequestController::class, 'refundapprove']);
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index']);
 Route::get('/groupbuy', [App\Http\Controllers\GroupBuyController::class, 'index']);

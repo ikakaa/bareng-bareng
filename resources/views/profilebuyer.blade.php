@@ -60,6 +60,10 @@
                             <i class="fas fa-user-check" style="font-size:15px"></i>
                             <span class="pl-2">Seller Verification</span>
                         </a><br>
+                        <a href="refundverification">
+                            <i class="fas fa-info" style="font-size:15px"></i>
+                            <span class="pl-2">Refund Verification</span>
+                        </a><br>
                     </div>
                 @else
                     <div class="row space">

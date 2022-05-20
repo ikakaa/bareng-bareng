@@ -34,18 +34,22 @@
 
                         <div>
                             <div class="col-md-9">
-                                    @foreach ($orderdetails as $orderdetail)
+                                @foreach ($orderdetails as $orderdetail)
                                     <div class="card p-3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="user d-flex flex-row align-items-center">
-                                                <img src="../{{$orderdetail->products->productdetailfiles->filepath}}" class="img-detail-size">
+                                                <img src="../{{ $orderdetail->products->productdetailfiles->filepath }}"
+                                                    class="img-detail-size">
                                                 <span>
-                                                    <div class="font-weight-bold txt cart-txt">{{$orderdetail->products->product_name}}</div>
-                                                    <div class="cart-txt">Quantity: {{$orderdetail->qty}}</div>
-                                                    <div class="cart-txt">Shipment Date: {{$orderdetail->products->shippingdate}}</div>
+                                                    <div class="font-weight-bold txt cart-txt">
+                                                        {{ $orderdetail->products->product_name }}</div>
+                                                    <div class="cart-txt">Quantity: {{ $orderdetail->qty }}</div>
+                                                    <div class="cart-txt">Shipment Date:
+                                                        {{ $orderdetail->products->shippingdate }}</div>
                                                 </span>
                                             </div>
-                                            <div class="cart-txt">Rp. {{number_format($orderdetail->totalPrice)}}+ 20.000(Fee)</div>
+                                            <div class="cart-txt">Rp. {{ number_format($orderdetail->totalPrice) }}+
+                                                20.000(Fee)</div>
                                         </div>
                                     </div><br>
                                 @endforeach
@@ -57,27 +61,34 @@
 
                                 @csrf
                                 <label for="recipient_name" class="block sm:mb-2 mb-1 w-full  mt-2">Recipient Name</label>
-                                <input type="text" name="recipient_name" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="John Doe">
+                                <input type="text" name="recipient_name" required
+                                    class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
+                                    placeholder="John Doe">
 
                                 @if (Auth::user()->address == '0')
-                                <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
-                                <input type="text" name="address" disabled class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Jl. Kebun Jeruk">
-                                <small><a href="editprofile">Please add your address here.</a></small>
+                                    <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
+                                    <input type="text" name="address" disabled
+                                        class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
+                                        placeholder="Jl. Kebun Jeruk">
+                                    <small><a href="editprofile">Please add your address here.</a></small>
                                 @else
-                                <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
-                                <input type="text" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" value="{{Auth::user()->address}}">
+                                    <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
+                                    <input type="text" name="address" required
+                                        class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
+                                        value="{{ Auth::user()->address }}">
                                 @endif
 
                                 <label for="payment_method" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Method</label>
-                                <select name="payment_method" class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+                                <select name="payment_method"
+                                    class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
                                     <option value="1">Bank Transfer</option>
                                     <option value="2">E-Wallet</option>
                                     <option value="3">Credit Card</option>
                                 </select>
 
                                 <div class="checkout-bottom-right font-weight-bold txt cart-txt">
-                                <h1 style="margin-left: -5px">Rp. {{number_format($orders->totalPrice+20000)}}</h1>
-                                <button class="button-style" type="submit">Order</button>
+                                    <h1 style="margin-left: -5px">Rp. {{ number_format($orders->totalPrice + 20000) }}</h1>
+                                    <button class="button-style" type="submit">Order</button>
                                 </div>
                             </form>
                         </div>

@@ -37,60 +37,65 @@
 
                                 @if (!empty($orders))
                                     @foreach ($orderdetails as $detail)
-                                    @if($detail[0]->orders->status == 6)
+                                        @if ($detail[0]->orders->status == 6)
+                                        @else
+                                            <a href="/transactiondetail/{{ $detail[0]->id }}">
+                                        @endif
+                                        <div class="card p-3 cursor-pointer">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="user d-flex flex-row align-items-center">
+                                                    <img src="../{{ $detail[0]->products->productdetailfiles->filepath }}"
+                                                        class="img-detail-size">
+                                                    <span>
+                                                        <div class="font-weight-bold txt cart-txt">
+                                                            {{ $detail[0]->products->product_name }}</div>
+                                                        <div class="cart-txt">Price: Rp.
+                                                            {{ number_format($detail[0]->totalPrice) }} </div>
 
-                                    @else
+                                                    </span>
+                                                </div>
+                                                <div>
 
-                                    <a href="/transactiondetail/{{ $detail[0]->id }}" class="">
-                                    @endif
-                                            <div class="card p-3">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="user d-flex flex-row align-items-center">
-                                                        <img src="../{{ $detail[0]->products->productdetailfiles->filepath }}"
-                                                            class="img-detail-size">
-                                                        <span>
-                                                            <div class="font-weight-bold txt cart-txt">
-                                                                {{ $detail[0]->products->product_name }}</div>
-                                                            <div class="cart-txt">Price: Rp.
-                                                                {{ number_format($detail[0]->totalPrice) }} </div>
+                                                    @if ($detail[0]->orders->status == 1)
+                                                        <button class="btn-on-progress">Status: Waiting for seller to
+                                                            finish and send product</button>
+                                                    @endif
+                                                    @if ($detail[0]->orders->status == 2)
+                                                        <button class="btn-on-progress">Status: Payment proof
+                                                            rejected</button>
+                                                    @endif
+                                                    @if ($detail[0]->orders->status == 3)
+                                                        <button class="btn-on-progress">Status: Verification
+                                                            Process</button>
+                                                    @endif
+                                                    @if ($detail[0]->orders->status == 4)
+                                                        <button class="btn-on-progress">Status: Waiting for product
+                                                            arrive to your address, please wait</button>
+                                                    @endif
+                                                    @if ($detail[0]->orders->status == 5)
+                                                        <button class="btn-on-progress">Status: Transaction
+                                                            Complete</button>
+                                                    @endif
+                                                    @if ($detail[0]->orders->status == 6)
+                                                        <button class="btn-on-progress">Status: Refund Requested</button>
+                                                    @endif
+                                                    @if ($detail[0]->orders->status == 7)
+                                                        <button class="btn-on-progress">Status: Refund Rejected.
+                                                            Reason : {{ $detail[0]->orders->rejectStatus }}</button>
+                                                    @endif
+                                                    @if ($detail[0]->orders->status == 8)
+                                                        <button class="btn-on-progress">Status: Refund Approved </button>
+                                                    @endif
 
-                                                        </span>
-                                                    </div>
-                                                    <div>
-
-                                                        @if ($detail[0]->orders->status == 1)
-                                                            <button class="btn-on-progress">Status: Waiting for seller to
-                                                                finish and send product</button>
-                                                        @endif
-                                                        @if ($detail[0]->orders->status == 2)
-                                                            <button class="btn-on-progress">Status: Payment proof
-                                                                rejected</button>
-                                                        @endif
-                                                        @if ($detail[0]->orders->status == 3)
-                                                            <button class="btn-on-progress">Status: Verification
-                                                                Process</button>
-                                                        @endif
-                                                        @if ($detail[0]->orders->status == 4)
-                                                            <button class="btn-on-progress">Status: Waiting for product
-                                                                arrive to your address, please wait</button>
-                                                        @endif
-                                                        @if ($detail[0]->orders->status == 5)
-                                                            <button class="btn-on-progress">Status: Transaction Complete</button>
-                                                        @endif
-                                                        @if ($detail[0]->orders->status == 6)
-                                                            <button class="btn-on-progress">Status: Refund Requested</button>
-                                                        @endif
-
-
-                                                    </div>
 
                                                 </div>
+
                                             </div>
+                                        </div>
 
-                                        @if($detail[0]->orders->status == 6)
-
+                                        @if ($detail[0]->orders->status == 6)
                                         @else
-                                    </a>
+                                            </a>
                                         @endif
                                         <br>
                                     @endforeach

@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('status');
             $table->string('isFinish')->default('0')->nullable();
             $table->integer('totalPrice');
+            $table->string('rejetStatus')->default('0')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

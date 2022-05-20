@@ -35,9 +35,9 @@
 
     <body>
         <div class="container min-h-screen pt-3">
-            <div class=" mx-auto w-4/5 table-card">
+            <div class=" mx-auto w-auto table-card">
                 <div class=" table-card-body">
-                    <h4 class="table-card-title mb-4">Product Verification</h4>
+                    <h4 class="table-card-title mb-4">Refund Verification</h4>
 
 
                     <table id="table_id" class="display table-hover bg-white">
@@ -46,6 +46,7 @@
                                 <th class="text-black">No.</th>
                                 <th class="text-black">Username</th>
                                 <th class="text-black">Total Paid</th>
+                                <th class="text-black">Order Detail</th>
                                 <th class="text-black">Title</th>
                                 <th class="text-black">Reason/Message</th>
                                 <th class="text-black">Payment Type</th>
@@ -64,13 +65,14 @@
                                     <td>{{ $i }}</td>
                                     <td> {{ $row->user->name }} </td>
                                     <td><a href="#"> {{ $row->order->totalPrice }} </a></td>
+                                    <td><a href="refundetail/{{ $row->id }}"> Detail </a></td>
                                     <td>{{ $row->title }}</td>
                                     <td>{{ $row->reason }}</td>
                                     <td>{{ $row->paymentType }}</td>
                                     <td>{{ $row->paymentNumber }}</td>
 
                                     <td>{{ $row->created_at }}</td>
-                                    <td><a href="/productapprove/{{ $row->id }}" class="btn-icon bg-custom"><i
+                                    <td><a href="/refundapprove/{{ $row->id }}" class="btn-icon bg-custom"><i
                                                 class="fa fa-check"></i></a></td>
                                     <td>
                                         <div class="modal fade" id="exampleModal{{ $row->id }}" tabindex="-1"
@@ -86,7 +88,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form method="POST" action="/rejectproduct">
+                                                        <form method="POST" action="/refundreject">
                                                             @csrf
                                                             <div class="form-group">
                                                                 <label for="message-text" class="col-form-label">Reject
