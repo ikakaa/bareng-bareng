@@ -52,7 +52,10 @@
                         <i class="fa fa-plus-square" style="font-size:15px"></i>
                         <span class="pl-2">Upload Products</span>
                     </a><br>
-
+                    <a href="/ongoingseller">
+                        <i class="fa fa-shopping-cart" style="font-size:15px"></i>
+                        <span class="pl-2">On-going Seller Transaction </span>
+                    </a><br>
                     <a href="myproductlist">
                         <i class="fa fa-bars"aria-hidden="true" style="font-size:15px"></i>
                         <span class="pl-2">My Product List</span>

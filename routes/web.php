@@ -84,6 +84,7 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::patch('/editdetail/{id}', [App\Http\Controllers\ProductDetailController::class, 'updatedetail']);
 
         Route::get('/myproductlist', [App\Http\Controllers\ProductDetailController::class, 'myproductlist']);
+        Route::get('/ongoingseller', [App\Http\Controllers\OrderController::class, 'ongoingseller']);
 
         Route::get('/productverificationlist', [App\Http\Controllers\ProductDetailController::class, 'productverificationlist']);
 
