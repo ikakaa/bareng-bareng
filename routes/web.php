@@ -85,6 +85,8 @@ Route::group(['middleware' => ['checklogin']], function () {
 
         Route::get('/myproductlist', [App\Http\Controllers\ProductDetailController::class, 'myproductlist']);
         Route::get('/ongoingseller', [App\Http\Controllers\OrderController::class, 'ongoingseller']);
+        Route::post('/itemsent', [App\Http\Controllers\OrderController::class, 'itemsent']);
+        Route::get('/ongoingsellerdetail/{id}', [App\Http\Controllers\OrderController::class, 'ongoingsellerdetail']);
 
         Route::get('/productverificationlist', [App\Http\Controllers\ProductDetailController::class, 'productverificationlist']);
 

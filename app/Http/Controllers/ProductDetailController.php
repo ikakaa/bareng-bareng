@@ -191,7 +191,7 @@ class ProductDetailController extends Controller
             $orderdetail->order_id = $neworder->id;
             $orderdetail->qty = $request->qty;
             $orderdetail->variant = $request->producttype;
-            $orderdetail->totalPrice = $products->productprice * $request->qty;
+            $orderdetail->totalPrice = $products->productprice * $request->qty+20000;
 
             $orderdetail->save();
         } else {
@@ -208,7 +208,7 @@ class ProductDetailController extends Controller
 
         //update total price di table order
         $order = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        $order->totalPrice = $order->totalPrice + $products->productprice * $request->qty;
+        $order->totalPrice = $order->totalPrice + $products->productprice * $request->qty+20000;
         $order->update();
 
         return redirect('home');

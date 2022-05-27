@@ -40,8 +40,8 @@
                                 @foreach ($orderdetails as $detail)
                                     @if ($detail->products->owner == $sellername)
 
-                                    @if($detail->orders->status == 1 || $detail->orders->status==4)
-                                        <a href="/transactiondetail/{{ $detail->id }}">
+                                    @if($detail->orders->status == 1 )
+                                        <a href="/ongoingsellerdetail/{{ $detail->id }}">
                                             @endif
                                             {{-- @endif --}}
                                             <div class="card p-3 cursor-pointer">
@@ -98,7 +98,7 @@
                                                 </div>
                                             </div>
 
-                                            @if($detail->orders->status == 1 || $detail->orders->status==4)
+                                            @if($detail->orders->status == 1 )
 
                                         </a>
                                         @endif

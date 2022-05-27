@@ -7,6 +7,8 @@ use App\Models\Orders;
 use App\Models\ProductDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Payment;
+
 class OrderController extends Controller
 {
     public function transactiondetail($id)
@@ -35,5 +37,22 @@ class OrderController extends Controller
         $products = ProductDetail::all();
         $sellername = Auth::user()->name;
         return view('ongoingseller', compact('orderdetails', 'products', 'sellername'));
+    }
+    public function ongoingsellerdetail($id)
+    {
+        $ambilorderdetail = OrderDetails::where('id', $id)->get();
+        $ambilorder = Orders::where('id', $ambilorderdetail[0]->order_id)->get();
+
+        $ambilpayment = Payment::where('order_id', $ambilorder[0]->id)->get();
+        return view('ongoingsellerdetail', compact('ambilorderdetail', 'ambilorder', 'ambilpayment'));
+    }
+    public function itemsent(Request $request)
+    {
+        $ambilorder = Orders::where('id', $request->orderdetailid)->get();
+        $ambilorder[0]->status = 4;
+        $ambilorder[0]->save();
+
+        // redirect
+    return redirect('/profileseller');
     }
 }
