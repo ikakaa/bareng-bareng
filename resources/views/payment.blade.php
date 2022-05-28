@@ -48,8 +48,7 @@
                                                         {{ $orderdetail->products->shippingdate }}</div>
                                                 </span>
                                             </div>
-                                            <div class="cart-txt">Rp. {{ number_format($orderdetail->totalPrice) }}+
-                                                20.000(Fee)</div>
+                                            <div class="cart-txt">Rp. {{ number_format($orderdetail->totalPrice) }}  (Inc Rp.20.000 Fee)</div>
                                         </div>
                                     </div><br>
                                 @endforeach
@@ -87,7 +86,7 @@
                                 </select>
 
                                 <div class="checkout-bottom-right font-weight-bold txt cart-txt">
-                                    <h1 style="margin-left: -5px">Rp. {{ number_format($orders->totalPrice + 20000) }}</h1>
+                                    <h1 style="margin-left: -5px">Rp. {{ number_format($orders->totalPrice ) }}</h1>
                                     <button class="button-style" type="submit">Order</button>
                                 </div>
                             </form>

@@ -62,6 +62,9 @@ class RefundRequestController extends Controller
         $refund->save();
         $order = Orders::where('id', $refund->orderid)->first();
         $order->status = '8';
+
         return redirect('/refundverification')->with('success', 'Refund request approved successfully');
     }
+
 }
+

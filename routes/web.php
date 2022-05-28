@@ -112,7 +112,7 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::get('/orderhistory', [App\Http\Controllers\ProductDetailController::class, 'orderhistory']);
         Route::get('/orderhistorydetail/{id}', [App\Http\Controllers\ProductDetailController::class, 'orderhistorydetail']);
         Route::get('/requestlist', [App\Http\Controllers\RefundRequestController::class, 'requestlist']);
-
+        Route::get('/recommendation', [App\Http\Controllers\UserViewController::class, 'recommendation']);
         Route::get('/ongoing', [App\Http\Controllers\ProductDetailController::class, 'ongoing']);
     });
 });
