@@ -21,9 +21,7 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[App\Http\Controllers\UserViewController::class, 'home']);
 
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -44,9 +42,7 @@ Route::get('/groupbuy/{category}', [App\Http\Controllers\GroupBuyController::cla
 Route::get('/product/{id}', [App\Http\Controllers\ProductDetailController::class, 'detail']);
 Route::get('/sellerformdetail/{name}', [App\Http\Controllers\SellerVerificationController::class, 'detailform']);
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/home',[App\Http\Controllers\UserViewController::class, 'home']);
 Auth::routes();
 Route::get('/editdetail/uploads/{path}/{path2}', [StorageController::class, 'download']);
 Route::get('/deleteproductimg/{id}', [App\Http\Controllers\ProductDetailController::class, 'deleteproductimg']);

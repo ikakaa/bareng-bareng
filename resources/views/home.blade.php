@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -77,7 +78,7 @@
             </div></a></div>
     </div>
 </div>
-        <p class="card-title text-center  text-white py-12">Featured Products</p>
+        <p class="card-title text-center  text-white pt-16 pb-6">Featured Products</p>
         <div class="tempat-card flex justify-center w-full pb-24">
             <div class="card-custom mr-4">
                 <div class="card-img">
@@ -122,7 +123,7 @@
                         </div>
                     </div>
                 </div>
-            </div>  <div class="card-custom">
+            </div>  <div class="card-custom mr-4">
                 <div class="card-img">
                     <img src="src/a.jpg" alt="">
                 </div>
@@ -144,6 +145,40 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <p class="card-title text-center  text-white ">Recommended Products For You</p>
+        <div class="tempat-card flex justify-center w-full pb-24">
+            @isset($productrecommendation)
+            <?php $limitrecommendation=0 ?>
+         @foreach($productrecommendation as $product)
+         <?php if($limitrecommendation==3)break; ?>
+         @if($product->product->interestdone==1 && $product->product->isfinish==0)
+            <div class="card-custom mr-4">
+                <div class="card-img">
+                    <img src="src/a.jpg" alt="">
+                </div>
+                <div class="card-text w-full px-2 pb-3 ">
+                    <p class="card-header2 pt-1">{{$product->product->product_name}} </p>
+                    <p class="card-info pt-2 ">{{$product->product->shortdesc}}
+                    </p>
+                    <div class="flex justify-between w-full ">
+                        <div class="mini-card-box ">
+                            <p class="price">Price</p>
+                            <p class="price-number block">{{$product->product->productprice}}</p>
+                        </div>
+                        <div class="mini-card-button">
+
+                            <a href="product/{{$product->product->id}}" target="_blank"
+                                class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
+                                to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php $limitrecommendation++; ?>
+            @endif
+            @endforeach
+@endisset
         </div>
 
         <div class="footer mt-10">

@@ -19,6 +19,10 @@ class OrderController extends Controller
     public function transactiondone($id)
     {
         $orderdetails = OrderDetails::where('id', $id)->get();
+        $productdetailupdate=ProductDetail::where('id',$orderdetails[0]->productid)->first();
+        $productdetailupdate->isfinish=1;
+        $productdetailupdate->sellingdone=1;
+        $productdetailupdate->save();
         $order = Orders::where('id', $orderdetails[0]->order_id)->get();
 
         //update order status to 5
