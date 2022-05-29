@@ -22,7 +22,7 @@
     <body>
 
         <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-            <div class="card card-size">
+            <div class="card card-size h-auto pb-12">
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <img src="../src/FullLogo-removebg-preview (2).png" style="height: 80px; width: 80px" alt="">
                 </div>

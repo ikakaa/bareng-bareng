@@ -106,8 +106,6 @@
                                 <span class="pl-2">Request to be seller</span>
                             </a>
                         @endif
-
-
                         @if (Auth::user()->sellerapproval == 2)
                             <a href="/resetsellerform">
                                 <i class="fas fa-store" aria-hidden="true" style="font-size:15px"></i>
@@ -130,7 +128,7 @@
                         <br> <br>
                         <a href="/requestlist">
                             <i class="fas fa-info-circle" aria-hidden="true" style="font-size:15px"></i>
-                            <span class="pl-2">Your request</span>
+                            <span class="pl-2">Refund Request</span>
                         </a>
                 @endif
 

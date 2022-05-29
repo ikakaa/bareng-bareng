@@ -22,6 +22,10 @@
     </head>
 
     <body>
+        <button onclick="location.href='{{url('/sellerverification')}}'" class="btn-back mx-4">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Back
+        </button>
         <p class="card-title uppercase  text-white mx-4 py-3">Request Seller Form</p>
 
         <div class="tempat-form mx-4">
@@ -66,9 +70,6 @@
                     <label for="uploadphoto" class="block sm:mb-2 mb-1 w-full  mt-2">Seller selfie with identity
                         card</label>
                     <img src="../{{$detail->identitypath}}" alt="" width="450x" height="500px">
-                    <div class="button-right-bottom">
-                        <a href="/sellerverification" class="button-style">Back </a>
-                    </div>
 
                 </form>
             </div>

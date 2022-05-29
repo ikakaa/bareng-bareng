@@ -36,6 +36,7 @@
     </head>
 
     <body>
+        
         <div class="container min-h-screen pt-3">
             <div class=" mx-auto w-4/5 table-card">
 
@@ -49,6 +50,10 @@
                         <div class="alert alert-warning mb-3 mt-1 w-full">Seller Rejected!</div>
                         <?php session()->forget('sellerrejected'); ?>
                     @endif
+                    <button onclick="location.href='{{url('/profilebuyer')}}'" class="btn-back">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        Back
+                    </button>
                     <h4 class="table-card-title mb-4">Seller Approval</h4>
 
 

@@ -17,7 +17,7 @@ class CreateUserViewsTable extends Migration
             $table->id();
             $table->string('userid');
             $table->string('productid');
-            $table->integer('view')->nullable->default(0);
+            $table->integer('view')->default(0)->nullable();
             $table->timestamps();
         });
     }

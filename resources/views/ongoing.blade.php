@@ -25,6 +25,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
+                        <button onclick="location.href='{{url('/profilebuyer')}}'" class="btn-back mx-3">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Back
+                        </button>
                         <div class="title-upper-left">
                             <h1 class="title txt ">On-going Transaction</h1>
                             <large>

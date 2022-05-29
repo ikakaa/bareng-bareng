@@ -25,6 +25,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
+                        <button onclick="location.href='{{url('/profileseller')}}'" class="btn-back mx-3">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Back
+                        </button>
                         <div class="title-upper-left">
                             <h1 class="title txt">Product Verification List</h1>
                             <large>

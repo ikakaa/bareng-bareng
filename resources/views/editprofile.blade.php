@@ -23,6 +23,10 @@
     </head>
 
     <body>
+        <button onclick="location.href='{{url('/profilebuyer')}}'" class="btn-back mx-4">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Back
+        </button>
         <p class="card-title uppercase  text-white mx-4 py-3">Edit Profile</p>
 
         <div class="tempat-form mx-4">
