@@ -62,6 +62,7 @@ class UserViewController extends Controller
 
     }
     public function home(){
+        if(isset(Auth::user()->id)){
         function divnum($numerator, $denominator)
         {
             return $denominator == 0 ? 0 : ($numerator / $denominator);
@@ -109,5 +110,9 @@ class UserViewController extends Controller
         $mostsimilaruid = $key;
         $productrecommendation=UserView::where('userid',$mostsimilaruid)->get();
         return view('home',compact('productrecommendation'));
-    }
+    }else{
+        return view('home');
+        }
+}
+
 }

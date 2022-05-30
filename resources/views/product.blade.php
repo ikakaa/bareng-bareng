@@ -30,7 +30,7 @@
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 @foreach ($productfile as $row)
-                                    @if ($row->productid == $product->id)
+                                    @if ($row->productid == $product->id && $row->deleted==0)
                                         <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
                                     @endif
                                 @endforeach
