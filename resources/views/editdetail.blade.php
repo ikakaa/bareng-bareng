@@ -134,7 +134,7 @@
                                 <th scope="row">1</th>
                                 <td>{{$row->filename}}</td>
                                 <td><a href="{{$row->filepath}}" target="_blank" >Preview</a></td>
-                                <td><a href="/deleteproductimg/{{$row->id}}" onclick="return confirm('Are you sure?')"><i class="fas fa-times text-red-600"></i></a></td>
+                                <td><a href="/deleteproductimg/{{$row->id}}" onclick="return confirm('Are you sure you want to delete this image?')"><i class="fas fa-trash text-red-600"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>
