@@ -30,7 +30,7 @@
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 @foreach ($productfile as $row)
-                                    @if ($row->productid == $product->id)
+                                    @if ($row->productid == $product->id && $row->deleted==0)
                                         <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
                                     @endif
                                 @endforeach
@@ -64,9 +64,18 @@
 
                     <div class="row">
                       <div class="col">
-                        <input class="form-control box-size" type="number" id="qty" name="qty" placeholder="Input Qty" required="">
+                        <input class="form-control box-size" type="number" id="qty" name="qty" placeholder="Input Qty" required="" min="1" max="{{$product->productstock}}">
                       </div>
+                      @if($product->productstock<=0)
+                        <button type="button" disabled class="button-style buy-bottom-right">Out of stock</button>
+                        @endif
+                      @if($product->isfinish==1)
+
+                      <button type="button" disabled class="button-style buy-bottom-right">Expired</button>
+                      @endif
+                      @if($product->productstock>0 && $product->isfinish==0)
                         <button type="submit" class="button-style buy-bottom-right">Buy</button>
+                        @endif
                     </div>
                   </form>
             </div>

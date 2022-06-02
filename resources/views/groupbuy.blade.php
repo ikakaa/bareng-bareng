@@ -56,10 +56,13 @@
 
                 <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
                     @foreach ($products as $product)
+
                     <div class="card-custom mr-4 col cursor-pointer" onclick="location.href='{{url('/product')}}/{{$product->id}}'">
                         <div class="ic-box-card txt-center"><i class="fas fa-door-open"></i> Group Buy Starts</div>
                         <div class="card-img mt-3">
+
                             <img src="../{{$product->productdetailfiles->filepath}}" alt="">
+
                         </div>
                         <div class="card-text w-full px-2 pb-3 txt-center">
                             <a class="card-header2 pt-1" href="/product/{{$product->id}}">{{$product->product_name}}</a>
@@ -72,6 +75,7 @@
                             </div>
                         </div>
                     </div>
+
                     @endforeach
                 </div>
                 <div class="flex justify-center">
