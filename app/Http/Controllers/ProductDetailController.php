@@ -7,6 +7,7 @@ use App\Models\ProductDetailsFile;
 use App\Models\Orders;
 use App\Models\OrderDetails;
 use App\Models\Payment;
+use App\Models\UserView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -83,6 +84,20 @@ class ProductDetailController extends Controller
 
     public function detail(ProductDetailsFile $id)
     {
+        if (isset(Auth::user()->id)) {
+            $checkdata = UserView::where('userid', Auth::user()->id)->where('productid', $id->productid)->first();
+            if (isset($checkdata->id)) {
+
+                $checkdata->view = $checkdata->view + 1;
+                $checkdata->save();
+            } else {
+                $userview = new UserView;
+                $userview->userid = Auth::user()->id;
+                $userview->productid = $id->productid;
+                $userview->view = 1;
+                $userview->save();
+            }
+        }
         //function untuk menampilkan product
         $products = ProductDetail::where('id', $id->id)->get();
         // $products = ProductDetail::with('productdetailfiles')->where('id', $id->id)->get();
@@ -191,7 +206,7 @@ class ProductDetailController extends Controller
             $orderdetail->order_id = $neworder->id;
             $orderdetail->qty = $request->qty;
             $orderdetail->variant = $request->producttype;
-            $orderdetail->totalPrice = $products->productprice * $request->qty+20000;
+            $orderdetail->totalPrice = $products->productprice * $request->qty + 20000;
 
             $orderdetail->save();
         } else {
@@ -208,7 +223,7 @@ class ProductDetailController extends Controller
 
         //update total price di table order
         $order = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        $order->totalPrice = $order->totalPrice + $products->productprice * $request->qty+20000;
+        $order->totalPrice = $order->totalPrice + $products->productprice * $request->qty + 20000;
         $order->update();
 
         return redirect('home');
@@ -229,6 +244,10 @@ class ProductDetailController extends Controller
             'recipient_name' => ['required', 'string', 'min:5', 'max:255'],
             'address' => ['required', 'string', 'min:5', 'max:255'],
         ]);
+        $getorderdetail = OrderDetails::where('order_id', $orders->id)->first();
+        $updatestock = ProductDetail::where('id', $getorderdetail->product_id)->first();
+        $updatestock->productstock = $updatestock->productstock - $getorderdetail->qty;
+        $updatestock->update();
 
         $payments->order_id = $orders->id;
         $payments->recipient_name = $request->input('recipient_name');
@@ -260,12 +279,12 @@ class ProductDetailController extends Controller
         $payments->save();
 
         $order_id = $payments->order_id;
-        $orderdetails = OrderDetails::where('order_id', $order_id)->get();
-        foreach ($orderdetails as $orderdetail) {
-            $product = ProductDetail::where('id', $orderdetail->product_id)->first();
-            $product->productstock =  $product->productstock - $orderdetail->qty;
-            $product->update();
-        }
+        $orderdetails = OrderDetails::where('order_id', $order_id)->first();
+
+        $product = ProductDetail::where('id', $orderdetails->product_id)->first();
+
+        $product->update();
+
 
         return redirect('home');
     }
