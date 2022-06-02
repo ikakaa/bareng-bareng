@@ -18,8 +18,8 @@ class InterestCheckController extends Controller
     {
         $products = ProductDetail::distinct('id')->where('verified', '1')->where('interestdone', '0')->paginate(8);
         $product = ProductDetail::find($id);
-
-        return view('interestcheck', compact('products', 'product'));
+        $productfiles=ProductDetailsFile::all();
+        return view('interestcheck', compact('products', 'product', 'productfiles'));
     }
 
     public function detail(ProductDetailsFile $id)
@@ -46,6 +46,7 @@ $checklike='1';
     {
         $products = ProductDetail::distinct('id')->where('verified', '1')->where('interestdone', '0')->where('product_type', $category)->paginate(8);
         $checkfilter = true;
-        return view('interestcheckfilter', compact('products', 'checkfilter'));
+        $productfiles=ProductDetailsFile::all();
+        return view('interestcheckfilter', compact('products', 'checkfilter', 'productfiles'));
     }
 }

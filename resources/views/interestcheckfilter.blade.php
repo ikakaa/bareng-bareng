@@ -24,8 +24,8 @@
     </head>
 
     <body>
-        <div  class="swiffy-slider slider-item-reveal slider-nav-page slider-nav-autoplay slider-nav-animation slider-nav-animation-appear slider-item-ratio slider-item-ratio-21x9"
-        data-slider-nav-autoplay-interval="3000" id="slider1">
+        <div class="swiffy-slider slider-item-reveal slider-nav-page slider-nav-autoplay slider-nav-animation slider-nav-animation-appear slider-item-ratio slider-item-ratio-21x9"
+            data-slider-nav-autoplay-interval="3000" id="slider1">
             <ul class="slider-container">
                 <li><a href="/category"><img src="../src/slider1.png" loading="lazy" alt="..."></a></li>
                 <li><a href="#"><img src="../src/slider2.png" loading="lazy" alt="..."></a></li>
@@ -54,59 +54,65 @@
                 <a href="/interestcheck/others" class="button-style button-border">Others</a>
             </div>
 
-                <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
-                    @foreach ($products as $product)
-                    <div class="card-custom mr-4 col" onclick="location.href='{{url('/interestcheckdetail')}}/{{$product->id}}'">
+            <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
+                @foreach ($products as $product)
+                    <div class="card-custom mr-4 col"
+                        onclick="location.href='{{ url('/interestcheckdetail') }}/{{ $product->id }}'">
                         <div class="ic-box-card txt-center"><i class="far fa-thumbs-up"></i> Interest Check</div>
                         <div class="card-img mt-3">
-                            <img src="../../{{$product->productdetailfiles->filepath}}" alt="">
-                        </div>
-                        <div class="card-text w-full px-2 pb-3 txt-center">
-                            <a class="card-header2 pt-1">{{$product->product_name}}</a>
-                            <div class="flex justify-between w-full ">
+                            @foreach($productfiles as $productfile)
+                            @if ($productfile->productid == $product->id && $productfile->deleted == 0)
+                                <img src="../{{ $productfile->filepath }}" alt="">
+                            @break
+                        @endif
+            @endforeach
+        </div>
+        <div class="card-text w-full px-2 pb-3 txt-center">
+            <a class="card-header2 pt-1">{{ $product->product_name }}</a>
+            <div class="flex justify-between w-full ">
 
-                            </div>
-                            <div class="mini-card-box ">
+            </div>
+            <div class="mini-card-box ">
 
-                                <p class="price-number block mb-2">Rp. {{number_format($product->productprice)}}</p>
-                                <button class="button-style font-semibold rounded-md">Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="flex justify-center">
-                    {{$products->links()}}
-                </div>
+                <p class="price-number block mb-2">Rp. {{ number_format($product->productprice) }}</p>
+                <button class="button-style font-semibold rounded-md">Details</button>
+            </div>
+        </div>
+    </div>
+    @endforeach
+    </div>
+    <div class="flex justify-center">
+        {{ $products->links() }}
+    </div>
 
 
 
+    </div>
+    </div>
+
+    <div class="footer mt-10">
+        <div class="footer-1 py-5 pt-8 w-full bg-navbar">
+            <div class="justify-center flex">
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="footer-text-container flex justify-center py-8 sm:pl-3">
+                <a href="#" class="footer-href ">Contact</a>
+                <a href="#" class="footer-href ">FAQs</a>
+                <a href="#" class="footer-href2 ">Order Tracking</a>
+            </div>
+            <div class="copyright-text pt-12">
+                <p>Indonesia shipping available!</p>
+            </div>
+            <div class="copyright-text pt-16 py-8">
+                — Powered by <a href="#" class="underline italic">BarengBareng</a>
             </div>
         </div>
 
-        <div class="footer mt-10">
-            <div class="footer-1 py-5 pt-8 w-full bg-navbar">
-                <div class="justify-center flex">
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
-                </div>
-                <div class="footer-text-container flex justify-center py-8 sm:pl-3">
-                    <a href="#" class="footer-href ">Contact</a>
-                    <a href="#" class="footer-href ">FAQs</a>
-                    <a href="#" class="footer-href2 ">Order Tracking</a>
-                </div>
-                <div class="copyright-text pt-12">
-                    <p>Indonesia shipping available!</p>
-                </div>
-                <div class="copyright-text pt-16 py-8">
-                    — Powered by <a href="#" class="underline italic">BarengBareng</a>
-                </div>
-            </div>
+    </div>
+</body>
 
-        </div>
-    </body>
-
-    </html>
+</html>
 @endsection

@@ -16,7 +16,8 @@ class GroupBuyController extends Controller
     }
 public function groupbuycategory($category){
     $products = ProductDetail::distinct('id')->where('verified','1')->where('interestdone', '1')->where('product_type', $category)->paginate(8);
-    return view('groupbuyfilter', compact('products'));
+    $productfiles=ProductDetailsFile::all();
+    return view('groupbuyfilter', compact('products','productfiles'));
 
 }
 

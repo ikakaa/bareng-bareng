@@ -59,7 +59,12 @@
                     <div class="card-custom mr-4 col" onclick="location.href='{{url('/product')}}/{{$product->id}}'">
                         <div class="ic-box-card txt-center"><i class="fas fa-door-open"></i> Group Buy Starts</div>
                         <div class="card-img mt-3">
-                            <img src="../../{{$product->productdetailfiles->filepath}}" alt="">
+                            @foreach ($productfiles as $productfile)
+                            @if($productfile->productid == $product->id && $productfile->deleted==0)
+                                <img src="../{{ $productfile->filepath }}" alt="">
+                                @break
+                                @endif
+                            @endforeach
                         </div>
                         <div class="card-text w-full px-2 pb-3 txt-center">
                             <a class="card-header2 pt-1" href="/product/{{$product->id}}">{{$product->product_name}}</a>
