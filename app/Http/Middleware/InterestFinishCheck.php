@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Like;
 use Closure;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -22,16 +23,32 @@ class InterestFinishCheck
 
         date_default_timezone_set('Asia/Bangkok');
         $tgl      = date('Y-m-d H:i:s');
-        $productlist=ProductDetail::where('verified','1')->get();
-       //loop all database
-        foreach($productlist as $row){
-            $dateexpired = ($row->enddate.' '.$row->endtime);
+        $productlist = ProductDetail::where('verified', '1')->get();
+        //loop all database
+        foreach ($productlist as $row) {
+            $dateexpired = ($row->enddate . ' ' . $row->endtime);
             $datecurrent = Carbon::now();
-            if($datecurrent>$dateexpired){
-                $row->interestdone='1';
-                $row->save();
-            }
+            if ($datecurrent > $dateexpired) {
 
+                $gettotallike = Like::where('product_id', $row->id)->count('status');
+                // @dd($gettotallike);
+                if (isset($gettotallike)) {
+                    if ($gettotallike >= $row->moq) {
+                        $row->interestdone = '1';
+                        $row->save();
+                    } else {
+                        $row->interestdone = '1';
+                        $row->sellingdone = '1';
+                        $row->isfinish = '1';
+                        $row->save();
+                    }
+                } else {
+                    $row->interestdone = '1';
+                    $row->sellingdone = '1';
+                    $row->isfinish = '1';
+                    $row->save();
+                }
+            }
         }
         return $next($request);
     }

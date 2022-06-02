@@ -24,8 +24,8 @@
     </head>
 
     <body>
-        <div  class="swiffy-slider slider-item-reveal slider-nav-page slider-nav-autoplay slider-nav-animation slider-nav-animation-appear slider-item-ratio slider-item-ratio-21x9"
-        data-slider-nav-autoplay-interval="3000" id="slider1">
+        <div class="swiffy-slider slider-item-reveal slider-nav-page slider-nav-autoplay slider-nav-animation slider-nav-animation-appear slider-item-ratio slider-item-ratio-21x9"
+            data-slider-nav-autoplay-interval="3000" id="slider1">
             <ul class="slider-container">
                 <li><a href="/category"><img src="src/slider1.png" loading="lazy" alt="..."></a></li>
                 <li><a href="#"><img src="src/slider2.png" loading="lazy" alt="..."></a></li>
@@ -54,36 +54,40 @@
                 <a href="/groupbuy/others" class="button-style button-border">Others</a>
             </div>
 
-                <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
-                    @foreach ($products as $product)
-
-                    <div class="card-custom mr-4 col cursor-pointer" onclick="location.href='{{url('/product')}}/{{$product->id}}'">
+            <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
+                @foreach ($products as $product)
+                    <div class="card-custom mr-4 col cursor-pointer"
+                        onclick="location.href='{{ url('/product') }}/{{ $product->id }}'">
                         <div class="ic-box-card txt-center"><i class="fas fa-door-open"></i> Group Buy Starts</div>
                         <div class="card-img mt-3">
 
-                            <img src="../{{$product->productdetailfiles->filepath}}" alt="">
-
+                            @foreach ($productfiles as $productfile)
+                            @if($productfile->productid == $product->id && $productfile->deleted==0)
+                                <img src="../{{ $productfile->filepath }}" alt="">
+                                @break
+                                @endif
+                            @endforeach
                         </div>
                         <div class="card-text w-full px-2 pb-3 txt-center">
-                            <a class="card-header2 pt-1" href="/product/{{$product->id}}">{{$product->product_name}}</a>
+                            <a class="card-header2 pt-1"
+                                href="/product/{{ $product->id }}">{{ $product->product_name }}</a>
                             <div class="flex justify-between w-full ">
 
                             </div>
                             <div class="mini-card-box ">
 
-                                <p class="price-number block">Rp. {{number_format($product->productprice)}}</p>
+                                <p class="price-number block">Rp. {{ number_format($product->productprice) }}</p>
                             </div>
                         </div>
                     </div>
-
-                    @endforeach
-                </div>
-                <div class="flex justify-center">
-                    {{$products->links()}}
-                </div>
-
-
+                @endforeach
             </div>
+            <div class="flex justify-center">
+                {{ $products->links() }}
+            </div>
+
+
+        </div>
         </div>
 
         <div class="footer mt-10">
