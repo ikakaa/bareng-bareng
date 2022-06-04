@@ -291,7 +291,7 @@ class ProductDetailController extends Controller
 
     public function ongoing()
     {
-        $orders = Orders::where('user_id', Auth::user()->id)->get();
+        $orders = Orders::where('user_id', Auth::user()->id)->where('isFinish','!=','1')->get();
         if (!empty($orders)) {
             //Make foreach loop for orders, if orderdetails isset then push array
             $orderdetails = array();
@@ -337,7 +337,7 @@ class ProductDetailController extends Controller
 
     public function myproductlist()
     {
-        $products = ProductDetail::where('user_id', Auth::user()->id)->get();
+        $products = ProductDetail::where('user_id', Auth::user()->id)->where('sellingdone','0')->where('isfinish','0')->get();
         return view('myproductlist', compact('products'));
     }
 
@@ -368,7 +368,7 @@ class ProductDetailController extends Controller
     public function orderhistory(Orders $id)
     {
         $orders = Orders::with('order_details')->where('user_id', Auth::user()->id)->where('status', 1)->get();
-        $empty = Orders::where('user_id', Auth::user()->id)->doesntExist();
+        $empty = Orders::where('user_id', Auth::user()->id)->where('isFinish', 1)->doesntExist();
 
         if ($empty) {
             return view('orderhistory');
@@ -423,5 +423,12 @@ class ProductDetailController extends Controller
         $productdetailfiles->save();
         //redirect to product detail
         return redirect()->back()->with('statusdelete', 'Image Deleted Successfully');
+    }
+    public function endgroupbuy($id){
+        $product=ProductDetail::where('id',$id)->first();
+        $product->sellingdone='1';
+        $product->isfinish='1';
+        $product->save();
+        return redirect('/profileseller')->with('status','Group Buy Successfully');
     }
 }

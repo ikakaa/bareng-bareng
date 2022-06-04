@@ -86,6 +86,7 @@ Route::group(['middleware' => ['checklogin']], function () {
 
         Route::get('/productverificationlist', [App\Http\Controllers\ProductDetailController::class, 'productverificationlist']);
 
+        Route::get('/endgroupbuy/{id}', [App\Http\Controllers\ProductDetailController::class, 'endgroupbuy']);
         Route::get('/productverification', [App\Http\Controllers\ProductDetailController::class, 'index']);
         Route::get('/sellerverification', [App\Http\Controllers\SellerVerificationController::class, 'index']);
 

@@ -32,7 +32,7 @@
                         <div class="card-body">
                         <div class="interest-check-title-wrapper flex justify-between">
                             <p class="interest-detail-title">{{$product->product_name}}</p>
-                            <p class="interest-detail-title2">Rp. {{number_format($product->productprice)}}</p> 
+                            <p class="interest-detail-title2">Rp. {{number_format($product->productprice)}}</p>
                         </div>
                         <p class="card-text">{{$product->shortdesc}}</p><br>
                         <p class="card-text">Stocks: {{$product->productstock}}</p>
@@ -40,8 +40,10 @@
                     </div>
                 </div>
                     <button type="submit" class="button-style buy-bottom-right" onclick="location.href='{{url('/editdetail')}}/{{$product->id}}'">Edit</button>
+
+                    <a href="../endgroupbuy/{{$product->id}}" class="button-style h-auto buy-bottom-right" onclick="return confirm('Are you sure you want to end this product group buy?')">End Group Buy</a>
             </div>
-            
+
             @endforeach
         </div>
 

@@ -36,7 +36,7 @@
     </head>
 
     <body>
-        
+
         <div class="container min-h-screen pt-3">
             <div class=" mx-auto w-4/5 table-card">
 
@@ -74,7 +74,7 @@
                                 <?php $i++; ?>
                                 <tr>
                                     <td>{{ $i }}</td>
-                                    <td><a href="#"> {{ $row->name }} </a></td>
+                                    <td><a > {{ $row->name }} </a></td>
                                     <td><a href="/sellerformdetail/{{ $row->id }}" target="_blank">Detail</a></td>
 
                                     <td><a href="/sellerrequestapprove/{{ $row->id }}" class="btn-icon bg-custom"><i
@@ -85,7 +85,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Reject Product
+                                                        <h5 class="modal-title" id="exampleModalLabel">Reject Seller Request
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
@@ -96,7 +96,7 @@
                                                         <form method="POST" action="/rejectsellerrequest">
                                                             @csrf
                                                             <div class="form-group">
-                                                                <label for="message-text" class="col-form-label">Reject
+                                                                <label for="message-text" class="col-form-label">
                                                                     Reason:</label>
                                                                 <textarea class="form-control" id="message-text" name="reason"></textarea>
                                                                 <input type="hidden" name="id" value="{{ $row->id }}">

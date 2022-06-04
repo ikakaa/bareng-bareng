@@ -52,6 +52,7 @@ class RefundRequestController extends Controller
         $refund->save();
         $order = Orders::where('id', $refund->orderid)->first();
         $order->status = '7';
+        $order->isFinish='1';
         $order->rejetStatus = $request->reason;
         return redirect('/refundverification')->with('success', 'Refund request rejected successfully');
     }
@@ -59,10 +60,11 @@ class RefundRequestController extends Controller
     {
         $refund = RefundRequest::where('id', $id)->first();
         $refund->status = '1';
+
         $refund->save();
         $order = Orders::where('id', $refund->orderid)->first();
         $order->status = '8';
-
+        $order->isFinish='1';
         return redirect('/refundverification')->with('success', 'Refund request approved successfully');
     }
 

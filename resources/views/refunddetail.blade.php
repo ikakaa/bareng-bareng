@@ -49,7 +49,7 @@
                                 </p>
                                 <div class="">
                                     <p class="interest-detail-title2">Total Paid : Rp. {{ number_format($refund->order->totalPrice) }}</p>
-                                    <p class="interest-detail-title2">Status : Paid</p></div>
+                                    <p class="interest-detail-title2">Status : Refund requested</p></div>
                             </div>
                             {{-- <p class="card-text">{{ $product->shortdesc }}</p><br>
                             <p class="card-text">Stocks: {{ $product->productstock }}</p>

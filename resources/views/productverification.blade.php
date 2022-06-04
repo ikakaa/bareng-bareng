@@ -64,7 +64,7 @@
                                 <?php $i++; ?>
                                 <tr>
                                     <td>{{ $i }}</td>
-                                    <td><a href="#"> {{ $row->product_name }} </a></td>
+                                    <td><a > {{ $row->product_name }} </a></td>
                                     <td>{{ $row->owner }}</td>
                                     <td><a href="{{ $row->productdetailfiles->filepath }}" target="_blank">Preview</a></td>
                                     <td>{{ $row->created_at }}</td>

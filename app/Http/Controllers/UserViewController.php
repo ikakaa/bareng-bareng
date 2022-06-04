@@ -52,11 +52,35 @@ class UserViewController extends Controller
                         // echo "Hitung loop user : " . $statuscount . " - " . $getavguser;
                         $hitungtotal = $hitungcurruser * $hitungloopuser;
                         $collaborativepembilang = $collaborativepembilang + $hitungtotal;
-                        $penyebutloopuser = $penyebutloopuser + pow($hitungloopuser, 2);
-                        $penyebutcurruser = $penyebutcurruser + pow($hitungcurruser, 2);
+                        if (!isset($loopcurrentuser)) {
+                            $loopcurrentuser = 0;
+                        }
+                        if (!isset($getavguser)) {
+                            $getavguser = 0;
+                        }
+                        if (!isset($loopcurrentuser->status)) {
+                            $loopcurrentuser->status = 0;
+                        }
+                        if (!isset($hitungloopuser)) {
+                            $hitungloopuser = 0;
+                        }
+                        $penyebutrp = (pow($loopcurrentuser->status, 2)) - pow($getavguser, 2);
+
+                        $penyebutcurrrp = pow($loopcurrentuser->status, 2) - pow($averagecurrentuser, 2);
+
+                        $penyebutloopuser = $penyebutloopuser + $penyebutrp;
+                        $penyebutcurruser = $penyebutcurruser + $penyebutcurrrp;
                     }
 
+
                     $collaborativepenyebut = sqrt($penyebutcurruser) * sqrt($penyebutloopuser);
+                    // echo "Collaborative penyebut : " . $collaborativepenyebut;
+                    if (is_nan($collaborativepenyebut) || is_infinite($collaborativepenyebut)) {
+                        $collaborativepenyebut = 0;
+                    } else {
+                        $collaborativepenyebut;
+                    }
+                    // echo "Penyebut : ".$collaborativepenyebut."Pembilang : ".$collaborativepembilang;
                     $collaborativetotal = divnum($collaborativepembilang, $collaborativepenyebut);
                     $findnearestvalue[$user->id] = $collaborativetotal;
                 }
@@ -113,7 +137,6 @@ class UserViewController extends Controller
                         $penyebutloopuser = $penyebutloopuser + pow($hitungloopuser, 2);
                         $penyebutcurruser = $penyebutcurruser + pow($hitungcurruser, 2);
                     }
-
                     $collaborativepenyebut = sqrt($penyebutcurruser) * sqrt($penyebutloopuser);
                     $collaborativetotal = divnum($collaborativepembilang, $collaborativepenyebut);
                     $findnearestvalue[$user->id] = $collaborativetotal;
