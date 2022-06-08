@@ -12,8 +12,10 @@ class UserViewController extends Controller
 {
     //
 
+
     public function recommendation()
     {
+
         if (isset(Auth::user()->id)) {
             function divnum($numerator, $denominator)
             {
@@ -25,16 +27,16 @@ class UserViewController extends Controller
             $averagecurrentuser = Like::where('user_id', Auth::user()->id)->average('status');
             $countaveragecurruser = Like::where('user_id', Auth::user()->id)->count('id');
             $findnearestvalue = array();
-            $penyebutcurruser = 0;
-            $penyebutloopuser = 0;
-            foreach ($alluser as $user) {
 
+            foreach ($alluser as $user) {
+                $penyebutcurruser = 0;
+                $penyebutloopuser = 0;
                 $collaborativepembilang = 0;
                 $collaborativepenyebut = 0;
-                $getavguser = Like::where('user_id', $user->id)->sum('status');
+                $getavguser = Like::where('user_id', $user->id)->average('status');
 
-                $getavguser = $getavguser / $countaveragecurruser;
-echo "UID : ".$user->id."<br>";
+                // $getavguser = $getavguser / $countaveragecurruser;
+                echo " UID : " . $user->id . " <br> ";
 ?>
                 <br>
 <?php
@@ -58,48 +60,46 @@ echo "UID : ".$user->id."<br>";
                     }
 
                     $hitungloopuser = $statuscount - $getavguser;
-echo " hitung loop user  ".$hitungloopuser;
-echo " = ".$statuscount." - ".$getavguser;
-                    $hitungtotal = $hitungcurruser * $hitungloopuser;
-                    $collaborativepembilang = $collaborativepembilang + $hitungtotal;
-                    if (!isset($loopcurrentuser)) {
-                        $loopcurrentuser = 0;
-                    }
-                    if (!isset($getavguser)) {
-                        $getavguser = 0;
-                    }
-                    if (!isset($loopcurrentuser->status)) {
-                        $loopcurrentuser->status = 0;
-                    }
-                    if (!isset($hitungloopuser)) {
-                        $hitungloopuser = 0;
-                    }
-                    $penyebutrp = pow($loopcurrentuser->status, 2) - pow($getavguser, 2);
 
-                    $penyebutcurrrp = pow($loopcurrentuser->status, 2) - pow($averagecurrentuser, 2);
+                    // echo " = ".$statuscount." - ".$getavguser;
+                    $hitungtotal = $hitungcurruser + $hitungloopuser;
+                    // $hitungtotal=number_format((float)$hitungtotal, 3, '.', '');
+                    // echo " Hitung total ".$hitungtotal." = ".$hitungcurruser." * ".$hitungloopuser;
+                    // echo " Collaborative pembilang  SEBELUM:  ".$collaborativepembilang;
+                    $collaborativepembilang = $collaborativepembilang + $hitungtotal;
+                    // echo " Hitung total = ".$hitungtotal;
+                    // echo " Collaborative pembilang  ".$collaborativepembilang. " = ".$collaborativepembilang." + ".$hitungtotal;
+                    $penyebutrp = pow($statuscount - $getavguser, 2);
+                    // echo " Penyebut rp ".$penyebutrp." = ".$statuscount." - ".$getavguser;
+                    $penyebutcurrrp = pow($loopcurrentuser->status - $averagecurrentuser, 2);
 
                     $penyebutloopuser = $penyebutloopuser + $penyebutrp;
                     $penyebutcurruser = $penyebutcurruser + $penyebutcurrrp;
-
+                    // echo "Penyebut loop user : ".$penyebutloopuser;
+                    // echo " Penyebut curr user : ".$penyebutcurruser;
                     if (!isset($penyebutcurruser)) {
                         $penyebutcurruser = 0;
                     }
                     if (!isset($penyebutloopuser)) {
                         $penyebutloopuser = 0;
                     }
-
-
-                    $collaborativepenyebut = sqrt($penyebutcurruser) * sqrt($penyebutloopuser);
-                    // echo "Collaborative penyebut : " . $collaborativepenyebut;
-                    if (is_nan($collaborativepenyebut) || is_infinite($collaborativepenyebut)) {
-                        $collaborativepenyebut = 0;
-                    } else {
-                        $collaborativepenyebut;
-                    }
-                    // echo "Penyebut : ".$collaborativepenyebut."Pembilang : ".$collaborativepembilang;
-                    $collaborativetotal = divnum($collaborativepembilang, $collaborativepenyebut);
-                    $findnearestvalue[$user->id] = $collaborativetotal;
                 }
+                $collaborativepenyebut = sqrt($penyebutcurruser) + sqrt($penyebutloopuser);
+                // echo " Penyebutloop".sqrt($penyebutloopuser);
+                // echo "Penyebut curr user : ".sqrt($penyebutcurruser);
+                echo "Collaborative penyebut : " . $collaborativepenyebut;
+                if (is_nan($collaborativepenyebut) || is_infinite($collaborativepenyebut)) {
+                    $collaborativepenyebut = 0;
+                } else {
+                    $collaborativepenyebut;
+                }
+                $collaborativetotal = divnum($collaborativepembilang, $collaborativepenyebut);
+                //only get 2 decimal from collaborativetotal
+                $collaborativetotal = number_format((float)$collaborativetotal, 18, '.', '');
+
+                echo "Collaborative total " . $collaborativetotal . " Penyebut : " . $collaborativepenyebut . " Pembilang : " . $collaborativepembilang;
+                // echo "--------------------------------------------------";
+                $findnearestvalue[$user->id] = $collaborativetotal;
             }
             // if (!$findnearestvalue) {
             //     $findnearestvalue[1] = 1;
