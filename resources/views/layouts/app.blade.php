@@ -92,14 +92,14 @@
                                 <a class="nav-link" href="/groupbuy">{{ __('Group-Buy') }}</a>
 
                             <li class="mx-2 nav-item text-uppercase  items-center flex ">
-                                <a href="/cart" style="font-size: 19px"  class="cursor-pointer"> <img src="img/carticon.png" class="cursor-pointer" width="20px"
+                                <a href="/cart" style="font-size: 19px"  class="cursor-pointer"> <img src="../img/carticon.png" class="cursor-pointer" width="20px"
                                         height="20px" alt=""></a>
                             </li>
                             <li class="nav-item   dropdown ">
                                 <a id="navbarDropdown" class="nav-link  text-uppercase" href="#"
                                     role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
                                     style="font-size: 19px">
-                                    <img src="img/personicon.png" width="20px" height="20px" alt="">
+                                    <img src="../img/personicon.png" width="20px" height="20px" alt="">
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
