@@ -43,7 +43,12 @@
                                     <div class="card p-3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex flex-row align-items-center">
-                                                <img src="../{{$product->productdetailfiles->filepath}}" class="img-detail-size">
+                                                @foreach($productfiles as $productfile)
+                                                @if ($productfile->productid == $product->id && $productfile->deleted == 0)
+                                                    <img src="../{{ $productfile->filepath }}" class="img-detail-size">
+                                                @break
+                                                @endif
+                                                @endforeach
                                                 <span>
                                                     <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
                                                     <div>Group Buy starts at: {{$product->enddate}}</div>

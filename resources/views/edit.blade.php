@@ -25,7 +25,12 @@
                 <div class="row no-gutters">
                     <div class="col-md-4 marginleft">
                         <br>
-                        <img src="../{{$product->productdetailfiles->filepath}}" class="card-img" alt="..." style="height:350px;">
+                        @foreach($productfiles as $productfile)
+                            @if ($productfile->productid == $product->id && $productfile->deleted == 0)
+                                <img src="../{{ $productfile->filepath }}" class="card-img" alt="..." style="height:350px;">
+                            @break
+                            @endif
+                        @endforeach
                         <br>
                     </div>
                     <div class="col-md-5 marginleft">

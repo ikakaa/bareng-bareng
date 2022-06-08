@@ -70,9 +70,9 @@ class ProductDetailController extends Controller
         $productfile->filepath = $filepath;
         $productfile->filesize = $filesize;
         $productfile->save();
-        session(['successupload' => true]);
+        alert()->success('Product uploaded successfully! Please wait for the verification process.', 'Success');
 
-        return redirect()->back()->with('status', 'Product Added Successfully');
+        return redirect('profileseller');
     }
 
     public function index()
@@ -110,10 +110,11 @@ class ProductDetailController extends Controller
     {
         //function untuk menampilkan product
         $products = ProductDetail::where('id', $id->id)->get();
+        $productfiles = ProductDetailsFile::all();
         // $products = ProductDetail::with('productdetailfiles')->where('id', $id->id)->get();
 
 
-        return view('edit', compact('products'));
+        return view('edit', compact('products', 'productfiles'));
     }
 
     public function editdetail(ProductDetailsFile $id)
@@ -138,7 +139,8 @@ class ProductDetailController extends Controller
         $products->product_name = $request->input('productname');
 
         $products->save();
-
+        
+        alert()->success('Product edited successfully!', 'Success');
         return redirect('myproductlist');
     }
 
@@ -166,7 +168,7 @@ class ProductDetailController extends Controller
 
         $orderdetail->delete();
 
-        // alert()->error('Product deleted from cart!', 'Delete Item');
+        alert()->error('Product removed from cart!', 'Remove Item');
         return redirect('cart');
     }
 
@@ -337,14 +339,16 @@ class ProductDetailController extends Controller
 
     public function myproductlist()
     {
-        $products = ProductDetail::where('user_id', Auth::user()->id)->where('sellingdone','0')->where('isfinish','0')->get();
-        return view('myproductlist', compact('products'));
+        $products = ProductDetail::where('user_id', Auth::user()->id)->where('sellingdone','0')->where('isfinish','0')->where('verified', '1')->get();
+        $productfiles=ProductDetailsFile::all();
+        return view('myproductlist', compact('products', 'productfiles'));
     }
 
     public function productverificationlist()
     {
         $products = ProductDetail::where('user_id', Auth::user()->id)->get();
-        return view('productverificationlist', compact('products'));
+        $productfiles=ProductDetailsFile::all();
+        return view('productverificationlist', compact('products', 'productfiles'));
     }
 
     public function approveproduct(ProductDetail $id)
