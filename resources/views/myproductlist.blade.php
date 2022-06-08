@@ -25,71 +25,81 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <button onclick="location.href='{{url('/profileseller')}}'" class="btn-back mx-3">
+                        <button onclick="location.href='{{ url('/profileseller') }}'" class="btn-back mx-3">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
                             Back
                         </button>
                         <div class="title-upper-left">
                             <h1 class="title txt">My Product List</h1>
                             <large>
-                                Here's the list of your products. You can still edit the product before the Group Buy starts.
+                                Here's the list of your products. You can't edit product if it fail the interest check or
+                                group buy has begun.
                             </large>
                         </div>
 
                         <div>
                             <div class="col-md-9">
                                 @foreach ($products as $product)
-                                @if ($product->verified == 1)
-                                    <div class="card p-3">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex flex-row align-items-center">
-                                                @foreach($productfiles as $productfile)
-                                                @if ($productfile->productid == $product->id && $productfile->deleted == 0)
-                                                    <img src="../{{ $productfile->filepath }}" class="img-detail-size">
-                                                @break
-                                                @endif
+                                    @if ($product->verified == 1)
+                                        <div class="card p-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    @foreach ($productfiles as $productfile)
+                                                        @if ($productfile->productid == $product->id && $productfile->deleted == 0)
+                                                            <img src="../{{ $productfile->filepath }}"
+                                                                class="img-detail-size">
+                                                        @break
+                                                    @endif
                                                 @endforeach
                                                 <span>
-                                                    <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
-                                                    <div>Group Buy starts at: {{$product->enddate}}</div>
+                                                    <div class="font-weight-bold txt cart-txt">
+                                                        {{ $product->product_name }}</div>
+                                                    @if ($product->icfail != 1)
+                                                        <div>Group Buy starts at: {{ $product->enddate }}</div>
+                                                    @endif
+                                                    @if ($product->icfail == 1)
+                                                        <div>Product didnt succeed interest check</div>
+                                                    @endif
                                                 </span>
                                             </div>
-                                            <button class="btn-view" onclick="location.href='{{url('/edit')}}/{{$product->id}}'">View Product</button>
+                                            <button class="btn-view"
+                                                onclick="location.href='{{ url('/edit') }}/{{ $product->id }}'">View
+                                                Product</button>
                                         </div>
                                     </div><br>
                                 @endif
-                                @endforeach
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <div class="footer mt-10">
-            <div class="footer-1 py-5 pt-8 w-full bg-navbar">
-                <div class="justify-center flex">
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
-                </div>
-                <div class="footer-text-container flex justify-center py-8 sm:pl-3">
-                    <a href="#" class="footer-href ">Contact</a>
-                    <a href="#" class="footer-href ">FAQs</a>
-                    <a href="#" class="footer-href2 ">Order Tracking</a>
-                </div>
-                <div class="copyright-text pt-12">
-                    <p>Indonesia shipping available!</p>
-                </div>
-                <div class="copyright-text pt-16 py-8">
-                    — Powered by <a href="#" class="underline italic">BarengBareng</a>
-                </div>
+    <div class="footer mt-10">
+        <div class="footer-1 py-5 pt-8 w-full bg-navbar">
+            <div class="justify-center flex">
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
             </div>
-
+            <div class="footer-text-container flex justify-center py-8 sm:pl-3">
+                <a href="#" class="footer-href ">Contact</a>
+                <a href="#" class="footer-href ">FAQs</a>
+                <a href="#" class="footer-href2 ">Order Tracking</a>
+            </div>
+            <div class="copyright-text pt-12">
+                <p>Indonesia shipping available!</p>
+            </div>
+            <div class="copyright-text pt-16 py-8">
+                — Powered by <a href="#" class="underline italic">BarengBareng</a>
+            </div>
         </div>
-    </body>
 
-    </html>
+    </div>
+</body>
+
+</html>
 @endsection

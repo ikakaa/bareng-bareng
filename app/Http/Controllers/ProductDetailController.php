@@ -139,7 +139,7 @@ class ProductDetailController extends Controller
         $products->product_name = $request->input('productname');
 
         $products->save();
-        
+
         alert()->success('Product edited successfully!', 'Success');
         return redirect('myproductlist');
     }
@@ -339,7 +339,7 @@ class ProductDetailController extends Controller
 
     public function myproductlist()
     {
-        $products = ProductDetail::where('user_id', Auth::user()->id)->where('sellingdone','0')->where('isfinish','0')->where('verified', '1')->get();
+        $products = ProductDetail::where('user_id', Auth::user()->id)->where('verified', '1')->get();
         $productfiles=ProductDetailsFile::all();
         return view('myproductlist', compact('products', 'productfiles'));
     }

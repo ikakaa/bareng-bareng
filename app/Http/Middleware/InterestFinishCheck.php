@@ -6,7 +6,7 @@ use App\Models\Like;
 use Closure;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use App\Models\ProductDetailsFile;
 use App\Models\ProductDetail;
 
 class InterestFinishCheck
@@ -44,13 +44,17 @@ class InterestFinishCheck
                         $row->interestdone = '1';
                         $row->sellingdone = '1';
                         $row->isfinish = '1';
+                        $row->icfail='1';
                         $row->save();
+
                     }
                 } else {
                     $row->interestdone = '1';
                     $row->sellingdone = '1';
                     $row->isfinish = '1';
+                    $row->icfail='1';
                     $row->save();
+
                 }
             }
         }

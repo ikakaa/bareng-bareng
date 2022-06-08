@@ -37,6 +37,8 @@ class CreateProductDetailsTable extends Migration
             $table->string('interestdone')->default('0');
             $table->string('sellingdone')->default('0');
             $table->string('isfinish')->default('0');
+            $table->string('icfail')->default('0');
+
 
             $table->foreign('user_id')->references('id')->on('users');
         });
