@@ -26,8 +26,12 @@ class InterestFinishCheck
         $productlist = ProductDetail::where('verified', '1')->get();
         //loop all database
         foreach ($productlist as $row) {
-            $dateexpired = ($row->enddate . ' ' . $row->endtime);
+
+            $getendate = Carbon::parse($row->enddate)->format('Y-m-d');
+
+            $dateexpired = ($getendate . ' ' . $row->endtime);
             $datecurrent = Carbon::now();
+
             if ($datecurrent > $dateexpired) {
 
                 $gettotallike = Like::where('product_id', $row->id)->count('status');
