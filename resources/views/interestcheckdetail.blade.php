@@ -28,6 +28,11 @@
         <div>
             @foreach ($products as $product)
                 <div class="card-detail pt-5">
+                    <div class="tempat-back pb-3">
+                        <a href="/interestcheck">
+                            <i class="fas fa-arrow-left pl-3"></i>
+                            Back </a>
+                    </div>
                     <p class="interest-detail-ic pt-1 ic-box txt-center">Interest Check</p>
                     <div class="row no-gutters">
                         <div class="col-md-4 marginleft">
@@ -45,11 +50,6 @@
                         </div>
 
                         <div class="interest-check-detail-kanan">
-                            <div class="tempat-back pb-3">
-                                <a href="/interestcheck">
-                                    <i class="fas fa-arrow-left pr-2"></i>
-                                    Back to Interest List </a>
-                            </div>
                             <div class="interest-check-title-wrapper flex justify-between">
                                 <p class="interest-detail-title">{{ $product->product_name }}</p>
                                 <p class="interest-detail-title2">Rp. {{ number_format($product->productprice) }}</p>

@@ -53,6 +53,7 @@ class ProductDetailController extends Controller
         $product->productlist = $tagsdummy;
         $product->enddate = Carbon::parse($request->input('enddate'))->format('Y-m-d');
         $product->endtime = $request->input('endtime');
+        $product->enddategb = Carbon::parse($request->input('enddategb'))->format('Y-m-d');
         $product->shippingdate = Carbon::parse($request->input('shippingdate'))->format('Y-m-d');
         $product->discordlink = $request->input('discord');
         $product->product_type = $request->input('producttype');
@@ -228,6 +229,8 @@ class ProductDetailController extends Controller
         $order->totalPrice = $order->totalPrice + $products->productprice * $request->qty + 20000;
         $order->update();
 
+        
+        alert()->success('Product added to cart!', 'Success');
         return redirect('home');
     }
 
@@ -339,7 +342,7 @@ class ProductDetailController extends Controller
 
     public function myproductlist()
     {
-        $products = ProductDetail::where('user_id', Auth::user()->id)->where('verified', '1')->get();
+        $products = ProductDetail::where('user_id', Auth::user()->id)->where('isfinish','0')->where('verified', '1')->get();
         $productfiles=ProductDetailsFile::all();
         return view('myproductlist', compact('products', 'productfiles'));
     }
@@ -428,11 +431,13 @@ class ProductDetailController extends Controller
         //redirect to product detail
         return redirect()->back()->with('statusdelete', 'Image Deleted Successfully');
     }
+
     public function endgroupbuy($id){
         $product=ProductDetail::where('id',$id)->first();
-        $product->sellingdone='1';
         $product->isfinish='1';
         $product->save();
-        return redirect('/profileseller')->with('status','Group Buy Successfully');
+        
+        alert()->success('Group Buy Ended', 'Success');
+        return redirect('/profileseller');
     }
 }

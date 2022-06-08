@@ -60,15 +60,15 @@
                         onclick="location.href='{{ url('/product') }}/{{ $product->id }}'">
 
                             @if ($product->isfinish == 0)
-                            <div class="ic-box-card txt-center">
-                                <i class="fas fa-door-open"></i> Group Buy Starts
-                        </div>
-                @endif
-                @if ($product->isfinish == 1)
-                <div class="ic-box-card2 txt-center">
-                    <i class="fas fa-door-closed"></i> On-Production
-            </div>
-            @endif
+                                <div class="ic-box-card txt-center">
+                                   <i class="fas fa-door-open"></i> Group Buy Starts
+                                </div>
+                            
+                            @elseif ($product->isfinish == 2)
+                            <div class="ic-box-card2 txt-center">
+                                <i class="fas fa-door-closed"></i> In-Production
+                            </div>
+                            @endif
             <div class="card-img mt-3">
 
                 @foreach ($productfiles as $productfile)

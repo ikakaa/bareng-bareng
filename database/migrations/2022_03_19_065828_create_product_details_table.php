@@ -28,6 +28,7 @@ class CreateProductDetailsTable extends Migration
             $table->integer('productprice');
             $table->date('startdate');
             $table->date('enddate');
+            $table->date('enddategb');
             $table->string('endtime');
             $table->date('shippingdate');
             $table->string('discordlink');
@@ -35,7 +36,6 @@ class CreateProductDetailsTable extends Migration
             $table->string('verified')->default('0');
             $table->string('rejectreason')->default('0');
             $table->string('interestdone')->default('0');
-            $table->string('sellingdone')->default('0');
             $table->string('isfinish')->default('0');
             $table->string('icfail')->default('0');
 

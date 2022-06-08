@@ -24,60 +24,94 @@
             @foreach ($products as $product)
             <div class="card-detail">
                 <br>
-                <p class="interest-detail-ic pt-1 ic-box txt-center">Group Buy is live!</p>
-                <div class="row no-gutters">
-                    <div class="col-md-4 marginleft">
-                        <div class="swiper mySwiper">
-                            <div class="swiper-wrapper">
-                                @foreach ($productfile as $row)
-                                    @if ($row->productid == $product->id && $row->deleted==0)
-                                        <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
-                                    @endif
-                                @endforeach
-
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 marginleft">
-                        <div class="card-body">
-                        <div class="interest-check-title-wrapper flex justify-between">
-                            <p class="interest-detail-title">{{$product->product_name}}</p>
-                            <p class="interest-detail-title2">Rp. {{number_format($product->productprice)}}</p>
-                        </div>
-                        <p class="card-text">{{$product->shortdesc}}</p><br>
-                        <p class="card-text">Stocks: {{$product->productstock}}</p>
-                        <p class="card-text">Shipment Date: {{$product->shippingdate->format('d-m-Y')}}</p>
-                        Variant :
-                        <form method="POST" action="{{url('order')}}/{{$product->id}}">
-                            @csrf
-                        <select name="producttype"
-                            class="appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
-                            <?php  $splitdata=explode(";",$product['productlist']);
-                             foreach($splitdata as $data){ ?>
-                            <option value="{{ $data }}">{{ $data }}</option>
-                            <?php  } ?>
-
-                        </select>
-                    </div>
+                <div class="tempat-back pb-3">
+                    <a href="/groupbuy">
+                        <i class="fas fa-arrow-left pl-3"></i>
+                        Back</a>
                 </div>
-
-                    <div class="row">
-                      <div class="col">
-                        <input class="form-control box-size" type="number" id="qty" name="qty" placeholder="Input Qty" required="" min="1" max="{{$product->productstock}}">
-                      </div>
-                      @if($product->productstock<=0)
-                        <button type="button" disabled class="button-style buy-bottom-right">Out of stock</button>
-                        @endif
-                      @if($product->isfinish==1)
-
-                      <button type="button" disabled class="button-style buy-bottom-right h-auto">On-Production</button>
-                      @endif
-                      @if($product->productstock>0 && $product->isfinish==0)
-                        <button type="submit" class="button-style buy-bottom-right">Buy</button>
-                        @endif
+                @if ($product->isfinish==0)
+                    <p class="interest-detail-ic pt-1 ic-box txt-center">Group Buy is live!</p>
+                    <div class="row no-gutters">
+                        <div class="col-md-4 marginleft">
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach ($productfile as $row)
+                                        @if ($row->productid == $product->id && $row->deleted==0)
+                                            <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
+                                        @endif
+                                    @endforeach
+    
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 marginleft">
+                            <div class="card-body">
+                            <div class="interest-check-title-wrapper flex justify-between">
+                                <p class="interest-detail-title">{{$product->product_name}}</p>
+                                <p class="interest-detail-title2">Rp. {{number_format($product->productprice)}}</p>
+                            </div>
+                            <p class="card-text">{{$product->shortdesc}}</p><br>
+                            <p class="card-text">Stocks: {{$product->productstock}}</p>
+                            <p class="card-text">Shipment Date: {{$product->shippingdate->format('d-m-Y')}}</p>
+                            Variant :
+                            <form method="POST" action="{{url('order')}}/{{$product->id}}">
+                                @csrf
+                            <select name="producttype"
+                                class="appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+                                <?php  $splitdata=explode(";",$product['productlist']);
+                                 foreach($splitdata as $data){ ?>
+                                <option value="{{ $data }}">{{ $data }}</option>
+                                <?php  } ?>
+    
+                            </select>
+                        </div>
                     </div>
-                  </form>
+                    <div class="row">
+                        <div class="col">
+                          <input class="form-control box-size" type="number" id="qty" name="qty" placeholder="Input Qty" required="" min="1" max="{{$product->productstock}}">
+                        </div>
+                        @if($product->productstock<=0)
+                          <button type="button" disabled class="button-style buy-bottom-right">Out of stock</button>
+                          @endif
+                        @if($product->isfinish==1)
+  
+                        <button type="button" disabled class="button-style buy-bottom-right h-auto">On-Production</button>
+                        @endif
+                        @if($product->productstock>0 && $product->isfinish==0)
+                          <button type="submit" class="button-style buy-bottom-right">Buy</button>
+                          @endif
+                      </div>
+                    </form>
+                @elseif($product->isfinish==2)
+                <p class="interest-detail-ic pt-1 ic-box2 txt-center">In-Production!</p>
+                <div class="row no-gutters">
+                        <div class="col-md-4 marginleft">
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach ($productfile as $row)
+                                        @if ($row->productid == $product->id && $row->deleted==0)
+                                            <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
+                                        @endif
+                                    @endforeach
+    
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 marginleft">
+                            <div class="card-body">
+                            <div class="interest-check-title-wrapper flex justify-between">
+                                <p class="interest-detail-title">{{$product->product_name}}</p>
+                                <p class="interest-detail-title2">Rp. {{number_format($product->productprice)}}</p>
+                            </div>
+                            <p class="card-text">{{$product->shortdesc}}</p><br>
+                            <p class="card-text">Shipment Date: {{$product->shippingdate->format('d-m-Y')}}</p>
+                        </div>
+                @endif
+                
+
+                    
             </div>
 
             @endforeach

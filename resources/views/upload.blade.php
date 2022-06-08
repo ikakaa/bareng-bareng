@@ -81,6 +81,11 @@
             <label for="endtime" class="block sm:mb-2 mb-1 w-full  mt-2">End Time</label>
             <input type="time" name="endtime" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
 
+            <br><h3 style="font-size: 22px">Group Buy</h3>
+
+            <label for="enddategb" class="block sm:mb-2 mb-1 w-full  ">End Date</label>
+            <input type="date" name="enddategb" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth2  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
+
             <label for="shippingdate" class="block sm:mb-2 mb-1 w-full  ">Shipping Date</label>
             <input type="date" name="shippingdate" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth2  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Your Password">
 

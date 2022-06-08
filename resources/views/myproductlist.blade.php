@@ -58,7 +58,7 @@
                                                         <div>Group Buy starts at: {{ $product->enddate }}</div>
                                                     @endif
                                                     @if ($product->icfail == 1)
-                                                        <div>Product didnt succeed interest check</div>
+                                                        <div>Product didn't passed the interest check.</div>
                                                     @endif
                                                 </span>
                                             </div>

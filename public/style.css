@@ -823,6 +823,13 @@ div {
     height: 35px;
 }
 
+.ic-box2 {
+    background-color: rgb(162, 219, 48);
+    color: white;
+    margin-bottom: 30px;
+    height: 35px;
+}
+
 .ic-box-card {
     background-color: #284b63;
     color: #f4f9e9;

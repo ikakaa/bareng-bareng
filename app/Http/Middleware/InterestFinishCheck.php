@@ -42,7 +42,6 @@ class InterestFinishCheck
                         $row->save();
                     } else {
                         $row->interestdone = '1';
-                        $row->sellingdone = '1';
                         $row->isfinish = '1';
                         $row->icfail='1';
                         $row->save();
@@ -50,7 +49,6 @@ class InterestFinishCheck
                     }
                 } else {
                     $row->interestdone = '1';
-                    $row->sellingdone = '1';
                     $row->isfinish = '1';
                     $row->icfail='1';
                     $row->save();
