@@ -10,7 +10,7 @@ class GroupBuyController extends Controller
 {
     public function index(ProductDetail $id)
     {
-        $products = ProductDetail::distinct('id')->where('verified','1')->where('interestdone', '1')->where('isfinish','0')->where('sellingdone','0')->paginate(8);
+        $products = ProductDetail::distinct('id')->where('verified','1')->where('interestdone', '1')->paginate(8);
         $productfiles=ProductDetailsFile::all();
         return view('groupbuy', compact('products','productfiles'));
     }

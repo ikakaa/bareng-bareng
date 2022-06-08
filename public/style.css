@@ -830,6 +830,13 @@ div {
     border-radius: 3px;
 }
 
+.ic-box-card2 {
+    background-color: rgb(162, 219, 48);
+    color: #f4f9e9;
+    margin-top: 8px;
+    border-radius: 3px;
+}
+
 .parent {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
