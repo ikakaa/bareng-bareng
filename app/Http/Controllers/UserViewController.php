@@ -32,7 +32,9 @@ class UserViewController extends Controller
                 $collaborativepembilang = 0;
                 $collaborativepenyebut = 0;
                 $getavguser = Like::where('user_id', $user->id)->sum('status');
+
                 $getavguser = $getavguser / $countaveragecurruser;
+echo "UID : ".$user->id."<br>";
 ?>
                 <br>
 <?php
@@ -45,6 +47,7 @@ class UserViewController extends Controller
                     }
                     // echo " Hitung curr user : ".$loopcurrentuser->status." - ".$averagecurrentuser;
                     $hitungcurruser = $loopcurrentuser->status - $averagecurrentuser;
+
                     $selecttemporarystatus = Like::where('user_id', $user->id)->where('product_id', $loopcurrentuser->product_id)->first();
                     // echo "User id : " . $user->id;
                     // echo "<br>" . "Product id : " . $loopcurrentuser->product_id;
@@ -55,8 +58,8 @@ class UserViewController extends Controller
                     }
 
                     $hitungloopuser = $statuscount - $getavguser;
-                    echo " UID : " . $user->id .    " get tt : " . $hitungcurruser;
-                    // echo "Hitung loop user : " . $statuscount . " - " . $getavguser;
+echo " hitung loop user  ".$hitungloopuser;
+echo " = ".$statuscount." - ".$getavguser;
                     $hitungtotal = $hitungcurruser * $hitungloopuser;
                     $collaborativepembilang = $collaborativepembilang + $hitungtotal;
                     if (!isset($loopcurrentuser)) {
@@ -71,7 +74,7 @@ class UserViewController extends Controller
                     if (!isset($hitungloopuser)) {
                         $hitungloopuser = 0;
                     }
-                    $penyebutrp = (pow($loopcurrentuser->status, 2)) - pow($getavguser, 2);
+                    $penyebutrp = pow($loopcurrentuser->status, 2) - pow($getavguser, 2);
 
                     $penyebutcurrrp = pow($loopcurrentuser->status, 2) - pow($averagecurrentuser, 2);
 
@@ -98,9 +101,9 @@ class UserViewController extends Controller
                     $findnearestvalue[$user->id] = $collaborativetotal;
                 }
             }
-            if (!$findnearestvalue) {
-                $findnearestvalue[1] = 1;
-            }
+            // if (!$findnearestvalue) {
+            //     $findnearestvalue[1] = 1;
+            // }
             return $findnearestvalue;
             $key = array_search(max($findnearestvalue), $findnearestvalue);
             $mostsimilaruid = $key;
