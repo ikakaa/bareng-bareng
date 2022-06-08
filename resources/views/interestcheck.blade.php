@@ -60,11 +60,11 @@
                         <div class="ic-box-card txt-center"><i class="far fa-thumbs-up"></i> Interest Check</div>
                         <div class="card-img mt-3">
                             @foreach($productfiles as $productfile)
-                            @if ($productfile->productid == $product->id && $productfile->deleted == 0)
-                                <img src="../{{ $productfile->filepath }}" alt="">
-                            @break
-                        @endif
-                        @endforeach
+                                @if ($productfile->productid == $product->id && $productfile->deleted == 0)
+                                    <img src="../{{ $productfile->filepath }}" alt="">
+                                @break
+                                @endif
+                            @endforeach
                         </div>
                         <div class="card-text w-full px-2 pb-3 txt-center">
                             <a class="card-header2 pt-1">{{$product->product_name}}</a>

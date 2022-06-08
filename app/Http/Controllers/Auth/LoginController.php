@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Validation\Rule;
+use Alert;
 class LoginController extends Controller
 {
     /*
@@ -132,8 +133,7 @@ class LoginController extends Controller
         //     $ambildata->profilepicture = $upload_file;
         // }
         $ambildata->save();
-        // session(['email' => $request['email']]);
-        session(['successupload' => true]);
-        return redirect()->back();
+        alert()->success('Changes has been made!', 'Success');
+        return redirect('profilebuyer');
     }
 }
