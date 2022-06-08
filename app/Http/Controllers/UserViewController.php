@@ -23,6 +23,7 @@ class UserViewController extends Controller
             $alluser = User::where('id', '!=', Auth::user()->id)->get();
 
             $averagecurrentuser = Like::where('user_id', Auth::user()->id)->average('status');
+            $countaveragecurruser = Like::where('user_id', Auth::user()->id)->count('id');
             $findnearestvalue = array();
             $penyebutcurruser = 0;
             $penyebutloopuser = 0;
@@ -30,46 +31,58 @@ class UserViewController extends Controller
 
                 $collaborativepembilang = 0;
                 $collaborativepenyebut = 0;
-                $getavguser = Like::where('user_id', $user->id)->average('status');
-
+                $getavguser = Like::where('user_id', $user->id)->sum('status');
+                $getavguser = $getavguser / $countaveragecurruser;
+?>
+                <br>
+<?php
                 $loopcurrentuser = Like::where('user_id', Auth::user()->id)->where('user_id', '=', Auth::user()->id)->get();
                 foreach ($loopcurrentuser as $loopcurrentuser) {
 
-                    if (isset($loopcurrentuser->id)) {
-                        // echo " Hitung curr user : ".$loopcurrentuser->status." - ".$averagecurrentuser;
-                        $hitungcurruser = $loopcurrentuser->status - $averagecurrentuser;
 
-                        $selecttemporarystatus = Like::where('user_id', $user->id)->where('product_id', $loopcurrentuser->product_id)->first();
-                        // echo "User id : " . $user->id;
-                        // echo "<br>" . "Product id : " . $loopcurrentuser->product_id;
-                        if (!isset($selecttemporarystatus->id)) {
-                            $statuscount = 0;
-                        } else {
-                            $statuscount = $selecttemporarystatus->status;
-                        }
+                    if (!isset($loopcurrentuser->id)) {
+                        $loopcurrentuser->status = 0;
+                    }
+                    // echo " Hitung curr user : ".$loopcurrentuser->status." - ".$averagecurrentuser;
+                    $hitungcurruser = $loopcurrentuser->status - $averagecurrentuser;
+                    $selecttemporarystatus = Like::where('user_id', $user->id)->where('product_id', $loopcurrentuser->product_id)->first();
+                    // echo "User id : " . $user->id;
+                    // echo "<br>" . "Product id : " . $loopcurrentuser->product_id;
+                    if (!isset($selecttemporarystatus->id)) {
+                        $statuscount = 0;
+                    } else {
+                        $statuscount = $selecttemporarystatus->status;
+                    }
 
-                        $hitungloopuser = $statuscount - $getavguser;
-                        // echo "Hitung loop user : " . $statuscount . " - " . $getavguser;
-                        $hitungtotal = $hitungcurruser * $hitungloopuser;
-                        $collaborativepembilang = $collaborativepembilang + $hitungtotal;
-                        if (!isset($loopcurrentuser)) {
-                            $loopcurrentuser = 0;
-                        }
-                        if (!isset($getavguser)) {
-                            $getavguser = 0;
-                        }
-                        if (!isset($loopcurrentuser->status)) {
-                            $loopcurrentuser->status = 0;
-                        }
-                        if (!isset($hitungloopuser)) {
-                            $hitungloopuser = 0;
-                        }
-                        $penyebutrp = (pow($loopcurrentuser->status, 2)) - pow($getavguser, 2);
+                    $hitungloopuser = $statuscount - $getavguser;
+                    echo " UID : " . $user->id .    " get tt : " . $hitungcurruser;
+                    // echo "Hitung loop user : " . $statuscount . " - " . $getavguser;
+                    $hitungtotal = $hitungcurruser * $hitungloopuser;
+                    $collaborativepembilang = $collaborativepembilang + $hitungtotal;
+                    if (!isset($loopcurrentuser)) {
+                        $loopcurrentuser = 0;
+                    }
+                    if (!isset($getavguser)) {
+                        $getavguser = 0;
+                    }
+                    if (!isset($loopcurrentuser->status)) {
+                        $loopcurrentuser->status = 0;
+                    }
+                    if (!isset($hitungloopuser)) {
+                        $hitungloopuser = 0;
+                    }
+                    $penyebutrp = (pow($loopcurrentuser->status, 2)) - pow($getavguser, 2);
 
-                        $penyebutcurrrp = pow($loopcurrentuser->status, 2) - pow($averagecurrentuser, 2);
+                    $penyebutcurrrp = pow($loopcurrentuser->status, 2) - pow($averagecurrentuser, 2);
 
-                        $penyebutloopuser = $penyebutloopuser + $penyebutrp;
-                        $penyebutcurruser = $penyebutcurruser + $penyebutcurrrp;
+                    $penyebutloopuser = $penyebutloopuser + $penyebutrp;
+                    $penyebutcurruser = $penyebutcurruser + $penyebutcurrrp;
+
+                    if (!isset($penyebutcurruser)) {
+                        $penyebutcurruser = 0;
+                    }
+                    if (!isset($penyebutloopuser)) {
+                        $penyebutloopuser = 0;
                     }
 
 

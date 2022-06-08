@@ -71,7 +71,7 @@
                         @endif
                       @if($product->isfinish==1)
 
-                      <button type="button" disabled class="button-style buy-bottom-right">Expired</button>
+                      <button type="button" disabled class="button-style buy-bottom-right h-auto">On-Production</button>
                       @endif
                       @if($product->productstock>0 && $product->isfinish==0)
                         <button type="submit" class="button-style buy-bottom-right">Buy</button>
