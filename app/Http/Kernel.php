@@ -49,8 +49,10 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\checklogin::class,
         ],
         'checkinterestfinish'=>[
-
-        \App\Http\Middleware\InterestFinishCheck::class,
+            \App\Http\Middleware\InterestFinishCheck::class,
+        ],
+        'checkgroupbuy'=>[
+            \App\Http\Middleware\GroupBuyCheck::class,
         ],
 
     ];

@@ -37,8 +37,12 @@ Route::get('/refundreject', [App\Http\Controllers\RefundRequestController::class
 Route::get('/refundapprove{id}', [App\Http\Controllers\RefundRequestController::class, 'refundapprove']);
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index']);
-Route::get('/groupbuy', [App\Http\Controllers\GroupBuyController::class, 'index']);
-Route::get('/groupbuy/{category}', [App\Http\Controllers\GroupBuyController::class, 'groupbuycategory']);
+
+Route::group(['middleware' => ['checkgroupbuy']], function () {
+    Route::get('/groupbuy', [App\Http\Controllers\GroupBuyController::class, 'index']);
+    Route::get('/groupbuy/{category}', [App\Http\Controllers\GroupBuyController::class, 'groupbuycategory']);
+});
+
 Route::get('/product/{id}', [App\Http\Controllers\ProductDetailController::class, 'detail']);
 Route::get('/sellerformdetail/{name}', [App\Http\Controllers\SellerVerificationController::class, 'detailform']);
 
@@ -53,7 +57,7 @@ Route::post('/editdetailaddimage', [App\Http\Controllers\ProductDetailController
 Route::post('/do_uploadrequestseller', [App\Http\Controllers\SellerVerificationController::class, 'do_uploadrequestseller']);
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware' => ['checklogin']], function () {
-    Route::group(['middleware' => ['checkinterestfinish']], function () {
+    Route::group(['middleware' => ['checkgroupbuy']], function () {
 
         Route::get('/cart', [App\Http\Controllers\ProductDetailController::class, 'cart']);
         Route::delete('/delete/{id}', [App\Http\Controllers\ProductDetailController::class, 'delete']);

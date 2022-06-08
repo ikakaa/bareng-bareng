@@ -25,12 +25,12 @@ class GroupBuyCheck
         $productlist = ProductDetail::where('verified', '1')->get();
         //loop all database
         foreach ($productlist as $row) {
-
             $gbexpired = Carbon::parse($row->enddategb)->format('Y-m-d');
 
             $datecurrent = Carbon::now();
 
-            if ($datecurrent > $gbexpired) {
+            if ($datecurrent > $gbexpired || $row->productstock == 0) {
+
                 $row->isfinish = 2;
             }
         }
