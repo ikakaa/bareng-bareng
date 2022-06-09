@@ -29,6 +29,10 @@ Route::get('/category', function () {
     return view('category');
 });
 
+Route::get('/testrequest', function () {
+    return view('testrequest');
+});
+
 Route::get('/interestcheck', [App\Http\Controllers\InterestCheckController::class, 'index'])->middleware('checkinterestfinish');
 Route::get('/interestcheck/{category}', [App\Http\Controllers\InterestCheckController::class, 'interestcheckcategory'])->middleware('checkinterestfinish');
 Route::get('/interestcheckdetail/{id}', [App\Http\Controllers\InterestCheckController::class, 'detail']);
@@ -67,9 +71,8 @@ Route::group(['middleware' => ['checklogin']], function () {
             return view('profilebuyer');
         });
 
-        Route::get('/profileseller', function () {
-            return view('profileseller');
-        });
+        Route::get('/profileseller', [App\Http\Controllers\OrderController::class, 'fund']);
+
 
         Route::get('/editprofile', [App\Http\Controllers\Auth\LoginController::class, 'editprofile']);
 
