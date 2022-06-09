@@ -71,7 +71,7 @@ class ProductDetailController extends Controller
         $productfile->filepath = $filepath;
         $productfile->filesize = $filesize;
         $productfile->save();
-        alert()->success('Product uploaded successfully! Please wait for the verification process.', 'Success');
+        alert()->success('Please wait for the verification process.', 'Successfuly uploaded!');
 
         return redirect('profileseller');
     }

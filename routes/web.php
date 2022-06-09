@@ -57,7 +57,7 @@ Route::post('/editdetailaddimage', [App\Http\Controllers\ProductDetailController
 Route::post('/do_uploadrequestseller', [App\Http\Controllers\SellerVerificationController::class, 'do_uploadrequestseller']);
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware' => ['checklogin']], function () {
-    Route::group(['middleware' => ['checkgroupbuy']], function () {
+    Route::group(['middleware' => ['checkinterestfinish']], function () {
 
         Route::get('/cart', [App\Http\Controllers\ProductDetailController::class, 'cart']);
         Route::delete('/delete/{id}', [App\Http\Controllers\ProductDetailController::class, 'delete']);

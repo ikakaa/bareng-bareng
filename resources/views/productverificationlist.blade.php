@@ -56,7 +56,7 @@
                                         @if ($product->verified == 1)
                                             <button class="btn-verified">Status: Verified</button>
                                         @elseif ($product->verified == 2)
-                                            <button class="btn-rejected">Status: Rejected</button>
+                                            <button class="btn-rejected">Status: Rejected, {{$product->rejectreason}}</button>
                                         @else
                                             <button class="btn-on-progress">Status: On progress</button>
                                         @endif 

@@ -27,7 +27,7 @@
     <body>
         <div>
             @foreach ($products as $product)
-                <div class="card-detail pt-5">
+                <div class="card-detail"> <br>
                     <div class="tempat-back pb-3">
                         <a href="/interestcheck">
                             <i class="fas fa-arrow-left pl-3"></i>

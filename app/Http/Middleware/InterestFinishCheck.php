@@ -20,7 +20,6 @@ class InterestFinishCheck
      */
     public function handle(Request $request, Closure $next)
     {
-
         date_default_timezone_set('Asia/Bangkok');
         $tgl      = date('Y-m-d H:i:s');
         $productlist = ProductDetail::where('verified', '1')->get();
