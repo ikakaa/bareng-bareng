@@ -60,4 +60,10 @@ class OrderController extends Controller
         // redirect
     return redirect('/profileseller');
     }
+
+    public function fund(){
+        $fund = OrderDetails::where('seller_id', Auth::user()->id)->sum('totalPrice');
+
+        return view('profileseller', compact('fund'));
+    }
 }

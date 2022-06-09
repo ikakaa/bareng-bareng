@@ -55,7 +55,7 @@
                         @endif
 
                         <div class="font-weight-bold txt profile-txt pt-3">My Funds: </div>
-                        <p>Rp. 1.000.000</p>
+                        <p>Rp. {{number_format($fund)}}</p>
                         <small><a href="#"  data-toggle="modal" data-target="#exampleModal" class="text-primary">Request Withdraw</a></small>
                         
                         <div class="modal fade" id="exampleModal" tabindex="-1"

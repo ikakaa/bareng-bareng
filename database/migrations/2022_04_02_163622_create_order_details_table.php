@@ -17,6 +17,7 @@ class CreateOrderDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('product_id');
             $table->foreignId('order_id');
+            $table->foreignId('seller_id')->default('0');
             $table->integer('qty');
             $table->integer('totalPrice');
             $table->string('variant');
@@ -30,6 +31,7 @@ class CreateOrderDetailsTable extends Migration
 
             $table->foreign('product_id')->references('id')->on('product_details');
             $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('seller_id')->references('user_id')->on('product_details');
         });
     }
 

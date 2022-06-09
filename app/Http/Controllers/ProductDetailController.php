@@ -207,6 +207,7 @@ class ProductDetailController extends Controller
             $orderdetail = new OrderDetails;
             $orderdetail->product_id = $products->id;
             $orderdetail->order_id = $neworder->id;
+            $orderdetail->seller_id = $products->user_id;
             $orderdetail->qty = $request->qty;
             $orderdetail->variant = $request->producttype;
             $orderdetail->totalPrice = $products->productprice * $request->qty + 20000;
