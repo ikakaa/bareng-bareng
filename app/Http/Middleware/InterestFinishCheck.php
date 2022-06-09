@@ -24,6 +24,7 @@ class InterestFinishCheck
         $tgl      = date('Y-m-d H:i:s');
         $productlist = ProductDetail::where('verified', '1')->get();
         //loop all database
+
         foreach ($productlist as $row) {
 
             $getendate = Carbon::parse($row->enddate)->format('Y-m-d');
@@ -31,27 +32,29 @@ class InterestFinishCheck
             $dateexpired = ($getendate . ' ' . $row->endtime);
             $datecurrent = Carbon::now();
 
+?>
+
+<?php
             if ($datecurrent > $dateexpired) {
 
                 $gettotallike = Like::where('product_id', $row->id)->count('status');
                 // @dd($gettotallike);
                 if (isset($gettotallike)) {
+
                     if ($gettotallike >= $row->moq) {
                         $row->interestdone = '1';
                         $row->save();
                     } else {
                         $row->interestdone = '1';
                         $row->isfinish = '1';
-                        $row->icfail='1';
+                        $row->icfail = '1';
                         $row->save();
-
                     }
                 } else {
                     $row->interestdone = '1';
                     $row->isfinish = '1';
-                    $row->icfail='1';
+                    $row->icfail = '1';
                     $row->save();
-
                 }
             }
         }

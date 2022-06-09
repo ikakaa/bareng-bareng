@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -88,22 +87,61 @@
                                     {{ $product->shippingdate->format('d-m-Y') }}</p>
                                 {{-- <p class="interest-detail-ic pt-4"> --}}
                                 <div class="items-center align-middle flex">
-                                    @if ($checklike==0)
+                                    @if ($checklike == 0)
                                         <div class="tempat-text-heart">
-                                            <p class="pr-3" style="opacity: .7;">{{$totallike}}</p>
+                                            <p class="pr-3" style="opacity: .7;">{{ $totallike }}</p>
                                         </div>
-                                        <a href="/dislikeproduct/{{ $product->id }}"> <i class="fas fa-heart custiconsize"></i></p></a>
+                                        <a href="/dislikeproduct/{{ $product->id }}"> <i
+                                                class="fas fa-heart custiconsize"></i></p></a>
                                 </div>
-                            @endif
-                                @if($checklike==1)
-                                <div class="tempat-text-heart">
-                                    <p style="opacity: .7;">{{$totallike}}</p>
-                                </div>
-                                <a href="/likeproduct/{{ $product->id }}">
-                                    <div class="heart"></div>
-                                </a>
-                            </div>
             @endif
+            @if ($checklike == 1)
+                <div class="tempat-text-heart">
+                    <p style="opacity: .7;">{{ $totallike }}</p>
+                </div>
+                {{-- <a href="/likeproduct/{{ $product->id }}"> --}}
+                <button type="button" class="heart" data-toggle="modal" data-target="#exampleModal"
+                    data-whatever="@getbootstrap"></button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group ">
+                                        <label for="recipient-name" class="col-form-label flex justify-center flex-nowrap">Please Rate 1-5 </label>
+                                        <fieldset class="rating flex justify-center flex-nowrap">
+                                            <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+
+                                            <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+
+                                            <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+
+                                            <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                                            <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+
+                                        </fieldset>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- </a> --}}
+        </div>
+        @endif
 
         </div>
 
@@ -170,7 +208,25 @@
         </div>
 
     </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
     <script>
+        $('#exampleModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
         var swiper = new Swiper(".mySwiper", {
             loop: true,
             pagination: {

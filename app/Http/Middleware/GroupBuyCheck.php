@@ -20,6 +20,7 @@ class GroupBuyCheck
     public function handle(Request $request, Closure $next)
     {
 
+        // echo "Testing middleware";
         date_default_timezone_set('Asia/Bangkok');
         $tgl      = date('Y-m-d H:i:s');
         $productlist = ProductDetail::where('verified', '1')->get();
@@ -31,7 +32,7 @@ class GroupBuyCheck
 
             if ($datecurrent > $gbexpired || $row->productstock == 0) {
 
-                $row->isfinish = 2;
+                $row->isfinish = 1;
                 $row->save();
             }
         }

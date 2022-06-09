@@ -29,8 +29,8 @@ Route::get('/category', function () {
     return view('category');
 });
 
-Route::get('/interestcheck', [App\Http\Controllers\InterestCheckController::class, 'index']);
-Route::get('/interestcheck/{category}', [App\Http\Controllers\InterestCheckController::class, 'interestcheckcategory']);
+Route::get('/interestcheck', [App\Http\Controllers\InterestCheckController::class, 'index'])->middleware('checkinterestfinish');
+Route::get('/interestcheck/{category}', [App\Http\Controllers\InterestCheckController::class, 'interestcheckcategory'])->middleware('checkinterestfinish');
 Route::get('/interestcheckdetail/{id}', [App\Http\Controllers\InterestCheckController::class, 'detail']);
 Route::get('/refundetail/{id}', [App\Http\Controllers\RefundRequestController::class, 'refunddetail']);
 Route::get('/refundreject', [App\Http\Controllers\RefundRequestController::class, 'refundreject']);
