@@ -290,7 +290,7 @@ class ProductDetailController extends Controller
 
         $product->update();
 
-
+        alert()->success('Please wait for the verification process.', 'Payment success!');
         return redirect('home');
     }
 
