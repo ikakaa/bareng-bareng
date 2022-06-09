@@ -107,16 +107,17 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Interest Check</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form action="likeproduct" method="POST">
                                     <div class="form-group ">
-                                        <label for="recipient-name" class="col-form-label flex justify-center flex-nowrap">Please Rate 1-5 </label>
-                                        <fieldset class="rating flex justify-center flex-nowrap">
+                                        <label for="recipient-name" class="col-form-label flex justify-center flex-nowrap">How interested are you for this product please rate 1-5 </label>
+                                        <div class="flex justify-center">
+                                        <fieldset class="rating">
                                             <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
 
                                             <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
@@ -127,14 +128,14 @@
 
                                             <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
 
-                                        </fieldset>
+                                        </fieldset></div>
                                     </div>
 
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
+                                <button type="button" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -224,7 +225,7 @@
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
-            modal.find('.modal-title').text('New message to ' + recipient)
+
             modal.find('.modal-body input').val(recipient)
         })
         var swiper = new Swiper(".mySwiper", {

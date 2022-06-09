@@ -95,7 +95,7 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::get('/sellerverification', [App\Http\Controllers\SellerVerificationController::class, 'index']);
 
         //buyer
-        Route::get('/likeproduct/{id}', [App\Http\Controllers\LikeController::class, 'likeproduct']);
+        Route::post('/likeproduct', [App\Http\Controllers\LikeController::class, 'likeproduct']);
         Route::get('/dislikeproduct/{id}', [App\Http\Controllers\LikeController::class, 'dislikeproduct']);
         Route::get('/order/{id}', [App\Http\Controllers\ProductDetailController::class, 'order']);
         Route::get('/sellerform', [App\Http\Controllers\SellerVerificationController::class, 'sellerform']);
