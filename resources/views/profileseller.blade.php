@@ -57,7 +57,7 @@
                         <div class="font-weight-bold txt profile-txt pt-3">My Funds: </div>
                         <p>Rp. {{number_format($fund)}}</p>
                         <small><a href="#"  data-toggle="modal" data-target="#exampleModal" class="text-primary">Request Withdraw</a></small>
-                        
+
                         <div class="modal fade" id="exampleModal" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -72,10 +72,11 @@
                                     <div class="modal-body">
                                         <h1>Withdrawal process takes 2-7 days to finish. Are you sure you want to withdraw all your fund?</h1>
                                     </div>
-                                    <form action="POST" action="/withdrawalrequest">
+                                    <form method="POST" action="/request">
+                                        @csrf
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-success">Yes</button>
-                                            <button type="submit" class="btn btn-danger" data-dismiss="modal">No</button>
+                                            <button type="submit" class="btn btn-success">Yes</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
 
                                         </div>
                                     </form>

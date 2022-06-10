@@ -22,6 +22,13 @@
         <div>
             @foreach ($products as $product)
                 <div class="card-detail">
+                    <br>
+                    <div class="tempat-back pb-2">
+                        <a href="/myproductlist">
+                            <i class="fas fa-arrow-left pl-3"></i>
+                            Back</a>
+                    </div>
+                    <p class="interest-detail-ic pt-1 ic-box txt-center">Your product detail</p>
                     <div class="row no-gutters">
                         <div class="col-md-4 marginleft">
                             <br>

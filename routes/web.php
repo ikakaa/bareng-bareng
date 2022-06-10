@@ -97,6 +97,9 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::get('/productverification', [App\Http\Controllers\ProductDetailController::class, 'index']);
         Route::get('/sellerverification', [App\Http\Controllers\SellerVerificationController::class, 'index']);
 
+        Route::post('/request', [App\Http\Controllers\OrderController::class, 'request']);
+
+
         //buyer
         Route::post('/likeproduct', [App\Http\Controllers\LikeController::class, 'likeproduct']);
         Route::get('/dislikeproduct/{id}', [App\Http\Controllers\LikeController::class, 'dislikeproduct']);
@@ -133,3 +136,7 @@ Route::get('/refundverification', [App\Http\Controllers\RefundRequestController:
 Route::get('/productapprove/{id}', [App\Http\Controllers\ProductDetailController::class, 'approveproduct'])->middleware('isAdmin');
 Route::get('/sellerrequestapprove/{id}', [App\Http\Controllers\SellerVerificationController::class, 'approveseller'])->middleware('isAdmin');
 Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::class, 'rejectproduct'])->middleware('isAdmin');
+
+Route::get('/withdrawalrequest', [App\Http\Controllers\OrderController::class, 'withdrawalrequest'])->middleware('isAdmin');
+Route::get('/changestatus/{id}', [App\Http\Controllers\OrderController::class, 'changestatus'])->middleware('isAdmin');
+// Route::get('/paymentreject/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentreject'])->middleware('isAdmin');

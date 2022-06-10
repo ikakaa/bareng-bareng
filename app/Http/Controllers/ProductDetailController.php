@@ -149,7 +149,7 @@ class ProductDetailController extends Controller
     public function cart()
     {
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        if (!empty($orders) && $orders->totalPrice != '0') {
+        if (!empty($orders) && $orders->totalPrice != '20000') {
             $orderdetails = OrderDetails::where('order_id', $orders->id)->get();
             return view('cart', compact('orders', 'orderdetails'));
         } else {
@@ -179,11 +179,6 @@ class ProductDetailController extends Controller
         $products = ProductDetail::where('id', $id)->first();
         $date = Carbon::now(); //untuk mengambil tanggal hari ini
 
-        //validasi apabila quantity yang diinput lebih besar dibandingkan stock
-        // if($request->qty > $products->productstock){
-        //     return redirect('/product/{id}');
-        // }
-
         $check_order = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
 
         //jika user baru melakukan order dan belum checkout
@@ -192,7 +187,7 @@ class ProductDetailController extends Controller
             $order->user_id = Auth::user()->id;
             $order->date = $date;
             $order->status = 0;
-            $order->totalPrice = 0;
+            $order->totalPrice = 20000;
 
             $order->save();
         }
@@ -210,7 +205,7 @@ class ProductDetailController extends Controller
             $orderdetail->seller_id = $products->user_id;
             $orderdetail->qty = $request->qty;
             $orderdetail->variant = $request->producttype;
-            $orderdetail->totalPrice = $products->productprice * $request->qty + 20000;
+            $orderdetail->totalPrice = $products->productprice * $request->qty;
 
             $orderdetail->save();
         } else {
@@ -227,7 +222,7 @@ class ProductDetailController extends Controller
 
         //update total price di table order
         $order = Orders::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        $order->totalPrice = $order->totalPrice + $products->productprice * $request->qty + 20000;
+        $order->totalPrice = ($order->totalPrice + $products->productprice * $request->qty);
         $order->update();
 
         

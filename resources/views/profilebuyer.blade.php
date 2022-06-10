@@ -61,8 +61,12 @@
                             <span class="pl-2">Seller Verification</span>
                         </a><br>
                         <a href="refundverification">
-                            <i class="fas fa-info" style="font-size:15px"></i>
+                            <i class="fas fa-undo" style="font-size:15px"></i>
                             <span class="pl-2">Refund Verification</span>
+                        </a><br>
+                        <a href="withdrawalrequest">
+                            <i class="fas fa-money-bill-alt" style="font-size:15px"></i>
+                            <span class="pl-2">Withdrawal Request</span>
                         </a><br>
                     </div>
                 @else

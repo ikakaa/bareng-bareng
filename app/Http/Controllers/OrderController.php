@@ -8,6 +8,8 @@ use App\Models\ProductDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Payment;
+use App\Models\Withdrawal;
+use App\Models\SellerVerification;
 
 class OrderController extends Controller
 {
@@ -57,13 +59,69 @@ class OrderController extends Controller
         $ambilorder[0]->status = 4;
         $ambilorder[0]->save();
 
-        // redirect
-    return redirect('/profileseller');
+    
+        return redirect('/profileseller');
     }
 
     public function fund(){
+        $status = OrderDetails::where('seller_id', Auth::user()->id)->first();
         $fund = OrderDetails::where('seller_id', Auth::user()->id)->sum('totalPrice');
 
-        return view('profileseller', compact('fund'));
+        // if($status->fundstatus==1){
+        //     $fund = OrderDetails::where('seller_id', Auth::user()->id)->sum('totalPrice');
+        //     $fund = $fund - $fund;
+        // } elseif($status->fundstatus==2) {
+        //     $fund = OrderDetails::where('seller_id', Auth::user()->id)->sum('totalPrice');
+
+        // }
+        
+
+        return view('profileseller', compact('fund', 'status'));
+    }
+
+    public function withdrawalrequest(){
+        $requests = Withdrawal::distinct('id')->where('status', '1')->get();
+        return view('withdrawalrequest', compact('requests'));
+    }
+
+    public function request(){
+        $seller = SellerVerification::where('user_id', Auth::user()->id)->first();
+        $orderdetail = OrderDetails::where('seller_id', Auth::user()->id)->first();
+
+        $requestwithdrawal = new Withdrawal;
+        $requestwithdrawal->seller_id = Auth::user()->id;
+        $fund = OrderDetails::where('seller_id', Auth::user()->id)->sum('totalPrice');
+        $requestwithdrawal->fund = $fund;
+        $requestwithdrawal->status = 1;
+        $requestwithdrawal->paymenttype = $seller->paymenttype;
+        $requestwithdrawal->paymentnumber = $seller->paymentnumber;
+        
+        $requestwithdrawal->save();
+
+        $orderdetail->fundstatus = 1;
+        $orderdetail->update();
+
+        alert()->success('Please wait for the withdrawal process.', 'Request submitted!');
+        return redirect('profileseller');
+    }
+
+    public function changestatus(Withdrawal $id){
+        $requestwithdrawal = Withdrawal::where('id', $id->id)->first();
+        $orderdetail = OrderDetails::where('seller_id', $requestwithdrawal->seller_id)->first();
+
+        $requestwithdrawal->status = 2;
+        $requestwithdrawal->update();
+
+        $orderdetail->fundstatus = 2;
+        $orderdetail->update();
+
+        return redirect()->back()->with('status', 'Status changed successfully');
+    }
+
+    public function withdrawalapprove(){
+        $orders = Orders::with('payments')->where('id', $id->id)->first();
+        $orders->status = 1;
+        $orders->update();
+        return redirect()->back()->with('status', 'Payment Approved Successfully');
     }
 }
