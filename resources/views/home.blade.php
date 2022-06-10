@@ -151,6 +151,7 @@
                 </div>
             </div>
         </div>
+{{-- @dd($productrecommendation) --}}
 
             @isset($productrecommendation)
             <p class="card-title text-center  text-white ">Recommended Products For You</p>
@@ -158,12 +159,18 @@
                 <?php $limitrecommendation = 0; ?>
                 @foreach ($productrecommendation as $product)
                     <?php if ($limitrecommendation == 3) {
-                        break;
+                        // break;
                     } ?>
-                    @if ($product->product->interestdone == 1 && $product->product->isfinish == 0)
+                    @if ($product->product->interestdone == 0 && $product->product->isfinish == 0 && $product->product->verified == 1)
                         <div class="card-custom mr-4">
                             <div class="card-img">
-                                <img src="src/a.jpg" alt="">
+                                @foreach ($productfiles as  $file)
+                                    @if ($file->productid == $product->product->id && $file->deleted==0)
+                                        <img src="{{$file->filepath}}" alt="">
+                                        @break
+                                    @endif
+
+                                @endforeach
                             </div>
                             <div class="card-text w-full px-2 pb-3 ">
                                 <p class="card-header2 pt-1">{{ $product->product->product_name }} </p>
@@ -176,7 +183,7 @@
                                     </div>
                                     <div class="mini-card-button">
 
-                                        <a href="product/{{ $product->product->id }}" target="_blank"
+                                        <a href="{{url('/interestcheckdetail')}}/{{$product->product->id}}" target="_blank"
                                             class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
                                             to cart</a>
                                     </div>

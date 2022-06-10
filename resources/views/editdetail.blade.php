@@ -86,11 +86,11 @@
                     <br>
                     <h3 style="font-size: 22px">Interest Check</h3>
 
-                    <h3>You can only edit the shipping date</h3><br>
+                    <h3>You can only edit the shipping date and discord link</h3><br>
                     <label for="shippingdate" class="block sm:mb-2 mb-1 w-full">Shipping Date</label>
                     <input type="date" name="shippingdate" required
                         class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth2  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
-                        value="{{ $products->shippingdate }}">
+                        value="<?php echo date('Y-m-d',strtotime($products->shippingdate))?>">
 
 
                     <label for="discord" class="block sm:mb-2 mb-1 w-full  mt-2">Link Discord (for updates or chat)</label>

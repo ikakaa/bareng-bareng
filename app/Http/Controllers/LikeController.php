@@ -8,19 +8,20 @@ use Illuminate\Support\Facades\Auth;
 class LikeController extends Controller
 {
     //
-    public function likeproduct($id){
+    public function likeproduct(Request $request){
+
         //search from likes table if user already like this product
-        $like = Like::where(['user_id'=>\Auth::id(),'product_id'=>$id])->first();
+        $like = Like::where(['user_id'=>\Auth::id(),'product_id'=>$request->id])->first();
         //if exist, update status to 1, else insert new record
         if($like){
-            $like->status = 1;
+            $like->status = $request->rating;
             $like->save();
 
         }else{
             $like=new Like();
             $like->user_id = Auth::id();
-            $like->product_id = $id;
-            $like->status = 1;
+            $like->product_id = $request->id;
+            $like->status = $request->rating;
             $like->save();
         }
 

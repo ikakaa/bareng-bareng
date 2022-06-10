@@ -37,7 +37,7 @@ class InterestFinishCheck
 <?php
             if ($datecurrent > $dateexpired) {
 
-                $gettotallike = Like::where('product_id', $row->id)->count('status');
+                $gettotallike = Like::where('product_id', $row->id)->where('status','>=','3')->count('id');
                 // @dd($gettotallike);
                 if (isset($gettotallike)) {
 

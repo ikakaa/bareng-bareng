@@ -18,35 +18,35 @@ class InterestCheckController extends Controller
     {
         $products = ProductDetail::distinct('id')->where('verified', '1')->where('interestdone', '0')->paginate(8);
         $product = ProductDetail::find($id);
-        $productfiles=ProductDetailsFile::all();
+        $productfiles = ProductDetailsFile::all();
         return view('interestcheck', compact('products', 'product', 'productfiles'));
     }
 
     public function detail(ProductDetailsFile $id)
     {
-if(!isset(Auth::user()->id)){
-    return redirect('/login');
-}
+        if (!isset(Auth::user()->id)) {
+            return redirect('/login');
+        }
         $products = ProductDetail::where('id', $id->id)->get();
         $comments = ProductComment::all();
         $productfile = ProductDetailsFile::all();
-        $like = Like::where('product_id', $id->id)->where('user_id',Auth::user()->id)->where('status',1)->get();
-$countlike=Like::where('product_id', $id->id)->where('status',1)->get();
+        $like = Like::where('product_id', $id->id)->where('user_id', Auth::user()->id)->where('status', '!=', '0')->get();
+        $totallike = Like::where('product_id', $id->id)->average('status');
+        $totallike=number_format($totallike, 1);
 
-$totallike=$countlike->count();
-        $checklike='0';
-if($like->isEmpty()){
+        $checklike = '0';
+        if ($like->isEmpty()) {
 
-$checklike='1';
-}
+            $checklike = '1';
+        }
 
-        return view('interestcheckdetail', compact('products', 'comments', 'productfile', 'like', 'checklike','totallike'));
+        return view('interestcheckdetail', compact('products', 'comments', 'productfile', 'like', 'checklike', 'totallike'));
     }
     public function interestcheckcategory($category)
     {
         $products = ProductDetail::distinct('id')->where('verified', '1')->where('interestdone', '0')->where('product_type', $category)->paginate(8);
         $checkfilter = true;
-        $productfiles=ProductDetailsFile::all();
+        $productfiles = ProductDetailsFile::all();
         return view('interestcheckfilter', compact('products', 'checkfilter', 'productfiles'));
     }
 }

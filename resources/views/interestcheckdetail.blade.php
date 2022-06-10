@@ -38,7 +38,7 @@
                             <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
                                     @foreach ($productfile as $row)
-                                        @if ($row->productid == $product->id)
+                                        @if ($row->productid == $product->id && $row->deleted==0)
                                             <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
                                         @endif
                                     @endforeach
@@ -89,7 +89,7 @@
                                 <div class="items-center align-middle flex">
                                     @if ($checklike == 0)
                                         <div class="tempat-text-heart">
-                                            <p class="pr-3" style="opacity: .7;">{{ $totallike }}</p>
+                                            <p class="pr-3" style="opacity: .7;">{{ $totallike }} / 5.0</p>
                                         </div>
                                         <a href="/dislikeproduct/{{ $product->id }}"> <i
                                                 class="fas fa-heart custiconsize"></i></p></a>
@@ -97,50 +97,84 @@
             @endif
             @if ($checklike == 1)
                 <div class="tempat-text-heart">
-                    <p style="opacity: .7;">{{ $totallike }}</p>
+                    <p style="opacity: .7;">{{ $totallike }}  / 5.0</p>
                 </div>
                 {{-- <a href="/likeproduct/{{ $product->id }}"> --}}
-                <button type="button" class="heart" data-toggle="modal" data-target="#exampleModal"
-                    data-whatever="@getbootstrap"></button>
+                <button type="button" class="heart" data-toggle="modal" data-target="#exampleModal"></button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
                     <div class="modal-dialog" role="document">
+                        <form action="/likeproduct" method="POST" enctype='multipart/form-data'>
+                            @csrf
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Interest Check</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="likeproduct" method="POST">
-                                    <div class="form-group ">
-                                        <label for="recipient-name" class="col-form-label flex justify-center flex-nowrap">How interested are you for this product please rate 1-5 </label>
-                                        <div class="flex justify-center">
-                                        <fieldset class="rating">
-                                            <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
 
-                                            <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
 
-                                            <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
 
-                                            <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
 
-                                            <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                    <div class="modal-header">
 
-                                        </fieldset></div>
+                                        <h5 class="modal-title" id="exampleModalLabel">Interest Check</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
 
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
+
+                                    <input type="hidden" value="ABC" name="test">
+                                    <div class="modal-body">
+
+                                        <div class="form-group ">
+
+                                            <label for="recipient-name"
+                                                class="col-form-label flex justify-center flex-nowrap">How interested are
+                                                you
+                                                for this product please rate 1-5 </label>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="flex justify-center mb-5">
+
+                                        <fieldset class="rating">
+                                            <input type="radio" id="star5" name="rating" value="5" /><label
+                                                class="full" for="star5"
+                                                title="Awesome - 5 stars"></label>
+
+                                            <input type="radio" id="star4" name="rating" value="4" /><label
+                                                class="full" for="star4"
+                                                title="Pretty good - 4 stars"></label>
+
+                                            <input type="radio" id="star3" name="rating" value="3" checked /><label
+                                                class="full" for="star3" title="Meh - 3 stars"></label>
+
+                                            <input type="radio" id="star2" name="rating" value="2" /><label
+                                                class="full" for="star2"
+                                                title="Kinda bad - 2 stars"></label>
+
+                                            <input type="radio" id="star1" name="rating" value="1" /><label
+                                                class="full" for="star1"
+                                                title="Sucks big time - 1 star"></label>
+
+                                        </fieldset>
+
+                                    </div>
+                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </form>
+
                     </div>
+
                 </div>
-                {{-- </a> --}}
+        </div>
+        </div>
+        {{-- </a> --}}
         </div>
         @endif
 
