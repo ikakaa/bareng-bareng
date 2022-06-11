@@ -301,7 +301,7 @@ echo " Current User : UID ".Auth::user()->id;?>
             // return $findnearestvalue;
 
 
-            $productrecommendation = Like::where('user_id', $mostsimilaruid)->where('status','>=','0')->get();
+            $productrecommendation = Like::where('user_id', $mostsimilaruid)->where('status','>=','3')->get();
             // return $productrecommendation;
             $productfiles=ProductDetailsFile::all();
             return view('home', compact('productrecommendation','productfiles'));

@@ -159,7 +159,7 @@
                 <?php $limitrecommendation = 0; ?>
                 @foreach ($productrecommendation as $product)
                     <?php if ($limitrecommendation == 3) {
-                        // break;
+                        break;
                     } ?>
                     @if ($product->product->interestdone == 0 && $product->product->isfinish == 0 && $product->product->verified == 1)
                         <div class="card-custom mr-4">
