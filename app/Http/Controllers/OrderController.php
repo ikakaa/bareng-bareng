@@ -68,7 +68,6 @@ class OrderController extends Controller
         $sellerfund = SellerVerification::where('user_id', Auth::user()->id)->first();
         $fund = OrderDetails::where('seller_id', Auth::user()->id)->where('fundstatus', '0')->sum('totalPrice');
 
-        //dana ud ditarik status balik jd 0 fund juga 0
         if($sellerfund->fundstatus == 0){
             $sellerfund->totalfund = $fund;
             $sellerfund->update();
@@ -87,7 +86,7 @@ class OrderController extends Controller
 
     public function request(){
         $sellerfund = SellerVerification::where('user_id', Auth::user()->id)->first();
-        $orderdetail = OrderDetails::where('seller_id', Auth::user()->id)->first();
+        $orderdetail = OrderDetails::where('seller_id', Auth::user()->id)->get();
 
         $requestwithdrawal = new Withdrawal;
         $requestwithdrawal->seller_id = Auth::user()->id;
@@ -98,11 +97,17 @@ class OrderController extends Controller
         
         $requestwithdrawal->save();
 
+        foreach($orderdetail as $orderdetail){
+            if($orderdetail->fundstatus == 0){ 
+                $orderdetail->fundstatus = 1;
+                $orderdetail->update();
+            }
+        }
+
         $sellerfund->fundstatus = 1;
         $sellerfund->update();
 
-        $orderdetail->fundstatus = 1;
-        $orderdetail->update();
+        
 
         alert()->success('Please wait for the withdrawal process.', 'Request submitted!');
         return redirect('profileseller');

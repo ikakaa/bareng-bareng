@@ -139,4 +139,3 @@ Route::post('/rejectproduct', [App\Http\Controllers\ProductDetailController::cla
 
 Route::get('/withdrawalrequest', [App\Http\Controllers\OrderController::class, 'withdrawalrequest'])->middleware('isAdmin');
 Route::get('/changestatus/{id}', [App\Http\Controllers\OrderController::class, 'changestatus'])->middleware('isAdmin');
-// Route::get('/paymentreject/{id}', [App\Http\Controllers\ProductDetailController::class, 'paymentreject'])->middleware('isAdmin');
