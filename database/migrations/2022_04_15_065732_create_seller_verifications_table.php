@@ -23,6 +23,8 @@ class CreateSellerVerificationsTable extends Migration
             $table->string('identitytype')->default('0')->nullable();
             $table->string('paymenttype')->default('0')->nullable();
             $table->string('paymentnumber')->default('0')->nullable();
+            $table->integer('totalfund')->default('0')->nullable();
+            $table->string('fundstatus')->default('0')->nullable();
 
             $table->string('deleted')->default('0');
             $table->timestamps();

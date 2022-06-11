@@ -65,18 +65,19 @@ class OrderController extends Controller
 
     public function fund(){
         $status = OrderDetails::where('seller_id', Auth::user()->id)->first();
-        $fund = OrderDetails::where('seller_id', Auth::user()->id)->sum('totalPrice');
+        $sellerfund = SellerVerification::where('user_id', Auth::user()->id)->first();
+        $fund = OrderDetails::where('seller_id', Auth::user()->id)->where('fundstatus', '0')->sum('totalPrice');
 
-        // if($status->fundstatus==1){
-        //     $fund = OrderDetails::where('seller_id', Auth::user()->id)->sum('totalPrice');
-        //     $fund = $fund - $fund;
-        // } elseif($status->fundstatus==2) {
-        //     $fund = OrderDetails::where('seller_id', Auth::user()->id)->sum('totalPrice');
-
-        // }
+        //dana ud ditarik status balik jd 0 fund juga 0
+        if($sellerfund->fundstatus == 0){
+            $sellerfund->totalfund = $fund;
+            $sellerfund->update();
+        } else if($sellerfund->fundstatus == 1){ //dana dalam proses tarik
+            $sellerfund->totalfund = 0;
+            $sellerfund->update();
+        }
         
-
-        return view('profileseller', compact('fund', 'status'));
+        return view('profileseller', compact('sellerfund', 'status'));
     }
 
     public function withdrawalrequest(){
@@ -85,18 +86,20 @@ class OrderController extends Controller
     }
 
     public function request(){
-        $seller = SellerVerification::where('user_id', Auth::user()->id)->first();
+        $sellerfund = SellerVerification::where('user_id', Auth::user()->id)->first();
         $orderdetail = OrderDetails::where('seller_id', Auth::user()->id)->first();
 
         $requestwithdrawal = new Withdrawal;
         $requestwithdrawal->seller_id = Auth::user()->id;
-        $fund = OrderDetails::where('seller_id', Auth::user()->id)->sum('totalPrice');
-        $requestwithdrawal->fund = $fund;
+        $requestwithdrawal->fund = $sellerfund->totalfund;
         $requestwithdrawal->status = 1;
-        $requestwithdrawal->paymenttype = $seller->paymenttype;
-        $requestwithdrawal->paymentnumber = $seller->paymentnumber;
+        $requestwithdrawal->paymenttype = $sellerfund->paymenttype;
+        $requestwithdrawal->paymentnumber = $sellerfund->paymentnumber;
         
         $requestwithdrawal->save();
+
+        $sellerfund->fundstatus = 1;
+        $sellerfund->update();
 
         $orderdetail->fundstatus = 1;
         $orderdetail->update();
@@ -108,20 +111,15 @@ class OrderController extends Controller
     public function changestatus(Withdrawal $id){
         $requestwithdrawal = Withdrawal::where('id', $id->id)->first();
         $orderdetail = OrderDetails::where('seller_id', $requestwithdrawal->seller_id)->first();
+        $sellerfund = SellerVerification::where('user_id', $requestwithdrawal->seller_id)->first();
 
         $requestwithdrawal->status = 2;
         $requestwithdrawal->update();
 
-        $orderdetail->fundstatus = 2;
-        $orderdetail->update();
+        $sellerfund->fundstatus = 0;
+        $sellerfund->update();
 
         return redirect()->back()->with('status', 'Status changed successfully');
     }
 
-    public function withdrawalapprove(){
-        $orders = Orders::with('payments')->where('id', $id->id)->first();
-        $orders->status = 1;
-        $orders->update();
-        return redirect()->back()->with('status', 'Payment Approved Successfully');
-    }
 }

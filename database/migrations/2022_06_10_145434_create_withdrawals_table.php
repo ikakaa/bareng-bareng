@@ -16,7 +16,7 @@ class CreateWithdrawalsTable extends Migration
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('seller_id')->default('0');
-            $table->integer('fund');
+            $table->integer('fund')->default('0')->nullable();
             $table->string('paymenttype');
             $table->string('paymentnumber');
             $table->string('status')->default('0')->nullable();

@@ -55,8 +55,13 @@
                         @endif
 
                         <div class="font-weight-bold txt profile-txt pt-3">My Funds: </div>
-                        <p>Rp. {{number_format($fund)}}</p>
+                        @if ($sellerfund->totalfund == 0)
+                        <p>Rp. 0</p>
+                        <small><a href="#" class="text-danger">Request Withdraw</a></small>
+                        @else
+                        <p>Rp. {{number_format($sellerfund->totalfund)}}</p>
                         <small><a href="#"  data-toggle="modal" data-target="#exampleModal" class="text-primary">Request Withdraw</a></small>
+                        @endif
 
                         <div class="modal fade" id="exampleModal" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

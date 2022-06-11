@@ -32,7 +32,7 @@
                     <div class="alert alert-warning mb-3 mt-1 w-2/3">File must be image and max 10mb!</div>
                     @enderror
                 @if (session()->has('successupload'))
-                    <div class="alert alert-success mb-3 mt-1 w-2/3">Request Success,please wait admin to verify!</div>
+                    <div class="alert alert-success mb-3 mt-1 w-2/3">Request success, please wait for admin to verify!</div>
 
                     <?php session()->forget('successupload'); ?>
                 @endif

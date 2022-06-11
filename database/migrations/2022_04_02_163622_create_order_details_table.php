@@ -21,7 +21,6 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('qty');
             $table->integer('totalPrice');
             $table->string('variant');
-            $table->integer('fund');
             $table->string('fundstatus')->default('0')->nullable();
 
             $table->string('itemsentbyseller')->default('0')->nullable();
