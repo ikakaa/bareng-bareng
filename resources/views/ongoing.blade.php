@@ -85,7 +85,7 @@
                                                     @endif
                                                     @if ($detail[0]->orders->status == 7)
                                                         <button class="btn-on-progress">Status: Refund Rejected.
-                                                            Reason : {{ $detail[0]->orders->rejectStatus }}</button>
+                                                            Reason : {{ $detail[0]->orders->rejetStatus }}</button>
                                                     @endif
                                                     @if ($detail[0]->orders->status == 8)
                                                         <button class="btn-on-progress">Status: Refund Approved </button>

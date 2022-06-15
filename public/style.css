@@ -706,6 +706,19 @@ div {
     margin: 4px 2px;
 }
 
+.btn-on-success {
+    background-color: white;
+    color: black;
+    border: 2px solid #74df91;
+    border-radius: 5px;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+}
+
 .btn-rejected {
     background-color: white;
     color: black;

@@ -44,7 +44,7 @@
                                 @foreach ($orderdetails as $detail)
                                     @if ($detail->products->owner == $sellername)
 
-                                    @if($detail->orders->status == 1 )
+                                    @if($detail->orders->status == 1 || $detail->orders->status ==7  )
                                         <a href="/ongoingsellerdetail/{{ $detail->id }}">
                                             @endif
                                             {{-- @endif --}}
@@ -81,7 +81,7 @@
                                                                 arrive to your address, please wait</button>
                                                         @endif
                                                         @if ($detail->orders->status == 5)
-                                                            <button class="btn-on-progress">Status: Transaction
+                                                            <button class="btn-on-success">Status: Transaction
                                                                 Complete</button>
                                                         @endif
                                                         @if ($detail->orders->status == 6)
@@ -89,7 +89,7 @@
                                                         @endif
                                                         @if ($detail->orders->status == 7)
                                                             <button class="btn-on-progress">Status: Refund Rejected.
-                                                                Reason : {{ $detail->orders->rejectStatus }}</button>
+                                                                Reason : {{ $detail->orders->rejetStatus }}</button>
                                                         @endif
                                                         @if ($detail->orders->status == 8)
                                                             <button class="btn-on-progress">Status: Refund Approved
@@ -102,7 +102,7 @@
                                                 </div>
                                             </div>
 
-                                            @if($detail->orders->status == 1 )
+                                            @if($detail->orders->status == 1 || $detail->orders->status ==7 )
 
                                         </a>
                                         @endif

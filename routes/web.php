@@ -37,8 +37,8 @@ Route::get('/interestcheck', [App\Http\Controllers\InterestCheckController::clas
 Route::get('/interestcheck/{category}', [App\Http\Controllers\InterestCheckController::class, 'interestcheckcategory'])->middleware('checkinterestfinish');
 Route::get('/interestcheckdetail/{id}', [App\Http\Controllers\InterestCheckController::class, 'detail']);
 Route::get('/refundetail/{id}', [App\Http\Controllers\RefundRequestController::class, 'refunddetail']);
-Route::get('/refundreject', [App\Http\Controllers\RefundRequestController::class, 'refundreject']);
-Route::get('/refundapprove{id}', [App\Http\Controllers\RefundRequestController::class, 'refundapprove']);
+Route::post('/refundreject', [App\Http\Controllers\RefundRequestController::class, 'refundreject']);
+Route::get('/refundapprove/{id}', [App\Http\Controllers\RefundRequestController::class, 'refundapprove']);
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index']);
 
