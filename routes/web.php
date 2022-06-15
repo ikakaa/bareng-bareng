@@ -75,6 +75,7 @@ Route::group(['middleware' => ['checklogin']], function () {
 
 
         Route::get('/editprofile', [App\Http\Controllers\Auth\LoginController::class, 'editprofile']);
+        Route::get('/testing', [App\Http\Controllers\UserViewController::class, 'testing']);
 
 
         //seller

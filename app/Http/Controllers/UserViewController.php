@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
+use App\Models\ProductDetail;
 use App\Models\ProductDetailsFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,26 +18,30 @@ class UserViewController extends Controller
     public function recommendation()
     {
         echo "Collaborative Filtering Recommendation System";
-        ?>
-
-<?php
-// echo " Data :";
 ?>
 
 <?php
-// echo " U1 => 1 1 1";?>
+        // echo " Data :";
+?>
 
 <?php
-// echo " U2 => 4 5 3 ";?>
+        // echo " U1 => 1 1 1";
+?>
 
 <?php
-// echo " U3 => 1 1 1";?>
+        // echo " U2 => 4 5 3 ";
+?>
 
 <?php
-// echo " U4 => 4 5 3";?>
+        // echo " U3 => 1 1 1";
+?>
 
 <?php
-echo " Current User : UID ".Auth::user()->id;?>
+        // echo " U4 => 4 5 3";
+?>
+
+<?php
+        echo " Current User : UID " . Auth::user()->id; ?>
 
 <?php
         if (isset(Auth::user()->id)) {
@@ -87,7 +92,7 @@ echo " Current User : UID ".Auth::user()->id;?>
                     $hitungloopuser = $statuscount - $getavguser;
 
                     // echo " = ".$statuscount." - ".$getavguser;
-                    $hitungtotal = $hitungcurruser* $hitungloopuser;
+                    $hitungtotal = $hitungcurruser * $hitungloopuser;
                     // $hitungtotal=number_format((float)$hitungtotal, 3, '.', '');
                     // echo " Hitung total ".$hitungtotal." = ".$hitungcurruser." * ".$hitungloopuser;
                     // echo " Collaborative pembilang  SEBELUM:  ".$collaborativepembilang;
@@ -202,6 +207,8 @@ echo " Current User : UID ".Auth::user()->id;?>
         // } else {
         //     return view('home');
         // }
+        $checkhitung=0;
+        $checktotaluser=0;
         if (isset(Auth::user()->id)) {
             function divnum($numerator, $denominator)
             {
@@ -215,12 +222,14 @@ echo " Current User : UID ".Auth::user()->id;?>
             $findnearestvalue = array();
 
             foreach ($alluser as $user) {
+                $checktotaluser++;
+                $checkhitung++;
                 $penyebutcurruser = 0;
                 $penyebutloopuser = 0;
                 $collaborativepembilang = 0;
                 $collaborativepenyebut = 0;
                 $getavguser = Like::where('user_id', $user->id)->average('status');
-?>
+            ?>
 
 <?php
                 // $getavguser = $getavguser / $countaveragecurruser;
@@ -250,7 +259,7 @@ echo " Current User : UID ".Auth::user()->id;?>
                     $hitungloopuser = $statuscount - $getavguser;
 
                     // echo " = ".$statuscount." - ".$getavguser;
-                    $hitungtotal = $hitungcurruser* $hitungloopuser;
+                    $hitungtotal = $hitungcurruser * $hitungloopuser;
                     // $hitungtotal=number_format((float)$hitungtotal, 3, '.', '');
                     // echo " Hitung total ".$hitungtotal." = ".$hitungcurruser." * ".$hitungloopuser;
                     // echo " Collaborative pembilang  SEBELUM:  ".$collaborativepembilang;
@@ -271,6 +280,9 @@ echo " Current User : UID ".Auth::user()->id;?>
                     if (!isset($penyebutloopuser)) {
                         $penyebutloopuser = 0;
                     }
+                }
+                if($collaborativepembilang==0){
+                    $checkhitung++;
                 }
                 $collaborativepenyebut = sqrt($penyebutcurruser) * sqrt($penyebutloopuser);
                 // echo " Penyebutloop".sqrt($penyebutloopuser);
@@ -294,19 +306,41 @@ echo " Current User : UID ".Auth::user()->id;?>
             }
             $key = array_search(max($findnearestvalue), $findnearestvalue);
             $mostsimilaruid = $key;
-            // echo "Most similar user ID : " . $key; ?>
+            // echo "Most similar user ID : " . $key;
+?>
 
             <?php
 
             // return $findnearestvalue;
 
 
-            $productrecommendation = Like::where('user_id', $mostsimilaruid)->where('status','>=','3')->get();
+            $productrecommendation = Like::where('user_id', $mostsimilaruid)->where('status', '>=', '3')->get();
             // return $productrecommendation;
-            $productfiles=ProductDetailsFile::all();
-            return view('home', compact('productrecommendation','productfiles'));
+            $productfiles = ProductDetailsFile::all();
+            // return view('home', compact('productrecommendation', 'productfiles'));
         } else {
-             return view('home');
-         }
+            $checkhitung=999;
+
+
+            // return view('home');
+        }
+        if($checkhitung>=$checktotaluser){
+//No data / Recommendation most liked product
+            $productrecommendation=Like::select('product_id', \DB::raw('avg(status) as counts'))->groupBy('product_id')->orderBy('counts', 'DESC')->take(3)->get();
+
+            $productfiles = ProductDetailsFile::all();
+            return view('home', compact('productrecommendation', 'productfiles'));
+        }else{
+            $productrecommendation = Like::where('user_id', $mostsimilaruid)->where('status', '>=', '3')->get();
+            $productfiles = ProductDetailsFile::all();
+            return view('home', compact('productrecommendation', 'productfiles'));
+        }
+
     }
-}
+
+    public function testing()
+    {
+        // $product=Like::groupBy('product_id')->orderBy('count', 'DESC')->take(5)->get();
+        return $product[0]->product;
+
+}}
