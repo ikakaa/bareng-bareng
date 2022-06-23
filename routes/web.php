@@ -40,8 +40,6 @@ Route::get('/refundetail/{id}', [App\Http\Controllers\RefundRequestController::c
 Route::post('/refundreject', [App\Http\Controllers\RefundRequestController::class, 'refundreject']);
 Route::get('/refundapprove/{id}', [App\Http\Controllers\RefundRequestController::class, 'refundapprove']);
 
-Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index']);
-
 Route::group(['middleware' => ['checkgroupbuy']], function () {
     Route::get('/groupbuy', [App\Http\Controllers\GroupBuyController::class, 'index']);
     Route::get('/groupbuy/{category}', [App\Http\Controllers\GroupBuyController::class, 'groupbuycategory']);

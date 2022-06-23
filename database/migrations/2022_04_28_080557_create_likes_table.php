@@ -19,6 +19,9 @@ class CreateLikesTable extends Migration
             $table->foreignId('user_id');
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('product_details');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

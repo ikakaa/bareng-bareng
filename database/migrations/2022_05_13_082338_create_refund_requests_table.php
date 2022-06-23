@@ -15,8 +15,8 @@ class CreateRefundRequestsTable extends Migration
     {
         Schema::create('refund_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('userid');
-            $table->string('orderid');
+            $table->foreignId('userid');
+            $table->foreignId('orderid');
             $table->string('title')->default('0')->nullable();
             $table->string('reason')->default('0')->nullable();
             $table->string('status')->default('0')->nullable();
@@ -25,6 +25,9 @@ class CreateRefundRequestsTable extends Migration
 
             $table->string('rejectreason')->default('0')->nullable();
             $table->timestamps();
+
+            $table->foreign('userid')->references('id')->on('users');
+            $table->foreign('orderid')->references('id')->on('orders');
         });
     }
 

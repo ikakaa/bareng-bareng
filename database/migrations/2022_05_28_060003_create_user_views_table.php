@@ -15,10 +15,13 @@ class CreateUserViewsTable extends Migration
     {
         Schema::create('user_views', function (Blueprint $table) {
             $table->id();
-            $table->string('userid');
-            $table->string('productid');
+            $table->foreignId('userid');
+            $table->foreignId('productid');
             $table->integer('view')->default(0)->nullable();
             $table->timestamps();
+
+            $table->foreign('productid')->references('id')->on('product_details');
+            $table->foreign('userid')->references('id')->on('users');
         });
     }
 

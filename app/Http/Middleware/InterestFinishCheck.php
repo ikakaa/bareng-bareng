@@ -6,7 +6,6 @@ use App\Models\Like;
 use Closure;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Models\ProductDetailsFile;
 use App\Models\ProductDetail;
 
 class InterestFinishCheck

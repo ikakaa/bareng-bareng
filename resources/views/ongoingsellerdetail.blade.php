@@ -22,6 +22,11 @@
     </head>
 
     <body>
+        <button onclick="location.href='{{url('/ongoingseller')}}'" class="btn-back mx-4">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Back
+        </button>
+
         <p class="card-title uppercase  text-white mx-4 py-3">Seller Confirmation</p>
 
         <div class="tempat-form mx-4">
@@ -45,7 +50,7 @@
                     <form action="/itemsent" method="POST" enctype="multipart/form-data">
 
                         @csrf
-                        <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Seller Username</label>
+                        <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Buyer Username</label>
                         <input type="text" disabled name="productname" required
                             class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                             value="{{ $ambilpayment[0]->account_name }}">
@@ -54,7 +59,7 @@
                             class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                             value="{{ $ambilpayment[0]->recipient_name }}">
 
-                        <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Seller Address</label>
+                        <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Buyer Address</label>
                         <input type="text" disabled name="productprice" required
                             class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                             value="{{ $ambilpayment[0]->address }}">
