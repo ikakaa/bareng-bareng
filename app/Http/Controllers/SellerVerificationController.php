@@ -90,7 +90,8 @@ class SellerVerificationController extends Controller
         return redirect('/sellerverification')->with('success', 'You have successfully upload image.');
     }
 
-    public function detailform($name){
+    public function detailform($name)
+    {
         $detail = SellerVerification::where('user_id', $name)->first();
         return view('sellerformdetail', compact('detail'));
     }

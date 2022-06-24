@@ -148,6 +148,8 @@ class UserViewController extends Controller
     }
     public function home()
     {
+        $getallproduct=ProductDetail::where('verified','1')->where('interestdone','0')->get();
+        $getallfile=ProductDetailsFile::where('deleted','0')->get();
         // if (isset(Auth::user()->id)) {
         //     function divnum($numerator, $denominator)
         //     {
@@ -329,11 +331,11 @@ class UserViewController extends Controller
             $productrecommendation=Like::select('product_id', \DB::raw('avg(status) as counts'))->groupBy('product_id')->orderBy('counts', 'DESC')->take(3)->get();
 
             $productfiles = ProductDetailsFile::all();
-            return view('home', compact('productrecommendation', 'productfiles'));
+            return view('home', compact('productrecommendation', 'productfiles','getallproduct','getallfile'));
         }else{
             $productrecommendation = Like::where('user_id', $mostsimilaruid)->where('status', '>=', '3')->get();
             $productfiles = ProductDetailsFile::all();
-            return view('home', compact('productrecommendation', 'productfiles'));
+            return view('home', compact('productrecommendation', 'productfiles','getallproduct','getallfile'));
         }
 
     }

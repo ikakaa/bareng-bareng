@@ -13,7 +13,7 @@
             integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
         <link rel="stylesheet" href="style.css">
         <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous"
-                defer></script>
+            defer></script>
         <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
             crossorigin="anonymous">
 
@@ -84,141 +84,113 @@
         </div>
         <p class="card-title text-center  text-white pt-16 pb-6">Featured Products</p>
         <div class="tempat-card flex justify-center w-full pb-24">
-            <div class="card-custom mr-4">
-                <div class="card-img">
-                    <img src="src/a.jpg" alt="">
+            <?php $limitfeatured = 0; ?>
+            @foreach ($getallproduct as $featuredproduct)
+                <?php if ($limitfeatured == 3) {
+                    break;
+                } ?>
+
+                <div class="card-custom mr-4">
+                    <div class="card-img">
+                        @foreach ($getallfile as $featuredfile)
+                            @if ($featuredfile->productid == $featuredproduct->id && $featuredfile->deleted == 0)
+                                <img src="{{ $featuredfile->filepath }}" alt="">
+                            @break
+                        @endif
+                    @endforeach
                 </div>
                 <div class="card-text w-full px-2 pb-3 ">
-                    <p class="card-header2 pt-1">GMK Frost Witch </p>
-                    <p class="card-info pt-2 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, alias?
+                    <p class="card-header2 pt-1">{{ $featuredproduct->product_name }} </p>
+                    <p class="card-info pt-2 ">{{ $featuredproduct->shortdesc }}
                     </p>
                     <div class="flex justify-between w-full ">
                         <div class="mini-card-box ">
                             <p class="price">Price</p>
-                            <p class="price-number block">$29.99</p>
+                            <p class="price-number block">{{ $featuredproduct->productprice }}</p>
                         </div>
                         <div class="mini-card-button">
 
-                            <button
+                            <a href="{{ url('/interestcheckdetail') }}/{{ $featuredproduct->id }}"
+                                target="_blank"
                                 class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
-                                to cart</button>
+                                to cart</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-custom mr-4">
-                <div class="card-img">
-                    <img src="src/a.jpg" alt="">
-                </div>
-                <div class="card-text w-full px-2 pb-3 ">
-                    <p class="card-header2 pt-1">GMK Frost Witch </p>
-                    <p class="card-info pt-2 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, alias?
-                    </p>
-                    <div class="flex justify-between w-full ">
-                        <div class="mini-card-box ">
-                            <p class="price">Price</p>
-                            <p class="price-number block">$29.99</p>
-                        </div>
-                        <div class="mini-card-button">
+            <?php $limitfeatured++; ?>
+        @endforeach
 
-                            <button
-                                class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
-                                to cart</button>
-                        </div>
+
+    </div>
+    {{-- @dd($productrecommendation) --}}
+
+    @isset($productrecommendation)
+        <p class="card-title text-center  text-white ">Recommended Products For You</p>
+        <div class="tempat-card flex justify-center w-full pb-24">
+            <?php $limitrecommendation = 0; ?>
+            @foreach ($productrecommendation as $product)
+                <?php if ($limitrecommendation == 3) {
+                    break;
+                } ?>
+                @if ($product->product->interestdone == 0 && $product->product->isfinish == 0 && $product->product->verified == 1)
+                    <div class="card-custom mr-4">
+                        <div class="card-img">
+                            @foreach ($productfiles as $file)
+                                @if ($file->productid == $product->product->id && $file->deleted == 0)
+                                    <img src="{{ $file->filepath }}" alt="">
+                                @break
+                            @endif
+                        @endforeach
                     </div>
-                </div>
-            </div>
-            <div class="card-custom mr-4">
-                <div class="card-img">
-                    <img src="src/a.jpg" alt="">
-                </div>
-                <div class="card-text w-full px-2 pb-3 ">
-                    <p class="card-header2 pt-1">GMK Frost Witch </p>
-                    <p class="card-info pt-2 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, alias?
-                    </p>
-                    <div class="flex justify-between w-full ">
-                        <div class="mini-card-box ">
-                            <p class="price">Price</p>
-                            <p class="price-number block">$29.99</p>
-                        </div>
-                        <div class="mini-card-button">
-
-                            <button
-                                class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
-                                to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-{{-- @dd($productrecommendation) --}}
-
-            @isset($productrecommendation)
-            <p class="card-title text-center  text-white ">Recommended Products For You</p>
-            <div class="tempat-card flex justify-center w-full pb-24">
-                <?php $limitrecommendation = 0; ?>
-                @foreach ($productrecommendation as $product)
-                    <?php if ($limitrecommendation == 3) {
-                        break;
-                    } ?>
-                    @if ($product->product->interestdone == 0 && $product->product->isfinish == 0 && $product->product->verified == 1)
-                        <div class="card-custom mr-4">
-                            <div class="card-img">
-                                @foreach ($productfiles as  $file)
-                                    @if ($file->productid == $product->product->id && $file->deleted==0)
-                                        <img src="{{$file->filepath}}" alt="">
-                                        @break
-                                    @endif
-
-                                @endforeach
+                    <div class="card-text w-full px-2 pb-3 ">
+                        <p class="card-header2 pt-1">{{ $product->product->product_name }} </p>
+                        <p class="card-info pt-2 ">{{ $product->product->shortdesc }}
+                        </p>
+                        <div class="flex justify-between w-full ">
+                            <div class="mini-card-box ">
+                                <p class="price">Price</p>
+                                <p class="price-number block">{{ $product->product->productprice }}</p>
                             </div>
-                            <div class="card-text w-full px-2 pb-3 ">
-                                <p class="card-header2 pt-1">{{ $product->product->product_name }} </p>
-                                <p class="card-info pt-2 ">{{ $product->product->shortdesc }}
-                                </p>
-                                <div class="flex justify-between w-full ">
-                                    <div class="mini-card-box ">
-                                        <p class="price">Price</p>
-                                        <p class="price-number block">{{ $product->product->productprice }}</p>
-                                    </div>
-                                    <div class="mini-card-button">
+                            <div class="mini-card-button">
 
-                                        <a href="{{url('/interestcheckdetail')}}/{{$product->product->id}}" target="_blank"
-                                            class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
-                                            to cart</a>
-                                    </div>
-                                </div>
+                                <a href="{{ url('/interestcheckdetail') }}/{{ $product->product->id }}"
+                                    target="_blank"
+                                    class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
+                                    to cart</a>
                             </div>
                         </div>
-                        <?php $limitrecommendation++; ?>
-                    @endif
-                @endforeach
-            @endisset
+                    </div>
+                </div>
+                <?php $limitrecommendation++; ?>
+            @endif
+        @endforeach
+    @endisset
+</div>
+
+<div class="footer mt-10">
+    <div class="footer-1 py-5 pt-8 w-full bg-navbar">
+        <div class="justify-center flex">
+            <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
         </div>
-
-        <div class="footer mt-10">
-            <div class="footer-1 py-5 pt-8 w-full bg-navbar">
-                <div class="justify-center flex">
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
-                </div>
-                <div class="footer-text-container flex justify-center py-8 sm:pl-3">
-                    <a href="#" class="footer-href ">Contact</a>
-                    <a href="#" class="footer-href ">FAQs</a>
-                    <a href="#" class="footer-href2 ">Order Tracking</a>
-                </div>
-                <div class="copyright-text pt-12">
-                    <p>Indonesia shipping available!</p>
-                </div>
-                <div class="copyright-text pt-16 py-8">
-                    — Powered by <a href="#" class="underline italic">BarengBareng</a>
-                </div>
-            </div>
-
+        <div class="footer-text-container flex justify-center py-8 sm:pl-3">
+            <a href="#" class="footer-href ">Contact</a>
+            <a href="#" class="footer-href ">FAQs</a>
+            <a href="#" class="footer-href2 ">Order Tracking</a>
         </div>
-    </body>
+        <div class="copyright-text pt-12">
+            <p>Indonesia shipping available!</p>
+        </div>
+        <div class="copyright-text pt-16 py-8">
+            — Powered by <a href="#" class="underline italic">BarengBareng</a>
+        </div>
+    </div>
 
-    </html>
+</div>
+</body>
+
+</html>
 @endsection
