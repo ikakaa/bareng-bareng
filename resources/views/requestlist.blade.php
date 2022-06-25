@@ -63,13 +63,13 @@
                                                             </button>
                                                         @endif
                                                         @if ($refund->status == 1)
-                                                            <button class="btn-on-progress">Status: Accepted, we refunded
+                                                            <button class="btn-verified">Status: Accepted, we refunded
                                                                 your payment</button>
                                                         @endif
                                                         @if ($refund->status == 2)
-                                                            <button class="btn-on-progress">Status: Rejected
+                                                            <button class="btn-reject">Status: Rejected
                                                                 <br>
-                                                                Reject Reason : ASD
+                                                                Reject Reason : {{$refund->reason}}
                                                             </button>
                                                         @endif
                                                         <br>

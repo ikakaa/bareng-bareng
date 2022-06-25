@@ -43,13 +43,14 @@
                                                 <span>
                                                     <div class="font-weight-bold txt cart-txt">{{$detail->products->product_name}}</div>
                                                     <div class="cart-txt">Quantity: {{$detail->qty}}</div>
-                                                    <div class="cart-txt">Discord Link: <a href="#">{{$detail->products->discordlink}}</a></div>
                                                 </span> 
                                             </div> 
                                             <div class="cart-txt">Rp. {{number_format($detail->totalPrice)}}</div>
                                         </div>
                                     </div><br> 
                                 @endforeach
+                                <br>
+                                <div class="font-weight-bold txt cart-txt" style="margin-left: 790px">Total payment: Rp. {{number_format($total->totalPrice)}}</div>
                             </div>
                         </div>
 

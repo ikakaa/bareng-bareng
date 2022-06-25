@@ -371,7 +371,7 @@ class ProductDetailController extends Controller
     //page order history
     public function orderhistory(Orders $id)
     {
-        $orders = Orders::with('order_details')->where('user_id', Auth::user()->id)->where('status', 1)->get();
+        $orders = Orders::with('order_details')->where('user_id', Auth::user()->id)->where('status', 5)->get();
         $empty = Orders::where('user_id', Auth::user()->id)->where('isFinish', 1)->doesntExist();
 
         if ($empty) {
@@ -391,7 +391,8 @@ class ProductDetailController extends Controller
     public function orderhistorydetail(OrderDetails $id)
     {
         $details = OrderDetails::where('order_id', $id->id)->get();
-        return view('orderhistorydetail', compact('details'));
+        $total = Orders::where('id', $id->id)->first();
+        return view('orderhistorydetail', compact('details', 'total'));
     }
     public function editdetailaddimage(Request $request)
     {
