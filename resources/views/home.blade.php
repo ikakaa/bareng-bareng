@@ -59,7 +59,7 @@
             </div>
             <div class="highlight-kanan flex items-baseline flex-wrap ">
                 <div class="highlight-kanan-item "> <a href="#">
-                        <img src="src/img.jpg" alt="" class="absolute hightlight-img-kanan">
+                        <img src="src/inukuma1.jpg" alt="" class="absolute hightlight-img-kanan">
                         <div class="tempat-highlight-heading">
                             <h4 class="highlight-title">IN STOCK</h4>
                             <h1 class="highlight-title-sub">Kaban</h1>
@@ -70,7 +70,7 @@
                         </div>
                     </a></div>
                 <div class="highlight-kanan-item"> <a href="#">
-                        <img src="src/img.jpg" alt="" class="absolute hightlight-img-kanan2">
+                        <img src="src/keycaps1.jpg" alt="" class="absolute hightlight-img-kanan2">
                         <div class="tempat-highlight-heading">
                             <h4 class="highlight-title">UPDATES</h4>
                             <h1 class="highlight-title-sub">Hidari</h1>
@@ -110,8 +110,7 @@
                         </div>
                         <div class="mini-card-button">
 
-                            <a href="{{ url('/interestcheckdetail') }}/{{ $featuredproduct->id }}"
-                                target="_blank"
+                            <a href="{{ url('/interestcheckdetail') }}/{{ $featuredproduct->id }}" target="_blank"
                                 class="py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none hover:bg-blue-600 transition ">Add
                                 to cart</a>
                         </div>
