@@ -39,11 +39,12 @@
                                                 <span>
                                                     <div class="font-weight-bold txt cart-txt">{{$orderdetail->products->product_name}}</div>
                                                     <div class="cart-txt">Quantity: {{$orderdetail->qty}}</div>
+                                                    <div class="cart-txt">Variant: {{$orderdetail->variant}}</div>
                                                 </span> 
                                             </div> 
                                             <div class="cart-txt">Rp. {{number_format($orderdetail->totalPrice)}}
                                             <br>
-
+                                            
                                             <form action="/delete/{{$orderdetail->id}}" method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -58,7 +59,8 @@
                         </div>
 
                         <div class="checkout-bottom-right font-weight-bold txt cart-txt">
-                            <h1>Rp. {{number_format($orders->totalPrice)}}</h1>
+                            <h1>Total: Rp. {{number_format($orders->totalPrice)}}</h1>
+                            <small>Inc Rp. 20.000 fee</small><br>
                             <button type="submit" class="button-style" onclick="location.href='{{url('/payment')}}'">Checkout</button>
                         </div>
 
