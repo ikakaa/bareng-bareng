@@ -81,6 +81,8 @@
                             </p>
                             <p class="interest-detail-ic pt-2">Artist : <a href="#"
                                     class="text-blue-200">{{ $product->owner }}</a> </p>
+                            <p class="interest-detail-ic pt-2">Discord : <a href="{{ $product->discordlink }}" target="_blank"
+                                    class="text-blue-200">{{ $product->discordlink }}</a> </p>
 
                             <div class="interest-check-title-wrapper flex justify-between">
                                 <p class="interest-detail-ic pt-4">Estimated shipment date:

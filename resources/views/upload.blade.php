@@ -36,7 +36,10 @@
             @enderror
             @error('moq')
 
-            <div class="alert alert-warning mb-3 mt-1 w-2/3">Max moq is 10!</div>
+            <div class="alert alert-warning mb-3 mt-1 w-2/3">{{$message}}</div>
+            @enderror
+            @error('maxorder')
+            <div class="alert alert-warning mb-3 mt-1 w-2/3">{{$message}}</div>
             @enderror
             @if (session()->has('successupload'))
             <div class="alert alert-success mb-3 mt-1 w-2/3">Product added. Please wait for the verification process!</div>
@@ -44,13 +47,13 @@
         <form action="/do_upload" method="POST" enctype="multipart/form-data">
 
             @csrf
-            <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Product Name</label>
-            <input type="text" name="productname" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 ">
+            <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Product Name(Min 4 characters)</label>
+            <input type="text" pattern=".{4,}" name="productname" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 ">
             <input type="hidden" value="{{ Auth::user()->name }}" name="name">
             <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Product Price (Inc. prox Indonesia Shipping Fee )</label>
             <input type="number" name="productprice" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000">
 
-            <label for="shortdesc" class="block sm:mb-2 mb-1 w-full  mt-2">Short Description</label>
+            <label for="shortdesc" pattern=".{3,}" class="block sm:mb-2 mb-1 w-full  mt-2">Short Description (Min 3 characters)</label>
             <input type="text" name="shortdesc" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 Up Close And Personal With Malaysia's Custom Keyboard Makers">
 
             <label for="producttype" class="block sm:mb-2 mb-1 w-full  mt-2">Category</label>

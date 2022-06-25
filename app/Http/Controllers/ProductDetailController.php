@@ -26,7 +26,8 @@ class ProductDetailController extends Controller
         date_default_timezone_set('Asia/Bangkok');
         $request->validate([
             'file' => 'required|max:100000|mimes:jpeg,jpg,png,gif',
-            'moq' => ['required',  'max :10'],
+            'moq' => ['required',  'min :3'],
+            'maxorder'=>['required','min:3'],
 
         ]);
         $product = new ProductDetail;
@@ -225,7 +226,7 @@ class ProductDetailController extends Controller
         $order->totalPrice = ($order->totalPrice + $products->productprice * $request->qty);
         $order->update();
 
-        
+
         alert()->success('Product added to cart!', 'Success');
         return redirect('home');
     }
@@ -432,7 +433,7 @@ class ProductDetailController extends Controller
         $product=ProductDetail::where('id',$id)->first();
         $product->isfinish='1';
         $product->save();
-        
+
         alert()->success('Group Buy Ended', 'Success');
         return redirect('/profileseller');
     }
