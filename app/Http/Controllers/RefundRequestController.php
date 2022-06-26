@@ -29,7 +29,7 @@ class RefundRequestController extends Controller
     }
     public function requestlist()
     {
-        $refunds = RefundRequest::where('userid', Auth::user()->id)->where('status', '0')->get();
+        $refunds = RefundRequest::where('userid', Auth::user()->id)->get();
 
         return view('requestlist', compact('refunds'));
     }
