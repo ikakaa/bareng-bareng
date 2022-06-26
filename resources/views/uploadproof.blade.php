@@ -31,7 +31,7 @@
                                 Please finish your payment at once, or else your order will not be placed.
                             </large>
                         </div>
-                    
+
                         <br>
                         <div class="txt d-flex justify-content-center">
                             <div class="spinner-border" role="status">
@@ -42,35 +42,38 @@
                             <form action="/uploadproof/{{$payments->id}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('patch')
+                                @error('file')
 
+                                <div class="alert alert-warning mb-3 mt-1 w-2/3">File must be image and max 10mb!</div>
+                                @enderror
                                 <label for="payment_proof" class="block sm:mb-2 mb-1 w-full  mt-2">Already Paid? Upload your proof here.</label>
-                                <input type="file" name="payment_proof" id="payment_proof">
-                                
+                                <input type="file" name="payment_proof" id="payment_proof" required>
+
                                 <br><br>
                                 <label for="account_name" class="block sm:mb-2 mb-1 w-full  mt-2">Account Name</label>
                                 <input type="text" name="account_name" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="John Doe">
-                                
+
                                 <label for="date" class="block sm:mb-2 mb-1 w-full  mt-2">Date</label>
                                 <input type="date" name="date" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Jl. Raya Kb. Jeruk No.27">
 
                                 <label for="payment_amount" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Amount</label>
                                 <input type="text" name="payment_amount" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="2.000.000">
-                                
+
                                 <div class="button-right-bottom">
                                     <button class="button-style" type="submit">Confirm</button>
                                </div>
-                                
+
                                </div>
                             </form>
                         </div>
 
-                        
+
 
                     </div>
                 </div>
             </div>
-        </div>  
-        
+        </div>
+
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">

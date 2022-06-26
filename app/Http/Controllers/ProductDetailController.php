@@ -27,7 +27,7 @@ class ProductDetailController extends Controller
         $request->validate([
             'file' => 'required|max:100000|mimes:jpeg,jpg,png,gif',
             'moq' => ['required',  'min :3'],
-            'maxorder'=>['required','min:3'],
+            'maxorder' => ['required', 'min:3'],
 
         ]);
         $product = new ProductDetail;
@@ -263,6 +263,19 @@ class ProductDetailController extends Controller
 
     public function uploadproof(Request $request, $id)
     {
+        // $request->validate([
+        //     'file' => 'required|max:100000|mimes:jpeg,jpg,png,gif',
+        // ]);
+
+        $validator = Validator::make($request->all(), [
+            'payment_proof' => 'required|max:100000|mimes:jpeg,jpg,png,gif',
+        ]);
+
+        if ($validator->fails()) {
+            alert()->warning('File must be image and max 10mb!', 'Payment fail!');
+            return redirect('home');
+        }
+
         $payments = Payment::find($id);
         $order_id = $payments->order_id;
         $orders = Orders::where('id', $order_id)->first();
@@ -289,11 +302,12 @@ class ProductDetailController extends Controller
 
         alert()->success('Please wait for the verification process.', 'Payment success!');
         return redirect('home');
+        // }
     }
 
     public function ongoing()
     {
-        $orders = Orders::where('user_id', Auth::user()->id)->where('isFinish','!=','1')->get();
+        $orders = Orders::where('user_id', Auth::user()->id)->where('isFinish', '!=', '1')->get();
         if (!empty($orders)) {
             //Make foreach loop for orders, if orderdetails isset then push array
             $orderdetails = array();
@@ -339,15 +353,15 @@ class ProductDetailController extends Controller
 
     public function myproductlist()
     {
-        $products = ProductDetail::where('user_id', Auth::user()->id)->where('isfinish','0')->where('verified', '1')->get();
-        $productfiles=ProductDetailsFile::all();
+        $products = ProductDetail::where('user_id', Auth::user()->id)->where('isfinish', '0')->where('verified', '1')->get();
+        $productfiles = ProductDetailsFile::all();
         return view('myproductlist', compact('products', 'productfiles'));
     }
 
     public function productverificationlist()
     {
         $products = ProductDetail::where('user_id', Auth::user()->id)->get();
-        $productfiles=ProductDetailsFile::all();
+        $productfiles = ProductDetailsFile::all();
         return view('productverificationlist', compact('products', 'productfiles'));
     }
 
@@ -430,9 +444,10 @@ class ProductDetailController extends Controller
         return redirect()->back()->with('statusdelete', 'Image Deleted Successfully');
     }
 
-    public function endgroupbuy($id){
-        $product=ProductDetail::where('id',$id)->first();
-        $product->isfinish='1';
+    public function endgroupbuy($id)
+    {
+        $product = ProductDetail::where('id', $id)->first();
+        $product->isfinish = '1';
         $product->save();
 
         alert()->success('Group Buy Ended', 'Success');
