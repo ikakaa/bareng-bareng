@@ -57,9 +57,11 @@ class OrderController extends Controller
     {
         $ambilorder = Orders::where('id', $request->orderdetailid)->get();
         $ambilorder[0]->status = 4;
+        $ambilorder[0]->shipmentname = $request->shipmentname;
+        $ambilorder[0]->shipmentnumber = $request->shipmentnumber;
         $ambilorder[0]->save();
 
-    
+
         return redirect('/profileseller');
     }
 
@@ -75,7 +77,7 @@ class OrderController extends Controller
             $sellerfund->totalfund = 0;
             $sellerfund->update();
         }
-        
+
         return view('profileseller', compact('sellerfund', 'status'));
     }
 
@@ -94,11 +96,11 @@ class OrderController extends Controller
         $requestwithdrawal->status = 1;
         $requestwithdrawal->paymenttype = $sellerfund->paymenttype;
         $requestwithdrawal->paymentnumber = $sellerfund->paymentnumber;
-        
+
         $requestwithdrawal->save();
 
         foreach($orderdetail as $orderdetail){
-            if($orderdetail->fundstatus == 0){ 
+            if($orderdetail->fundstatus == 0){
                 $orderdetail->fundstatus = 1;
                 $orderdetail->update();
             }
@@ -107,7 +109,7 @@ class OrderController extends Controller
         $sellerfund->fundstatus = 1;
         $sellerfund->update();
 
-        
+
 
         alert()->success('Please wait for the withdrawal process.', 'Request submitted!');
         return redirect('profileseller');

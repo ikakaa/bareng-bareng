@@ -19,6 +19,8 @@ class CreateOrdersTable extends Migration
             $table->date('date');
             $table->string('status');
             $table->string('isFinish')->default('0')->nullable();
+            $table->string('shipmentname')->default('0')->nullable();
+            $table->string('shipmentnumber')->default('0')->nullable();
             $table->integer('totalPrice');
             $table->string('rejetStatus')->default('0')->nullable();
             $table->timestamps();

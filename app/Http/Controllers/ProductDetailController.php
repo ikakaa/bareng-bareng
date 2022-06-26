@@ -274,6 +274,7 @@ class ProductDetailController extends Controller
         if ($validator->fails()) {
             alert()->warning('File must be image and max 10mb!', 'Payment fail!');
             return redirect('home');
+            exit;
         }
 
         $payments = Payment::find($id);

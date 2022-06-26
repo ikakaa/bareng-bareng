@@ -59,7 +59,13 @@
                                     Waiting Admin Verificate your payment
                                 @endif
                                 @if ($orderdetails[0]->orders->status == 4)
+
                                     Waiting for product arrive to your address, please wait
+                                    <br>
+                                    Shipment service = {{$orderdetails[0]->orders->shipmentname}}
+                                    <br>
+                                    Shipment number = {{$orderdetails[0]->orders->shipmentnumber}}
+                                    <br>
                                 @endif
                                 @if ($orderdetails[0]->orders->status == 5)
                                     Transaction Complete
@@ -76,10 +82,11 @@
                     <div class="d-flex flex-row justify-content-center">
 
                         {{-- make text with css --}}
-
+                        @if ($orderdetails[0]->orders->status !=0 && $orderdetails[0]->orders->status !=2 && $orderdetails[0]->orders->status !=3 )
                         <a href="../transactiondone/{{ $orderdetails[0]->id }}"
                             onClick="return confirm('Are you sure you already receive the product?')"
                             class="btn btn-info text-white self-center mr-2">Confirm</a>
+                            @endif
                             @if ($orderdetails[0]->orders->status == 4)
 
 
