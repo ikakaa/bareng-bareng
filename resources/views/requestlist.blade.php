@@ -18,6 +18,20 @@
         <link rel="stylesheet" href="tailwind.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     </head>
+    <style>
+        .btn-on-progress {
+            background-color: white;
+            color: black;
+            border: 2px solid #e0c772;
+            border-radius: 5px;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+        }
+    </style>
 
     <body>
 
@@ -25,7 +39,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <button onclick="location.href='{{url('/profilebuyer')}}'" class="btn-back mx-3">
+                        <button onclick="location.href='{{ url('/profilebuyer') }}'" class="btn-back mx-3">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
                             Back
                         </button>
@@ -43,8 +57,8 @@
                                     @foreach ($refunds as $refund)
                                         @foreach ($refund->order->order_details as $detail)
                                             <div class="card p-3">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="user d-flex flex-row align-items-center">
+                                                <div class="d-flex  align-items-center  justify-content-between ">
+                                                    <div class="user d-flex flex-row align-items-center justify-content-between justify-between flex">
                                                         <img src="../{{ $detail->products->productdetailfiles->filepath }}"
                                                             class="img-detail-size">
                                                         <span>
@@ -55,7 +69,7 @@
 
                                                         </span>
                                                     </div>
-                                                    <div class="cart-txt">
+                                                    <div class="cart-txt text-right">
                                                         Rp. {{ number_format($refund->order->totalPrice) }}
                                                         <br>
                                                         @if ($refund->status == 0)
@@ -67,9 +81,9 @@
                                                                 your payment</button>
                                                         @endif
                                                         @if ($refund->status == 2)
-                                                            <button class="btn-reject">Status: Rejected
+                                                            <button class="btn-on-progress">Status: Rejected
                                                                 <br>
-                                                                Reject Reason : {{$refund->reason}}
+                                                                Reject Reason : {{ $refund->reason }}
                                                             </button>
                                                         @endif
                                                         <br>
