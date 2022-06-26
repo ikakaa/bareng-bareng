@@ -80,10 +80,12 @@
                         <a href="../transactiondone/{{ $orderdetails[0]->id }}"
                             onClick="return confirm('Are you sure you already receive the product?')"
                             class="btn btn-info text-white self-center mr-2">Confirm</a>
+                            @if ($orderdetails[0]->orders->status == 4)
+
 
                         <button type="button" class="btn btn-warning text-center  self-center" style="color: #212529"
                             data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap">Refund</button>
-
+                            @endif
                         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
