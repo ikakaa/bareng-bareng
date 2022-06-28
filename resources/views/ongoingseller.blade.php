@@ -88,7 +88,7 @@
                                                             <button class="btn-on-progress">Status: Buyer requested a refund, please contact us if you still making the product</button>
                                                         @endif
                                                         @if ($detail->orders->status == 7)
-                                                            <button class="btn-on-progress">Status: Buyer Refund Rejected.
+                                                            <button class="btn-verified">Status: Buyer Refund Rejected.
                                                                 Reason : {{ $detail->orders->rejetStatus }}</button>
                                                         @endif
                                                         @if ($detail->orders->status == 8)

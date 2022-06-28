@@ -26,8 +26,8 @@ class ProductDetailController extends Controller
         date_default_timezone_set('Asia/Bangkok');
         $request->validate([
             'file' => 'required|max:100000|mimes:jpeg,jpg,png,gif',
-            'moq' => ['required',  'min :3'],
-            'maxorder' => ['required', 'min:3'],
+            'moq' => 'required|numeric|min :1',
+            'maxorder' => 'required|numeric|min :1',
 
         ]);
         $product = new ProductDetail;
