@@ -69,7 +69,7 @@
                                                                 product</button>
                                                         @endif
                                                         @if ($detail->orders->status == 2)
-                                                            <button class="btn-on-progress">Status: Payment proof
+                                                            <button class="btn-rejected">Status: Payment proof
                                                                 rejected</button>
                                                         @endif
                                                         @if ($detail->orders->status == 3)
@@ -78,21 +78,21 @@
                                                         @endif
                                                         @if ($detail->orders->status == 4)
                                                             <button class="btn-on-progress">Status: Waiting for product
-                                                                arrive to your address, please wait</button>
+                                                                arrive to buyer address, please wait</button>
                                                         @endif
                                                         @if ($detail->orders->status == 5)
-                                                            <button class="btn-on-success">Status: Transaction
+                                                            <button class="btn-verified">Status: Transaction
                                                                 Complete</button>
                                                         @endif
                                                         @if ($detail->orders->status == 6)
                                                             <button class="btn-on-progress">Status: Buyer requested a refund, please contact us if you still making the product</button>
                                                         @endif
                                                         @if ($detail->orders->status == 7)
-                                                            <button class="btn-on-progress">Status: Refund Rejected.
+                                                            <button class="btn-on-progress">Status: Buyer Refund Rejected.
                                                                 Reason : {{ $detail->orders->rejetStatus }}</button>
                                                         @endif
                                                         @if ($detail->orders->status == 8)
-                                                            <button class="btn-on-progress">Status: Refund Approved
+                                                            <button class="btn-rejected">Status: Buyer Refund Approved
                                                             </button>
                                                         @endif
 

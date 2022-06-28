@@ -61,7 +61,7 @@
                                                 <div>
 
                                                     @if ($detail[0]->orders->status == 1)
-                                                        <button class="btn-seller">Status: Waiting for seller to
+                                                        <button class="btn-on-progress">Status: Waiting for seller to
                                                             finish and send the product</button>
                                                     @endif
                                                     @if ($detail[0]->orders->status == 2)
@@ -73,7 +73,7 @@
                                                             Process</button>
                                                     @endif
                                                     @if ($detail[0]->orders->status == 4)
-                                                        <button class="btn-seller">Status: Shipping process</button>
+                                                        <button class="btn-on-progress">Status: Shipping process</button>
                                                     @endif
                                                     @if ($detail[0]->orders->status == 5)
                                                         <button class="btn-verified">Status: Transaction

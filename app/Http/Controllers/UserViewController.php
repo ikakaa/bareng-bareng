@@ -61,6 +61,8 @@ class UserViewController extends Controller
                 $penyebutloopuser = 0;
                 $collaborativepembilang = 0;
                 $collaborativepenyebut = 0;
+                $ambilhitungcurruser = 0;
+                $ambilhitungloopuser = 0;
                 $getavguser = Like::where('user_id', $user->id)->average('status');
 ?>
 
@@ -79,7 +81,7 @@ class UserViewController extends Controller
                     }
                     // echo " Hitung curr user : ".$loopcurrentuser->status." - ".$averagecurrentuser;
                     $hitungcurruser = $loopcurrentuser->status - $averagecurrentuser;
-
+                    // echo $hitungcurruser. " = " .$loopcurrentuser->status. " - ".$averagecurrentuser. "END ";
                     $selecttemporarystatus = Like::where('user_id', $user->id)->where('product_id', $loopcurrentuser->product_id)->first();
                     // echo "User id : " . $user->id;
                     // echo "<br>" . "Product id : " . $loopcurrentuser->product_id;
@@ -90,21 +92,27 @@ class UserViewController extends Controller
                     }
 
                     $hitungloopuser = $statuscount - $getavguser;
+                    $ambilhitungcurruser = $ambilhitungcurruser + pow($hitungcurruser, 2);
+                    $ambilhitungloopuser = $ambilhitungloopuser + pow($hitungloopuser, 2);
 
+                    // echo $ambilhitungloopuser." = ".$ambilhitungloopuser." + ".pow($hitungloopuser,2)." END ";
+                    // echo " TOTAL SETELAH PANGKAT 2 : ".$ambilhitungloopuser."END ";
+                    // echo $hitungloopuser. " = ".$statuscount. " - ". $getavguser." END ";
                     // echo " = ".$statuscount." - ".$getavguser;
                     $hitungtotal = $hitungcurruser * $hitungloopuser;
                     // $hitungtotal=number_format((float)$hitungtotal, 3, '.', '');
                     // echo " Hitung total ".$hitungtotal." = ".$hitungcurruser." * ".$hitungloopuser;
                     // echo " Collaborative pembilang  SEBELUM:  ".$collaborativepembilang;
                     $collaborativepembilang = $collaborativepembilang + $hitungtotal;
+                    // echo " TOTAL COLLABORATIVE PEMBILANG : ".$collaborativepembilang; " END ";
                     // echo " Hitung total = ".$hitungtotal;
                     // echo " Collaborative pembilang  ".$collaborativepembilang. " = ".$collaborativepembilang." + ".$hitungtotal;
-                    $penyebutrp = pow($statuscount - $getavguser, 2);
+                    // $penyebutrp = pow($statuscount - $getavguser, 2);
                     // echo " Penyebut rp ".$penyebutrp." = ".$statuscount." - ".$getavguser;
-                    $penyebutcurrrp = pow($loopcurrentuser->status - $averagecurrentuser, 2);
+                    // $penyebutcurrrp = pow($loopcurrentuser->status - $averagecurrentuser, 2);
 
-                    $penyebutloopuser = $penyebutloopuser + $penyebutrp;
-                    $penyebutcurruser = $penyebutcurruser + $penyebutcurrrp;
+                    // $penyebutloopuser = $penyebutloopuser + $penyebutrp;
+                    // $penyebutcurruser = $penyebutcurruser + $penyebutcurrrp;
                     // echo "Penyebut loop user : ".$penyebutloopuser;
                     // echo " Penyebut curr user : ".$penyebutcurruser;
                     if (!isset($penyebutcurruser)) {
@@ -114,9 +122,9 @@ class UserViewController extends Controller
                         $penyebutloopuser = 0;
                     }
                 }
-                $collaborativepenyebut = sqrt($penyebutcurruser) * sqrt($penyebutloopuser);
-                // echo " Penyebutloop".sqrt($penyebutloopuser);
-                // echo "Penyebut curr user : ".sqrt($penyebutcurruser);
+                $collaborativepenyebut = sqrt($ambilhitungcurruser) * sqrt($ambilhitungloopuser);
+                // echo " Penyebutloop".sqrt($ambilhitungloopuser);
+                // echo "Penyebut curr user : ".sqrt($ambilhitungcurruser);
                 // echo "Collaborative penyebut : " . $collaborativepenyebut;
                 if (is_nan($collaborativepenyebut) || is_infinite($collaborativepenyebut)) {
                     $collaborativepenyebut = 0;
@@ -124,6 +132,7 @@ class UserViewController extends Controller
                     $collaborativepenyebut;
                 }
                 $collaborativetotal = divnum($collaborativepembilang, $collaborativepenyebut);
+                // echo $collaborativetotal. " END  Collaborative total = ".$collaborativepembilang." / ".$collaborativepenyebut;
                 //only get 2 decimal from collaborativetotal
                 $collaborativetotal = number_format((float)$collaborativetotal, 18, '.', '');
 
@@ -148,8 +157,8 @@ class UserViewController extends Controller
     }
     public function home()
     {
-        $getallproduct=ProductDetail::where('verified','1')->where('interestdone','0')->get();
-        $getallfile=ProductDetailsFile::where('deleted','0')->get();
+        $getallproduct = ProductDetail::where('verified', '1')->where('interestdone', '0')->get();
+        $getallfile = ProductDetailsFile::where('deleted', '0')->get();
         // if (isset(Auth::user()->id)) {
         //     function divnum($numerator, $denominator)
         //     {
@@ -209,8 +218,9 @@ class UserViewController extends Controller
         // } else {
         //     return view('home');
         // }
-        $checkhitung=0;
-        $checktotaluser=0;
+        $checkhitung = 0;
+        $checktotaluser = 0;
+
         if (isset(Auth::user()->id)) {
             function divnum($numerator, $denominator)
             {
@@ -230,6 +240,8 @@ class UserViewController extends Controller
                 $penyebutloopuser = 0;
                 $collaborativepembilang = 0;
                 $collaborativepenyebut = 0;
+                $ambilhitungcurruser = 0;
+                $ambilhitungloopuser = 0;
                 $getavguser = Like::where('user_id', $user->id)->average('status');
             ?>
 
@@ -266,14 +278,17 @@ class UserViewController extends Controller
                     // echo " Hitung total ".$hitungtotal." = ".$hitungcurruser." * ".$hitungloopuser;
                     // echo " Collaborative pembilang  SEBELUM:  ".$collaborativepembilang;
                     $collaborativepembilang = $collaborativepembilang + $hitungtotal;
+
+                    $ambilhitungcurruser = $ambilhitungcurruser + pow($hitungcurruser, 2);
+                    $ambilhitungloopuser = $ambilhitungloopuser + pow($hitungloopuser, 2);
                     // echo " Hitung total = ".$hitungtotal;
                     // echo " Collaborative pembilang  ".$collaborativepembilang. " = ".$collaborativepembilang." + ".$hitungtotal;
-                    $penyebutrp = pow($statuscount - $getavguser, 2);
+                    // $penyebutrp = pow($statuscount - $getavguser, 2);
                     // echo " Penyebut rp ".$penyebutrp." = ".$statuscount." - ".$getavguser;
-                    $penyebutcurrrp = pow($loopcurrentuser->status - $averagecurrentuser, 2);
+                    // $penyebutcurrrp = pow($loopcurrentuser->status - $averagecurrentuser, 2);
 
-                    $penyebutloopuser = $penyebutloopuser + $penyebutrp;
-                    $penyebutcurruser = $penyebutcurruser + $penyebutcurrrp;
+                    // $penyebutloopuser = $penyebutloopuser + $penyebutrp;
+                    // $penyebutcurruser = $penyebutcurruser + $penyebutcurrrp;
                     // echo "Penyebut loop user : ".$penyebutloopuser;
                     // echo " Penyebut curr user : ".$penyebutcurruser;
                     if (!isset($penyebutcurruser)) {
@@ -283,9 +298,10 @@ class UserViewController extends Controller
                         $penyebutloopuser = 0;
                     }
                 }
-                if($collaborativepembilang==0){
+                if ($collaborativepembilang == 0) {
                     $checkhitung++;
                 }
+
                 $collaborativepenyebut = sqrt($penyebutcurruser) * sqrt($penyebutloopuser);
                 // echo " Penyebutloop".sqrt($penyebutloopuser);
                 // echo "Penyebut curr user : ".sqrt($penyebutcurruser);
@@ -295,7 +311,9 @@ class UserViewController extends Controller
                 } else {
                     $collaborativepenyebut;
                 }
+                $collaborativepenyebut = sqrt($ambilhitungcurruser) * sqrt($ambilhitungloopuser);
                 $collaborativetotal = divnum($collaborativepembilang, $collaborativepenyebut);
+                // $collaborativetotal = divnum($collaborativepembilang, $collaborativepenyebut);
                 //only get 2 decimal from collaborativetotal
                 $collaborativetotal = number_format((float)$collaborativetotal, 18, '.', '');
 
@@ -306,6 +324,7 @@ class UserViewController extends Controller
             if (!$findnearestvalue) {
                 $findnearestvalue[1] = 1;
             }
+            // return $findnearestvalue;
             $key = array_search(max($findnearestvalue), $findnearestvalue);
             $mostsimilaruid = $key;
             // echo "Most similar user ID : " . $key;
@@ -321,28 +340,21 @@ class UserViewController extends Controller
             $productfiles = ProductDetailsFile::all();
             // return view('home', compact('productrecommendation', 'productfiles'));
         } else {
-            $checkhitung=999;
+            $checkhitung = 999;
 
 
             // return view('home');
         }
-        if($checkhitung>=$checktotaluser){
-//No data / Recommendation most liked product
-            $productrecommendation=Like::select('product_id', \DB::raw('avg(status) as counts'))->groupBy('product_id')->orderBy('counts', 'DESC')->take(3)->get();
+        if ($checkhitung >= $checktotaluser) {
+            //No data / Recommendation most liked product
+            $productrecommendation = Like::select('product_id', \DB::raw('avg(status) as counts'))->groupBy('product_id')->orderBy('counts', 'DESC')->take(3)->get();
 
             $productfiles = ProductDetailsFile::all();
-            return view('home', compact('productrecommendation', 'productfiles','getallproduct','getallfile'));
-        }else{
+            return view('home', compact('productrecommendation', 'productfiles', 'getallproduct', 'getallfile'));
+        } else {
             $productrecommendation = Like::where('user_id', $mostsimilaruid)->where('status', '>=', '3')->get();
             $productfiles = ProductDetailsFile::all();
-            return view('home', compact('productrecommendation', 'productfiles','getallproduct','getallfile'));
+            return view('home', compact('productrecommendation', 'productfiles', 'getallproduct', 'getallfile'));
         }
-
     }
-
-    public function testing()
-    {
-        // $product=Like::groupBy('product_id')->orderBy('count', 'DESC')->take(5)->get();
-        return $product[0]->product;
-
-}}
+}
