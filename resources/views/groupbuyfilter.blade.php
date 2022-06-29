@@ -57,7 +57,16 @@
                 <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
                     @foreach ($products as $product)
                     <div class="card-custom mr-4 col" onclick="location.href='{{url('/product')}}/{{$product->id}}'">
-                        <div class="ic-box-card txt-center"><i class="fas fa-door-open"></i> Group Buy Starts</div>
+                        @if ($product->isfinish == 0)
+                        <div class="ic-box-card txt-center">
+                           <i class="fas fa-door-open"></i> Group Buy Starts
+                        </div>
+
+                    @elseif ($product->isfinish == 2)
+                    <div class="ic-box-card2 txt-center">
+                        <i class="fas fa-door-closed"></i> In-Production
+                    </div>
+                    @endif
                         <div class="card-img mt-3">
                             @foreach ($productfiles as $productfile)
                             @if($productfile->productid == $product->id && $productfile->deleted==0)
