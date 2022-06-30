@@ -47,8 +47,8 @@
         <form action="/do_upload" method="POST" enctype="multipart/form-data">
 
             @csrf
-            <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Product Name(Min 4 characters)</label>
-            <input type="text" pattern=".{4,}" name="productname" value="{{ old('productname') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 ">
+            <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2" >Product Name(Min 4 characters)</label>
+            <input type="text" pattern=".{4,}" name="productname" value="{{ old('productname') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" onkeypress="return checkEntry(event)" onpaste="return checkEntry(event)" onchange="return checkEntry(event)" placeholder="GMK-234 ">
             <input type="hidden" value="{{ Auth::user()->name }}" name="name">
             <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Product Price (Inc. prox Indonesia Shipping Fee )</label>
             <input type="number" name="productprice" value="{{ old('productprice') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000">
@@ -130,6 +130,13 @@
 
         </div>
     </body>
+    <script>
+        function checkEntry(e) {
+          var k;
+          document.all ? k = e.keyCode : k = e.which;
+          return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+          }
+      </script>
 <script>
     $(document).ready(function() {
         $("#productlist").select2({
