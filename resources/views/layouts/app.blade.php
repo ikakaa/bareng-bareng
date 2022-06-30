@@ -38,14 +38,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mx-auto">
-                        <form class="form-inline" type="get" action="{{ url('/search') }}">
-                            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search"
-                                style="width:500px;">
-                            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </ul>
-
+                    @isset(Auth::user()->id)
+                        <ul class="navbar-nav mx-auto">
+                            <form class="form-inline" type="get" action="{{ url('/search') }}">
+                                <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search"
+                                    style="width:500px;">
+                                <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </ul>
+                    @endisset
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto  custom-font">
                         <!-- Authentication Links -->
@@ -72,8 +73,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/login"><i class="fa fa-sign-in"
-                                            aria-hidden="true"></i> Login</a>
+                                    <a class="dropdown-item" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>
+                                        Login</a>
                                     <a class="dropdown-item" href="/register"><i class="fa fa-user-plus"
                                             aria-hidden="true"></i> Register</a>
                                 </div>
@@ -92,21 +93,32 @@
                                 <a class="nav-link" href="/groupbuy">{{ __('Group-Buy') }}</a>
 
                             <li class="mx-2 nav-item text-uppercase  items-center flex ">
-                                <a href="/cart" style="font-size: 19px"  class="cursor-pointer"> <img src="../img/carticon.png" class="cursor-pointer" width="20px"
-                                        height="20px" alt=""></a>
+                                <a href="/cart" style="font-size: 19px" class="cursor-pointer"> <img
+                                        src="../img/carticon.png" class="cursor-pointer" width="20px" height="20px"
+                                        alt=""></a>
                             </li>
                             <li class="nav-item   dropdown ">
-                                <a id="navbarDropdown" class="nav-link  text-uppercase" href="#"
-                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+
+                                    @if(!isset(Auth::user()->id))
+                                    <a id="navbarDropdown" class="nav-link  text-uppercase" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
                                     style="font-size: 19px">
                                     <img src="../img/personicon.png" width="20px" height="20px" alt="">
+                                    @endif
+                                    @if(isset(Auth::user()->id))
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                                    >
+                               {{Auth::user()->name}}
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="/profilebuyer"> <i class="fa fa-user-circle"></i>
                                         Profile</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
                                         <i class="fa fa-sign-out" aria-hidden="true"></i>
                                         {{ __('Logout') }}

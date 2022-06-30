@@ -31,8 +31,8 @@ class LikeController extends Controller
     public function dislikeproduct($id){
 //update from table like status = 0
         $like = Like::where(['user_id'=>Auth::id(),'product_id'=>$id])->first();
-        $like->status ='0';
-        $like->save();
+        $like->delete();
+
         return redirect()->back();
 
     }
