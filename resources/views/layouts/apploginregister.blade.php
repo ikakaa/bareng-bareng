@@ -39,13 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
 
-                        <ul class="navbar-nav mx-auto">
-                            <form class="form-inline" type="get" action="{{ url('/search') }}">
-                                <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search"
-                                    style="width:500px;">
-                                <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-                            </form>
-                        </ul>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto  custom-font">

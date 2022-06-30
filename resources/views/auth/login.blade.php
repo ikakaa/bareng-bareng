@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.apploginregister')
 
 @section('content')
 
@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    
+
     <div class="main-container">
         <div class="register-card px-5 py-12">
             <div class="tempat-image-register mx-auto block ">
