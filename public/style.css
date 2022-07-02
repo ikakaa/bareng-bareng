@@ -386,6 +386,8 @@ div {
     top: 18px;
     left: 25px;
     width: 80%;
+    z-index: 999 !important;
+    position: relative;
 }
 
 .highlight-title {
@@ -394,6 +396,7 @@ div {
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 900;
+    z-index: 999 !important;
 }
 
 .highlight-title-sub {
@@ -405,6 +408,9 @@ div {
 .highlight-desc {
     font-size: 14px;
     line-height: 1.5;
+    font-weight: 700;
+    text-shadow: rgb(30, 37, 37) 1px 0 10px;
+    /* color: #6ccad6; */
 }
 
 .tempat-highlight-desc {
@@ -412,6 +418,7 @@ div {
     top: 76%;
     left: 25px;
     width: 90%;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
 }
 
 .highlight-kanan-item {

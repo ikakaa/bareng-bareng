@@ -57,13 +57,29 @@ class UserViewController extends Controller
             $findnearestvalue = array();
 
             foreach ($alluser as $user) {
+                $looplikes = Like::where('id', '=', Auth::user()->id)->get();
+                $countlooplikes = '0';
+                $countavgloop='0';
+                foreach ($looplikes as $looplike) {
+                    $checkrating = Like::where('user_id', $user->id)->where('product_id', $looplike->product_id)->first();
+                    $countlooplikes++;
+                    if (!isset($checkrating->id)) {
+                        $ratingcount = 0;
+                    } else {
+                        $ratingcount = $checkrating->status;
+                    }
+                    $countavgloop=$countavgloop+$ratingcount;
+                }
+                $getavguser = $countavgloop/$countlooplikes;
                 $penyebutcurruser = 0;
                 $penyebutloopuser = 0;
                 $collaborativepembilang = 0;
                 $collaborativepenyebut = 0;
                 $ambilhitungcurruser = 0;
                 $ambilhitungloopuser = 0;
-                $getavguser = Like::where('user_id', $user->id)->average('status');
+                //  $getavguser = Like::where('user_id', $user->id)->average('status');
+
+                // echo " RATA RATA LOOP USER : ".$getavguser;
 ?>
 
 <?php
@@ -234,6 +250,20 @@ class UserViewController extends Controller
             $findnearestvalue = array();
 
             foreach ($alluser as $user) {
+                $looplikes = Like::where('id', '=', Auth::user()->id)->get();
+                $countlooplikes = '0';
+                $countavgloop='0';
+                foreach ($looplikes as $looplike) {
+                    $checkrating = Like::where('user_id', $user->id)->where('product_id', $looplike->product_id)->first();
+                    $countlooplikes++;
+                    if (!isset($checkrating->id)) {
+                        $ratingcount = 0;
+                    } else {
+                        $ratingcount = $checkrating->status;
+                    }
+                    $countavgloop=$countavgloop+$ratingcount;
+                }
+                $getavguser = $countavgloop/$countlooplikes;
                 $checktotaluser++;
                 $checkhitung++;
                 $penyebutcurruser = 0;
