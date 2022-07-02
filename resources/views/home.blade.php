@@ -46,38 +46,36 @@
 
         <div class="tempat-highlight flex flex-nowrap justify-center px-64 pt-20">
 
-            <div class="highlight-kiri relative mr-4"> <a href="/productdetail">
+            <div class="highlight-kiri relative mr-4"> <a href="//interestcheck">
                     <img src="src/img.jpg" alt="" class="absolute">
                     <div class="tempat-highlight-heading">
                         <h4 class="highlight-title">MONOKEI X FRIENDS EXTRAS</h4>
                         <h1 class="highlight-title-sub">Hidari</h1>
                     </div>
                     <div class="tempat-highlight-desc">
-                        <p class="highlight-desc">Limited in stock units available at 10am, 14th of March 2022 (GMT+8)</p>
+
                     </div>
                 </a>
             </div>
             <div class="highlight-kanan flex items-baseline flex-wrap ">
-                <div class="highlight-kanan-item "> <a href="#">
+                <div class="highlight-kanan-item "> <a href="/interestcheck">
                         <img src="src/inukuma1.jpg" alt="" class="absolute hightlight-img-kanan">
                         <div class="tempat-highlight-heading">
                             <h4 class="highlight-title">IN STOCK</h4>
                             <h1 class="highlight-title-sub">Kaban</h1>
                         </div>
                         <div class="tempat-highlight-desc">
-                            <p class="highlight-desc">Limited in stock units available at 10am, 14th of March 2022 (GMT+8)
-                            </p>
+
                         </div>
                     </a></div>
-                <div class="highlight-kanan-item"> <a href="#">
+                <div class="highlight-kanan-item"> <a href="/interestcheck">
                         <img src="src/keycaps1.jpg" alt="" class="absolute hightlight-img-kanan2">
                         <div class="tempat-highlight-heading">
                             <h4 class="highlight-title">UPDATES</h4>
                             <h1 class="highlight-title-sub">Hidari</h1>
                         </div>
                         <div class="tempat-highlight-desc">
-                            <p class="highlight-desc">Limited in stock units available at 10am, 14th of March 2022 (GMT+8)
-                            </p>
+
                         </div>
                     </a></div>
             </div>
