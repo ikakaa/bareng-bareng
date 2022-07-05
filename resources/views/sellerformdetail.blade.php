@@ -40,30 +40,30 @@
                     <input type="hidden" value="{{ Auth::user()->name }}" name="name">
 
                     <label for="shortdesc" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
-                    <input type="text" name="address" required
+                    <input type="text" maxlength="150" name="address" required
                         class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                         placeholder="Sibolga, jalan u no 4a" disabled value="{{$detail->address}}">
 
                         <label for="shortdesc" class="block sm:mb-2 mb-1 w-full  mt-2">Identity type</label>
-                        <input type="text" name="address" required
+                        <input type="text" maxlength="150" name="address" required
                             class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                             placeholder="Sibolga, jalan u no 4a" value="{{$detail->identitytype}}" disabled>
 
                     <label for="identitynumber" class="block sm:mb-2 mb-1 w-full  mt-2">Identity Number [KTP / SIM / Paspor]
                         [Won't
                         be shared]</label>
-                    <input type="text" name="identitynumber" required
+                    <input type="text" maxlength="150" name="identitynumber" required
                         class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                         placeholder="12363486748748" value="{{$detail->identitynumber}}" disabled>
 
 
                         <label for="identitynumber" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Type</label>
-                        <input type="text" name="identitynumber" required
+                        <input type="text" maxlength="150" name="identitynumber" required
                             class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                             placeholder="12363486748748" value="{{$detail->paymenttype}}" disabled>
 
                     <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Number</label>
-                    <input type="text" name="paymentnumber" required
+                    <input type="text" maxlength="150" name="paymentnumber" required
                         class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                         placeholder="085351784357" value="{{$detail->paymentnumber}}" disabled>
 

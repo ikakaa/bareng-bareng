@@ -47,7 +47,7 @@
 
                         <div class="form-group row">
                             <label for="name" class="block sm:mb-2 mb-1 mx-auto w-full">{{ __('Name') }}</label>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Your Name">
+                                <input id="name" type="text" maxlength="150" class="form-control @error('name') is-invalid @enderror shadow appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-2 w-full mx-auto block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Your Name">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">

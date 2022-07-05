@@ -111,7 +111,7 @@
                                             <input type="hidden" name="orderid" value="{{$orderdetails[0]->order_id}}">
                                             <div class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Title:</label>
-                                                <input type="text" name="title" class="form-control" id="recipient-name" placeholder="Refund Request">
+                                                <input type="text" maxlength="150" name="title" class="form-control" id="recipient-name" placeholder="Refund Request">
                                             </div>
                                             <div class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Payment Type:</label>
@@ -127,7 +127,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Payment Number:</label>
-                                                <input type="text" name="paymentnumber" class="form-control" id="recipient-name" placeholder="08xxxxxxxxx">
+                                                <input type="text" maxlength="150" name="paymentnumber" class="form-control" id="recipient-name" placeholder="08xxxxxxxxx">
                                             </div>
                                             <div class="form-group">
                                                 <label for="message-text" class="col-form-label">Message/Reason:</label>

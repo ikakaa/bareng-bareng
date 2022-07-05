@@ -48,13 +48,13 @@
 
             @csrf
             <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2" >Product Name(Min 4 characters)</label>
-            <input type="text" pattern=".{4,}" name="productname" value="{{ old('productname') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" onkeypress="return checkEntry(event)" onpaste="return checkEntry(event)" onchange="return checkEntry(event)" placeholder="GMK-234 ">
+            <input type="text" maxlength="150" pattern=".{4,}" name="productname" value="{{ old('productname') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" onkeypress="return checkEntry(event)" onpaste="return checkEntry(event)" onchange="return checkEntry(event)" placeholder="GMK-234 ">
             <input type="hidden" value="{{ Auth::user()->name }}" name="name">
             <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Product Price (Inc. prox Indonesia Shipping Fee )</label>
             <input type="number" name="productprice" value="{{ old('productprice') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="10000">
 
             <label for="shortdesc" pattern=".{3,}" class="block sm:mb-2 mb-1 w-full  mt-2">Short Description (Min 3 characters)</label>
-            <input type="text" name="shortdesc" value="{{ old('shortdesc') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 Up Close And Personal With Malaysia's Custom Keyboard Makers">
+            <input type="text" maxlength="150" name="shortdesc" value="{{ old('shortdesc') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 Up Close And Personal With Malaysia's Custom Keyboard Makers">
 
             <label for="producttype" class="block sm:mb-2 mb-1 w-full  mt-2">Category</label>
             <select name="producttype" class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10">
@@ -94,7 +94,7 @@
 
 
             <label for="discord" class="block sm:mb-2 mb-1 w-full  mt-2">Link Discord (for updates or chat)</label>
-            <input type="text" name="discord" value="{{ old('discord') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="www.discord.com">
+            <input type="text" maxlength="150" name="discord" value="{{ old('discord') }}" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="www.discord.com">
 
            <label for="uploadphoto" class="block sm:mb-2 mb-1 w-full  mt-2">Upload Photo</label>
            <input type="file" name="file" id="photo">

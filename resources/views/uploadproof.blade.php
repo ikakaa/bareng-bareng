@@ -51,13 +51,13 @@
 
                                 <br><br>
                                 <label for="account_name" class="block sm:mb-2 mb-1 w-full  mt-2">Account Name</label>
-                                <input type="text" name="account_name" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="John Doe">
+                                <input type="text" maxlength="150" name="account_name" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="John Doe">
 
                                 <label for="date" class="block sm:mb-2 mb-1 w-full  mt-2">Date</label>
                                 <input type="date" name="date" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Jl. Raya Kb. Jeruk No.27">
 
                                 <label for="payment_amount" class="block sm:mb-2 mb-1 w-full  mt-2">Payment Amount</label>
-                                <input type="text" name="payment_amount" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="2.000.000">
+                                <input type="text" maxlength="150" name="payment_amount" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="2.000.000">
 
                                 <div class="button-right-bottom">
                                     <button class="button-style" type="submit">Confirm</button>

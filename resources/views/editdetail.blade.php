@@ -50,7 +50,7 @@
                     @method('patch')
 
                     <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Product Name</label>
-                    <input type="text" name="productname" required
+                    <input type="text" maxlength="150" name="productname" required
                         class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                         value="{{ $products->product_name }}">
                     <input type="hidden" value="{{ Auth::user()->name }}" name="name">
@@ -61,7 +61,7 @@
                         value="{{ $products->productprice }}">
 
                     <label for="shortdesc" class="block sm:mb-2 mb-1 w-full  mt-2">Short Description</label>
-                    <input type="text" name="shortdesc" required
+                    <input type="text" maxlength="150" name="shortdesc" required
                         class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                         value="{{ $products->shortdesc }}">
 
@@ -94,7 +94,7 @@
 
 
                     <label for="discord" class="block sm:mb-2 mb-1 w-full  mt-2">Link Discord (for updates or chat)</label>
-                    <input type="text" name="discord" required
+                    <input type="text" maxlength="150" name="discord" required
                         class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                         value="{{ $products->discordlink }}">
 

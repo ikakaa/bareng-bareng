@@ -51,16 +51,16 @@
 
                         @csrf
                         <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Buyer Username</label>
-                        <input type="text" disabled name="productname" required
+                        <input type="text" maxlength="150" disabled name="productname" required
                             class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                             value="{{ $ambilpayment[0]->account_name }}">
                         <label for="productname" class="block sm:mb-2 mb-1 w-full  mt-2">Recipient Name</label>
-                        <input type="text" disabled name="productname" required
+                        <input type="text" maxlength="150" disabled name="productname" required
                             class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                             value="{{ $ambilpayment[0]->recipient_name }}">
 
                         <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Buyer Address</label>
-                        <input type="text" disabled name="productprice" required
+                        <input type="text" maxlength="150" disabled name="productprice" required
                             class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                             value="{{ $ambilpayment[0]->address }}">
                             <br>
@@ -68,16 +68,16 @@
                             <span class="font-bold">Please insert shipment service name and shipment number</span>
                             <br>
                             <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Shipment service name</label>
-                            <input type="text"  name="shipmentname" required
+                            <input type="text" maxlength="150"  name="shipmentname" required
                                 class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                                 placeholder="JNE">
                             <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Buyer Address</label>
-                            <input type="text"  name="shipmentnumber" required
+                            <input type="text" maxlength="150"  name="shipmentnumber" required
                                 class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                                 placeholder="1350813587138">
                         <input type="hidden" name="orderdetailid" value="{{ $ambilorderdetail[0]->id }}">
                         {{-- <label for="shortdesc" class="block sm:mb-2 mb-1 w-full  mt-2">Short Description</label>
-            <input type="text" name="shortdesc" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 Up Close And Personal With Malaysia's Custom Keyboard Makers"> --}}
+            <input type="text" maxlength="150" name="shortdesc" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="GMK-234 Up Close And Personal With Malaysia's Custom Keyboard Makers"> --}}
 
                         <div class="pt-3">
                             <button class="button-style"

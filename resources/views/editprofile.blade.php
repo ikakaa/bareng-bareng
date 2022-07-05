@@ -31,7 +31,7 @@
 
         <div class="tempat-form mx-4">
         <div class="form-card  shadow justify-start  flex-nowrap px-4 py-3 rounded w-2/3 " style="background:#F4F9E9">
-           
+
 
             @error('name')
 
@@ -53,17 +53,17 @@
             @csrf
             <label for="name" class="block sm:mb-2 mb-1 w-full  mt-2 ">Username </label>
 
-            <input type="text" name="name" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="username" value="{{Auth::user()->name}}">
+            <input type="text" maxlength="150" name="name" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="username" value="{{Auth::user()->name}}">
             <input type="hidden" value="{{Auth::user()->name}}" name="id">
 
             <label for="email"  class="block sm:mb-2 mb-1 w-full  mt-2">Email </label>
-            <input type="text" name="email" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="email" value="{{Auth::user()->email}}">
+            <input type="text" maxlength="150" name="email" disabled  required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="email" value="{{Auth::user()->email}}">
 
             <label for="phonenum" class="block sm:mb-2 mb-1 w-full  mt-2">Phone Number</label>
             <input type="number" name="phonenum" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="phone number" value="{{Auth::user()->phonenum}}">
 
             <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
-            <input type="text" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Address" value="{{Auth::user()->address}}">
+            <input type="text" maxlength="150" name="address" required class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" placeholder="Address" value="{{Auth::user()->address}}">
 
 
            <div class="button-right-bottom">

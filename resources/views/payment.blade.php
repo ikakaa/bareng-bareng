@@ -60,7 +60,7 @@
 
                                 @csrf
                                 <label for="recipient_name" class="block sm:mb-2 mb-1 w-full  mt-2">Recipient Name</label>
-                                <input type="text" name="recipient_name" required
+                                <input type="text" maxlength="150" name="recipient_name" required
                                     class="form-control @error('recipient_name') is-invalid @enderror shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" name="recipient_name" value="{{ old('recipient_name') }}"
                                     placeholder="John Doe">
                                     @error('recipient_name')
@@ -71,13 +71,13 @@
 
                                 @if (Auth::user()->address == '0')
                                     <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
-                                    <input type="text" name="address" disabled
+                                    <input type="text" maxlength="150" name="address" disabled
                                         class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                                         placeholder="Jl. Kebun Jeruk">
                                     <small><a href="editprofile">Please add your address here.</a></small>
                                 @else
                                     <label for="address" class="block sm:mb-2 mb-1 w-full  mt-2">Address</label>
-                                    <input type="text" name="address" required
+                                    <input type="text" maxlength="150" name="address" required
                                         class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                                         value="{{ Auth::user()->address }}">
                                 @endif
