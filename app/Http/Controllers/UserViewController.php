@@ -70,7 +70,8 @@ class UserViewController extends Controller
                     }
                     $countavgloop=$countavgloop+$ratingcount;
                 }
-                $getavguser = $countavgloop/$countlooplikes;
+                $getavguser = divnum($countavgloop, $countlooplikes);
+
                 $penyebutcurruser = 0;
                 $penyebutloopuser = 0;
                 $collaborativepembilang = 0;
@@ -263,7 +264,8 @@ class UserViewController extends Controller
                     }
                     $countavgloop=$countavgloop+$ratingcount;
                 }
-                $getavguser = $countavgloop/$countlooplikes;
+                // $getavguser = $countavgloop/$countlooplikes;
+                $getavguser = divnum($countavgloop, $countlooplikes);
                 $checktotaluser++;
                 $checkhitung++;
                 $penyebutcurruser = 0;
@@ -272,7 +274,7 @@ class UserViewController extends Controller
                 $collaborativepenyebut = 0;
                 $ambilhitungcurruser = 0;
                 $ambilhitungloopuser = 0;
-                $getavguser = Like::where('user_id', $user->id)->average('status');
+                // $getavguser = Like::where('user_id', $user->id)->average('status');
             ?>
 
 <?php
