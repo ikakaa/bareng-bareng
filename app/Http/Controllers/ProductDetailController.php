@@ -263,9 +263,6 @@ class ProductDetailController extends Controller
 
     public function uploadproof(Request $request, $id)
     {
-        // $request->validate([
-        //     'file' => 'required|max:100000|mimes:jpeg,jpg,png,gif',
-        // ]);
 
         $validator = Validator::make($request->all(), [
             'payment_proof' => 'required|max:100000|mimes:jpeg,jpg,png,gif',
@@ -333,7 +330,8 @@ class ProductDetailController extends Controller
         $orders = Orders::with('payments')->where('id', $id->id)->first();
         $orders->status = 1;
         $orders->update();
-        return redirect()->back()->with('status', 'Payment Approved Successfully');
+        alert()->success('Payment Approved!', 'Successfully Approved');
+        return redirect()->back();
     }
 
     public function paymentreject(Orders $id)
@@ -349,7 +347,8 @@ class ProductDetailController extends Controller
             $product->productstock =  $product->productstock + $orderdetail->qty;
             $product->update();
         }
-        return redirect()->back()->with('status', 'Product Rejected Successfully');
+        alert()->error('Payment Rejected!', 'Successfully Rejected');
+        return redirect()->back();
     }
 
     public function myproductlist()
@@ -371,7 +370,8 @@ class ProductDetailController extends Controller
         $checkproduk = ProductDetail::where('id', $id->id)->first();
         $checkproduk->verified = 1;
         $checkproduk->save();
-        return redirect()->back()->with('status', 'Product Approved Successfully');
+        alert()->success('Product Approved!', 'Successfully Approved');
+        return redirect()->back();
     }
 
     public function rejectproduct(Request $request)
@@ -380,7 +380,8 @@ class ProductDetailController extends Controller
         $checkproduk->verified = 2;
         $checkproduk->rejectreason = $request->input('reason');
         $checkproduk->save();
-        return redirect()->back()->with('status', 'Product Rejected Successfully');
+        alert()->error('Product Rejected!', 'Successfully Rejected');
+        return redirect()->back();
     }
 
     //page order history
@@ -448,7 +449,7 @@ class ProductDetailController extends Controller
     public function endgroupbuy($id)
     {
         $product = ProductDetail::where('id', $id)->first();
-        $product->isfinish = '1';
+        $product->isfinish = '2';
         $product->save();
 
         alert()->success('Group Buy Ended', 'Success');

@@ -76,8 +76,10 @@ class SellerVerificationController extends Controller
         $user = User::find($id);
         $user->sellerapproval = '1';
         $user->save();
-        session(['sellerapproved' => true]);
-        return redirect('/sellerverification')->with('success', 'You have successfully upload image.');
+        // session(['sellerapproved' => true]);
+        // return redirect('/sellerverification')->with('success', 'You have successfully upload image.');
+        alert()->success('Seller Request Approved!', 'Successfully Approved');
+        return redirect()->back();
     }
     public function rejectsellerrequest(Request $request)
     {
@@ -86,8 +88,8 @@ class SellerVerificationController extends Controller
         $user->sellerapproval = '2';
         $user->sellerrejectreason = $request->reason;
         $user->save();
-        session(['sellerrejected' => true]);
-        return redirect('/sellerverification')->with('success', 'You have successfully upload image.');
+        alert()->error('Seller Request Rejected!', 'Successfully Rejected');
+        return redirect()->back();
     }
 
     public function detailform($name)

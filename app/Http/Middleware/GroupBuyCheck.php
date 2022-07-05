@@ -32,7 +32,7 @@ class GroupBuyCheck
 
             if ($datecurrent > $gbexpired || $row->productstock == 0) {
 
-                $row->isfinish = 1;
+                $row->isfinish = 2;
                 $row->save();
             }
         }

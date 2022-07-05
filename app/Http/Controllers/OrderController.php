@@ -126,7 +126,9 @@ class OrderController extends Controller
         $sellerfund->fundstatus = 0;
         $sellerfund->update();
 
-        return redirect()->back()->with('status', 'Status changed successfully');
+        alert()->success('Transfer finished!', 'Success');
+        return redirect()->back();
+        // return redirect()->back()->with('status', 'Status changed successfully');
     }
 
 }

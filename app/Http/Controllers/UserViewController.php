@@ -57,30 +57,13 @@ class UserViewController extends Controller
             $findnearestvalue = array();
 
             foreach ($alluser as $user) {
-                $looplikes = Like::where('id', '=', Auth::user()->id)->get();
-                $countlooplikes = '0';
-                $countavgloop='0';
-                foreach ($looplikes as $looplike) {
-                    $checkrating = Like::where('user_id', $user->id)->where('product_id', $looplike->product_id)->first();
-                    $countlooplikes++;
-                    if (!isset($checkrating->id)) {
-                        $ratingcount = 0;
-                    } else {
-                        $ratingcount = $checkrating->status;
-                    }
-                    $countavgloop=$countavgloop+$ratingcount;
-                }
-                $getavguser = divnum($countavgloop, $countlooplikes);
-
                 $penyebutcurruser = 0;
                 $penyebutloopuser = 0;
                 $collaborativepembilang = 0;
                 $collaborativepenyebut = 0;
                 $ambilhitungcurruser = 0;
                 $ambilhitungloopuser = 0;
-                //  $getavguser = Like::where('user_id', $user->id)->average('status');
-
-                // echo " RATA RATA LOOP USER : ".$getavguser;
+                $getavguser = Like::where('user_id', $user->id)->average('status');
 ?>
 
 <?php
@@ -112,26 +95,8 @@ class UserViewController extends Controller
                     $ambilhitungcurruser = $ambilhitungcurruser + pow($hitungcurruser, 2);
                     $ambilhitungloopuser = $ambilhitungloopuser + pow($hitungloopuser, 2);
 
-                    // echo $ambilhitungloopuser." = ".$ambilhitungloopuser." + ".pow($hitungloopuser,2)." END ";
-                    // echo " TOTAL SETELAH PANGKAT 2 : ".$ambilhitungloopuser."END ";
-                    // echo $hitungloopuser. " = ".$statuscount. " - ". $getavguser." END ";
-                    // echo " = ".$statuscount." - ".$getavguser;
                     $hitungtotal = $hitungcurruser * $hitungloopuser;
-                    // $hitungtotal=number_format((float)$hitungtotal, 3, '.', '');
-                    // echo " Hitung total ".$hitungtotal." = ".$hitungcurruser." * ".$hitungloopuser;
-                    // echo " Collaborative pembilang  SEBELUM:  ".$collaborativepembilang;
                     $collaborativepembilang = $collaborativepembilang + $hitungtotal;
-                    // echo " TOTAL COLLABORATIVE PEMBILANG : ".$collaborativepembilang; " END ";
-                    // echo " Hitung total = ".$hitungtotal;
-                    // echo " Collaborative pembilang  ".$collaborativepembilang. " = ".$collaborativepembilang." + ".$hitungtotal;
-                    // $penyebutrp = pow($statuscount - $getavguser, 2);
-                    // echo " Penyebut rp ".$penyebutrp." = ".$statuscount." - ".$getavguser;
-                    // $penyebutcurrrp = pow($loopcurrentuser->status - $averagecurrentuser, 2);
-
-                    // $penyebutloopuser = $penyebutloopuser + $penyebutrp;
-                    // $penyebutcurruser = $penyebutcurruser + $penyebutcurrrp;
-                    // echo "Penyebut loop user : ".$penyebutloopuser;
-                    // echo " Penyebut curr user : ".$penyebutcurruser;
                     if (!isset($penyebutcurruser)) {
                         $penyebutcurruser = 0;
                     }
@@ -140,26 +105,15 @@ class UserViewController extends Controller
                     }
                 }
                 $collaborativepenyebut = sqrt($ambilhitungcurruser) * sqrt($ambilhitungloopuser);
-                // echo " Penyebutloop".sqrt($ambilhitungloopuser);
-                // echo "Penyebut curr user : ".sqrt($ambilhitungcurruser);
-                // echo "Collaborative penyebut : " . $collaborativepenyebut;
                 if (is_nan($collaborativepenyebut) || is_infinite($collaborativepenyebut)) {
                     $collaborativepenyebut = 0;
                 } else {
                     $collaborativepenyebut;
                 }
                 $collaborativetotal = divnum($collaborativepembilang, $collaborativepenyebut);
-                // echo $collaborativetotal. " END  Collaborative total = ".$collaborativepembilang." / ".$collaborativepenyebut;
-                //only get 2 decimal from collaborativetotal
                 $collaborativetotal = number_format((float)$collaborativetotal, 18, '.', '');
-
-                // echo "Collaborative total " . $collaborativetotal . " Penyebut : " . $collaborativepenyebut . " Pembilang : " . $collaborativepembilang;
-                // echo "--------------------------------------------------";
                 $findnearestvalue[$user->id] = $collaborativetotal;
             }
-            // if (!$findnearestvalue) {
-            //     $findnearestvalue[1] = 1;
-            // }
             $key = array_search(max($findnearestvalue), $findnearestvalue);
             $mostsimilaruid = $key;
             echo "Most similar user ID : " . $key; ?>
@@ -251,21 +205,6 @@ class UserViewController extends Controller
             $findnearestvalue = array();
 
             foreach ($alluser as $user) {
-                $looplikes = Like::where('id', '=', Auth::user()->id)->get();
-                $countlooplikes = '0';
-                $countavgloop='0';
-                foreach ($looplikes as $looplike) {
-                    $checkrating = Like::where('user_id', $user->id)->where('product_id', $looplike->product_id)->first();
-                    $countlooplikes++;
-                    if (!isset($checkrating->id)) {
-                        $ratingcount = 0;
-                    } else {
-                        $ratingcount = $checkrating->status;
-                    }
-                    $countavgloop=$countavgloop+$ratingcount;
-                }
-                // $getavguser = $countavgloop/$countlooplikes;
-                $getavguser = divnum($countavgloop, $countlooplikes);
                 $checktotaluser++;
                 $checkhitung++;
                 $penyebutcurruser = 0;
@@ -274,7 +213,7 @@ class UserViewController extends Controller
                 $collaborativepenyebut = 0;
                 $ambilhitungcurruser = 0;
                 $ambilhitungloopuser = 0;
-                // $getavguser = Like::where('user_id', $user->id)->average('status');
+                $getavguser = Like::where('user_id', $user->id)->average('status');
             ?>
 
 <?php

@@ -56,7 +56,8 @@ class RefundRequestController extends Controller
         $order->isFinish='1';
         $order->rejetStatus = $request->reason;
         $order->save();
-        return redirect('/refundverification')->with('success', 'Refund request rejected successfully');
+        alert()->error('Refund Rejected!', 'Successfully Rejected');
+        return redirect()->back();
     }
     public function refundapprove($id)
     {
@@ -68,7 +69,8 @@ class RefundRequestController extends Controller
         $order->status = '8';
         $order->isFinish='1';
         $order->save();
-        return redirect('/refundverification')->with('success', 'Refund request approved successfully');
+        alert()->success('Refund Approved!', 'Successfully Approved');
+        return redirect()->back();
     }
 
 }

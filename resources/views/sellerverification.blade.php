@@ -42,14 +42,14 @@
 
                 <div class=" table-card-body">
 
-                    @if (session()->has('sellerapproved'))
+                    {{-- @if (session()->has('sellerapproved'))
                         <div class="alert alert-success mb-3 mt-1 w-full">Seller Approved!</div>
                         <?php session()->forget('sellerapproved'); ?>
                     @endif
                     @if (session()->has('sellerrejected'))
                         <div class="alert alert-warning mb-3 mt-1 w-full">Seller Rejected!</div>
                         <?php session()->forget('sellerrejected'); ?>
-                    @endif
+                    @endif --}}
                     <button onclick="location.href='{{url('/profilebuyer')}}'" class="btn-back">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                         Back
