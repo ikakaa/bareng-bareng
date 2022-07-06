@@ -81,7 +81,7 @@
             </div>
         </div>
         <p class="card-title text-center  text-white pt-16 pb-6">Featured Products</p>
-        <div class="tempat-card flex justify-center w-full pb-24">
+        <div class="tempat-card flex justify-center w-full pb-24 ">
             <?php $limitfeatured = 0; ?>
             @foreach ($getallproduct as $featuredproduct)
                 <?php if ($limitfeatured == 3) {
@@ -99,7 +99,7 @@
                 </div>
                 <div class="card-text w-full px-2 pb-3 ">
                     <p class="card-header2 pt-1">{{ $featuredproduct->product_name }} </p>
-                    <p class="card-info pt-2 ">{{ $featuredproduct->shortdesc }}
+                    <p class="card-info pt-2 ">{{ Str::limit($featuredproduct->shortdesc, 25, '...') }}
                     </p>
                     <div class="flex justify-between w-full ">
                         <div class="mini-card-box ">
