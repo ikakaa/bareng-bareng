@@ -205,8 +205,9 @@ class UserViewController extends Controller
             $findnearestvalue = array();
 
             foreach ($alluser as $user) {
+
                 $checktotaluser++;
-                $checkhitung++;
+
                 $penyebutcurruser = 0;
                 $penyebutloopuser = 0;
                 $collaborativepembilang = 0;
@@ -269,6 +270,7 @@ class UserViewController extends Controller
                         $penyebutloopuser = 0;
                     }
                 }
+
                 if ($collaborativepembilang == 0) {
                     $checkhitung++;
                 }
@@ -316,6 +318,7 @@ class UserViewController extends Controller
 
             // return view('home');
         }
+
         if ($checkhitung >= $checktotaluser) {
             //No data / Recommendation most liked product
             $productrecommendation = Like::select('product_id', \DB::raw('avg(status) as counts'))->groupBy('product_id')->orderBy('counts', 'DESC')->take(3)->get();
