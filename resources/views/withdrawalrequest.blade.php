@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
     <!DOCTYPE html>
     <html lang="en">
 
@@ -37,8 +37,8 @@
 
     <body>
         @can('isAdmin')
-            
-        
+
+
         <div class="container min-h-screen pt-3">
             <div class=" mx-auto w-4/5 table-card">
                 <div class=" table-card-body">
@@ -65,7 +65,7 @@
                             <?php  $i=0; ?>
                             @foreach ($requests as $req) <?php $i++; ?>
                             <tr>
-                                    
+
                                     <td>{{$i}}</td>
                                     <td>{{$req->seller_id}}</td>
                                     <td>{{$req->fund}}</td>
@@ -73,10 +73,10 @@
                                     <td>{{$req->paymentnumber}}</td>
                                     <td><a href="/changestatus/{{$req->id}}" class="btn-icon bg-custom"><i class="fa fa-check"></i></a></td>
                                     {{-- <td><a href="/paymentreject/{{$payment->order_id}}" class="btn-icon bg-warning"><i class="fa fa-times"></i></a></td> --}}
-                                    
+
                                 </tr>
-                                    
-                                
+
+
                                 @endforeach
 
                         </tbody>
@@ -88,15 +88,16 @@
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
                 <div class="justify-center flex">
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+                       <a target="_blank" href="https://twitter.com/adrianp55368958" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/adrian.putra.14224/" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+                    <a target="_blank" href="https://wa.me/+6285351748536" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/adrian_sevenn/" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+
                 </div>
                 <div class="footer-text-container flex justify-center py-8 sm:pl-3">
-                    <a href="#" class="footer-href ">Contact</a>
-                    <a href="#" class="footer-href ">FAQs</a>
-                    <a href="#" class="footer-href2 ">Order Tracking</a>
+                             <a target="_blank" href="https://wa.me/+6285351748536" class="footer-href ">Contact</a>
+                    <a target="_blank" href="../../../interestcheck" class="footer-href ">Interest Check</a>
+                    <a target="_blank" href="../../../groupbuy" class="footer-href2 ">Group Buy</a>
                 </div>
                 <div class="copyright-text pt-12">
                     <p>Indonesia shipping available!</p>

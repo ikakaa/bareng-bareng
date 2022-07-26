@@ -40,7 +40,7 @@
                                             <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
                                         @endif
                                     @endforeach
-    
+
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
@@ -63,7 +63,7 @@
                                  foreach($splitdata as $data){ ?>
                                 <option value="{{ $data }}">{{ $data }}</option>
                                 <?php  } ?>
-    
+
                             </select>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                           <button type="button" disabled class="button-style buy-bottom-right">Out of stock</button>
                           @endif
                         @if($product->isfinish==1)
-  
+
                         <button type="button" disabled class="button-style buy-bottom-right h-auto">In-Production</button>
                         @endif
                         @if($product->productstock>0 && $product->isfinish==0)
@@ -94,7 +94,7 @@
                                             <div class="swiper-slide"><img src="../{{ $row->filepath }}" alt=""> </div>
                                         @endif
                                     @endforeach
-    
+
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
@@ -109,9 +109,9 @@
                             <p class="card-text">Shipment Date: {{$product->shippingdate->format('d-m-Y')}}</p>
                         </div>
                 @endif
-                
 
-                    
+
+
             </div>
 
             @endforeach
@@ -121,15 +121,16 @@
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
                 <div class="justify-center flex">
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+                       <a target="_blank" href="https://twitter.com/adrianp55368958" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/adrian.putra.14224/" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+                    <a target="_blank" href="https://wa.me/+6285351748536" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/adrian_sevenn/" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+
                 </div>
                 <div class="footer-text-container flex justify-center py-8 sm:pl-3">
-                    <a href="#" class="footer-href ">Contact</a>
-                    <a href="#" class="footer-href ">FAQs</a>
-                    <a href="#" class="footer-href2 ">Order Tracking</a>
+                             <a target="_blank" href="https://wa.me/+6285351748536" class="footer-href ">Contact</a>
+                    <a target="_blank" href="../../../interestcheck" class="footer-href ">Interest Check</a>
+                    <a target="_blank" href="../../../groupbuy" class="footer-href2 ">Group Buy</a>
                 </div>
                 <div class="copyright-text pt-12">
                     <p>Indonesia shipping available!</p>

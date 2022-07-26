@@ -27,33 +27,33 @@
                         <div class="title txt title-upper-left">
                             <h1>Cart</h1>
                         </div>
-                    
+
                         <div>
                             <div class="col-md-9">
                                 @if (!empty($orders))
                                     @foreach ($orderdetails as $orderdetail)
                                     <div class="card p-3">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="user d-flex flex-row align-items-center"> 
-                                                <img src="../{{$orderdetail->products->productdetailfiles->filepath}}" class="img-detail-size"> 
+                                            <div class="user d-flex flex-row align-items-center">
+                                                <img src="../{{$orderdetail->products->productdetailfiles->filepath}}" class="img-detail-size">
                                                 <span>
                                                     <div class="font-weight-bold txt cart-txt">{{$orderdetail->products->product_name}}</div>
                                                     <div class="cart-txt">Quantity: {{$orderdetail->qty}}</div>
                                                     <div class="cart-txt">Variant: {{$orderdetail->variant}}</div>
-                                                </span> 
-                                            </div> 
+                                                </span>
+                                            </div>
                                             <div class="cart-txt">Rp. {{number_format($orderdetail->totalPrice)}}
                                             <br>
-                                            
+
                                             <form action="/delete/{{$orderdetail->id}}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger trash" type="submit"><i class="fas fa-trash-alt"></i></button>
                                             </form>
                                             </div>
-                                            
+
                                         </div>
-                                    </div><br> 
+                                    </div><br>
                                 @endforeach
                             </div>
                         </div>
@@ -70,21 +70,22 @@
                     </div>
                 </div>
             </div>
-        </div>  
-        
+        </div>
+
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
                 <div class="justify-center flex">
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+                       <a target="_blank" href="https://twitter.com/adrianp55368958" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/adrian.putra.14224/" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+                    <a target="_blank" href="https://wa.me/+6285351748536" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/adrian_sevenn/" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+
                 </div>
                 <div class="footer-text-container flex justify-center py-8 sm:pl-3">
-                    <a href="#" class="footer-href ">Contact</a>
-                    <a href="#" class="footer-href ">FAQs</a>
-                    <a href="#" class="footer-href2 ">Order Tracking</a>
+                             <a target="_blank" href="https://wa.me/+6285351748536" class="footer-href ">Contact</a>
+                    <a target="_blank" href="../../../interestcheck" class="footer-href ">Interest Check</a>
+                    <a target="_blank" href="../../../groupbuy" class="footer-href2 ">Group Buy</a>
                 </div>
                 <div class="copyright-text pt-12">
                     <p>Indonesia shipping available!</p>

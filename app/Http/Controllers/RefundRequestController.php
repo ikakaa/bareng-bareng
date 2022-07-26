@@ -53,7 +53,7 @@ class RefundRequestController extends Controller
         $refund->save();
         $order = Orders::where('id', $refund->orderid)->first();
         $order->status = '7';
-        $order->isFinish='1';
+
         $order->rejetStatus = $request->reason;
         $order->save();
         alert()->error('Refund Rejected!', 'Successfully Rejected');

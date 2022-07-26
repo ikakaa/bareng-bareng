@@ -36,13 +36,13 @@
                                 You can only edit the product once it is verified.
                             </large>
                         </div>
-                        
+
                         <div>
                             <div class="col-md-9">
                                 @foreach ($products as $product)
                                 <div class="card p-3">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex flex-row align-items-center"> 
+                                        <div class="d-flex flex-row align-items-center">
                                             @foreach($productfiles as $productfile)
                                                 @if ($productfile->productid == $product->id && $productfile->deleted == 0)
                                                     <img src="../{{ $productfile->filepath }}" class="img-detail-size">
@@ -51,7 +51,7 @@
                                             @endforeach
                                         <span>
                                             <div class="font-weight-bold txt cart-txt">{{$product->product_name}}</div>
-                                        </span> 
+                                        </span>
                                         </div>
                                         @if ($product->verified == 1)
                                             <button class="btn-verified">Status: Verified</button>
@@ -59,30 +59,31 @@
                                             <button class="btn-rejected">Status: Rejected, {{$product->rejectreason}}</button>
                                         @else
                                             <button class="btn-on-progress">Status: On progress</button>
-                                        @endif 
+                                        @endif
                                     </div>
-                                </div><br> 
+                                </div><br>
                                 @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>  
-        
+        </div>
+
 
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
                 <div class="justify-center flex">
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+                       <a target="_blank" href="https://twitter.com/adrianp55368958" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/adrian.putra.14224/" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+                    <a target="_blank" href="https://wa.me/+6285351748536" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/adrian_sevenn/" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+
                 </div>
                 <div class="footer-text-container flex justify-center py-8 sm:pl-3">
-                    <a href="#" class="footer-href ">Contact</a>
-                    <a href="#" class="footer-href ">FAQs</a>
-                    <a href="#" class="footer-href2 ">Order Tracking</a>
+                             <a target="_blank" href="https://wa.me/+6285351748536" class="footer-href ">Contact</a>
+                    <a target="_blank" href="../../../interestcheck" class="footer-href ">Interest Check</a>
+                    <a target="_blank" href="../../../groupbuy" class="footer-href2 ">Group Buy</a>
                 </div>
                 <div class="copyright-text pt-12">
                     <p>Indonesia shipping available!</p>

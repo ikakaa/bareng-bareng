@@ -25,7 +25,7 @@
             <div class="title search-title">
                 <h1>Search Results</h1>
             </div>
-            
+
                 <div class="tempat-card flex justify-center pb-24 row row-cols-3 mb-3">
                     @foreach ($products as $product)
                     <div class="card-custom mr-4 col" onclick="location.href='{{url('/product')}}/{{$product->id}}'">
@@ -36,16 +36,16 @@
                         <div class="card-text w-full px-2 pb-3 txt-center">
                             <a class="card-header2 pt-1" href="/product/{{$product->id}}">{{$product->product_name}}</a>
                             <div class="flex justify-between w-full ">
-                                
+
                             </div>
                             <div class="mini-card-box ">
-                               
+
                                 <p class="price-number block">Rp. {{number_format($product->productprice)}}</p>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                </div>           
+                </div>
 
 
             </div>
@@ -54,15 +54,16 @@
         <div class="footer mt-10">
             <div class="footer-1 py-5 pt-8 w-full bg-navbar">
                 <div class="justify-center flex">
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+                       <a target="_blank" href="https://twitter.com/adrianp55368958" class="text-black mr-6 register-icon"><i class="fab fa-twitter"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/adrian.putra.14224/" class="text-black mr-6 register-icon"><i class="fab fa-facebook"></i></a>
+                    <a target="_blank" href="https://wa.me/+6285351748536" class="text-black mr-6 register-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/adrian_sevenn/" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
+
                 </div>
                 <div class="footer-text-container flex justify-center py-8 sm:pl-3">
-                    <a href="#" class="footer-href ">Contact</a>
-                    <a href="#" class="footer-href ">FAQs</a>
-                    <a href="#" class="footer-href2 ">Order Tracking</a>
+                             <a target="_blank" href="https://wa.me/+6285351748536" class="footer-href ">Contact</a>
+                    <a target="_blank" href="../../../interestcheck" class="footer-href ">Interest Check</a>
+                    <a target="_blank" href="../../../groupbuy" class="footer-href2 ">Group Buy</a>
                 </div>
                 <div class="copyright-text pt-12">
                     <p>Indonesia shipping available!</p>

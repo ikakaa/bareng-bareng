@@ -86,9 +86,9 @@
                 <a href="#" class="text-black mr-6 register-icon"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="footer-text-container flex justify-center py-8 sm:pl-3">
-                <a href="#" class="footer-href ">Contact</a>
-                <a href="#" class="footer-href ">FAQs</a>
-                <a href="#" class="footer-href2 ">Order Tracking</a>
+                   <a href="https://wa.me/+6285351748536" class="footer-href ">Contact</a>
+                      <a href="../../../interestcheck" class="footer-href ">Interest Check</a>
+                <a href="../../../groupbuy" class="footer-href2 ">Group Buy</a>
             </div>
             <div class="copyright-text pt-12">
                 <p>Indonesia shipping available!</p>
