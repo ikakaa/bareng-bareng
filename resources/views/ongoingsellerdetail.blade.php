@@ -71,7 +71,7 @@
                             <input type="text" maxlength="150"  name="shipmentname" required
                                 class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                                 placeholder="JNE">
-                            <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Buyer Address</label>
+                            <label for="productprice" class="block sm:mb-2 mb-1 w-full  mt-2">Shipment Number</label>
                             <input type="text" maxlength="150"  name="shipmentnumber" required
                                 class="shadow  appearance-none border border-red rounded  py-2 sm:py-3 px-3 text-grey-darker mb-1 custwidth  block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
                                 placeholder="1350813587138">

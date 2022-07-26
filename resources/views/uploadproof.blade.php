@@ -27,6 +27,9 @@
                     <div class="card-body">
                         <div class="row txt-center">
                             <h1 class="title txt">Waiting for your payment</h1><br>
+                            <p style="color: green">
+                                Transfer the fund to OVO 085351748536 - Adrian Putra or BRI - 008501018457534
+                            </p>
                             <large style="color: red">
                                 Please finish your payment at once, or else your order will not be placed.
                             </large>
