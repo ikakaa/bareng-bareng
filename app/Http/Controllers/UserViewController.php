@@ -123,7 +123,6 @@ class UserViewController extends Controller
 
             foreach ($alluser as $user) {
 
-                $checktotaluser++;
 
                 $penyebutcurruser = 0;
                 $penyebutloopuser = 0;
@@ -143,6 +142,7 @@ class UserViewController extends Controller
                 $loopcurrentuser = Like::where('user_id', Auth::user()->id)->where('user_id', '=', Auth::user()->id)->get();
                 foreach ($loopcurrentuser as $loopcurrentuser) {
 
+                    $checktotaluser++;
 
                     if (!isset($loopcurrentuser->id)) {
                         $loopcurrentuser->status = 0;
@@ -238,11 +238,13 @@ class UserViewController extends Controller
 
         if ($checkhitung >= $checktotaluser) {
             //No data / Recommendation most liked product
-            $productrecommendation = Like::select('product_id', \DB::raw('avg(status) as counts'))->groupBy('product_id')->orderBy('counts', 'DESC')->take(3)->get();
+            $productrecommendation = Like::select('product_id', \DB::raw('avg(status) as counts'))->groupBy('product_id')->orderBy('counts', 'DESC')->take(10)->get();
 
             $productfiles = ProductDetailsFile::all();
+            // return $productrecommendation;
             return view('home', compact('productrecommendation', 'productfiles', 'getallproduct', 'getallfile'));
         } else {
+
             $productrecommendation = Like::where('user_id', $mostsimilaruid)->where('status', '>=', '3')->get();
             $productfiles = ProductDetailsFile::all();
             return view('home', compact('productrecommendation', 'productfiles', 'getallproduct', 'getallfile'));
