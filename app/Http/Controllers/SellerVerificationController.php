@@ -94,7 +94,7 @@ class SellerVerificationController extends Controller
 
     public function detailform($name)
     {
-        $detail = SellerVerification::where('user_id', $name)->first();
+        $detail = SellerVerification::where('user_id', $name)->latest('id')->first();
         return view('sellerformdetail', compact('detail'));
     }
 }
